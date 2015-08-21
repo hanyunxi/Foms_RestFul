@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>倒查</title>
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/pagecss/leftMenu.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+    <style type="text/css">
+        body
+        {
+         font-family: "微软雅黑";
+         margin:0; 
+         }
+        .window
+        {
+            padding:1px;background-color:#25A2CE; 
+        }
+        .panel-tool-close
+        {
+            background:url('../Compents/eui/themes/metro/images/panel_tools.png') no-repeat;    
+        }
+         .panel-title
+        {
+            height:21px; line-height:21px;margin-left:15px;font-size:16px;    
+        }
+        .menu_span
+        {
+             margin-left: 20px; margin-right: 30px;   
+        }
+         .panel-header, .panel-body
+        {
+            border: 0;
+        }
+        .layout-panel-west
+        {
+            border-right: 1px solid #e7e7e7;
+        }
+        .layout-panel-west .panel-header
+        {
+            background-color: #e6e6e6;
+        }
+        .layout-panel-center .panel-header
+        {
+            background-color: #f9f9f9;
+        }
+        .datagrid-htable
+        {
+            background-color:#f2f2f2;
+        }
+        .datagrid-row-over,.datagrid-row-over a
+        {
+            color:White;
+        }
+        .datagrid-row-selected,.datagrid-row-selected a
+        {
+            color:White;
+            background-color:#2d9acd; 
+        }
+        .datagrid-header .datagrid-cell span
+        {
+            font-size:16px;
+        }
+        .datagrid-header-row
+        {
+            height:40px;
+        }
+        .datagrid-header td.datagrid-header-over
+        {
+            background:#f2f2f2;    
+        }
+        .datagrid-row
+        {
+            height: 46px;
+        }
+        .datagrid-btable,.datagrid-htable
+        {
+            border:1px solid #C8C8C8;   
+        }
+        .datagrid-htable td
+        {
+            border-right:1px solid #C8C8C8;    
+        }
+        .datagrid-btable td
+        {
+             border-right:1px solid #C8C8C8; border-bottom:1px dashed #C8C8C8;
+        }
+        .datagrid-cell
+        {
+            font-size:15px; 
+        }
+        .panel-body
+        {
+            background-color:White;
+            color:Black;
+        }
+        .datagrid-pager
+        {
+            color:Black;    
+        }
+        .btn
+        {
+            text-decoration: none;
+            display: inline-block;
+            margin: 0;
+            cursor: pointer;
+            outline: none;
+            text-align: center;
+            height: 30px;
+            width: 96px;
+            line-height:30px;
+            color: White;
+            background-color: #30A3D9;
+            font-size:16px;
+            font-family: "宋体";  
+        }
+        .btn:hover
+        {
+            background-color: #2D9ACC;
+        }
+        .combo-arrow
+        {
+            background-color:White;
+            background: url('../Compents/images/yp/arrow-down001.png') no-repeat center center;
+        }
+        .datebox .combo-arrow
+        {
+            background-image:url(../Compents/images/yp/calendar001_normal.png);
+            background-position:center center;
+            margin-right:2px;
+        }
+        .combo-arrow:hover
+        {
+            background-color:White;    
+        }
+        .combo
+        {
+            border:1px solid #d2d2d2;
+            margin-right:10px;
+        }
+        .combo .combo-text,.combobox-item
+        {
+            font-size:14px;
+            color:Gray;  
+        }
+        .suspan
+        {
+            color:rgb(58,114,144); font-size:15px;
+            margin-left:25px;
+        }
+        .sucontent
+        {
+             font-size:15px;   
+        }
+        .numcontent
+        {
+            color:rgb(247,147,30);
+        }
+        .a_table
+        {
+            cursor: pointer;text-decoration: none; color:rgb(0,113,188);
+        }
+    </style>
+</head>
+<body>
+     <!--弹出框-->
+    <div id="winTable" class="easyui-window" style=" padding:10px;">
+        <div style=" margin:15px;">
+           <table>
+                <tr style=" height:40px;">
+                    <td><span class="suspan">嫌疑人编号：</span><span class="sucontent numcontent" id="suNum"></span></td>
+                </tr>
+                <tr style=" height:40px;">
+                    <td><span class="suspan">现勘号：</span><span class="sucontent" id="xckyNum"></span></td>
+                    <td><span class="suspan">案事件号：</span><span class="sucontent" id="caseNum"></span></td>
+                    <td><span class="suspan">姓名：</span><span class="sucontent" id="suName"></span></td>
+                </tr>
+                <tr style=" height:40px;">
+                    <td><span class="suspan">性&nbsp;&nbsp;&nbsp;别：</span><span class="sucontent" id="suSex"></span></td>
+                    <td><span class="suspan">出生年月：</span><span class="sucontent" id="suBirth"></span></td>
+                    <td><span class="suspan">年龄：</span><span class="sucontent" id="suAge"></span></td>
+                </tr>
+                <tr style=" height:40px;">
+                   <td colspan="3"><span class="suspan">身份证号：</span><span class="sucontent" id="suCarId"></span></td>
+                </tr>
+                <tr style=" height:40px;">
+                   <td colspan="3"><span class="suspan">现住址：</span><span class="sucontent" id="suAdd"></span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div style="margin:0; min-width:800px; margin-left:40px; height:65px; width:96%;">
+        <div style="float:left; margin-top:20px;display: inline-flex;">
+            <span style=" height:27px; line-height:27px; margin-right:15px; font-size:16px;">部门</span>
+            <select id="accord" class="easyui-combobox" style=" margin-right:15px; height:26px; width:100px;">
+                    <option value="accord='足迹' or accord='DNA' or accord='指纹'">全部</option>
+                    <option value="accord='DNA'">DNA</option>
+                    <option value="accord='指纹'">指纹</option>
+                    <option value="accord='足迹'">足迹</option>
+                </select>
+        </div>
+        <div id="tool" style="float:right; margin-top:20px; margin-right:16px; display:inline-flex;">
+                <span style=" height:27px; line-height:27px; margin-right:15px; font-size:16px;">上传时间</span>
+                <input id="begintime" type="text" class="easyui-datebox" style=" width:160px;"/> 
+                <input id="endtime" type="text" class="easyui-datebox" style=" width:160px;"/>
+                <a class="btn" style=" height:28px; line-height:28px; width:95px; font-size:15px;" onclick="loaddcTable();">查&nbsp;&nbsp;&nbsp;找</a>
+        </div>
+        <div style=" clear:both;"></div>
+    </div>
+    <div style=" width:96%; margin-left:40px;">
+        <input type="hidden" id="tbcount" value="-1" />
+        <table id="dcTable"></table>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function loaddcTable() {
+        var tbcount = $('#tbcount').val();
+        var winWidth = $(window.parent.parent.document).width() - 229;
+        var begintime = $('#begintime').datebox('getValue');
+        var endtime = $('#endtime').datebox('getValue');
+        var accord = $('#accord').combobox('getValue');
+        var begin = new Date(begintime.replace("-", "/").replace("-", "/"));
+        var end = new Date(endtime.replace("-", "/").replace("-", "/"));
+        if (begin > end) {
+            alert("开始时间不能大于结束时间！");
+            $('#begintime').datebox('setValue', ''); endtime = $('#endtime').datebox('setValue', '');
+            return false;
+        }
+        $('#dcTable').datagrid({
+            //url: 'http://' + urlIP1 + '/DepartmentCase/post/daocha',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/Departmentcase/getBrightSearch',
+            queryParams: { begintime: begintime, endtime: endtime, accord: accord,dataType:3 },
+            striped: true,
+            singleSelect: true,
+            pagination: true,
+            fitColumns: true,
+            columns: [[
+            { field: 'suspectNum', title: '嫌疑人编号', align: 'center', width: winWidth * 0.2,
+                formatter: function (value, row, index) {
+                    return "<a class='a_table' onclick='openWinTable(&apos;" + value + "&apos;,&apos;" + row.accord + "&apos;);'>" + value + "</a>";
+                }
+            },
+            { field: 'suspectName', title: '姓名', align: 'center', width: winWidth * 0.2 },
+            { field: 'suspectSex', title: '性别', align: 'center', width: winWidth * 0.1 },
+            { field: 'suspectCardId', title: '身份证号', align: 'center', width: winWidth * 0.2 },
+            { field: 'suspectAdd', title: '现住址', align: 'center', width: winWidth * 0.3 }
+            ]],
+            onLoadSuccess: function () {
+                $('.datagrid-btable tr').find('td:last').css("border-right", "0"); //border样式
+                $('.datagrid-btable tr:last td').css("border-bottom", "0");
+                $('.datagrid-htable tr').find('td:last').css("border-right", "0");
+                $('.datagrid-header,.datagrid-htable').css("height", "40px"); //表头高度
+                $('.pagination-info').css("margin-right", "36px"); //右下角表格记录
+                $(window).resize(function () { //监测浏览器大小变化
+                    setTimeout(function () {
+                        $('#dcTable').datagrid('resize'); //动态改变表格宽度
+                    }, 300);
+                });
+            }
+        });
+    }
+
+    function openWinTable(suspectNum, accord) {     //获取详细信息，打开窗口
+        $.ajax({
+           //url: 'http://' + urlIP1 + '/DepartmentCase/post/suspectdetails',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/Departmentcase/getSuspectDetails',
+            type: 'post',
+            data: { suspectNum: suspectNum, accord: accord,dataType:3},
+            async: false,
+            success: function (data) {
+                if (data != "") {
+                    var jdata = data;
+                    $('#xckyNum').html(jdata.xcky); $('#caseNum').html(jdata.caseNum); $('#suNum').html(jdata.suspectNum);
+                    $('#suName').html(jdata.suspectName); $('#suSex').html(jdata.suspectSex); $('#suCarId').html(jdata.suspectCardId);
+                    $('#suAge').html(jdata.suspectAge); $('#suBirth').html(jdata.suspectBirthday); $('#suAdd').html(jdata.suspectAdd);
+                }
+            }
+        });
+        $('#winTable').window('open');
+    }
+
+    $(document).ready(function () {
+        $('#winTable').window({   //加载嫌疑人详细信息弹出框
+            top: 40,
+            left: ($(window.parent.parent.document).width() - 850) / 2,
+            width: 600,
+            height: 350,
+            modal: true,
+            border: true,
+            closable: true,
+            minimizable: false,
+            maximizable: false,
+            collapsible: false,
+            resizable: false,
+            title: '人员信息',
+            closed: true,
+            onClose: function () {
+
+            }
+        });
+        $('.combo-arrow').css("height", "24px"); $('.combo-text').css({ "height": "24px", "line-height": "24px", "text-align": "center" }).attr("readonly", "readonly"); $('.datebox').css({ "height": "24px", "width": "163px" });
+        loaddcTable();
+    });
+</script>

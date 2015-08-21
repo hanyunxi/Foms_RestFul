@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.cmrx.bean.model">
+	<class name="DetailDictAddBean" table="detail_dict_add">
+		<meta attribute="sync-DAO">false</meta>
+		<id name="id" type="long" column="id">
+		</id>
+		
+		<property name="dictkey" column="dictkey" type="string" length="20" />
+		<property name="rootKey" column="rootKey" type="string" length="50" />
+		<property name="parentKey" column="parentKey" type="string" length="50" />
+		<property name="dictVal" column="dictVal" type="string" length="200" />
+		<property name="descript" column="descript" type="string" length="2000" />
+		<property name="dictPY" column="dictPY" type="string" length="100" />
+		<property name="createUser" column="createUser" type="string" length="50" />
+		<property name="createUnit" column="createUnit" type="string" length="50" />
+		<property name="createDatetime" column="createDatetime" type="date" length="0" />
+		<property name="manager1" column="manager1" type="string" length="50" />
+		<property name="managerUnit1" column="managerUnit1" type="string" length="50" />
+		<property name="manager1Datetime" column="manager1Datetime" type="date" length="0" />
+		<property name="manager2" column="manager2" type="string" length="50" />
+		<property name="managerUnit2" column="managerUnit2" type="string" length="50" />
+		<property name="manager2Datetime" column="manager2Datetime" type="date" length="0" />
+		<property name="addStatus" column="addStatus" type="integer" length="11" />
+		<property name="resultContext" column="resultContext" type="string" length="2000" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,837 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+	 <title>综合串并</title>
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/pagecss/leftMenu.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/datagrid-detailview.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+ <!--    <script src="http://10.48.1.227:80/TileMap/js/EzMapAPI.js" type="text/javascript" language="javascript" ></script> -->
+    <style type="text/css">
+        body
+        {
+         font-family: "微软雅黑";   
+         }
+        .window
+        {
+            padding:1px;background-color:#25A2CE; 
+        }
+        .panel-tool-close
+        {
+            background:url('../Compents/eui/themes/metro/images/panel_tools.png') no-repeat;    
+        }
+         .panel-title
+        {
+            height:21px; line-height:21px;margin-left:15px;font-size:16px;    
+        }
+        .menu_span
+        {
+             margin-left: 20px; margin-right: 30px;   
+        }
+         .panel-header, .panel-body
+        {
+            border: 0;
+        }
+        .layout-panel-west
+        {
+            border-right: 1px solid #e7e7e7;
+        }
+        .layout-panel-west .panel-header
+        {
+            background-color: #e6e6e6;
+        }
+        .layout-panel-center .panel-header
+        {
+            background-color: #f9f9f9;
+        }
+        .datagrid-htable
+        {
+            background-color:#f2f2f2;
+        }
+        .datagrid-row-over,.datagrid-row-over a
+        {
+            color:White;
+        }
+        .datagrid-row-selected,.datagrid-row-selected a
+        {
+            color:White;
+            background-color:#2d9acd; 
+        }
+        .datagrid-header .datagrid-cell span
+        {
+            font-size:16px;
+        }
+        .datagrid-header-row
+        {
+            height:40px;
+        }
+        .datagrid-header td.datagrid-header-over
+        {
+            background:#f2f2f2;    
+        }
+        .datagrid-row
+        {
+            height: 40px;/*表格的高度*/
+        }
+        .datagrid-btable,.datagrid-htable
+        {
+            border:1px solid #C8C8C8;   
+        }
+        .datagrid-htable td
+        {
+            border-right:1px solid #C8C8C8;    
+        }
+        .datagrid-btable td
+        {
+             border-right:1px solid #C8C8C8; border-bottom:1px dashed #C8C8C8;
+        }
+        .datagrid-cell
+        {
+            font-size:15px; 
+        }
+        .panel-body
+        {
+            background-color:White;
+            color:Black;
+        }
+        .datagrid-pager
+        {
+            color:Black;    
+        }
+        .btn
+        {
+            text-decoration: none;
+            display: inline-block;
+            margin: 0;
+            cursor: pointer;
+            outline: none;
+            text-align: center;
+            height: 30px;
+            width: 96px;
+            line-height:30px;
+            color: White;
+            background-color: #30A3D9;
+            font-size:16px;
+            font-family: "宋体";  
+        }
+        .btn:hover
+        {
+            background-color: #2D9ACC;
+        }
+        .combo-arrow
+        {
+            background-color:White;
+            background: url('../Compents/images/yp/arrow-down001.png') no-repeat center center;
+        }
+        .datebox .combo-arrow
+        {
+            background-image:url(../Compents/images/yp/calendar001_normal.png);
+            background-position:center center;
+            margin-right:2px;
+        }
+        .combo-arrow:hover
+        {
+            background-color:White;    
+        }
+        .combo
+        {
+            border:1px solid #d2d2d2;
+            margin-right:10px;
+        }
+        .combo .combo-text,.combobox-item
+        {
+            font-size:14px;
+            color:Gray;  
+        }
+        .a_table
+        {
+            cursor: pointer;text-decoration: none; color:rgb(0,113,188);
+        }
+		
+#nav_wrapper {
+	position: relative;
+	width: 96%;
+	margin-left: 36px;
+	border-bottom: 2px #ddd solid;
+}
+
+#nav_wrapper #nav_menu {
+	
+	height: 40px;
+}
+
+#nav_wrapper #nav_menu a {
+	display: block;
+	float: left;
+	height: 30px;
+	margin-top: 7px;
+	font-family: '微软雅黑';
+	line-height: 16px;
+	color: #999999;
+	font-size: 16px;
+	text-decoration: none;
+}
+
+#nav_wrapper #nav_animate_block {
+	position: absolute;
+	bottom: -2px;
+	height: 2px;
+	overflow: hidden;
+	background: #279BC4;
+}
+    </style>
+</head>
+<body class="easyui-layout">
+     <!--菜单箭头-->
+    <div style="position: absolute; z-index: 999; left: 196px; top: 33px; width: 12px; height: 100%;">
+        <div id="guid_1" style="height: 84px; width: 12px;">
+            <img src="../Compents/images/yp/guidearrow-21.png" /></div>
+    </div>
+    <!--左侧菜单-->
+    <div region="west" collapsible="false" split="false" title=" " style="width: 200px; padding-top: -10px; background-color: #f9f9f9;">
+        <ul id="menu">
+            <li><a href="#" class="select" id="a_bmca">
+                <img alt="" src="../Compents/images/yp/4-15.png" />
+                <span class="menu_span">部门串案</span>
+                <img src="../Compents/images/yp/Arrow_normal-13.png" /></a> </li>
+            <li><a href="#" class="normal" id="a_zhcb">
+                <img alt="" src="../Compents/images/yp/4-14.png" />
+                <span class="menu_span">综合串并</span>
+                <img src="../Compents/images/yp/Arrow_normal-13.png" /></a> </li>
+        </ul>
+    </div>
+    <!--右侧内容   -->
+    <div id="mainPanle" region="center" split="false" title=" " style="background-color: White;" minWidth="500px;">
+	<div id="bmca">
+	   <!--右侧内容    上边独立的-->
+	  <div id="nav_wrapper">
+			<div id="nav_menu">
+				<a class="titlea" href="#" style="margin-right: 32px;" id="current_nav">足迹部门方案</a>
+				<a class="titlea" href="#" id="dna_nav" style="margin-right: 32px;">DNA部门方案</a>
+				<a class="titlea" href="#" id="zhiwen_nav">指纹部门方案</a>
+			</div>
+			<div id="nav_animate_block"></div>
+	  </div>
+	   
+	   <!--右侧下边显示的内容-->
+	    <!--部门串案--足迹-->
+        <div id="div_bmca" style="width: 100%; height: 91%; display: block;">
+        <!--串案列表-->
+			<!--window窗口，默认是关闭的-->
+            <div id="zjwinTable" class="easyui-window" style=" padding:15px; overflow:auto;">
+				<!--点击弹出的窗表格的内容-->
+                <table id="zjdetailsTable" style="width:850px;"></table>
+            </div>
+			<div style="margin:0; min-width:800px; margin-left:40px; height:65px; width:96%;">
+                <div id="tool" style="float:right; margin-top:20px; margin-right:16px; display:inline-flex;">
+                     <span style=" height:27px; line-height:27px; margin-right:15px; font-size:16px;">上传时间</span>
+                     <input id="begintimezj" type="text" class="easyui-datebox" style=" width:160px;"/> 
+                     <input id="endtimezj" type="text" class="easyui-datebox" style=" width:160px;"/>
+                     <a class="btn" style=" height:28px; line-height:28px; width:95px; font-size:15px;" onclick="loadbmTable('zj');">查&nbsp;&nbsp;&nbsp;找</a>
+                </div>
+                <div style=" clear:both;"></div>
+            </div>
+			<!--加载的表格(赶紧来加载的表格)-->
+            <div style=" width:96%; margin-left:40px;">
+                <input type="hidden" id="tbcount" value="-1" />
+                <table id="zjbmTable"></table>
+            </div>
+        </div>
+		
+		<!--部门串案--DNA-->
+		<div id="div_dna" style="width: 100%; height: 91%; display: none;">
+        <!--串案列表-->
+			<!--window窗口，默认是关闭的-->
+            <div id="dnawinTable" class="easyui-window" style=" padding:15px; overflow:auto;">
+				<!--点击弹出的窗-->
+                <table id="dnadetailsTable" style="width:850px;"></table>
+            </div>
+			<div style="margin:0; min-width:800px; margin-left:40px; height:65px; width:96%;">
+                <div id="tool" style="float:right; margin-top:20px; margin-right:16px; display:inline-flex;">
+                     <span style=" height:27px; line-height:27px; margin-right:15px; font-size:16px;">上传时间</span>
+                     <input id="begintimedna" type="text" class="easyui-datebox" style=" width:160px;"/> 
+                     <input id="endtimedna" type="text" class="easyui-datebox" style=" width:160px;"/>
+                     <a class="btn" style=" height:28px; line-height:28px; width:95px; font-size:15px;" onclick="loadbmTable('dna');">查&nbsp;&nbsp;&nbsp;找</a>
+                </div>
+                <div style=" clear:both;"></div>
+            </div>
+			<!--加载的表格-->
+            <div style=" width:96%; margin-left:40px;">
+                <input type="hidden" id="tbcount" value="-1" />
+                <table id="dnaTable"></table>
+            </div>
+        </div>
+		
+		<!--部门串案--指纹-->
+		<div id="div_zhiwen" style="width: 100%; height: 91%; display: none;">
+        <!--串案列表-->
+			<!--window窗口，默认是关闭的-->
+            <div id="zhiwenwinTable" class="easyui-window" style=" padding:15px; overflow:auto;">
+				<!--点击弹出的窗-->
+                <table id="zhiwendetailsTable" style="width:850px;"></table>
+            </div>
+			<div style="margin:0; min-width:800px; margin-left:40px; height:65px; width:96%;">
+                <div id="tool" style="float:right; margin-top:20px; margin-right:16px; display:inline-flex;">
+                     <span style=" height:27px; line-height:27px; margin-right:15px; font-size:16px;">上传时间</span>
+                     <input id="begintimezhiwen" type="text" class="easyui-datebox" style=" width:160px;"/> 
+                     <input id="endtimezhiwen" type="text" class="easyui-datebox" style=" width:160px;"/>
+                     <a class="btn" style=" height:28px; line-height:28px; width:95px; font-size:15px;" onclick="loadbmTable('zhiwen');">查&nbsp;&nbsp;&nbsp;找</a>
+                </div>
+                <div style=" clear:both;"></div>
+            </div>
+			<!--加载的表格-->
+            <div style=" width:96%; margin-left:40px;">
+                <input type="hidden" id="tbcount" value="-1" />
+                <table id="zhiwenTable"></table>
+            </div>
+        </div>
+		
+		</div>
+		
+		
+        <!--正查-->
+        <div id="div_zc" style="width: 100%; height: 100%; display: none;">
+            <iframe src="zhengcha.htm" style=" width:100%; height:100%; border:none;"></iframe>
+        </div>
+        <!--倒查-->
+        <div id="div_dc" style="width: 100%; height: 100%; display: none;">
+            <iframe src="daocha.htm" style=" width:100%; height:100%; border:none;"></iframe>
+        </div>
+        <!--综合串案-->
+        <div id="div_zhcb" style="width: 100%; height: 100%; display: none;">
+            <iframe src="zonghe.htm" style=" width:100%; height:100%; border:none;"></iframe>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function initMenu() {       //左菜单
+        $('#menu li a').click(
+            function () {
+                $('#menu li a').removeClass("select").addClass("normal");
+                $(this).addClass("select").removeClass("normal");
+            }
+         );
+    }
+	$('#bmTable').pagination({
+	onSelectPage:function(pageNumber, pageSize){
+		alert("100");
+		$(this).pagination('loading');
+		alert('pageNumber:'+pageNumber+',pageSize:'+pageSize);
+		$(this).pagination('loaded');
+	}
+});
+	//查找
+    function loadbmTable(bmValue) { //加载部门串案中的  足迹部门方案
+        var tbcount = $('#tbcount').val();
+        var winWidth = $(window.parent.document).width() - 229;
+        var begintime = $('#begintime'+bmValue).datebox('getValue');
+        var endtime = $('#endtime'+bmValue).datebox('getValue');
+        //var accord = $('#accord').combobox('getValue');
+        var begin = new Date(begintime.replace("-", "/").replace("-", "/"));
+        var end = new Date(endtime.replace("-", "/").replace("-", "/"));
+        if (begin > end) {
+            alert("开始时间不能大于结束时间!");
+            $('#begintime'+bmValue).datebox('setValue', ''); endtime = $('#endtime'+bmValue).datebox('setValue', '');
+            return false;
+        }
+	//判断是zj,dna,zhiwen
+	if(bmValue=='zj'){
+		$('#zjbmTable').datagrid({    //表格
+			url: 'http://' + urlIP + '/Foms_RestFul/rest/SyntheticalCase/getAllsercabase',
+            queryParams: { begintime: begintime, endtime: endtime},
+            striped: true,
+            singleSelect: true,
+            pagination: true,
+            fitColumns: true,
+            columns: [[
+            { field: 'SERCAID', title: '串案号', align: 'center', width: winWidth * 0.2,
+                formatter: function (value, row, index) {
+                    return "<a class='a_table' onclick='openZjWinTable(&apos;" + value + "&apos;);'>" + value + "</a>";
+                }
+            },
+            { field: 'SERCANAME', title: '串案名称', align: 'center', width: winWidth * 0.3 },
+            { field: 'SERCAGIST', title: '串案要点', align: 'center', width: winWidth * 0.3 },
+            { field: 'INPUTUSER', title: '提交人', align: 'center', width: winWidth * 0.1 },
+            { field: 'INPUTTIME', title: '提交时间', align: 'center', width: winWidth * 0.2 }
+            ]],
+            view: detailview,
+            detailFormatter: function (rowIndex, rowData) {
+            	 return "<div id='"+rowData.SERCAID+"' class='map' style='height:300px;' ></div>";
+             },
+            onExpandRow: function (rowIndex, rowData) {
+            	var sansandata="";
+            	var sisidata="";
+            	var qudata="";
+            	var qydata=[];
+            	 $.ajax({
+                     url: 'http://' + urlIP + '/Foms_RestFul/rest/SyntheticalCase/getAllzujiScaseid',
+                     type: 'POST',
+                     async: false,
+                     data: {rowDataSercaid:rowData.SERCAID},
+                     success: function (data) {
+                    	 qudata=data.RowDataScaseid;
+                    	 qydata=data.EvidenceName;
+                     }
+                 }); 
+            	sansandata="<?xml version=\"1.0\" encoding=\"GBK\"?><EASYXML  version=\"1.0\"><REQUEST><GET_FEATURES  featurelimit=\"10\" beginrecord=\"1\" ><LAYER  name=\"AJGL_SJJBXX_PT\" id=\""+rowIndex+"\" ><SPATIALQUERY  subfields=\"AJBH:AJBH\" dispfield =\"AJBH\" where=\"1=1 and AJBH IN("+qudata+")\"></SPATIALQUERY> </LAYER></GET_FEATURES></REQUEST></EASYXML>";
+            	var xqudata='';
+            	$.ajax({
+                    url: 'http://10.48.1.227:9080/PGIS_S_Map/MapService_v6/mapservice',
+                    type: 'POST',
+                    processData:false,
+                    data: 'xml=' + encodeURIComponent(sansandata), 
+                    dataType:'xml',
+                    success: function (data) {
+                    	xqudata=data.firstElementChild.outerHTML
+                    },error:function(msg)
+                     {
+                      alert(qydata);
+                      alert("暂无数据返回");
+                     }
+                });
+            	liuliudata(xqudata,rowData.DNA_SERIAL_NO);
+            },
+            onLoadSuccess: function () {
+                $('.datagrid-btable tr').find('td:last').css("border-right", "0"); //border样式
+                $('.datagrid-btable tr:last td').css("border-bottom", "0");
+                $('.datagrid-htable tr').find('td:last').css("border-right", "0");
+                $('.datagrid-header,.datagrid-htable').css("height", "40px"); //表头高度
+                $('.pagination-info').css("margin-right", "36px"); //右下角表格记录
+                $(window).resize(function () { //监测浏览器大小变化
+                    setTimeout(function () {
+                        $('#bmTable').datagrid('resize'); //动态改变表格宽度
+                    }, 300);
+                });
+            }
+        });
+	}else if(bmValue=='dna'){
+		$('#dnaTable').datagrid({    //表格
+			url: 'http://' + urlIP + '/Foms_RestFul/rest/SyntheticalCase/getAllDnaserialbase',
+            queryParams: { begintime: begintime, endtime: endtime},
+            striped: true,
+            singleSelect: true,
+            pagination: true,
+            fitColumns: true,
+            columns: [[
+            { field: 'SCASEID', title: '案件编号', align: 'center', width: winWidth * 0.3,
+                formatter: function (value, row, index) {
+                    return "<a class='a_table' onclick='openDnaWinTable(&apos;" + value + "&apos;);'>" + value + "</a>";
+                }
+            },
+            { field: 'DNA_SERIAL_N0', title: '串案号', align: 'center', width: winWidth * 0.2 },
+            { field: 'SRC_LAB_REGIONALISM', title: '比对单位代码', align: 'center', width: winWidth * 0.1 },
+            { field: 'SRC_LAB_NAME', title: '比对单位', align: 'center', width: winWidth * 0.2 },
+            { field: 'CREATE_DATETIME', title: '创建时间', align: 'center', width: winWidth * 0.2 }
+            ]],
+            view: detailview,
+            detailFormatter: function (rowIndex, rowData) {
+            	 return "<div id='"+rowData.DNA_SERIAL_NO+"' class='map' style='height:300px;' ></div>";
+             },
+            onExpandRow: function (rowIndex, rowData) {
+            	var sansandata="";
+            	var sisidata="";
+            	var qudata="";
+            	var qydata=[];
+            	 $.ajax({
+                     url: 'http://' + urlIP + '/Foms_RestFul/rest/SyntheticalCase/getAllScaseid',
+                     type: 'POST',
+                     async: false,
+                     data: {rowDataScaseid:rowData.SCASEID},
+                     success: function (data) {
+                    	 qudata=data.RowDataScaseid;
+                    	 qydata=data.EvidenceName;
+                     }
+                 }); 
+            	sansandata="<?xml version=\"1.0\" encoding=\"GBK\"?><EASYXML  version=\"1.0\"><REQUEST><GET_FEATURES  featurelimit=\"10\" beginrecord=\"1\" ><LAYER  name=\"AJGL_SJJBXX_PT\" id=\""+rowIndex+"\" ><SPATIALQUERY  subfields=\"AJBH:AJBH\" dispfield =\"AJBH\" where=\"1=1 and AJBH IN("+qudata+")\"></SPATIALQUERY> </LAYER></GET_FEATURES></REQUEST></EASYXML>";
+            	var xqudata='';
+            	$.ajax({
+                    url: 'http://10.48.1.227:9080/PGIS_S_Map/MapService_v6/mapservice',
+                    type: 'POST',
+                    processData:false,
+                    data: 'xml=' + encodeURIComponent(sansandata), 
+                    dataType:'xml',
+                    success: function (data) {
+                    	 xqudata=data.firstElementChild.outerHTML;
+                    },error:function(msg)
+                     {
+                      alert(qydata);
+                      alert("暂无数据返回");
+                     }
+                });
+            	 wuwudata(xqudata,rowData.DNA_SERIAL_NO);
+            },
+            onLoadSuccess: function () {
+                $('.datagrid-btable tr').find('td:last').css("border-right", "0"); //border样式
+                $('.datagrid-btable tr:last td').css("border-bottom", "0");
+                $('.datagrid-htable tr').find('td:last').css("border-right", "0");
+                $('.datagrid-header,.datagrid-htable').css("height", "40px"); //表头高度
+                $('.pagination-info').css("margin-right", "36px"); //右下角表格记录
+                $(window).resize(function () { //监测浏览器大小变化
+                    setTimeout(function () {
+                        $('#bmTable').datagrid('resize'); //动态改变表格宽度
+                    }, 300);
+                });
+            }
+        });
+	}else{
+		$('#zhiwenTable').datagrid({    //表格
+            //url: 'http://' + urlIP1 + '/Departmentcase/post/departmentcase', 
+			url: 'http://' + urlIP + '/Foms_RestFul/rest/SyntheticalCase/getAllsercabase',
+            queryParams: { begintime: begintime, endtime: endtime},
+            striped: true,
+            singleSelect: true,
+            pagination: true,
+            fitColumns: true,
+            columns: [[
+            { field: 'SERCAID', title: '串案号', align: 'center', width: winWidth * 0.2,
+                formatter: function (value, row, index) {
+                    return "<a class='a_table' onclick='openZhiwenWinTable(&apos;" + value + "&apos;);'>" + value + "</a>";
+                }
+            },
+            { field: 'SERCANAME', title: '串案名称3', align: 'center', width: winWidth * 0.3 },
+            { field: 'SERCAGIST', title: '串案要点3', align: 'center', width: winWidth * 0.3 },
+            { field: 'INPUTUSER', title: '提交人', align: 'center', width: winWidth * 0.1 },
+            { field: 'INPUTTIME', title: '提交时间', align: 'center', width: winWidth * 0.2 }
+            ]],
+            onLoadSuccess: function () {
+                $('.datagrid-btable tr').find('td:last').css("border-right", "0"); //border样式
+                $('.datagrid-btable tr:last td').css("border-bottom", "0");
+                $('.datagrid-htable tr').find('td:last').css("border-right", "0");
+                $('.datagrid-header,.datagrid-htable').css("height", "40px"); //表头高度
+                $('.pagination-info').css("margin-right", "36px"); //右下角表格记录
+                $(window).resize(function () { //监测浏览器大小变化
+                    setTimeout(function () {
+                        $('#bmTable').datagrid('resize'); //动态改变表格宽度
+                    }, 300);
+                });
+            },error:function(msg,a){
+				alert("错误syntheticalCase="+msg+"+++aa:"+a)
+			}
+        });
+	}
+    
+    }
+
+    function openZjWinTable(sercaid) {   //弹窗zj
+        $('#zjdetailsTable').datagrid({
+            //url: 'http://' + urlIP1 + '/DepartmentCase/post/departmentcase_details',
+			url: 'http://' + urlIP + '/Foms_RestFul/rest/SyntheticalCase/getSercapicBySercaid',
+            queryParams: { sercaid: sercaid},
+            striped: true,
+            singleSelect: true,
+            fitColumns: true,
+            columns: [[
+            { field: 'SERCAID', title: '串案号', align: 'center' },
+            { field: 'SCENEID', title: '案件号', align: 'center' },
+            { field: 'INPUTTIME', title: '提交时间', align: 'center' },
+            { field: 'DEPTID', title: '部门ID', align: 'center' },
+            { field: 'DEPTNAME', title: '部门编号', align: 'center' },
+            { field: 'INPUTUSERNAME', title: '提交人', align: 'center' }
+            ]],
+            onLoadSuccess: function (data) {
+                var timer = setInterval(function () {
+                    if ($("#winTable .datagrid-header-row").width() == 670) { }
+                    else {
+                        $("#winTable .panel.datagrid").width($("#winTable .datagrid-header-row").width() + 15);
+                        clearInterval(timer);
+                    }
+                }, 50);
+            }
+        });
+        $('#zjwinTable').window("open");
+    }
+	function openDnaWinTable(evidence_no) {   //弹窗dna
+        $('#dnadetailsTable').datagrid({
+            //url: 'http://' + urlIP1 + '/DepartmentCase/post/departmentcase_details',
+			url: 'http://' + urlIP + '/Foms_RestFul/rest/SyntheticalCase/getInvestigationByCaseNo',
+            queryParams: { evidence_no: evidence_no},
+            striped: true,
+            singleSelect: true,
+            fitColumns: true,
+            columns: [[
+            { field: 'INVESTIGATION_NO', title: '勘查号', align: 'center' },
+            { field: 'CASE_NO', title: '案件编号', align: 'center' },
+            { field: 'CASE_NAME', title: '案件类别名称', align: 'center' },
+            { field: 'OCCURRENCE_DATE_FROM', title: '发案时间(起)', align: 'center' },
+            { field: 'OCCURRENCE_DATE_TO', title: '发案时间（止）', align: 'center' }
+            ]],
+            view: detailview,
+            detailFormatter: function (rowIndex, rowData) {
+            	 return "<div id='left' class='left_'></div><div style='height:245px;width: 1000px;overflow: hidden; display: inline-block;'><div id='rowData.INVESTIGATION_NO' style='margin-left: 0px;'></div></div><div id='right' class='right_'></div>";
+             },
+             onExpandRow: function (rowIndex, rowData) {
+            	 $("#"+rowData.INVESTIGATION_NO).html("dsadadsa"); 
+            	
+            },
+            onLoadSuccess: function (data) {
+                var timer = setInterval(function () {
+                    if ($("#winTable .datagrid-header-row").width() == 670) { }
+                    else {
+                        $("#winTable .panel.datagrid").width($("#winTable .datagrid-header-row").width() + 15);
+                        clearInterval(timer);
+                    }
+                }, 50);
+            }
+        });
+        $('#dnawinTable').window("open");
+    }
+	
+	function openZhiwenWinTable(sercaid) {   //弹窗指纹
+        $('#zhiwendetailsTable').datagrid({
+            //url: 'http://' + urlIP1 + '/DepartmentCase/post/departmentcase_details',
+			url: 'http://' + urlIP + '/Foms_RestFul/rest/SyntheticalCase/getSercapicBySercaid',
+            queryParams: { sercaid: sercaid},
+            striped: true,
+            singleSelect: true,
+            fitColumns: true,
+            columns: [[
+            { field: 'SERCAID', title: '串案号', align: 'center' },
+            { field: 'SCENEID', title: '案件号', align: 'center' },
+            { field: 'INPUTTIME', title: '提交时间', align: 'center' },
+            { field: 'DEPTID', title: '部门ID', align: 'center' },
+            { field: 'DEPTNAME', title: '部门编号', align: 'center' },
+            { field: 'INPUTUSERNAME', title: '提交人', align: 'center' }
+            ]],
+            onLoadSuccess: function (data) {
+                var timer = setInterval(function () {
+                    if ($("#winTable .datagrid-header-row").width() == 670) { }
+                    else {
+                        $("#winTable .panel.datagrid").width($("#winTable .datagrid-header-row").width() + 15);
+                        clearInterval(timer);
+                    }
+                }, 50);
+            }
+        });
+        $('#zhiwenwinTable').window("open");
+    }
+	
+	//默认加载初始化
+    $(document).ready(function () {
+		caidan();
+		
+        $('#zjwinTable').window({   //部门串案列表窗口初始化，点击弹出窗
+            top: 50,
+            left: ($(window.parent.document).width() - 750) / 2,
+            width: 880,
+            height: 500,
+            modal: true,
+            border: true,
+            closable: true,
+            minimizable: false,
+            maximizable: false,
+            collapsible: false,
+            resizable: false,
+            title: '足迹列表',
+            closed: true,
+            onClose: function () {
+
+            }
+        });
+		   $('#dnawinTable').window({   //部门串案列表窗口初始化，点击弹出窗
+            top: 50,
+            left: ($(window.parent.document).width() - 750) / 2,
+            width: 880,
+            height: 500,
+            modal: true,
+            border: true,
+            closable: true,
+            minimizable: false,
+            maximizable: false,
+            collapsible: false,
+            resizable: false,
+            title: 'DNA列表',
+            closed: true,
+            onClose: function () {
+
+            }
+        });
+		   $('#zhiwenwinTable').window({  
+            top: 50,
+            left: ($(window.parent.document).width() - 750) / 2,
+            width: 880,
+            height: 500,
+            modal: true,
+            border: true,
+            closable: true,
+            minimizable: false,
+            maximizable: false,
+            collapsible: false,
+            resizable: false,
+            title: '指纹列表',
+            closed: true,
+            onClose: function () {
+
+            }
+        });
+        initMenu();
+        loadbmTable('zj');//默认加载  部门中的足迹部门方案
+        $('.combo-arrow').css("height", "24px"); $('.combo-text').css({ "height": "24px", "line-height": "24px", "text-align": "center" }).attr("readonly", "readonly"); $('.datebox').css({ "height": "24px", "width": "163px" });
+        $('#a_bmca').bind("click", function () { $('#bmca').show(); $('#div_dc,#div_zhcb,#div_zc').hide(); $('#guid_1').css("margin-top", "0px").show(); });
+        
+		$('#a_zc').bind("click", function () { $('#div_zc').show(); $('#bmca,#div_zhcb,#div_dc').hide(); $('#guid_1').css("margin-top", "85px").show(); });
+        $('#a_dc').bind("click", function () { $('#div_dc').show(); $('#bmca,#div_zhcb,#div_zc').hide(); $('#guid_1').css("margin-top", "170px").show(); });
+        $('#a_zhcb').bind("click", function () { $('#div_zhcb').show(); $('#bmca,#div_dc,#div_zc').hide(); $('#guid_1').css("margin-top", "255px").show(); });
+        
+		//刚进入会弹出的框(综合串并)
+//		if (parent.zongheIsSelect == 1) {//判断是否是从首页跳转到综合串案
+//        	alert(11)
+//            $('#a_zhcb').click();
+//        }
+		//足迹，指纹，DNA的首页跳转弹出窗
+		var num = decodeURI(request("num"));
+		var type = decodeURI(request("type"));
+        	if(type=='zj'){
+				 fromHomePage('current_nav');//选中滑块
+				 openZjWinTable(num);
+			}else if(type=='dna'){
+				 fromHomePage('dna_nav');
+				 openDnaWinTable(num);
+			}else if(type=='zhiwen'){
+				 fromHomePage('zhiwen_nav');
+				 openZhiwenWinTable(num);
+			}
+    });
+	
+	function request(paras) { 
+        var url = location.href;
+        var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+        var paraObj = {}
+        for (i = 0; j = paraString[i]; i++) {
+            paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+        }
+        var returnValue = paraObj[paras.toLowerCase()];
+        if (typeof (returnValue) == "undefined") {
+            return "";
+        } else {
+            return returnValue;
+        }
+    }
+	
+	//菜单滑动
+	function caidan() {
+		//初始化默认的滑块的位置，是第一个 
+		//初始状态下，动画滑块位置在current元素 
+		fromHomePage("current_nav");
+		
+		//给zj,dna,zhiwen添加的点击事件
+		$("#nav_menu a").click(function() {
+			var index = $(this).index();
+			var $a_cur = $("#nav_menu").find("a").eq(index); //鼠标移动到的a元素 
+			//利用触发的a元素索引获取其left位置和它的宽度 
+			var width = $a_cur.innerWidth();
+			var left = $a_cur.position().left;
+			//设置动画滑块位置 
+			$nav_animate_block.stop().animate({
+				width : width,
+				left : left
+			}, 300);
+		});
+	}
+	
+	//从HomePage页面点击跳转过来的，默认选中滑动块
+	function fromHomePage(type) {
+		//初始化默认的滑块的位置，是第一个 
+		var $current_nav = $("#"+type); //current元素（当前所在导航项) 
+		var current_nav_width = $current_nav.innerWidth();
+		var current_nav_left = $current_nav.position().left;
+		var $nav_animate_block = $("#nav_animate_block"); //动画滑块 
+		$nav_animate_block.css({
+			width : current_nav_width,
+			left : current_nav_left
+		}); //初始状态下，动画滑块位置在current元素 
+	}
+	
+	//点击   足迹部门方案
+	$("#current_nav").click(function() {
+		$("#div_bmca").show();
+		fromHomePage("current_nav");//滑块到   足迹部门方案
+		$("#div_dna").hide();
+		$("#div_zhiwen").hide();
+	});
+	
+	$("#dna_nav").click(function() {
+		$("#div_bmca").hide();
+		$("#div_dna").show();
+		fromHomePage("dna_nav");
+		$("#div_zhiwen").hide();
+		loadbmTable('dna');
+	});
+	
+	$("#zhiwen_nav").click(function() {
+		$("#div_bmca").hide();
+		$("#div_dna").hide();
+		$("#div_zhiwen").show();
+		fromHomePage("zhiwen_nav");
+		loadbmTable('zhiwen');
+	});
+
+	function loaddepartmentchart() {
+		alert(111)
+	}
+	function loadzonghechart() {
+		alert(222)
+	}
+	function wuwudata(qudata,ajbhid)
+	{
+      
+         var qiqidata='<?xml version="1.0" encoding="GBK" standalone="no"?>'+qudata;
+         var uEzMap = new EzMap(document.getElementById(ajbhid));
+         uEzMap.hideMapControl();
+         uEzMap.hideMapScale();
+         uEzMap.hideMapServer(); 
+         uEzMap.fullExtent(); 
+         var ss1= $(qiqidata).find("FEATURE");
+ if(ss1.length!=0)
+	 {
+for(var i=0;i<ss1.length;i++)
+{
+                  var sansansisi=ss1[i].attributes.linestr.nodeValue; 
+            	  var uIcon=new Icon();
+            	  uIcon.height=32;
+            	  uIcon.width=32;
+            	  uIcon.image="http://10.48.1.227:80/TileMap/images/tack.gif";
+            	  uIcon.topOffset=-16;
+            	  uIcon.leftOffset=16;
+            	  var point1 = new Point(sansansisi);
+            	  var marker1 = new Marker(point1,uIcon,new Title("山东省",12,7,"宋体",null,null,"red","2"));
+            	  marker1.addListener("click",function(){marker1.openInfoWindowHtml("");});// 添加点击事件的响应
+            	  getMapApp().addOverlay(marker1);
+            	  getMapApp().centerAtLatLng(point1);  
+}
+	 }
+         }
+	function liuliudata(qudata,ajbhid)
+	{
+		 var qiqidata='<?xml version="1.0" encoding="GBK" standalone="no"?>'+qudata;
+         var uEzMap = new EzMap(document.getElementById(ajbhid));
+         uEzMap.hideMapControl();
+         uEzMap.hideMapScale();
+         uEzMap.hideMapServer(); 
+         uEzMap.fullExtent(); 
+         var ss1= $(qiqidata).find("FEATURE");
+ if(ss1.length!=0)
+	 {
+for(var i=0;i<ss1.length;i++)
+{
+                  var sansansisi=ss1[i].attributes.linestr.nodeValue; 
+            	  var uIcon=new Icon();
+            	  uIcon.height=32;
+            	  uIcon.width=32;
+            	  uIcon.image="http://10.48.1.227:80/TileMap/images/tack.gif";
+            	  uIcon.topOffset=-16;
+            	  uIcon.leftOffset=16;
+            	  var point1 = new Point(sansansisi);
+            	  var marker1 = new Marker(point1,uIcon,new Title("山东省",12,7,"宋体",null,null,"red","2"));
+            	  marker1.addListener("click",function(){marker1.openInfoWindowHtml("");});// 添加点击事件的响应
+            	  getMapApp().addOverlay(marker1);
+            	  getMapApp().centerAtLatLng(point1);  
+}
+	 }
+        
+         }
+</script>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.cmrx.bean.model">
+	<class name="StudyAnalysisBean" table="study_analysis">
+		<meta attribute="sync-DAO">false</meta>
+		<id name="studyId" type="long" column="studyId">
+		</id>
+		
+		<property name="studyName" column="studyName" type="string" length="200" />
+		<property name="userId" column="userId" type="integer" length="11" />
+		<property name="createDate" column="createDate" type="date" length="0" />
+		<property name="hideItem" column="hideItem" type="string" length="2000" />
+		<property name="hideLine" column="hideLine" type="string" length="2000" />
+		<property name="hideAllData" column="hideAllData" type="string" length="13000" />
+		<property name="hideItemCount" column="hideItemCount" type="int" length="100" />
+		<property name="updateDate" column="updateDate" type="date" length="0" />
+	</class>
+</hibernate-mapping>

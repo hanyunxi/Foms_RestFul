@@ -1,0 +1,591 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>新闻管理</title>
+<link href="../Compents/eui/themes/metro/blue-easyui.css"
+	rel="stylesheet" type="text/css" />
+<link href="../Compents/eui/themes/icon.css" rel="stylesheet"
+	type="text/css" />
+<link href="../Compents/pagecss/leftMenu.css" rel="stylesheet"
+	type="text/css" />
+<script src="../Compents/eui/eui-Script/jquery-1.11.1.js"
+	type="text/javascript"></script>
+<script src="../Compents/eui/eui-Script/jquery.easyui.min.js"
+	type="text/javascript"></script>
+<script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js"
+	type="text/javascript"></script>
+<script
+	src="../Compents/eui/eui-extend/jeasyui-extensions/jquery.portal.js"
+	type="text/javascript"></script>
+<script src="../Compents/js/session.js" type="text/javascript"></script>
+<link href="../kindeditor/themes/default/default.css" />
+<link href="../kindeditor/plugins/code/prettify.css" />
+<script type="text/javascript" src="../kindeditor/kindeditor.js"
+	charset="utf-8"></script>
+<script type="text/javascript" src="../kindeditor/lang/zh_CN.js"
+	charset="utf-8"></script>
+<script type="text/javascript"
+	src="../kindeditor/plugins/code/prettify.js" charset="utf-8"></script>
+<script src="../Compents/js/jbase64.js" type="text/javascript"></script>
+<script src="../Compents/js/guid.js" type="text/javascript"></script>
+<meta http-equiv="pragram" content="no-cache" charset="utf-8">
+<style type="text/css">
+body {
+	font-family: "微软雅黑";
+}
+
+#div_newspage .datagrid-htable {
+	background-color: #f2f2f2;
+}
+
+#div_newspage .datagrid-row-over,.datagrid-row-over a {
+	color: White;
+}
+
+#div_newspage .datagrid-row-selected,.datagrid-row-selected a {
+	color: White;
+	background-color: #2d9acd;
+}
+
+#div_newspage .datagrid-header .datagrid-cell span {
+	font-size: 16px;
+}
+
+#div_newspage .datagrid-header-row {
+	height: 40px;
+}
+
+#div_newspage .datagrid-header td.datagrid-header-over {
+	background: #f2f2f2;
+}
+
+#div_newspage .datagrid-row {
+	height: 46px;
+}
+
+#div_newspage .datagrid-btable,.datagrid-htable {
+	border: 1px solid #C8C8C8;
+}
+
+#div_newspage .datagrid-htable td {
+	border-right: 1px solid #C8C8C8;
+}
+
+#div_newspage .datagrid-btable td {
+	border-right: 1px solid #C8C8C8;
+	border-bottom: 1px dashed #C8C8C8;
+}
+
+#div_newspage .datagrid-cell {
+	font-size: 15px;
+}
+
+#div_newspage .panel-body {
+	background-color: White;
+	color: Black;
+}
+
+#div_newspage .datagrid-pager {
+	color: Black;
+}
+
+#div_newspage .combo-arrow {
+	background-color: White;
+	background: url('../Compents/images/yp/arrow-down001.png') no-repeat
+		center center;
+}
+
+#div_newspage .datebox .combo-arrow {
+	background-image: url(../Compents/images/yp/calendar001_normal.png);
+	background-position: center center;
+	margin-right: 2px;
+}
+
+#div_newspage .combo-arrow:hover {
+	background-color: White;
+}
+
+#div_newspage .combo {
+	border: 1px solid #d2d2d2;
+	margin-right: 10px;
+}
+
+#div_newspage .combo .combo-text,.combobox-item {
+	font-size: 14px;
+	color: Gray;
+}
+
+#div_newspage .a_table {
+	cursor: pointer;
+	text-decoration: none;
+	color: rgb(0, 113, 188);
+}
+
+#div_newspage .newstitle {
+	font-weight: bold;
+}
+
+#div_newspage .a_title {
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#div_newspage .btn {
+	text-decoration: none;
+	display: inline-block;
+	margin: 0;
+	cursor: pointer;
+	outline: none;
+	text-align: center;
+	height: 30px;
+	width: 96px;
+	line-height: 30px;
+	color: White;
+	background-color: #30A3D9;
+	font-size: 16px;
+	font-family: "宋体";
+}
+
+#div_newspage .btn:hover {
+	background-color: #2D9ACC;
+}
+
+#div_newsTable a {
+	color: #00749b;
+	cursor: pointer;
+}
+
+#div_newsTable .datagrid-row-over a {
+	color: White;
+	cursor: pointer;
+}
+
+#div_newsTable .datagrid-row-selected a {
+	color: White;
+	cursor: pointer;
+}
+
+#div_newsTable .pagination-page-list {
+	cursor: pointer;
+	border: 1px solid #C8C8C8;
+}
+
+#div_newsTable .pagination-num {
+	border: 1px solid #C8C8C8;
+}
+
+#div_newsTable .pagination-info {
+	margin-right: 26px;
+}
+
+.window {
+	padding: 1px;
+	background-color: #25A2CE;
+}
+
+.panel-title {
+	height: 28px;
+	line-height: 28px;
+	margin-left: 15px;
+	font-size: 15px;
+}
+
+.panel-body {
+	background-color: White;
+	color: Black;
+}
+</style>
+</head>
+<body>
+	<div id="div_newspage"
+		style="width: 100%; height: 100%; display: block;">
+		<div
+			style="margin: 0; min-width: 800px; margin-left: 40px; height: 65px; width: 96%;">
+			<div style="float: left; margin-top: 20px; display: inline-flex;">
+				<a id="a_newsList" class="a_title newstitle"
+					style="color: #00749b; cursor: pointer;">新闻列表</a> <span
+					style="font-size: 16px; color: #00749b; cursor: default">|</span> <a
+					id="a_addNews" class="a_title"
+					style="color: black; cursor: pointer;">发布新闻</a>
+			</div>
+			<div id="tool"
+				style="float: right; margin-top: 20px; margin-right: 16px; display: inline-flex;">
+				<span
+					style="height: 27px; line-height: 27px; margin-right: 15px; font-size: 16px;">发布时间</span>
+				<input id="begintime" type="text" class="easyui-datebox"
+					style="width: 160px;" /> <input id="endtime" type="text"
+					class="easyui-datebox" style="width: 160px;" />
+				<!--<input type="text" id="txtSearch" style=" width:260px; height:22px; color:#999999; margin-right:45px;float:left;" 
+                        onfocus="if (value =='请输入查找内容'){value ='';this.style.color='Black';}" onblur="if (value ==''){value='请输入查找内容'; this.style.color='#999999';}" value="请输入查找内容"/> -->
+				<a class="btn"
+					style="height: 28px; line-height: 28px; width: 95px; font-size: 15px;"
+					onclick="loadnewsTable();">查&nbsp;&nbsp;&nbsp;找</a>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div id="div_newsTable" style="width: 96%; margin-left: 40px;">
+			<input type="hidden" id="tbcount" value="-1" />
+			<table id="newsTable"></table>
+		</div>
+		<!-- 发布新闻 -->
+		<div
+			style="margin: 0; min-width: 800px; height: auto; width: 96%; display: none;"
+			id="div_createnews">
+			<table id="newsedit" border="0" cellpadding="3" cellspacing="0"
+				style="width: 80%; margin: auto">
+				<tr style="width: 100%; height: 50px;">
+					<td style="float: right; width: 86%; text-align: left;"><input
+						type="text" id="newstitle" maxlength="30" style="width: 350px;"
+						value="" /><span style="margin-left: 30px;">类型：</span><select
+						id="select_newstype" style="height: 24px; font-family: 微软雅黑;"><option
+								value="新闻">最新新闻</option>
+							<option value="通知">通知通报</option></select></td>
+					<td style="float: left; width: 11%; text-align: right;">标题:</td>
+				</tr>
+				<tr style="width: 100%; height: 350px;">
+					<td style="float: right; width: 86%; text-align: left;"><textarea
+							id="newscontext" name="newscontext" cols="100" rows="8"
+							style="width: 700px; height: 350px; visibility: hidden;">
+                            </textarea></td>
+					<td style="float: left; width: 11%; text-align: right;">内容:</td>
+				</tr>
+				<tr style="width: 100%; height: 50px;">
+					<td style="float: right; width: 86%; text-align: left;">
+						<!--<select id="list_showimg" onclick="listShowImage();"><option value ="0">未选</option></select>-->
+						<input type="checkbox" disabled="disabled"
+						style="width: 15px; height: 15px; cursor: pointer; margin: 0; margin-top: 5px;"
+						name="list_showimg" id="list_showimg" value="yes" />
+					</td>
+					<td style="float: left; width: 11%; text-align: right;">设为封面图片:</td>
+				</tr>
+				<tr style="width: 100%; height: 100px; text-align: center;">
+					<td colspan="2" rowspan="2" style="text-align: center;"><a
+						class="btn" id="a_release" onclick="editnews();">发&nbsp;&nbsp;布</a>
+						<a class="btn" id="a_cancel" onclick="cancelAdd();">取&nbsp;&nbsp;消</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>
+<script type="text/javascript">
+    var editor1; //编辑器公共量
+    var editnewsid;//获取id
+	KindEditor.ready(function(K) {
+		 editor1 = K.create('textarea[name="newscontext"]', {
+			cssPath : '../kindeditor/plugins/code/prettify.css',
+			uploadJson : '../kindeditor/jsp/upload_json.jsp',
+			fileManagerJson : '../kindeditor/jsp/file_manager_json.jsp',
+			allowFileManager : true,
+			afterCreate : function() {
+				var self = this;
+				K.ctrl(document, 13, function() {
+					self.sync();
+					document.forms['example'].submit();
+				});
+				K.ctrl(self.edit.doc, 13, function() {
+					self.sync();
+					document.forms['example'].submit();
+				});
+			}
+		});
+		prettyPrint();
+	});
+
+    $(document).ready(function () {
+        loadnewsTable();
+        var mydate = new Date();
+        var str = "" + mydate.getFullYear() + "-";
+        str += (mydate.getMonth() + 1) + "-";
+        str += mydate.getDate();
+        $("#begintime").datebox("setValue", "2014-01-01");
+        $("#endtime").datebox("setValue", str);
+        $('.combo-arrow').css("height", "24px"); $('.combo-text').css({ "height": "24px", "line-height": "24px", "text-align": "center" }).attr("readonly", "readonly"); $('.datebox').css({ "height": "24px", "width": "163px" });
+    });
+
+    function loadnewsTable() { //新闻列表
+        var tbcount = $('#tbcount').val();
+        var begintime = $('#begintime').datebox('getValue');
+        var endtime = $('#endtime').datebox('getValue');
+        $('#newsTable').datagrid({
+             //url: 'http://localhost/foms/News/post/newslist',
+            //url: 'http://' + urlIP1 + '/News/post/newslist',
+            //url: 'http://' + urlIP1 + '/News/post/newslist',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/News/getNewsList',
+            queryParams: { begintime: begintime, endtime: endtime, count: tbcount },
+            striped: true,
+            singleSelect: true,
+            pagination: true,
+            loadMsg: "正在加载，请稍等...",
+            idField: 'newsId',
+            fitColumns: true,
+            pageSize: 10, //每页显示的记录条数，默认为10  
+            pageList: [5, 10, 15],
+            columns: [[
+            { field: 'NEWSTITLE', title: '标题', width: ($(window.parent.document).width() - 229) * 0.4, align: 'center'
+                , formatter: function (value, row, index) {
+                    if (value.length > 29) {
+                        return value.substring(0, 28) + "...";
+                    }else
+                    return value;
+                }
+            },
+            { field: 'TRUENAME', title: '发布人', width: ($(window.parent.document).width() - 229) * 0.2, align: 'center' },
+            { field: 'CREATEDATE', title: '发布时间', width: ($(window.parent.document).width() - 229) * 0.2, align: 'center' },
+            { field: 'NEWSID', title: '操作', width: ($(window.parent.document).width() - 229) * 0.2, align: 'center'
+                , formatter: function (value, row, index) {
+                    var grid = $('#newsTable');
+                    var options = grid.datagrid('getPager').data("pagination").options;
+                    var curr = options.pageNumber;
+                    return "<a   onclick='newsCheck(&apos;" + value + "&apos;,true);'>查看</a><a style='cursor:default'>/</a><a  onclick='newsDelete(&apos;" + value + "&apos;)'>删除</a>";
+                }
+            }
+            ]],
+            onLoadSuccess: function (data) {
+                $(window).resize(function () { //监测浏览器大小变化
+                    setTimeout(function () {
+                        $('#newsTable').datagrid('resize'); //动态改变表格宽度
+                    }, 300);
+                });
+            }
+        });
+    }
+
+    
+
+    //删除某条新闻
+    function newsDelete(value) {
+/*         var account = eval("(" + $.cookie('userInfo') + ")");
+        var userid = account.userid; */
+        var account1= $.cookie("userInfo");
+        var account = JSON.parse(account1);　
+        var userid = account.userid;
+        var isAuthority = getAuthority("新闻删除");
+        if (isAuthority == "true") {
+            $.messager.confirm("操作提示", "确认是否删除?", function (r) {
+                if (r) {
+                    $.ajax({
+                        type: "POST",
+                        //url: 'http://localhost/foms/News/post/newsdelete',
+                        //url: 'http://' + urlIP + '/foms/News/post/newsdelete',
+                        url: 'http://' + urlIP + '/Foms_RestFul/rest/News/delNews',
+                        //url: 'http://' + urlIP1 + '/News/post/newsdelete',
+                        data: { 'newsid': value, 'userid': userid },
+                        async: false,
+                        success: function (data) {
+                            if (data == "true") {
+                                loadnewsTable();
+                            } 
+                        }
+                    });
+                }
+            });
+        } else {
+            $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+        }
+    }
+    //
+    $("#a_addNews").click(function () {
+        var isAuthority = getAuthority("新闻发布");
+        if (isAuthority == "true") {
+            editnewsid = 0;
+            editor1.sync();
+            $("#newstitle").val();
+            editor1.html();
+            newsCheck("", false);
+            $("#a_addNews").css("color", "#00749b");
+            $("#a_newsList").css("color", "black");
+            //$("#div_newsTable").hide();
+            //$("#div_createnews").show();
+        } else {
+            $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+        }
+    });
+
+    $("#a_newsList").click(function () {
+        var isAuthority = getAuthority("新闻列表");
+        if (isAuthority == "true") {
+            editnewsid = 0;
+            $("#div_newsTable").show();
+            loadnewsTable();
+            $("#div_createnews").hide();
+            $("#tool").show();
+            $("#a_newsList").css("color", "#00749b");
+            $("#a_addNews").css("color", "black");
+        } else {
+            $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+        }
+    });
+    function cancelAdd() {
+        editnewsid = 0;
+        $("#div_newsTable").show();
+        loadnewsTable();
+        $("#div_createnews").hide();
+        $("#tool").show();
+    }
+
+
+
+    function newsCheck(value, isTrue) {//判断查看或添加
+        var isAuthority = getAuthority("新闻列表");
+        if (isAuthority == "true") {
+            if (isTrue) {
+                editnewsid = value;
+                $.ajax({
+                    //url: 'http://' + urlIP + '/foms/News/post/newsdetail',
+                    //url: 'http://' + urlIP1 + '/News/post/newsdetail',
+                   url: 'http://' + urlIP + '/Foms_RestFul/rest/News/getNewsDetail',
+                    type: "POST",
+//                    url: 'http://localhost/foms/News/post/newsdetail',
+                    data: { 'newsid': value },
+                    async: false,
+                    success: function (data) {
+                     // var a = eval("(" + data + ")");
+                      // var 	a = JSON.parse(data);　
+                     //   var a = JSON.parse(data);
+                        var a=data[0];
+                        editor1.sync();
+                        $("#newstitle").val(a.NEWSTITLE);
+                        var tempval = a.NEWSCONTENT;
+                        loadimgsrc = a.NEWSIMG;
+                        $("#select_newstype").val(a.NEWSTYPE);
+                        //alert(tempval);
+                        //alert(html_decode(tempval));
+                        //editor1.html(html_decode(a.newsContent));
+                        editor1.html(tempval);
+                    }
+                });
+            } else {
+                $("#newstitle").val('');
+                editor1.html('');
+                $("#select_newstype")[0].selectedIndex = 0;
+            }
+            $("#div_newsTable").hide();
+            $("#div_createnews").show();
+            $("#tool").hide();
+        } else {
+            $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+        }
+    }
+
+    function setIMG() {//获取插件图片
+        editor1.sync();var imgArray = [];
+        var imgs = editor1.edit.iframe.get().contentWindow.document.body.getElementsByTagName('img');
+        if (imgs.length > 0) {
+            for (var i = 0; i < imgs.length; i++){
+
+                imgArray.push(imgs[i].src);
+            }
+        }
+        return imgArray;
+    }
+
+
+    var selectimgsrc;//点击
+    var loadimgsrc;//数据库
+    $("#list_showimg").change(function () {
+        if ($("#list_showimg").prop('checked') == true) {
+            loadimgsrc = selectimgsrc;
+        } else {
+            loadimgsrc = "";
+        }
+    });
+
+
+    function editnews() {//增加或修改新闻
+        var account = eval("(" + $.cookie('userInfo') + ")");
+        var userid = account.userid;
+        editor1.sync(); //同步数据
+        var title = $("#newstitle").val();
+        var imgsrc = setIMG();
+        if ($.inArray(loadimgsrc, imgsrc) == -1) {
+            loadimgsrc = "";
+        }
+        var newstype = $("#select_newstype").val();
+       // var context = BASE64.encoder($("#newscontext").val());
+        var context = $("#newscontext").val();
+        if (editnewsid != 0) {
+            var isAuthority = getAuthority("新闻修改");
+            if (isAuthority == "true") {
+                if (title != "" && context != "") {
+                    $.ajax({
+                        //url: 'http://' + urlIP + '/foms/News/post/newsedit',
+                       //  url: 'http://' + urlIP1 + '/News/post/newsedit',
+                        url: 'http://' + urlIP + '/Foms_RestFul/rest/News/editNews',
+                        type: "POST",
+//                        url: 'http://localhost/foms/News/post/newsedit',
+                        data: { 'newsid': editnewsid, 'newstitle': title, 'newscontent': context, 'userid': userid, 'newsimgsrc': loadimgsrc, 'newstype': newstype },
+                        async: false,
+                        success: function (data) {
+                            if (data == "true") {
+                                //$.messager.alert("操作提示", "修改成功！", cancelAdd());
+                              //  $.messager.alert("操作提示", "修改成功！");
+                                $.messager.alert("操作提示", "修改成功！", cancelAdd());
+                            } else {
+                                $.messager.alert("操作提示", "修改失败！");
+                            }
+                        }
+                    });
+                } else {
+                    $.messager.alert("操作提示", "新闻输入信息不完整！");
+                }
+            } else {
+                $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+            }
+        } else {
+            var isAuthority = getAuthority("新闻发布");
+            if (isAuthority == "true") {
+                if (title != "" && context != "") {
+                        $.ajax({
+                            //url: 'http://' + urlIP + '/foms/News/post/newsadd',
+                         //   url: 'http://' + urlIP1 + '/News/post/newsadd',
+                            type: "POST",
+//                          url: 'http://localhost/foms/News/post/newsadd',
+                            url: 'http://' + urlIP + '/Foms_RestFul/rest/News/addNews',
+                            data: { 'newstitle': title, 'newscontent': context, 'userid': userid, 'newsimgsrc': loadimgsrc, 'newstype': newstype },
+                            async: false,
+                            success: function (data) {
+                                if (data == "true") {
+                                    $.messager.alert("操作提示", "发布成功！", cancelAdd());
+                                } else {
+                                    $.messager.alert("操作提示", "发布失败！");
+                                }
+                            }
+                        });
+                } else {
+                    $.messager.alert("操作提示", "新闻输入信息不完整！");
+                }
+            } else {
+                $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+            }
+        }
+    }
+
+    function getAuthority(authority) {   //判断权限 authority:权限
+        var account = eval("(" + $.cookie('userInfo') + ")");
+        var isAuthorityTrue = "false";
+        $.ajax({
+            //url: 'http://' + urlIP + '/foms/Manager/authority?userid=' + (account ? account[0].userid : false) + '&authority=' + authority,
+            //url: 'http://' + urlIP1 + '/Manager/authorityExist?userid=' + (account ? account[0].userid : false) + '&authority=' + authority,
+             url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist',
+			data:{userid:account ? account.userid : false,authority:authority},
+			type: 'POST',
+            async: false,
+            success: function (data) {
+                isAuthorityTrue = data;
+            }
+        });
+        return isAuthorityTrue;
+    }
+
+    function lxflxf(uuidi) {
+        alert(uuidi);
+        editor1.sync(); //同步数据 
+        alert($("#newscontext").val());
+        var context = $("#newscontext").val().replace(/getshowimg="1"/g, 'getshowimg = "0"');
+        alert(context);
+     }
+</script>

@@ -1,0 +1,535 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/pagecss/leftMenu.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/datagrid-detailview.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+    <style type="text/css">
+        body
+        {
+            font-family: "微软雅黑";
+        }
+        .window
+        {
+            padding: 1px;
+            background-color: #25A2CE;
+        }
+        .panel-tool-close
+        {
+            background: url('../Compents/eui/themes/metro/images/panel_tools.png') no-repeat;
+        }
+        .panel-title
+        {
+            height: 21px;
+            line-height: 21px;
+            margin-left: 15px;
+            font-size: 16px;
+        }
+        .menu_span
+        {
+            margin-left: 20px;
+            margin-right: 30px;
+        }
+        .panel-header, .panel-body
+        {
+            border: 0;
+        }
+        .layout-panel-west
+        {
+            border-right: 1px solid #e7e7e7;
+        }
+        .layout-panel-west .panel-header
+        {
+            background-color: #e6e6e6;
+        }
+        .layout-panel-center .panel-header
+        {
+            background-color: #f9f9f9;
+        }
+        .datagrid-htable
+        {
+            background-color: #f2f2f2;
+        }
+        .datagrid-row-over, .datagrid-row-over a
+        {
+            color: White;
+        }
+        .datagrid-row-selected, .datagrid-row-selected a
+        {
+            color: White;
+            background-color: #2d9acd;
+        }
+        .datagrid-header .datagrid-cell span
+        {
+            font-size: 16px;
+        }
+        .datagrid-header-row
+        {
+            height: 40px;
+        }
+        .datagrid-header td.datagrid-header-over
+        {
+            background: #f2f2f2;
+        }
+        .datagrid-row
+        {
+            height: 46px;
+        }
+        .datagrid-btable, .datagrid-htable
+        {
+            border: 1px solid #C8C8C8;
+        }
+        .datagrid-htable td
+        {
+            border-right: 1px solid #C8C8C8;
+        }
+        .datagrid-btable td
+        {
+            border-right: 1px solid #C8C8C8;
+            border-bottom: 1px dashed #C8C8C8;
+        }
+        .datagrid-cell
+        {
+            font-size: 15px;
+        }
+        .panel-body
+        {
+            background-color: White;
+            color: Black;
+        }
+        .datagrid-pager
+        {
+            color: Black;
+        }
+        .btn
+        {
+            text-decoration: none;
+            display: inline-block;
+            margin: 0;
+            cursor: pointer;
+            outline: none;
+            text-align: center;
+            height: 30px;
+            width: 96px;
+            line-height: 30px;
+            color: White;
+            background-color: #30A3D9;
+            font-size: 16px;
+            font-family: "宋体";
+        }
+        .btn:hover
+        {
+            background-color: #2D9ACC;
+        }
+        .combo-arrow
+        {
+            background-color: White;
+            background: url('../Compents/images/yp/arrow-down001.png') no-repeat center center;
+        }
+        .datebox .combo-arrow
+        {
+            background-image: url(../Compents/images/yp/calendar001_normal.png);
+            background-position: center center;
+            margin-right: 2px;
+        }
+        .combo-arrow:hover
+        {
+            background-color: White;
+        }
+        .combo
+        {
+            border: 1px solid #d2d2d2;
+            margin-right: 10px;
+        }
+        .combo .combo-text, .combobox-item
+        {
+            font-size: 14px;
+            color: Gray;
+        }
+        .a_table
+        {
+            cursor: pointer;
+            text-decoration: none;
+            color: rgb(0,113,188);
+        }
+        .content
+        {
+            float: left;
+            position: absolute;
+            width: 130px;
+            bottom: 0;
+        }
+        .content_2
+        {
+            float: left;
+            position: absolute;
+        }
+        .content_3
+        {
+            width:125px; 
+            height:80px; 
+            text-align:center;
+            float:left;
+            position:absolute;
+        }
+        .content_1_1
+        {
+             width:131px; height:28px; line-height:28px; font-family:'宋体'; font-size:14px;text-align:center;
+         }
+        .content_3_1
+        {
+            margin-top:20px; font-size:14px; font-family:'arial'; color:#43B5EA;
+        }
+        .content_3_2
+        {
+             margin-top:20px; font-size:14px; font-family:'微软雅黑'; color:#999999;
+        }
+        .bac
+        {
+            height: 18px;
+            width: 145px;
+            background: url(../Compents/images/yp/timeline002_07.png) no-repeat 0 0;
+        }
+        .bac_2
+        {
+            height: 60px;
+            width: 131px;
+            color: White;
+            background: url(../Compents/images/yp/position-timeline-normal_07.png) no-repeat 0 0;
+        }
+        .left_
+        {
+            height: 32px;
+            width: 32px;
+            margin-bottom: 93px;
+            display: inline-block;
+            background: url(../Compents/images/yp/left-timeline-normal_07.png) no-repeat 0 0;
+        }
+        .left_:hover
+        {
+            background: url(../Compents/images/yp/left-timeline-over_07.png) no-repeat 0 0;
+        }
+        .right_
+        {
+            height: 32px;
+            width: 32px;
+            margin-bottom: 93px;
+            display: inline-block;
+            background: url(../Compents/images/yp/right-timeline-normal_07.png) no-repeat 0 0;
+        }
+        .right_:hover
+        {
+            background: url(../Compents/images/yp/right-timeline-over_07.png) no-repeat 0 0;
+        }
+        #imgReady
+        {
+            background-image: url(../Compents/images/yp/left-timeline-over_07.png);
+            background-image: url(../Compents/images/yp/right-timeline-over_07.png);
+            width: 0px;
+            height: 0px;
+            display: inline;
+        }
+    </style>
+</head>
+<body class="easyui-layout">
+  <!--图片预加载-->
+<div id="imgReady"></div> 
+    <!--菜单箭头-->
+    <div style="position: absolute; z-index: 999; left: 196px; top: 33px; width: 12px;
+        height: 100%;">
+        <div id="guid_1" style="height: 84px; width: 12px;">
+            <img src="../Compents/images/yp/guidearrow-21.png" /></div>
+    </div>
+    <!--左侧菜单-->
+    <div region="west" collapsible="false" split="false" title=" " style="width: 200px;
+        padding-top: -10px; background-color: #f9f9f9;">
+        <ul id="menu">
+            <li><a href="#" class="select" id="a_bmca">
+                <img alt="" src="../Compents/images/yp/4-15.png" />
+                <span class="menu_span">案件列表</span>
+                <img src="../Compents/images/yp/Arrow_normal-13.png" /></a> </li>
+        </ul>
+    </div>
+    <!--右侧内容-->
+    <div id="mainPanle" region="center" split="false" title=" " style="background-color: White;"
+        minwidth="500px;">
+        <!--部门串案-->
+        <div id="div_bmca" style="width: 100%; height: 100%; display: block;">
+            <!--串案列表-->
+            <div id="winTable" class="easyui-window" style="padding: 15px; width: 730px; height: 370px;
+                overflow: auto;">
+                <table id="detailsTable" style="width: 3800px;">
+                </table>
+            </div>
+            <div style="margin: 0; min-width: 800px; margin-left: 40px; height: 65px; width: 96%;">
+                <div style="float: left; margin-top: 20px; display: inline-flex;">
+                    <span style="height: 27px; line-height: 27px; margin-right: 15px; font-size: 16px;">
+                        部门</span>
+                    <select id="accord" class="easyui-combobox" style="margin-right: 15px; height: 26px;
+                        width: 100px;">
+                        <option value="accord='足迹' or accord='DNA' or accord='指纹'">全部</option>
+                        <option value="accord='DNA'">DNA</option>
+                        <option value="accord='指纹'">指纹</option>
+                        <option value="accord='足迹'">足迹</option>
+                    </select>
+                </div>
+                <div id="tool" style="float: right; margin-top: 20px; margin-right: 16px; display: inline-flex;">
+                    <span style="height: 27px; line-height: 27px; margin-right: 15px; font-size: 16px;">
+                        上传时间</span>
+                    <input id="begintime" type="text" class="easyui-datebox" style="width: 160px;" />
+                    <input id="endtime" type="text" class="easyui-datebox" style="width: 160px;" />
+                    <a class="btn" style="height: 28px; line-height: 28px; width: 95px; font-size: 15px;"
+                        onclick="loadbmTable();">查&nbsp;&nbsp;&nbsp;找</a>
+                </div>
+                <div style="clear: both;">
+                </div>
+            </div>
+            <div style="width: 96%; margin-left: 40px;">
+                <input type="hidden" id="tbcount" value="-1" />
+                <table id="bmTable">
+                </table>
+            </div>
+        </div>
+        <!--正查-->
+        <div id="div_zc" style="width: 100%; height: 100%; display: none;">
+            <iframe src="zhengcha.htm" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+        <!--倒查-->
+        <div id="div_dc" style="width: 100%; height: 100%; display: none;">
+            <iframe src="daocha.htm" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+        <!--综合串案-->
+        <div id="div_zhcb" style="width: 100%; height: 100%; display: none;">
+            <iframe src="zonghe.htm" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function initMenu() {       //左菜单
+        $('#menu li a').click(
+            function () {
+                $('#menu li a').removeClass("select").addClass("normal");
+                $(this).addClass("select").removeClass("normal");
+            }
+         );
+    }
+    function loadbmTable() { //加载部门串案表格
+        var num=7;                              ////num :数据 数量 
+        var tbcount = $('#tbcount').val();
+        var winWidth = $(window.parent.document).width() - 229;
+        var begintime = $('#begintime').datebox('getValue');
+        var endtime = $('#endtime').datebox('getValue');
+        var accord = $('#accord').combobox('getValue');
+        var begin = new Date(begintime.replace("-", "/").replace("-", "/"));
+        var end = new Date(endtime.replace("-", "/").replace("-", "/"));
+        if (begin > end) {
+            alert("开始时间不能大于结束时间！");
+            $('#begintime').datebox('setValue', ''); endtime = $('#endtime').datebox('setValue', '');
+            return false;
+        }
+		$('#bmTable')
+		.datagrid(
+				{ //表格
+					url : 'http://' +urlIP+ '/Foms_RestFul/rest/SceneInvestigation/getSceneInvestigationList',
+					queryParams : {
+						begintime : begintime,
+						endtime : endtime,
+					},
+					striped : true,
+					singleSelect : true,
+					pagination : true,
+					fitColumns : true,
+					columns : [ [ 									
+{field : 'INVESTIGATION_NO',title : '勘察号',align : 'center',width : winWidth * 0.2,formatter : function(value, row, index) 
+{return "<a class='a_table' onclick='openWinTable(&apos;"+ value+ "&apos;,&apos;"+ row.CASE_NO+ "&apos;);'>"+ value+ "</a>";}},
+               {field : 'CASE_NO',title : '案件编号',align : 'center',width : winWidth * 0.2}, 
+               {field : 'OCCURRENCE_DATE_FROM',title : '发案时间',align : 'center',width : winWidth * 0.2},
+               {field : 'INVESTIGATION_DATE_FROM',title : '勘验开始时间',align : 'center',width : winWidth * 0.2}, 
+               {field : 'PROTECTOR',title : '现场保护人',align : 'center',width : winWidth * 0.2}, 
+               {field : 'INVESTIGATION_PLACE',title : '勘察地点',align : 'center',width : winWidth * 0.2} ] ],
+            view: detailview,
+         detailFormatter: function (rowIndex, rowData) {
+         	 return "<div id='left"+rowIndex+"' class='left_'></div><div style='height:245px;width: 1000px;overflow: hidden; display: inline-block;'><div id='"+rowData.INVESTIGATION_NO+"' style='margin-left: 0px;'></div></div><div id='right"+rowIndex+"' class='right_'></div>";
+          },
+         onExpandRow: function (rowIndex, rowData) {
+            	 $("#"+rowData.INVESTIGATION_NO).html(gettimebase(rowData.INVESTIGATION_NO)); 
+            	 var timer1, timer2;
+                 $("#"+"right" + rowIndex).hover(   //左按钮绑定事件
+                     function () {
+                         var marginL = ($("#"+rowData.INVESTIGATION_NO).css("margin-left").replace("px", ""));
+                         var tlength = (num + 1) * 145 - 700;
+                         timer1 = setInterval(function () {
+                             marginL--;
+                             if ((marginL + tlength) > 0) {
+                                 $("#"+rowData.INVESTIGATION_NO).css("margin-left", marginL + "px");
+                             } else {
+                                 clearInterval(timer1);
+                             }
+                         }, 1);
+                     },
+                     function () {
+                         clearInterval(timer1);
+                     }
+                 );
+
+                 $("#"+"left" + rowIndex).hover(
+                     function () {
+                         var marginL = ($("#"+rowData.INVESTIGATION_NO).css("margin-left").replace("px", ""));
+                         timer2 = setInterval(function () {
+                             marginL++;
+                             if (marginL < 0) {
+                                 $("#"+rowData.INVESTIGATION_NO).css("margin-left", marginL + "px");
+                             } else {
+                                 clearInterval(timer2);
+                             }
+                         }, 1);
+                     },
+                     function () {
+                         clearInterval(timer2);
+                     }
+                 );
+            },
+            onLoadSuccess : function() {
+				$('.datagrid-row-detail').css("text-align",
+						"center");
+				$('.datagrid-btable tr').find('td:last').css(
+						"border-right", "0"); //border样式
+				$('.datagrid-btable tr:last td').css(
+						"border-bottom", "0");
+				$('.datagrid-htable tr').find('td:last').css(
+						"border-right", "0");
+				$('.datagrid-header,.datagrid-htable').css(
+						"height", "40px"); //表头高度
+				$('.pagination-info').css("margin-right",
+						"36px"); //右下角表格记录
+				$(window).resize(function() { //监测浏览器大小变化
+					setTimeout(function() {
+						$('#bmTable').datagrid('resize'); //动态改变表格宽度
+					}, 300);
+				});
+			}
+		});
+}
+function openWinTable(INVESTIGATION_NO, CASE_NO) { //弹窗加载部门串案列表详细信息表格
+$('#detailsTable').datagrid(
+		{
+			url : 'http://'+ urlIP+ '/Foms_RestFul/rest/SceneInvestigation/getSceneInvestigationDetails',
+			queryParams : {
+				INVESTIGATION_NO : INVESTIGATION_NO,
+				CASE_NO : CASE_NO
+			},
+			striped : true,
+			singleSelect : true,
+			fitColumns : true,
+			columns : [ [ {field : 'ID',title : 'ID',align : 'center'
+			},
+			{field : 'CASE_NO',title : '勘查号',align : 'center'},
+			{field : 'RECEPTION_NO',title : '案事件受理号',align : 'center'}, 
+			{field : 'INVESTIGATION_DATE_FROM',title : '勘验开始时间',align : 'center'}, 
+			{field : 'INVESTIGATION_DATE_TO',title : '勘验结束时间',align : 'center'},
+			{field : 'INVESTIGATION_PLACE',title : '案件现场地点',align : 'center'},
+			{field : 'INVESTIGATOR',title : '勘验人员',align : 'center'}, 
+			{field : 'PROTECTION_MEASURE',title : '现场保护措施',align : 'center'},
+			{field : 'PROTECTOR',title : '现场保护人',align : 'center'}, 
+			{field : 'CASE_TYPE',title : '案件类别编号',align : 'center'}, {field : 'CASE_NAME',title : '案件类别名称',align : 'center'},
+			{field : 'SCENE_DETAIL',title : '发案地点',align : 'center'}, {field : 'EXPOSURE_PROCESS',title : '案件发现过程',align : 'center'}, 
+			{field : 'PROTECTION_DATE',title : '现场保护时间',align : 'center'}, 
+			{field : 'NOTE_MADE_DATE',title : '制作笔录时间',align : 'center'},
+			{field : 'TRANSFER_DATE',title : '信息上报时间',align : 'center'},
+			{field : 'CREATE_DATETIME',title : '勘验信息创建时间',align : 'center'}, 
+			{field : 'CRACKED_DATE',title : '破案时间',align : 'center'},
+			{field : 'OCCURRENCE_DATE_FROM',title : '发案时间(起)',align : 'center'},
+			{field : 'OCCURRENCE_DATE_TO',title : '发案时间（止)',align : 'center'}, 
+			{field : 'RECEIVED_DATE',title : '接警时间',align : 'center'},
+			{field : 'DISPATCH_DATE',title : '出警时间',align : 'center'} ] ]
+		});
+$('#winTable').window('open');
+}
+/* function gettimebase(kanchahao) {
+var vale11 = [ "19px", "164px", "309px", "454px", "599px", "744px","889px", "1034px" ];
+var vale12 = [ "0px", "145px", "290px", "435px", "580px", "725px","870px", "1015px" ];
+var vale13 = [ "20px", "165px", "310px", "455px", "600px", "745px","890px", "1035px" ];
+val1 = "";
+val2 = "";
+val3 = "";
+lxftestdata1 = "";
+val4 = "";
+val5 = "";
+val6 = "";
+$.ajax({
+	type : "POST",
+	url : 'http://'+ urlIP+ '/Foms_RestFul/rest/SceneInvestigation/getSceneInvestigationTimeBase',
+	data : {kanchahaodata : kanchahao},
+	async : false,
+	success : function(msg) {
+		for ( var i = 0; i < msg.length; i++) {
+			val1+="<div style='margin-left:"+vale11[i]+";' class='content'><div class='bac_2'><div class='content_1_1'>"+msg[i].name1+"</div></div></div>";
+		    val2+="<div class='content_2' style='margin-left:"+vale12[i]+";'><div class='bac'></div></div>";
+		    val3+="<div style='margin-left:"+vale13[i]+";' class='content_3'><div class='content_3_1'>"+msg[i].value1+"</div></div>";
+		}
+		val4="<div style='margin-left: 100px; height: 126px; position: relative;'>"+val1+"</div>";
+		val5="<div id='divw' style='height: 18px; position: relative;'>"+val2+"</div>";
+		val6="<div style='margin-left: 52.5px; margin-bottom: 20px; height: 80px; position: relative;'>"+val3+"</div>";
+		lxftestdata1=val4+val5+val6;
+	}
+});
+return lxftestdata1;
+} */
+$(document).ready(function() {
+$('#winTable').window({ //部门串案列表窗口初始化
+top : 40,
+left : ($(window.parent.document).width() - 650) / 2,
+width : 650,
+modal : true,
+border : true,
+closable : true,
+minimizable : false,
+maximizable : false,
+collapsible : false,
+resizable : false,
+title : '串案列表',
+closed : true,
+onClose : function() {
+}
+});
+initMenu();
+loadbmTable();
+$('.combo-arrow').css("height", "24px");
+$('.combo-text').css({
+"height" : "24px",
+"line-height" : "24px",
+"text-align" : "center"
+}).attr("readonly", "readonly");
+$('.datebox').css({
+"height" : "24px",
+"width" : "163px"
+});
+$('#a_bmca').bind("click", function() {
+$('#div_bmca').show();
+$('#div_dc,#div_zhcb,#div_zc').hide();
+$('#guid_1').css("margin-top", "0px").show();
+});
+$('#a_zc').bind("click", function() {
+$('#div_zc').show();
+$('#div_bmca,#div_zhcb,#div_dc').hide();
+$('#guid_1').css("margin-top", "85px").show();
+});
+$('#a_dc').bind("click", function() {
+$('#div_dc').show();
+$('#div_bmca,#div_zhcb,#div_zc').hide();
+$('#guid_1').css("margin-top", "170px").show();
+});
+$('#a_zhcb').bind("click", function() {
+$('#div_zhcb').show();
+$('#div_bmca,#div_dc,#div_zc').hide();
+$('#guid_1').css("margin-top", "255px").show();
+});
+});
+</script>

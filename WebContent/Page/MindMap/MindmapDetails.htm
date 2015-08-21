@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/js/jsmind.js" type="text/javascript"></script>
+    <link href="../Compents/pagecss/jsmind.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        jmnodes.info jmnode
+        {
+            text-align: center;
+        }
+        .jsmind-inner
+        {
+            overflow-y: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="jsmind" style="width: 1100px; height: 500px;">
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    var datas0 = [
+                    { "id": "root", "isroot": true, "topic": "<span>B3301060501002013030031</span>" },
+                    { "id": "sub11", "parentid": "root", "direction": "left", "topic": "<span>指纹比中</span>" },
+                    { "id": "sub12", "parentid": "root", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub111", "parentid": "sub11", "topic": "<span>K3301060501002013010001</span>" },
+                    { "id": "sub121", "parentid": "sub12", "topic": "<span>K3301060501002014070043</span>" },
+                    { "id": "sub2", "parentid": "root", "direction": "left", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002012010013</span>" },
+                    { "id": "sub22", "parentid": "sub2", "topic": "<span>K3301060501002012010012</span>" }
+                ];
+    var datas1 = [
+                    { "id": "root", "isroot": true, "topic": "<span>B3301060501002012010078</span>" },
+                    { "id": "sub1", "parentid": "root", "direction": "left", "topic": "<span>DNA、指纹比中</span>" },
+                    { "id": "sub2", "parentid": "root", "topic": "<span>足迹比中</span>" },
+                    { "id": "sub3", "parentid": "root", "topic": "<span>DNA、足迹比中</span>" },
+                    { "id": "sub4", "parentid": "root", "direction": "left", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub5", "parentid": "root", "direction": "left", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub11", "parentid": "sub1", "topic": "<span>指纹比中</span>" },
+                    { "id": "sub12", "parentid": "sub1", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub111", "parentid": "sub11", "topic": "<span>K3301060501002012010022</span>" },
+                    { "id": "sub121", "parentid": "sub12", "topic": "<span>K3301060501002012010045</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002012010066</span>" },
+                    { "id": "sub31", "parentid": "sub3", "topic": "<span>K3301060501002014010021</span>" },
+                    { "id": "sub41", "parentid": "sub4", "topic": "<span>K3301060501002012080031</span>" },
+                    { "id": "sub51", "parentid": "sub5", "topic": "<span>K3301060501002012010032</span>" },
+                    { "id": "sub511", "parentid": "sub51", "topic": "<span>K3301060501002012110060</span>" },
+                    { "id": "sub22", "parentid": "sub2", "topic": "<span>K3301060501002012010012</span>" }
+                ];
+    var datas2 = [
+                    { "id": "root", "isroot": true, "topic": "<span>B3301060501002014100093</span>" },
+                    { "id": "sub1", "parentid": "root", "direction": "left", "topic": "<span>足迹比中</span>" },
+                    { "id": "sub111", "parentid": "sub1", "topic": "<span>K3301060501002013110055</span>" },
+                    { "id": "sub2", "parentid": "root", "direction": "left", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002012010013</span>" },
+                    { "id": "sub211", "parentid": "sub21", "topic": "<span>K3301060501002013110009</span>" },
+                    { "id": "sub212", "parentid": "sub21", "topic": "<span>K3301060501002013050011</span>" },
+                    { "id": "sub213", "parentid": "sub21", "topic": "<span>K3301060501002012010023</span>" },
+                    { "id": "sub2131", "parentid": "sub213", "topic": "<span>K3301060501002012010041</span>" },
+                    { "id": "sub2132", "parentid": "sub213", "topic": "<span>K3301060501002013050035</span>" },
+                    { "id": "sub21321", "parentid": "sub2132", "topic": "<span>K3301060501002014100056</span>" },
+                    { "id": "sub22", "parentid": "sub2", "topic": "<span>K3301060501002012010012</span>" }
+                ];
+    var datas3 = [
+                    { "id": "root", "isroot": true, "topic": "<span>B3101150000002013070102</span>" },
+                    { "id": "sub1", "parentid": "root", "direction": "left", "topic": "<span>指纹比中</span>" },
+                    { "id": "sub2", "parentid": "root", "direction": "left", "topic": "<span>足迹比中</span>" },
+                    { "id": "sub3", "parentid": "root", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub4", "parentid": "root", "topic": "<span>DNA、指纹比中</span>" },
+                    { "id": "sub11", "parentid": "sub1", "topic": "<span>K3301060501002013050023</span>" },
+                    { "id": "sub12", "parentid": "sub1", "topic": "<span>K3301060501002013050017</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002014010037</span>" },
+                    { "id": "sub22", "parentid": "sub2", "topic": "<span>K3301060501002014010044</span>" },
+                    { "id": "sub23", "parentid": "sub2", "topic": "<span>K3301060501002014010031</span>" },
+                    { "id": "sub31", "parentid": "sub3", "topic": "<span>K3301060501002012010012</span>" },
+                    { "id": "sub41", "parentid": "sub4", "topic": "<span>K3301060501002012010015</span>" },
+                    { "id": "sub311", "parentid": "sub31", "topic": "<span>K3301060501002012010062</span>" }
+                ];
+    var datas4 = [
+                    { "id": "root", "isroot": true, "topic": "<span>B3101150000002012110065</span>" },
+                    { "id": "sub1", "parentid": "root", "direction": "left", "topic": "<span>指纹比中</span>" },
+                    { "id": "sub2", "parentid": "root", "direction": "left", "topic": "<span>足迹比中</span>" },
+                    { "id": "sub3", "parentid": "root", "direction": "left", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub4", "parentid": "root", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub11", "parentid": "sub1", "topic": "<span>K3301060501002013050023</span>" },
+                    { "id": "sub12", "parentid": "sub1", "topic": "<span>K3301060501002013050017</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002014010037</span>" },
+                    { "id": "sub22", "parentid": "sub2", "topic": "<span>K3301060501002014010044</span>" },
+                    { "id": "sub23", "parentid": "sub2", "topic": "<span>K3301060501002014010031</span>" },
+                    { "id": "sub31", "parentid": "sub3", "topic": "<span>K3301060501002012010012</span>" },
+                    { "id": "sub41", "parentid": "sub4", "topic": "<span>K3301060501002012010015</span>" },
+                    { "id": "sub311", "parentid": "sub31", "topic": "<span>K3301060501002012010062</span>" }
+                ];
+    var datas5 = [
+                    { "id": "root", "isroot": true, "topic": "<span>B3101150000002012090203</span>" },
+                    { "id": "sub1", "parentid": "root",  "topic": "<span>指纹比中</span>" },
+                    { "id": "sub2", "parentid": "root",  "topic": "<span>足迹比中</span>" },
+                    { "id": "sub3", "parentid": "root",  "topic": "<span>DNA、指纹比中</span>" },
+                    { "id": "sub4", "parentid": "root", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub11", "parentid": "sub1", "topic": "<span>K3301060501002013050023</span>" },
+                    { "id": "sub12", "parentid": "sub1", "topic": "<span>K3301060501002013050017</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002014010037</span>" },
+                    { "id": "sub22", "parentid": "sub2", "topic": "<span>K3301060501002014010044</span>" },
+                    { "id": "sub23", "parentid": "sub2", "topic": "<span>K3301060501002014010031</span>" },
+                    { "id": "sub31", "parentid": "sub3", "topic": "<span>K3301060501002012010012</span>" },
+                    { "id": "sub41", "parentid": "sub4", "topic": "<span>K3301060501002012010015</span>" },
+                    { "id": "sub311", "parentid": "sub31", "topic": "<span>K3301060501002012010062</span>" }
+                ];
+    var datas6 = [
+                    { "id": "root", "isroot": true, "topic": "<span>B3301060501002014050121</span>" },
+                    { "id": "sub1", "parentid": "root", "topic": "<span>DNA、指纹比中</span>" },
+                    { "id": "sub2", "parentid": "root", "topic": "<span>足迹比中</span>" },
+                    { "id": "sub3", "parentid": "root", "topic": "<span>足迹、DNA比中</span>" },
+                    { "id": "sub4", "parentid": "root",  "topic": "<span>DNA比中</span>" },
+                    { "id": "sub5", "parentid": "root", "direction": "left", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub11", "parentid": "sub1", "topic": "<span>指纹比中</span>" },
+                    { "id": "sub12", "parentid": "sub1", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub111", "parentid": "sub11", "topic": "<span>K3301060501002012010022</span>" },
+                    { "id": "sub121", "parentid": "sub12", "topic": "<span>K3301060501002012010045</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002012010066</span>" },
+                    { "id": "sub31", "parentid": "sub3", "topic": "<span>K3301060501002014010021</span>" },
+                    { "id": "sub41", "parentid": "sub4", "topic": "<span>K3301060501002012080031</span>" },
+                    { "id": "sub51", "parentid": "sub5", "topic": "<span>K3301060501002012010032</span>" },
+                    { "id": "sub511", "parentid": "sub51", "topic": "<span>K3301060501002013040002</span>" },
+                    { "id": "sub22", "parentid": "sub2", "topic": "<span>K3301060501002012010012</span>" }
+                ];
+    var datas7 = [
+                    { "id": "root", "isroot": true, "topic": "<span>B3301060501002012070109</span>" },
+                    { "id": "sub1", "parentid": "root", "topic": "<span>DNA、指纹比中</span>" },
+                    { "id": "sub2", "parentid": "root", "topic": "<span>足迹比中</span>" },
+                    { "id": "sub5", "parentid": "root", "direction": "left", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub11", "parentid": "sub1", "topic": "<span>指纹比中</span>" },
+                    { "id": "sub12", "parentid": "sub1", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub111", "parentid": "sub11", "topic": "<span>K3301060501002012010022</span>" },
+                    { "id": "sub121", "parentid": "sub12", "topic": "<span>K3301060501002012010045</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002012010066</span>" },
+                    { "id": "sub211", "parentid": "sub21", "topic": "<span>K3301060501002013040015</span>" },
+                    { "id": "sub212", "parentid": "sub21", "topic": "<span>K3301060501002012020113</span>" },
+                    { "id": "sub2121", "parentid": "sub211", "topic": "<span>K3301060501002012020113</span>" },
+                    { "id": "sub51", "parentid": "sub5", "topic": "<span>K3301060501002012010032</span>" },
+                    { "id": "sub511", "parentid": "sub51", "topic": "<span>K3301060501002013040002</span>" },
+                    { "id": "sub22", "parentid": "sub2", "topic": "<span>K3301060501002012010012</span>" }
+                ];
+
+    var datas8 = [
+                    { "id": "root", "isroot": true, "topic": "<span>B3301060501002012010101</span>" },
+                    { "id": "sub2", "parentid": "root", "direction": "left", "topic": "<span>足迹比中</span>" },
+                    { "id": "sub1", "parentid": "root", "topic": "<span>DNA、指纹比中</span>" },
+                    { "id": "sub11", "parentid": "sub1", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub12", "parentid": "sub1", "topic": "<span>指纹比中</span>" },
+                    { "id": "sub111", "parentid": "sub11", "topic": "<span>K3301060501002014030111</span>" },
+                    { "id": "sub112", "parentid": "sub12", "topic": "<span>K3301060501002012110022</span>" },
+                    { "id": "sub1111", "parentid": "sub111", "topic": "<span>K3301060501002012010120</span>" },
+                    { "id": "sub1112", "parentid": "sub111", "topic": "<span>K3301060501002013060063</span>" },
+                    { "id": "sub1121", "parentid": "sub112", "topic": "<span>K3301060501002012070072</span>" },
+                    { "id": "sub1122", "parentid": "sub112", "topic": "<span>K3301060501002014010051</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002014010213</span>" },
+                    { "id": "sub211", "parentid": "sub21", "topic": "<span>K3301060501002013030051</span>" },
+                    { "id": "sub212", "parentid": "sub21", "topic": "<span>K3301060501002014070201</span>" }
+                ];
+    var datas12 = [
+                    { "id": "root", "isroot": true, "topic": "<span>B3301060501002012010145</span>" },
+                    { "id": "sub2", "parentid": "root", "topic": "<span>足迹比中</span>" },
+                    { "id": "sub1", "parentid": "root", "direction": "left", "topic": "<span>DNA、指纹比中</span>" },
+                    { "id": "sub11", "parentid": "sub1", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub12", "parentid": "sub1", "topic": "<span>指纹比中</span>" },
+                    { "id": "sub111", "parentid": "sub11", "topic": "<span>K3301060501002014030111</span>" },
+                    { "id": "sub112", "parentid": "sub12", "topic": "<span>K3301060501002012110022</span>" },
+                    { "id": "sub1111", "parentid": "sub111", "topic": "<span>K3301060501002012010120</span>" },
+                    { "id": "sub1112", "parentid": "sub111", "topic": "<span>K3301060501002013060063</span>" },
+                    { "id": "sub1121", "parentid": "sub112", "topic": "<span>K3301060501002012070072</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002014010213</span>" },
+                    { "id": "sub211", "parentid": "sub21", "topic": "<span>K3301060501002013030051</span>" },
+                    { "id": "sub212", "parentid": "sub21", "topic": "<span>K3301060501002014070201</span>" }
+                ];
+    var datas9= [
+                    { "id": "root", "isroot": true, "topic": "<span>B3301060501002013120320</span>" },
+                    { "id": "sub2", "parentid": "root", "topic": "<span>足迹比中</span>" },
+                    { "id": "sub11", "parentid": "root", "direction": "left", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub12", "parentid": "root", "direction": "left", "topic": "<span>指纹比中</span>" },
+                    { "id": "sub111", "parentid": "sub11", "topic": "<span>K3301060501002014030111</span>" },
+                    { "id": "sub112", "parentid": "sub12", "topic": "<span>K3301060501002012110022</span>" },
+                    { "id": "sub1111", "parentid": "sub111", "topic": "<span>K3301060501002012010120</span>" },
+                    { "id": "sub1112", "parentid": "sub111", "topic": "<span>K3301060501002013060063</span>" },
+                    { "id": "sub1121", "parentid": "sub112", "topic": "<span>K3301060501002012070072</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002014010213</span>" },
+                    { "id": "sub211", "parentid": "sub21", "topic": "<span>K3301060501002013030051</span>" },
+                    { "id": "sub2111", "parentid": "sub211", "topic": "<span>K3301060501002013110181</span>" },
+                    { "id": "sub212", "parentid": "sub21", "topic": "<span>K3301060501002014070201</span>" }
+                ];
+    var datas11 = [
+                    { "id": "root", "isroot": true, "topic": "<span>B3301060501002012090064</span>" },
+                    { "id": "sub2", "parentid": "root", "topic": "<span>足迹比中</span>" },
+                    { "id": "sub11", "parentid": "root", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub12", "parentid": "root", "direction": "left", "topic": "<span>指纹比中</span>" },
+                    { "id": "sub22", "parentid": "sub2", "topic": "<span>K3301060501002013120221</span>" },
+                    { "id": "sub111", "parentid": "sub11", "topic": "<span>K3301060501002014030141</span>" },
+                    { "id": "sub112", "parentid": "sub12", "topic": "<span>K3301060501002012110102</span>" },
+                    { "id": "sub1111", "parentid": "sub111", "topic": "<span>K3301060501002012010120</span>" },
+                    { "id": "sub1112", "parentid": "sub111", "topic": "<span>K3301060501002013060063</span>" },
+                    { "id": "sub1121", "parentid": "sub112", "topic": "<span>K3301060501002012070072</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002014010213</span>" },
+                    { "id": "sub211", "parentid": "sub21", "topic": "<span>K3301060501002013030051</span>" },
+                    { "id": "sub2111", "parentid": "sub211", "topic": "<span>K3301060501002013110181</span>" },
+                    { "id": "sub212", "parentid": "sub21", "topic": "<span>K3301060501002014070201</span>" }
+                ];
+    var datas10 = [
+                    { "id": "root", "isroot": true, "topic": "<span>B3301060501002012070455</span>" },
+                    { "id": "sub1", "parentid": "root", "direction": "left", "topic": "<span>K3301060501002012120001</span>" },
+                    { "id": "sub01", "parentid": "sub1", "topic": "<span>K3301060501002012020041</span>" },
+                    { "id": "sub02", "parentid": "sub1", "topic": "<span>K3301060501002012060053</span>" },
+                    { "id": "sub03", "parentid": "sub1", "topic": "<span>K3301060501002013010269</span>" },
+                    { "id": "sub011", "parentid": "sub01", "topic": "<span>K330106050100201304010009</span>" },
+                    { "id": "sub2", "parentid": "root", "topic": "<span>足迹比中</span>" },
+                    { "id": "sub22", "parentid": "sub2", "topic": "<span>K3301060501002013120221</span>" },
+                    { "id": "sub111", "parentid": "sub2", "topic": "<span>K3301060501002014030111</span>" },
+                    { "id": "sub112", "parentid": "sub2", "topic": "<span>K3301060501002012110022</span>" },
+                    { "id": "sub1111", "parentid": "sub111", "topic": "<span>K3301060501002012010120</span>" },
+                    { "id": "sub1112", "parentid": "sub111", "topic": "<span>K3301060501002013060063</span>" },
+                    { "id": "sub1121", "parentid": "sub112", "topic": "<span>K3301060501002012070072</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002014010213</span>" },
+                    { "id": "sub211", "parentid": "sub21", "topic": "<span>K3301060501002013030051</span>" },
+                    { "id": "sub2111", "parentid": "sub211", "topic": "<span>K3301060501002013110181</span>" },
+                    { "id": "sub212", "parentid": "sub21", "topic": "<span>K3301060501002014070201</span>" }
+                ];
+    var datas13 = [
+                    { "id": "root", "isroot": true, "topic": "<span>B3301060501002013100036</span>" },
+                    { "id": "sub002", "parentid": "root", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub1", "parentid": "sub002", "topic": "<span>K3301060501002012120001</span>" },
+                    { "id": "sub01", "parentid": "sub1", "topic": "<span>K3301060501002012020041</span>" },
+                    { "id": "sub02", "parentid": "sub1", "topic": "<span>K3301060501002012060053</span>" },
+                    { "id": "sub03", "parentid": "sub1", "topic": "<span>K3301060501002013010269</span>" },
+                    { "id": "sub011", "parentid": "sub01", "topic": "<span>K330106050100201304010009</span>" },
+                    { "id": "sub2", "parentid": "root", "direction": "left", "topic": "<span>足迹比中</span>" },
+                    { "id": "sub22", "parentid": "sub2", "topic": "<span>K3301060501002013120221</span>" },
+                    { "id": "sub111", "parentid": "sub2", "topic": "<span>K3301060501002014030111</span>" },
+                    { "id": "sub112", "parentid": "sub2", "topic": "<span>K3301060501002012110022</span>" },
+                    { "id": "sub1111", "parentid": "sub111", "topic": "<span>K3301060501002012010120</span>" },
+                    { "id": "sub1112", "parentid": "sub111", "topic": "<span>K3301060501002013060063</span>" },
+                    { "id": "sub1121", "parentid": "sub112", "topic": "<span>K3301060501002012070072</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002014010213</span>" },
+                    { "id": "sub211", "parentid": "sub21", "topic": "<span>K3301060501002013030051</span>" },
+                    { "id": "sub212", "parentid": "sub21", "topic": "<span>K3301060501002014070201</span>" }
+                ];
+
+    var datas14 = [
+                    { "id": "root", "isroot": true, "topic": "<span>B3301060501002013040295</span>" },
+                    { "id": "sub01", "parentid": "root", "direction": "left", "topic": "<span>K3301060501002012070072</span>" },
+                    { "id": "sub1", "parentid": "root", "direction": "left", "topic": "<span>DNA、指纹比中</span>" },
+                    { "id": "sub2", "parentid": "root", "topic": "<span>足迹比中</span>" },
+                    { "id": "sub3", "parentid": "root", "topic": "<span>DNA、足迹比中</span>" },
+                    { "id": "sub11", "parentid": "sub1", "topic": "<span>指纹比中</span>" },
+                    { "id": "sub12", "parentid": "sub1", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub011", "parentid": "sub01", "topic": "<span>K3301060501002014040135</span>" },
+                    { "id": "sub111", "parentid": "sub11", "topic": "<span>K3301060501002012010022</span>" },
+                    { "id": "sub121", "parentid": "sub12", "topic": "<span>K3301060501002012060045</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002012050066</span>" },
+                    { "id": "sub31", "parentid": "sub3", "topic": "<span>K3301060501002014010021</span>" },
+                    { "id": "sub511", "parentid": "sub51", "topic": "<span>K3301060501002012110060</span>" },
+                    { "id": "sub22", "parentid": "sub2", "topic": "<span>K3301060501002014010012</span>" }
+                ];
+
+    var datas15 = [
+                    { "id": "root", "isroot": true, "topic": "<span>B3101150000002014070224</span>" },
+                    { "id": "sub1", "parentid": "root",  "topic": "<span>指纹比中</span>" },
+                    { "id": "sub2", "parentid": "root", "direction": "left", "topic": "<span>足迹比中</span>" },
+                    { "id": "sub3", "parentid": "root", "direction": "left", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub4", "parentid": "sub11", "topic": "<span>DNA比中</span>" },
+                    { "id": "sub011", "parentid": "sub4", "topic": "<span>K3301060501002014040111</span>" },
+                    { "id": "sub11", "parentid": "sub1", "topic": "<span>K3301060501002013050023</span>" },
+                    { "id": "sub12", "parentid": "sub1", "topic": "<span>K3301060501002013050017</span>" },
+                    { "id": "sub21", "parentid": "sub2", "topic": "<span>K3301060501002014010037</span>" },
+                    { "id": "sub22", "parentid": "sub2", "topic": "<span>K3301060501002014010044</span>" },
+                    { "id": "sub23", "parentid": "sub2", "topic": "<span>K3301060501002014010031</span>" },
+                    { "id": "sub31", "parentid": "sub3", "topic": "<span>K3301060501002012070012</span>" },
+                    { "id": "sub41", "parentid": "sub4", "topic": "<span>K3301060501002013110015</span>" },
+                    { "id": "sub311", "parentid": "sub31", "topic": "<span>K3301060501002012010062</span>" }
+                ];
+                    $(document).ready(function () {
+                        //alert(document.referrer);
+                        //alert(getQueryString("name") + "_" + getQueryString("id"));
+                        var tempdata = eval("datas" + getQueryString("id"));
+                        var jm = null;
+                        var mind = {
+                            "meta": {
+                                "name": "xx",
+                                "author": "mind",
+                                "version": "1.0"
+                            },
+                            "format": "node_array",
+                            "data": tempdata
+                        };
+                        var options = {
+                            container: 'jsmind',
+                            editable: false,
+                            theme: 'info'
+                        }
+                        jsMind.show(options, mind);
+                    });
+
+                    function getQueryString(name) {
+                        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                        var r = window.location.search.substr(1).match(reg);
+                        if (r != null) return unescape(r[2]); return null;
+                    }
+</script>

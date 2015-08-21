@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.cmrx.bean.model">
+	<class name="UserorgBean" table="user_org">
+		<meta attribute="sync-DAO">false</meta>
+		<id name="userid" type="integer" column="userid">
+		</id>
+		<property name="username" column="username" type="string" length="50" />
+		<property name="pwd" column="pwd" type="string" length="32" />
+		<property name="organId" column="organId" type="integer" not-null="false" length="11" />
+		<property name="trueName" column="trueName" type="string" length="50" />
+		<property name="organName" column="organName" type="string" length="50" />
+		<property name="organCode" column="organCode" type="string" length="15" />
+	</class>
+</hibernate-mapping>

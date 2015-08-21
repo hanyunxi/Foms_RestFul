@@ -1,0 +1,1695 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<link href="../Compents/eui/themes/metro/blue-easyui.css"
+	rel="stylesheet" type="text/css" />
+<link href="../Compents/eui/themes/icon.css" rel="stylesheet"
+	type="text/css" />
+<link href="../Compents/pagecss/leftMenu.css" rel="stylesheet"
+	type="text/css" />
+<script src="../Compents/eui/eui-Script/jquery-1.11.1.js"
+	type="text/javascript"></script>
+<script src="../Compents/highchart-js/highcharts.js"
+	type="text/javascript"></script>
+<script src="../Compents/highchart-js/highcharts-3d.js"
+	type="text/javascript"></script>
+<script src="../Compents/highchart-js/modules/jquery-1.8.3.min.js"
+	type="text/javascript"></script>
+<script src="../Compents/highchart-js/exporting.js"
+	type="text/javascript"></script>
+<script src="../Compents/eui/eui-Script/jquery.easyui.min.js"
+	type="text/javascript"></script>
+<script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js"
+	type="text/javascript"></script>
+<script
+	src="../Compents/eui/eui-extend/jeasyui-extensions/jquery.portal.js"
+	type="text/javascript"></script>
+<script src="../Compents/js/session.js" type="text/javascript"></script>
+<style type="text/css">
+body {
+	font-family: "微软雅黑";
+}
+
+.panel-header {
+	border: 0;
+	background-color: #E6E6E6;
+}
+
+.layout-panel-center .panel-header {
+	background-color: #f9f9f9;
+}
+
+.panel-header {
+	margin: 0;
+	padding: 0;
+	height: 28px;
+	line-height: 28px;
+}
+
+#nav_wrapper {
+	position: relative;
+	width: 96%;
+	margin-left: 36px;
+	margin-top: 10px;
+	border-bottom: 2px #ddd solid;
+}
+
+#nav_wrapper #nav_menu {
+	height: 50px;
+}
+
+#nav_wrapper #nav_menu a {
+	display: block;
+	float: left;
+	height: 50px;
+	margin-top: 20px;
+	font-family: '微软雅黑';
+	line-height: 16px;
+	color: #999999;
+	font-size: 16px;
+	text-decoration: none;
+}
+
+#nav_wrapper #nav_animate_block {
+	position: absolute;
+	bottom: -2px;
+	height: 2px;
+	overflow: hidden;
+	background: #279BC4;
+}
+
+.combo-arrow {
+	background-color: White;
+	background: url('../Compents/images/yp/arrow-down001.png') no-repeat
+		center center;
+}
+
+.datebox .combo-arrow {
+	background-image: url(../Compents/images/yp/calendar001_normal.png);
+	background-position: center center;
+	margin-right: 2px;
+}
+
+.combo-arrow:hover {
+	background-color: White;
+}
+
+.combo {
+	border: 1px solid #d2d2d2;
+	margin-right: 10px;
+}
+
+.combo .combo-text,.combobox-item {
+	font-size: 14px;
+	color: Gray;
+}
+
+.combo-text.validatebox-text {
+	border: 0px solid #FFFFFF;
+}
+
+.highcharts-grid g {
+	border-left: 1px solid #E6E6E6;
+}
+
+.textcss2 {
+	width: 150px;
+	height: 26px;
+	float: left;
+	font-size: 16px;
+	color: #999999;
+	padding-left: 10px;
+	font-family: "微软雅黑";
+	border: 1px #999999 solid;
+}
+
+.btn {
+	text-decoration: none;
+	display: inline-block;
+	margin: 0;
+	cursor: pointer;
+	outline: none;
+	text-align: center;
+	height: 20px;
+	width: 60px;
+	line-height: 20px;
+	color: White;
+	background-color: #30A3D9;
+	font-size: 12px;
+	font-family: "宋体";
+}
+
+.btn:hover {
+	background-color: #2D9ACC;
+}
+
+.textcss {
+	width: 108px;
+	height: 26px;
+	float: left;
+	padding-left: 4px;
+	border: 1px #F8F3F3 solid;
+	font-size: 14px;
+}
+
+#buju tr {
+	height: 44px;
+}
+
+.div_txtbtn {
+	height: 30px;
+	float: left;
+	border: 1px rgb(196, 196, 196) solid;
+	width: 242px;
+}
+
+.td_title {
+	height: 26px;
+	padding-right: 10px;
+	font-size: 16px;
+	color: rgb(104, 104, 104);
+	padding-top: 5px;
+	text-align: center;
+	margin-top: -7px;
+}
+
+td_content {
+	padding-left: 10px;
+	font-size: 14px;
+}
+
+.textcss2 {
+	width: 250px;
+	height: 26px;
+	float: left;
+	font-size: 14px;
+}
+
+.btnWin {
+	float: right;
+	height: 30px;
+	width: 30px;
+	border: 0;
+	background: white
+		url(../Compents/images/Study/The-drop-down%20arrow-zhcx.png) no-repeat;
+	background-position: 6px 6px;
+}
+</style>
+</head>
+<body>
+	<form id="departmentform">
+		<div id="nav_wrapper">
+			<div id="nav_menu">
+				<a class="titlea" href="#" style="margin-right: 32px;" id="zuji_nav">足迹统计</a>
+				<a class="titlea" href="#" style="margin-right: 47px;" id="zhiwen_nav">指纹统计</a> 
+				<a class="titlea" href="#" style="margin-right: 62px;" id="dna_nav">DNA统计</a>
+				<a class="titlea" href="#" style="margin-right: 77px;" id="current_nav">案件数统计</a> 
+				<a class="titlea" href="#" id="anjian_xingzhi" style="margin-right: 92px;">案件性质统计</a> 
+				<a class="titlea" href="#" id="colligate_nav">综合串案统计</a>
+			</div>
+			<div id="nav_animate_block"></div>
+		</div>
+		<div id="bumenchuananriqi"
+			style="margin: 0; margin-left: 36px; height: 65px; width: 96%;">
+			<div id="tool"
+				style="width: 100%; float: left; margin-top: 13px; margin-right: 16px; display: inline-flex;">
+				<span class="td_title"><input type="button" class="btnWin"
+					onclick="getTreeWin('区划选择',true,'quhua','quhuaxuanze');" /><input
+					type="text" id="ctxt" class="textcss2" readonly="readonly"
+					onfocus="if (value =='行政区划'){value ='';this.style.color='Black';}"
+					onblur="if (value ==''){value='行政区划'; this.style.color='#999999';}"
+					value="行政区划" /></span> <span class="td_title"><input type="button"
+					class="btnWin"
+					onclick="getTreeWin('案件性质',false,'xingzhi','quhuaxuanze');" /><input
+					type="text" id="stxt" class="textcss2" readonly="readonly"
+					onfocus="if (value =='案件性质'){value ='';this.style.color='Black';}"
+					onblur="if (value ==''){value='案件性质'; this.style.color='#999999';}"
+					value="案件性质" /></span> <input id="departmentbegintime"
+					name="departmentbegintime" type="text" class="easyui-datebox"
+					style="width: 160px;" /> <input id="departmentendtime"
+					name="departmentendtime" type="text" class="easyui-datebox"
+					style="width: 160px;" />
+				<div style="width: 10px;"></div>
+				<a id="ccSearch" style="cursor: pointer;"
+					onclick="return loaddepartmentchart();"> <img
+					src="../Compents/images/yp/statistical-zhcx_normal.png" />
+				</a>
+			</div>
+			<div id="TreeWindow" class="easyui-window"
+				style="padding: 5px; background-color: white; padding-top: 15px;">
+				<ul id="xltree"
+					style="color: black; font-family: '宋体'; font-size: 14px; margin-left: 0px;"></ul>
+				<div align="center" style="width: 100%; margin-top: 5px;">
+					<div style="clear: both;"></div>
+					<a class="btn" onclick="getChecked('ddd');" id="ddd">确定</a> <a
+						class="btn" onclick="getChecked('ccc');" id="ccc"
+						style="display: none">确定</a>
+				</div>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div id="xianyirenriqi"
+			style="display: none; margin: 0; margin-left: 36px; height: 65px; width: 96%;">
+			<div id="tool1"
+				style="width: 100%; float: left; margin-top: 13px; margin-right: 16px; display: inline-flex;">
+				<input id="xianyirenbegintime" name="xianyirenbegintime" type="text"
+					class="easyui-datebox" style="width: 160px;" /> <input
+					id="xianyirenendtime" name="xianyirenendtime" type="text"
+					class="easyui-datebox" style="width: 160px;" /> <a
+					id="xianyirenserch" style="cursor: pointer;"> <img
+					src="../Compents/images/yp/statistical-zhcx_normal.png" />
+				</a>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div id="zonghechuananriqi"
+			style="display: none; margin: 0; margin-left: 36px; height: 65px; width: 96%;">
+			<div id="tool2"
+				style="width: 100%; float: left; margin-top: 0px; margin-right: 16px;">
+				<input id="zonghebegintime" name="zonghebegintime" type="text"
+					class="easyui-datebox" style="width: 160px;" /> <input
+					id="zongheendtime" name="zongheendtime" type="text"
+					class="easyui-datebox" style="width: 160px;" /> <a
+					id="zongheSearch"
+					style="cursor: pointer; display: block; height: 65px; line-height: 65px; float: right; margin-right: 650px;"
+					onclick="return loadzonghechart();"> <img
+					src="../Compents/images/yp/statistical-zhcx_normal.png" />
+				</a>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div id="zujiriqi"
+			style="display: none; margin: 0; margin-left: 36px; height: 65px; width: 96%;">
+			<div id="tool3"
+				style="width: 100%; float: left; margin-top: 3px; margin-right: 360px;">
+				<input id="zujibegintime" name="zujibegintime" type="text"
+					class="easyui-datebox" style="width: 160px;" /> <input
+					id="zujiendtime" name="zujiendtime" type="text"
+					class="easyui-datebox" style="width: 160px;" /> <a id="zujiSearch"
+					style="cursor: pointer; display: block; height: 65px; line-height: 65px; float: right; margin-right: 650px;"
+					onclick="return loadzujichart();"> <img
+					src="../Compents/images/yp/statistical-zhcx_normal.png" />
+				</a>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div id="dnariqi"
+			style="display: none; margin: 0; margin-left: 36px; height: 65px; width: 96%;">
+			<div id="tool4"
+				style="width: 100%; float: left; margin-top: 3px; margin-right: 360px;">
+				<input id="dnabegintime" name="dnabegintime" type="text"
+					class="easyui-datebox" style="width: 160px;" /> <input
+					id="dnaendtime" name="dnaendtime" type="text"
+					class="easyui-datebox" style="width: 160px;" /> <a id="dnaSearch"
+					style="cursor: pointer; display: block; height: 65px; line-height: 65px; float: right; margin-right: 650px;"
+					onclick="return loaddnachart();"> <img
+					src="../Compents/images/yp/statistical-zhcx_normal.png" />
+				</a>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div id="anjainixingzhiriqi"
+			style="margin: 0; margin-left: 36px; height: 65px; width: 96%; display: none">
+			<div id="tool5"
+				style="width: 100%; float: left; margin-top: 13px; margin-right: 16px; display: inline-flex;">
+				<div style="width: 30px;"></div>
+				<span class="td_title"><input type="button" class="btnWin"
+					onclick="getTreeWin('行政区划',true,'xingzhi','anjianxingzhi');" /><input
+					type="text" id="ctxtanjainxingzhi" class="textcss2"
+					readonly="readonly"
+					onfocus="if (value =='行政区划'){value ='';this.style.color='Black';}"
+					onblur="if (value ==''){value='行政区划'; this.style.color='#999999';}"
+					value="行政区划" /></span> <input id="departmentbegintimeAnjianxingzhi"
+					name="departmentbegintimeAnjianxingzhi" type="text"
+					class="easyui-datebox" style="width: 160px;" /> <input
+					id="departmentendtimeAnjianxingzhi"
+					name="departmentendtimeAnjianxingzhi" type="text"
+					class="easyui-datebox" style="width: 160px;" />
+				<div style="width: 10px;"></div>
+				<a id="anjanxingzhiSearch" style="cursor: pointer;"
+					onclick="return loadanjanxingzhichart();"> <img
+					src="../Compents/images/yp/statistical-zhcx_normal.png" />
+				</a>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<!--案件数统计-->
+		<div
+			style="margin-top: 34px; margin-left: 36px; width: 96%; height: 33%; overflow: hidden"
+			id="departmentcase">
+			<!--案件数统计图-->
+			<div id="anjiancontainer" style="width: 100%; height: 500px;"></div>
+			<div style="height: 40px"></div>
+			<div id="container" style="width: 100%; height: 600px" align="center"></div>
+		</div>
+		<!--综合串案足迹统计-->
+		<div
+			style="margin-top: 34px; margin-left: 36px; width: 1078px; height: 464px; display: none"
+			id="zujicase">
+			<div id="zujicontainer"
+				style="width: 96%; height: 500px; float: left;"></div>
+		</div>
+		<!--综合串案dna统计-->
+		<div
+			style="margin-top: 34px; margin-left: 36px; width: 1078px; height: 464px; display: none"
+			id="dnacase">
+			<div id="dnacontainer"
+				style="width: 96%; height: 500px; float: left;"></div>
+		</div>
+		<!--综合串案 -->
+		<div
+			style="margin-top: 34px; margin-left: 36px; width: 90%; height: 464px; display: none"
+			id="colligatecase">
+			<div id="zhiwenzuji"
+				style="display: none; width: auto; position: absolute; top: 202px; padding-left: 10px; padding-bottom: 10px; padding-right: 10px; border-bottom: 1px solid #555555;">
+				<span style="color: #30A3D9; font-size: 14px; font-family: '微软雅黑'">指纹足迹串案</span>
+				<span
+					style="margin-left: 40px; color: #555555; font-size: 14px; font-family: Arial;"
+					id="zhiwenzujichuanan"></span> <span
+					style="font-size: 14px; font-family: '微软雅黑'; color: #555555">串</span>
+				<span
+					style="margin-left: 10px; color: #555555; font-size: 14px; font-family: Arial;"
+					id="zhiwenzujiqishu"></span> <span
+					style="font-size: 14px; font-family: '微软雅黑'; color: #555555">起</span>
+			</div>
+			<div id="zhiwendna"
+				style="display: none; width: auto; position: absolute; top: 202px; padding-left: 10px; padding-bottom: 10px; padding-right: 10px; border-bottom: 1px solid #555555;">
+				<span style="color: #30A3D9; font-size: 14px; font-family: '微软雅黑'">指纹DNA串案</span>
+				<span
+					style="margin-left: 40px; color: #555555; font-size: 14px; font-family: Arial;"
+					id="zhiwendnachuanan"></span> <span
+					style="font-size: 14px; font-family: '微软雅黑'; color: #555555">串</span>
+				<span
+					style="margin-left: 10px; color: #555555; font-size: 14px; font-family: Arial;"
+					id="zhiwendnaqishu"></span> <span
+					style="font-size: 14px; font-family: '微软雅黑'; color: #555555">起</span>
+			</div>
+			<div id="zujidna"
+				style="display: none; width: auto; position: absolute; top: 529px; padding-left: 10px; padding-bottom: 10px; padding-right: 10px; border-bottom: 1px solid #555555;">
+				<span style="color: #30A3D9; font-size: 14px; font-family: '微软雅黑'">足迹DNA串案</span>
+				<span
+					style="margin-left: 40px; color: #555555; font-size: 14px; font-family: Arial;"
+					id="zujidnachuanan"></span> <span
+					style="font-size: 14px; font-family: '微软雅黑'; color: #555555">串</span>
+				<span
+					style="margin-left: 10px; color: #555555; font-size: 14px; font-family: Arial;"
+					id="zujidnaqishu"></span> <span
+					style="font-size: 14px; font-family: '微软雅黑'; color: #555555">起</span>
+			</div>
+			<div id="zhiwendnazuji"
+				style="display: none; width: auto; position: absolute; top: 351px; padding-left: 183px; padding-bottom: 10px; padding-right: 10px; border-bottom: 1px solid #555555;">
+				<span style="color: #30A3D9; font-size: 14px; font-family: '微软雅黑'">指纹DNA足迹串案</span>
+				<span
+					style="margin-left: 40px; color: #555555; font-size: 14px; font-family: Arial;"
+					id="zhiwendnazujichuanan"></span> <span
+					style="font-size: 14px; font-family: '微软雅黑'; color: #555555">串</span>
+				<span
+					style="margin-left: 10px; color: #555555; font-size: 14px; font-family: Arial;"
+					id="zhiwendnazujiqishu"></span> <span
+					style="font-size: 14px; font-family: '微软雅黑'; color: #555555">起</span>
+			</div>
+			<div id="zongheimg"
+				style="width: 372px; height: 380px; text-align: left; top: 0px; margin-top: 57px; padding-top: 0px; margin-right: auto; margin-bottom: 0; margin-left: auto; background-image: url('../Compents/images/yp/The-pie-chart.png'); background-repeat: no-repeat; background-position: center top;"></div>
+		</div>
+		<!-- 案件性质统计 -->
+		<div
+			style="margin-top: 34px; margin-left: 36px; width: 96%; height: 33%; overflow: hidden"
+			id="anjianxingzhicase">
+			<div id="anjianxingzhicontainer" 
+				style="width: 96%; height: 500px; float: left;" align="center"></div>
+			<div id="anjianxingzhipartcontainer"
+				style="width: 96%; height: 500px; float: left;display: none;" align="center"></div>
+			<div id="anjianxingzhipartpartcontainer"
+				style="width: 96%; height: 500px; float: left;display: none" align="center">
+			</div>
+	</form>
+</body>
+</html>
+<script type="text/javascript">
+	var nodesss = [];
+	var data1111;
+	var data1112;
+	var nodesss1 = [];
+	var nodesss2 = [];
+	var nodesss3 = [];
+	var qudata = '';
+	var msdata = '';
+	function getChecked(valu) {
+		var beginTime = JSON.stringify(data1112.departmentbegintime);
+		var endTime = JSON.stringify(data1112.departmentendtime);
+		if (valu == 'ddd') {
+			nodes = [];
+			nodes = $('#xltree').tree('getChecked');
+			if (nodes.length == 0) {
+				nodesss = [];
+				if ($('#xltree').tree('getRoot').text == '山东省') {
+					msdata = '';
+					$("#ctxt").val('行政区划');
+				} else {
+					qudata = '';
+					$("#stxt").val('案件性质');
+				}
+			} else {
+				nodesss = nodes;
+			}
+			m = '';
+			s = '';
+			l = '';
+			k = '';
+			for ( var i = 0; i < nodes.length; i++) {
+				if (nodes[i].textvalue == undefined) {
+					nodesss2 = nodesss;
+					if (m != '')
+						m += ']';
+					m += nodes[i].id;
+					qudata = m;
+					if (nodes[i].text != '山东省') {
+						l += nodes[i].text;
+						l += ',';
+						l = l.substring(0, l.length - 1);
+						$("#stxt").val(l.substring(0, l.length - 1));
+					}
+				} else {
+					nodesss3 = nodesss;
+					if (s != '')
+						s += '[';
+					if (nodes[i].text != '山东省') {
+						s += nodes[i].text + '_' + nodes[i].textvalue;
+						msdata = s;
+						k += nodes[i].text;
+						k += ',';
+						$("#ctxt").val(k.substring(0, k.length - 1));
+					}
+
+				}
+			}
+			$
+					.ajax({
+
+						type : 'post',
+
+						url : 'http://'
+								+ urlIP
+								+ '/Foms_RestFul/rest/DepartmentZongHeFind/getanjianshu',
+						data : {
+							nodeval : msdata,
+							nodevalanjianxigzhi : qudata,
+							beginTime : beginTime,
+							endTime : endTime
+						},
+						async : false,
+						success : function(msg) {
+							sdata = "";
+							sdata = msg;
+							sansanchart(sdata);
+						}
+					});
+		} else {
+			nodes = [];
+			nodes = $('#xltree').tree('getChecked');
+			if (nodes.length == 0) {
+				nodesss1 = [];
+				$("#ctxtanjainxingzhi").val("行政区划");
+			} else {
+				nodesss1 = nodes;
+			}
+			m = '';
+			k = '';
+			s = '';
+			andata = '';
+			for ( var i = 0; i < nodes.length; i++) {
+				if (s != '')
+					s += '[';
+				if (nodes[i].text != '山东省') {
+					s += nodes[i].textvalue;
+					andata = s;
+					k += nodes[i].text;
+					k += ',';
+					$("#ctxtanjainxingzhi").val(k.substring(0, k.length - 1));
+				}
+
+			}
+			anjianxingzhichart(andata, beginTime, endTime);
+		}
+		$('#TreeWindow').window('close');
+	}
+	$('#TreeWindow').window({ //加载审核弹出框
+		top : 40,
+		left : ($(window.parent.document).width() - 850) / 2,
+		width : 240,
+		height : 350,
+		modal : true,
+		border : true,
+		closable : true,
+		minimizable : false,
+		maximizable : false,
+		collapsible : false,
+		resizable : false,
+		closed : true,
+		onClose : function() {
+			empty();
+		}
+	});
+	function serializeObjects(a) {
+		var o = {};
+		$.each(a, function() {
+			if (o[this.name]) {
+				if (!o[this.name].push) {
+					o[this.name] = [ o[this.name] ];
+				}
+				o[this.name].push(this.value || '');
+			} else {
+				o[this.name] = this.value || '';
+			}
+		});
+		return o;
+	}
+	function getTreeWin(title, canChoose, id, hid) { //弹出框，并选择树形条件
+		loadTree(canChoose, hid, id);
+		var height = document.body.scrollTop;
+		if (id == 'quhua') {
+			$('#TreeWindow').window({
+				title : "行政区划"
+			});
+			$('#TreeWindow').window({
+				top : height + 123,
+				left : 307
+			}); //滚动条计算窗口出现位置 
+		} else {
+			$('#TreeWindow').window({
+				title : "案件性质"
+			});
+			$('#TreeWindow').window({
+				top : height + 123,
+				left : 610
+			}); //滚动条计算窗口出现位置 		   
+		}
+		$('#TreeWindow').window('open');
+	}
+	function loadTree(canChoose, hid, id) {
+		if (hid == 'anjianxingzhi') {
+			if ($("#ctxtanjainxingzhi").val() == '行政区划') {
+				nodesss = [];
+			} else {
+				nodesss = nodesss1;
+			}
+		} else {
+			if (id == 'quhua') {
+				if ($("#ctxt").val() == '行政区划') {
+					nodesss = [];
+				} else {
+					nodesss = nodesss3;
+				}
+			} else {
+				if ($("#stxt").val() == '案件性质') {
+					nodesss = [];
+				} else {
+					nodesss = nodesss2;
+				}
+			}
+		}
+		var m = '';
+		var jdata = [];
+		if (nodesss.length != 0) {
+			if (nodesss.children == undefined
+					|| nodesss.children == 'undefined') {
+				for ( var i = 0; i < nodesss.length; i++) {
+					if (m != '')
+						m += ']';
+					m += nodesss[i].text;
+				}
+			}
+		}
+		if (canChoose) {
+			url = 'http://' + urlIP
+					+ '/Foms_RestFul/rest/DepartmentZongHeFind/getDataCity';
+		} else {
+			url = 'http://' + urlIP
+					+ '/Foms_RestFul/rest/DepartmentZongHeFind/getAJLBTree';
+		}
+		$.ajax({
+			url : url,
+			type : 'post',
+			async : false,
+			dataType : 'json',
+			data : {
+				mdata : m
+			},
+			success : function(data) {
+				jdata = data;
+
+			}
+		});
+
+		$('#xltree')
+				.tree(
+						{
+							animate : false,
+							checkbox : true,
+							data : jdata,
+							onLoadSuccess : function(node, data) {
+								$('.tree-folder,.tree-folder-open,.tree-file')
+										.removeClass(
+												'tree-folder tree-folder-open tree-file'); //去样式
+							}
+						});
+	}
+	function confirmVal() { //《确定》为页面文本框，隐藏域赋值
+		$("#" + txtid).val($('#ctxt').val());
+		$("#" + hiddenid).val($('#ctxt').val() + "-" + $('#htxt').val());
+		$('#TreeWindow').window('close');
+	}
+	$(function() {
+		caidan();
+		titleMenu();
+		$("#departmentbegintimeAnjianxingzhi")
+				.datebox("setValue", "2014-01-01");
+		$("#departmentendtimeAnjianxingzhi").datebox("setValue", "2015-05-01");
+		$("#departmentbegintime").datebox("setValue", "2014-01-01");
+		var mydate = new Date();
+		var str = "" + mydate.getFullYear() + "-";
+		str += (mydate.getMonth() + 1) + "-";
+		str += mydate.getDate();
+		$("#departmentendtime").datebox("setValue", str);
+		$("#xianyirenbegintime").datebox("setValue", "2014-01-01");
+		$("#xianyirenendtime").datebox("setValue", str);
+		$("#zonghebegintime").datebox("setValue", "2014-01-01");
+		$("#dnabegintime").datebox("setValue", "2014-01-01");
+		$("#dnaendtime").datebox("setValue", "2015-05-01");
+		$("#zongheendtime").datebox("setValue", str);
+		$('.combo-arrow').css("height", "26px");
+		$('.combo-text').css({
+			"height" : "=-26px",
+			"line-height" : "26px",
+			"text-align" : "center"
+		}).attr("readonly", "readonly");
+		$('.datebox').css({
+			"height" : "26px",
+			"width" : "163px"
+		});
+		data1111 = $("#departmentform").serializeArray();
+		data1112 = serializeObjects(data1111);
+		loaddepartmentchart();
+		loadanjanxingzhichart();
+		comprehensivecasecount();
+		chuananshu();
+		loadzujichart();
+		loaddnachart();
+		loadzhiwenchart();
+	});
+	function loadzujichart() {
+		zujichart();
+	}
+	function loaddnachart() {
+		data1111 = $("#departmentform").serializeArray();
+		data1112 = serializeObjects(data1111);
+		dnabegintime = data1112.dnabegintime;
+		dnaendtime = data1112.dnaendtime;
+		dnachart(dnabegintime, dnaendtime);
+	}
+	function loadzhiwenchart() {
+		zhiwenchart();
+	}
+	function loadanjanxingzhichart() {
+		var data123 = "";
+		data1111 = $("#departmentform").serializeArray();
+		data1112 = serializeObjects(data1111);
+		anjianxingzhibegintime = data1112.departmentbegintimeAnjianxingzhi;
+		anjianxingzhiendtime = data1112.departmentendtimeAnjianxingzhi;
+		anjianxingzhichart(data123, anjianxingzhibegintime,
+				anjianxingzhiendtime);
+	}
+	function anjianxingzhichart(data123, beginTime, endTime) {
+	    $('#anjianxingzhipartcontainer').hide();
+		$('#anjianxingzhipartpartcontainer').hide();
+		/* $('#anjianxingzhipartcontainer').html('');
+		$('#anjianxingzhipartpartcontainer').html(''); */
+		var sansandata = [];
+		var sansandata1 = [];
+		var begintimepart;
+		var endtimepart;
+		if (beginTime > endTime) {
+			alert("开始时间不能大于结束时间！");
+			return false;
+		}
+		$
+				.ajax({
+					type : 'post',
+					url : 'http://'
+							+ urlIP
+							+ '/Foms_RestFul/rest/DepartmentZongHeFind/getAnjianxingzhiDataAll',
+					async : false,
+					data : {
+						data123 : data123,
+						beginTime : beginTime,
+						endTime : endTime
+					},
+					success : function(msg) {
+						sansandata = msg;
+						begintimepart = msg.beginTime;
+						endtimepart = msg.endTime;
+						sansandata1 = msg.anjianxingzhiyincang
+					}
+				});
+		$('#anjianxingzhicontainer')
+				.highcharts(
+						{
+							chart : {
+								plotBackgroundColor : null,
+								plotBorderWidth : null,
+								plotShadow : false
+							},
+							title : {
+								text : '案件性质饼状图'
+							},
+							tooltip : {
+								pointFormat : '{series.name}: <b>{point.y}起</b>'
+							},
+							plotOptions : {
+								pie : {
+									allowPointSelect : true,
+									cursor : 'pointer',
+									depth : 35,
+									dataLabels : {
+										enabled : true,
+										format : '{point.name}: <b>{point.y}起</b>'
+									},
+									events : {
+										click : function(e) {
+											var sansandatapart;
+											var sansandatapart1;
+											var begintimepartpart;
+											var endtimepartpart;
+											var qdata1 = JSON
+													.stringify(sansandata1[e.point.x]);
+											$
+													.ajax({
+														type : 'post',
+														url : 'http://'
+																+ urlIP
+																+ '/Foms_RestFul/rest/DepartmentZongHeFind/getAnjianxingzhiDataAllPart',
+														async : false,
+														data : {
+															xingzhidata : qdata1,
+															data123part : data123,
+															beginTime : begintimepart,
+															endTime : endtimepart
+														},
+														success : function(msg) {
+															if(msg!=undefined)
+																{
+															sansandatapart = msg;
+															sansandatapart1 = msg.anjianxingzhiyincangpart;
+															begintimepartpart = msg.beginTime;
+															endtimepartpart = msg.endTime;
+														         }
+															else
+																{
+																sansandatapart=11;
+																}
+														}
+													});
+											
+											$('#anjianxingzhipartcontainer').hide();
+											$('#anjianxingzhipartpartcontainer').hide();
+											if(sansandatapart==11)
+												{
+												alert("没有下一级");
+												}
+											else
+												{
+												  $('#anjianxingzhipartcontainer').show();
+													var scroll_offset = $("#anjianxingzhipartcontainer").offset(); 
+													$("body,html").animate({ 
+													scrollTop:scroll_offset.top
+													},0); 
+												}
+											$('#anjianxingzhipartcontainer')
+													.highcharts(
+															{
+																chart : {
+																	plotBackgroundColor : null,
+																	plotBorderWidth : null,
+																	plotShadow : false
+																},
+																title : {
+																	text : '案件性质饼状细分图'
+																},
+																tooltip : {
+																	pointFormat : '{series.name}: <b>{point.y}起</b>'
+																},
+																plotOptions : {
+																	pie : {
+																		allowPointSelect : true,
+																		cursor : 'pointer',
+																		depth : 35,
+																		dataLabels : {
+																			enabled : true,
+																			format : '{point.name}: <b>{point.y}起</b>'
+																		},
+																		events : {
+																			click : function(e) {
+																				var sansandatapartpart = [];
+																				var qdata2 = JSON
+																						.stringify(sansandatapart1[e.point.x]);
+																				$
+																						.ajax({
+																							type : 'post',
+																							url : 'http://'
+																									+ urlIP
+																									+ '/Foms_RestFul/rest/DepartmentZongHeFind/getAnjianxingzhiDataAllPartPart',
+																							async : false,
+																							data : {
+																								xingzhidatapart : qdata2,
+																								data123partpart : data123,
+																								beginTime : begintimepartpart,
+																								endTime : endtimepartpart
+																							},
+																							success : function(
+																									msg) {
+																								sansandatapartpart = msg;
+																							}
+																						});
+																				$('#anjianxingzhipartpartcontainer').hide();
+																				if(sansandatapartpart==undefined)
+																				{
+																				alert("没有下一级");
+																				}
+																		     	else
+																					{
+																					  $('#anjianxingzhipartpartcontainer').show();
+																						var scroll_offset = $("#anjianxingzhipartpartcontainer").offset(); 
+																						$("body,html").animate({ 
+																						scrollTop:scroll_offset.top
+																						},0); 
+																					}
+																				$(
+																						'#anjianxingzhipartpartcontainer')
+																						.highcharts(
+																								{
+																									chart : {
+																										plotBackgroundColor : null,
+																										plotBorderWidth : null,
+																										plotShadow : false
+																									},
+																									title : {
+																										text : '案件性质饼状小类细分图'
+																									},
+																									tooltip : {
+																										pointFormat : '{series.name}: <b>{point.y}起</b>'
+																									},
+																									plotOptions : {
+																										pie : {
+																											/*   allowPointSelect: true,
+																											  cursor: 'pointer',
+																											  dataLabels: {
+																											      enabled: false
+																											  }, */
+																											allowPointSelect : true,
+																											cursor : 'pointer',
+																											depth : 35,
+																											dataLabels : {
+																												enabled : true,
+																												format : '{point.name}: <b>{point.y}起</b>'
+																											},
+																											showInLegend : true
+																										}
+
+																									},
+																									series : [ {
+																										type : 'pie',
+																										name : '小类细分',
+																										data : sansandatapartpart.anjianxingzhipartpart
+																									} ]
+																								});
+
+																			}
+																		},
+																		showInLegend : true
+																	}
+
+																},
+																series : [ {
+																	type : 'pie',
+																	name : '细分',
+																	data : sansandatapart.anjianxingzhipart
+																} ]
+															});
+
+										}
+									},
+									showInLegend : true
+								}
+
+							},
+							series : [ {
+								type : 'pie',
+								name : '大类',
+								data : sansandata.anjianxingzhi
+							} ]
+						});
+	}
+	//加载统计图
+	function loaddepartmentchart() {
+		var formParam = $("#departmentform").serialize();
+		var jdata1;
+		$.ajax({
+			url : 'http://' + urlIP
+					+ '/Foms_RestFul/rest/DepartmentZongHeFind/getDataAll',
+			type : 'post',
+			async : false,
+			data : formParam,
+			success : function(data) {
+				jdata1 = data;
+			}
+		});
+		sansanchart(jdata1);
+	}
+	function titleMenu() {
+		$("#ccSearch img")
+				.hover(
+						function() {
+							$(this)
+									.attr("src",
+											"../Compents/images/yp/statistical-zhcx_over.png");
+						},
+						function() {
+							$(this)
+									.attr("src",
+											"../Compents/images/yp/statistical-zhcx_normal.png");
+						})
+	}
+	function loadzonghechart() {
+		comprehensivecasecount();
+		chuananshu();
+		$("#zhiwenzuji").hide();
+		$("#zhiwenzuji").css("left", "0px");
+		$("#zhiwendna").hide();
+		$("#zhiwendna").css("right", "0px");
+		$("#zujidna").hide();
+		$("#zujidna").css("left", "0px");
+		$("#zhiwendnazuji").hide();
+		$("#zhiwendnazuji").css("right", "0px");
+		var X = $('#zongheimg').offset().top;
+		var Y = $('#zongheimg').offset().left; //396
+		var zhiwenzujiwidth = $("#zhiwenzuji").width();
+		var zujidnawidth = $("#zujidna").width();
+		var marginimg = Y - zhiwenzujiwidth - 4; //左上
+		var bottommarginimg = Y - zujidnawidth - 4 + 39;
+		var imgwidth = $('#zongheimg').width() + Y;
+		var colligatecasewidth = $("#departmentform").width();
+		var zhiwendnawidth = $("#zhiwendna").width();
+		var zhiwendnawidthY = $('#zongheimg').offset().right;
+		var righttopmargin = colligatecasewidth - imgwidth - zhiwendnawidth + 7;
+		var rightbottommargin = colligatecasewidth - imgwidth
+				- $("#zhiwendnazuji").width() + 7;
+		setTimeout(function() {
+			$("#zhiwenzuji").show();
+			$("#zhiwendna").show();
+			$("#zujidna").show();
+			$("#zhiwendnazuji").show();
+			$("#zhiwenzuji").animate({
+				left : marginimg
+			}).fadeIn();
+			$("#zhiwendna").animate({
+				right : righttopmargin
+			}).fadeIn();
+			$("#zujidna").animate({
+				left : bottommarginimg
+			}).fadeIn();
+			$("#zhiwendnazuji").animate({
+				right : rightbottommargin
+			}).fadeIn();
+		}, 500);
+	}
+	//统计图
+	//足迹
+	function zujichart() {
+		var zujidata;
+		var formParam = $("#departmentform").serialize();
+		$.ajax({
+			type : "POST",
+			url : 'http://' + urlIP
+					+ '/Foms_RestFul/rest/DepartmentZongHeFind/getZujiData',
+			async : false,
+			data : formParam,
+			success : function(msg) {
+				zujidata = msg;
+			}
+		});
+		$('#zujicontainer').highcharts({
+			chart : {
+				zoomType : 'xy'
+			},
+			title : {
+				text : '足迹统计图'
+			},
+			subtitle : {
+				text : ''
+			},
+			xAxis : [ {
+				categories : zujidata.cityall
+			} ],
+			yAxis : [ { // Primary yAxis
+				labels : {
+					format : '{value} 串',
+					style : {
+						color : '#89A54E'
+					}
+				},
+				title : {
+					text : '串数',
+					style : {
+						color : '#89A54E'
+					}
+				}
+			}, { // Secondary yAxis
+				title : {
+					text : '起数',
+					style : {
+						color : '#4572A7'
+					}
+				},
+				labels : {
+					format : '{value} 起',
+					style : {
+						color : '#4572A7'
+					}
+				},
+				opposite : true
+			} ],
+			tooltip : {
+				shared : true
+			},
+			legend : {
+				layout : 'vertical',
+				align : 'left',
+				x : 120,
+				verticalAlign : 'top',
+				y : 100,
+				floating : true,
+				backgroundColor : '#FFFFFF'
+			},
+			series : [ {
+				name : ' 串数',
+				color : '#4572A7',
+				type : 'column',
+				yAxis : 1,
+				data : zujidata.chuanshu,
+				tooltip : {
+					valueSuffix : ' 串'
+				}
+
+			}, {
+				name : '起数',
+				color : '#89A54E',
+				type : 'spline',
+				data : zujidata.qishu,
+				tooltip : {
+					valueSuffix : ' 起'
+				}
+			} ]
+		});
+	}
+	//指纹
+	function zhiwenchart() {
+		var zhiwenchartdata;
+		var formParam = $("#departmentform").serialize();
+		$
+				.ajax({
+					type : "POST",
+					url : 'http://'
+							+ urlIP
+							+ '/Foms_RestFul/rest/DepartmentZongHeFind/getDepartmentFingerprint',
+					data : formParam,
+					async : false,
+					success : function(msg) {
+						var datamsg = msg.split(",");
+						$("#zhiwenchuanshu").html(datamsg[0]);
+						$("#zhiwenqishu").html(datamsg[1]);
+						zhiwenchartdata = [ {
+							'color' : '#639CD3',
+							'y' : Number(datamsg[0])
+						}, {
+							'color' : '#7CB5EC',
+							'y' : Number(datamsg[1])
+						} ];
+					}
+				});
+		var zujichart = new Highcharts.Chart(
+				{
+					chart : {
+						type : 'column',
+						renderTo : 'zhiwencontainer',
+						spacingTop : 30,
+						spacingBottom : 0
+					},
+					title : {
+						text : ''
+					},
+					subtitle : {
+						text : ''
+					},
+					xAxis : {
+						categories : [ '串数', '起数' ],
+						lineColor : '#e6e6e6',
+						tickmarkPlacement : "on",
+						lineColor : '#e6e6e6',
+						lineWidth : 0,
+						minorGridLineColor : '#e6e6e6',
+						minorGridLineDashStyle : 'shortdash',
+						lineDashStyle : 'shortdash',
+						gridLineColor : "#e6e6e6", //纵向格线的颜色
+						gridLineDashStyle : 'solid',
+						gridLineWidth : 1,
+						labels : {
+							step : 1,
+							min : 0,
+							style : {
+								color : '#999999', //刻度颜色
+								fontSize : '14px', //刻度字体大小
+								fontFamily : '微软雅黑'
+							}
+						},
+
+						tickColor : '#FFFFFF'
+					},
+					yAxis : {
+						allowDecimals : false,
+						minPadding : 0.2,
+						maxPadding : 0.5,
+						min : 1,
+						title : {
+							text : ''
+						},
+						lineColor : 'red',
+						tickmarkPlacement : "on",
+						min : 0,
+						minorGridLineDashStyle : 'shortdash',
+						gridLineColor : "#e6e6e6", //纵向格线的颜色
+						gridLineDashStyle : 'shortdash',
+						gridLineWidth : 1,
+						endOnTick : false,
+						labels : {
+							step : 1,
+							min : 0,
+							style : {
+								color : '#999999', //刻度颜色
+								fontSize : '14px', //刻度字体大小
+								fontFamily : 'arial'
+							}
+						}
+					},
+					tooltip : {
+						enabled : false,
+						useHTML : true,
+						headerFormat : '<span style="font-size:14px;font-family:"微软雅黑"">{point.key}</span><table>',
+						pointFormat : '<tr><td style="color:black;padding:0;">{series.name}: </td>'
+								+ '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+						footerFormat : '</table>',
+						shared : true
+					},
+					legend : {
+						enabled : false
+					},
+					plotOptions : {
+						column : {
+							pointPadding : 0.2,
+							borderWidth : 0,
+							pointWidth : 35
+						}
+					},
+					series : [ {
+						name : '指纹',
+						data : zhiwenchartdata
+					} ]
+				});
+	}
+	//DNA
+	function dnachart(dnabegintime, dnaendtime) {
+		if (dnabegintime > dnaendtime) {
+			alert("开始时间不能大于结束时间！");
+			return false;
+		}
+		var dnadata;
+		var formParam = $("#departmentform").serialize();
+		$.ajax({
+			type : "POST",
+			url : 'http://' + urlIP
+					+ '/Foms_RestFul/rest/DepartmentZongHeFind/getDnaData',
+			async : false,
+			data : {
+				dnabegintime : dnabegintime,
+				dnaendtime : dnaendtime
+			},
+			success : function(msg) {
+				dnadata = msg;
+			}
+		});
+		$('#dnacontainer').highcharts({
+			chart : {
+				zoomType : 'xy'
+			},
+			title : {
+				text : 'DNA统计图'
+			},
+			subtitle : {
+				text : ''
+			},
+			xAxis : [ {
+				categories : dnadata.cityall
+			} ],
+			yAxis : [ { // Primary yAxis
+				labels : {
+					format : '{value} 串',
+					style : {
+						color : '#89A54E'
+					}
+				},
+				title : {
+					text : '串数',
+					style : {
+						color : '#89A54E'
+					}
+				}
+			}, { // Secondary yAxis
+				title : {
+					text : '起数',
+					style : {
+						color : '#4572A7'
+					}
+				},
+				labels : {
+					format : '{value} 起',
+					style : {
+						color : '#4572A7'
+					}
+				},
+				opposite : true
+			} ],
+			tooltip : {
+				shared : true
+			},
+			legend : {
+				layout : 'vertical',
+				align : 'left',
+				x : 120,
+				verticalAlign : 'top',
+				y : 100,
+				floating : true,
+				backgroundColor : '#FFFFFF'
+			},
+			series : [ {
+				name : ' 串数',
+				color : '#4572A7',
+				type : 'column',
+				yAxis : 1,
+				data : dnadata.chuanshu,
+				tooltip : {
+					valueSuffix : ' 串'
+				}
+
+			}, {
+				name : '起数',
+				color : '#89A54E',
+				type : 'spline',
+				data : dnadata.qishu,
+				tooltip : {
+					valueSuffix : ' 起'
+				}
+			} ]
+		});
+	}
+
+	//统计图
+	//案件起数
+	function sansanchart(jdata1) {
+		$('#container').highcharts({
+			chart : {
+				type : 'pie',
+				options3d : {
+					enabled : true,
+					alpha : 45,
+					beta : 0
+				}
+			},
+			title : {
+				text : ''
+			},
+			tooltip : {
+				pointFormat : '{series.name}: <b>{point.y}起</b>'
+			},
+			plotOptions : {
+				pie : {
+					allowPointSelect : true,
+					cursor : 'pointer',
+					depth : 35,
+					dataLabels : {
+						enabled : true,
+						format : '{point.name}'
+					}
+				}
+			},
+			series : [ {
+				type : 'pie',
+				name : '发案起数',
+				data : jdata1.citypie,
+			} ]
+		});
+		$('#anjiancontainer')
+				.highcharts(
+						{
+							chart : {
+								type : 'column'
+							},
+							title : {
+								text : '案件数统计图'
+							},
+							subtitle : {
+								text : ''
+							},
+							xAxis : {
+								categories : jdata1.city
+							},
+							yAxis : {
+								allowDecimals : true,
+								min : 0,
+								title : {
+									text : ''
+								}
+							},
+							tooltip : {
+								headerFormat : '<span style="font-size:10px">{point.key}</span><table>',
+								pointFormat : '<tr><td style="color:{series.color};padding:0">{series.name}: </td>'
+										+ '<td style="padding:0"><b>{point.y}&nbsp;&nbsp;起</b></td></tr>',
+								footerFormat : '</table>',
+								shared : true,
+								useHTML : true
+							},
+							plotOptions : {
+								column : {
+									pointPadding : 0.2,
+									borderWidth : 0
+								}
+							},
+							series : [
+									{
+										name : '柱状图',
+										data : jdata1.cityvalue,
+									},
+									{
+										type : 'spline',
+										name : '折线图',
+										data : jdata1.cityvalue,
+										marker : {
+											lineWidth : 2,
+											lineColor : Highcharts.getOptions().colors[2],
+											fillColor : 'white'
+										}
+									} ]
+						});
+	}
+	//菜单滑动
+	function caidan() {
+		var $current_nav = $("#current_nav"); //current元素（当前所在导航项) 
+		var current_nav_width = $current_nav.innerWidth();
+		var current_nav_left = $current_nav.position().left;
+		var $nav_animate_block = $("#nav_animate_block"); //动画滑块 
+		$nav_animate_block.css({
+			width : current_nav_width,
+			left : current_nav_left
+		}); //初始状态下，动画滑块位置在current元素 
+		// 鼠标进入a元素时触发动画事件 
+		$("#nav_menu a").hover(function() {
+		})
+		$("#nav_menu a").click(function() {
+			var index = $(this).index();
+			var $a_cur = $("#nav_menu").find("a").eq(index); //鼠标移动到的a元素 
+			//利用触发的a元素索引获取其left位置和它的宽度 
+			var width = $a_cur.innerWidth();
+			var left = $a_cur.position().left;
+			//设置动画滑块位置 
+			$nav_animate_block.stop().animate({
+				width : width,
+				left : left
+			}, 300);
+		});
+	}
+	//综合串并
+	function comprehensivecasecount() {
+		var formParam = $("#departmentform").serialize();
+		$
+				.ajax({
+					type : "POST",
+					url : 'http://'
+							+ urlIP
+							+ '/Foms_RestFul/rest/DepartmentZongHeFind/getFingerprintDNAFootprintCount',
+					data : formParam,
+					async : false,
+					success : function(msg) {
+						if (msg != "无值") {
+							var list = eval("(" + msg + ")")
+							for ( var i = 0; i < list.length; i++) {
+								var accountname = list[i].name;
+								if (accountname == "指纹DNA") {
+									$("#zhiwendnaqishu").html(list[i].scount);
+								}
+								if (accountname == "指纹足迹") {
+									$("#zhiwenzujiqishu").html(list[i].scount);
+								}
+								if (accountname == "指纹DNA足迹") {
+									$("#zhiwendnazujiqishu").html(
+											list[i].scount);
+								}
+								if (accountname == "足迹DNA") {
+									$("#zujidnaqishu").html(list[i].scount);
+								}
+							}
+						} else {
+							$("#zhiwendnaqishu").html(0);
+							$("#zhiwenzujiqishu").html(0);
+							$("#zhiwendnazujiqishu").html(0);
+							$("#zujidnaqishu").html(0);
+						}
+						if ($("#zhiwendnaqishu").html() == "") {
+							$("#zhiwendnaqishu").html(0);
+						}
+						if ($("#zhiwenzujiqishu").html() == "") {
+							$("#zhiwenzujiqishu").html(0);
+						}
+						if ($("#zhiwendnazujiqishu").html() == "") {
+							$("#zhiwendnazujiqishu").html(0);
+						}
+						if ($("#zujidnaqishu").html() == "") {
+							$("#zujidnaqishu").html(0);
+						}
+					}
+				});
+	}
+	function chuananshu() {
+		var formParam = $("#departmentform").serialize();
+		$
+				.ajax({
+					type : "POST",
+					url : 'http://'
+							+ urlIP
+							+ '/Foms_RestFul/rest/DepartmentZongHeFind/getFingerprintDNAFootprintChuananCount',
+					data : formParam,
+					async : false,
+					success : function(msg) {
+						if (msg != "无值") {
+							var list = eval("(" + msg + ")")
+							for ( var i = 0; i < list.length; i++) {
+								var accountname = list[i].name;
+								if (accountname == "指纹DNA") {
+									$("#zhiwendnachuanan").html(list[i].scount);
+								}
+								if (accountname == "指纹足迹") {
+									$("#zhiwenzujichuanan")
+											.html(list[i].scount);
+								}
+								if (accountname == "指纹DNA足迹") {
+									$("#zhiwendnazujichuanan").html(
+											list[i].scount);
+								}
+								if (accountname == "足迹DNA") {
+									$("#zujidnachuanan").html(list[i].scount);
+								}
+							}
+						} else {
+							$("#zhiwendnachuanan").html(0);
+							$("#zhiwenzujichuanan").html(0);
+							$("#zhiwendnazujichuanan").html(0);
+							$("#zujidnachuanan").html(0);
+						}
+						if ($("#zhiwendnachuanan").html() == "") {
+							$("#zhiwendnachuanan").html(0);
+						}
+						if ($("#zhiwenzujichuanan").html() == "") {
+							$("#zhiwenzujichuanan").html(0);
+						}
+						if ($("#zhiwendnazujichuanan").html() == "") {
+							$("#zhiwendnazujichuanan").html(0);
+						}
+						if ($("#zujidnachuanan").html() == "") {
+							$("#zujidnachuanan").html(0);
+						}
+					}
+				});
+	}
+
+	$("#current_nav").click(function() {
+		$("#anjainixingzhiriqi").hide();
+		$("#anjianxingzhicase").hide();
+		$("#dnariqi").hide();
+		$("#dnacase").hide();
+		$("#ddd").show();
+		$("#ccc").hide();
+		$("#anjianxingzhicontainer").hide();
+		$("#departmentcase").show();
+		$("#zujiriqi").hide();
+		$("#zujicase").hide();
+		$("#bumenchuananriqi").show();
+		$("#suspectcase").hide();
+		$("#colligatecase").hide();
+		$("#xianyirenriqi").hide();
+		$("#zonghechuananriqi").hide();
+		$("#zhiwenzuji").hide();
+		$("#zhiwenzuji").css("left", "0px");
+		$("#zhiwendna").hide();
+		$("#zhiwendna").css("right", "0px");
+		$("#zujidna").hide();
+		$("#zujidna").css("left", "0px");
+		$("#zhiwendnazuji").hide();
+		$("#zhiwendnazuji").css("right", "0px");
+	});
+	$("#zuji_nav").click(function() {
+		$("#dnariqi").hide();
+		$("#dnacase").hide();
+		$("#ddd").hide();
+		$("#ccc").hide();
+		$("#zujiriqi").show();
+		$("#zujicase").show();
+		$("#anjianxingzhicontainer").hide();
+		$("#departmentcase").hide();
+		$("#anjainixingzhiriqi").hide();
+		$("#anjianxingzhicase").hide();
+		$("#suspectcase").hide();
+		$("#colligatecase").hide();
+		$("#bumenchuananriqi").hide();
+		$("#xianyirenriqi").hide();
+		$("#zonghechuananriqi").hide();
+		$("#zhiwenzuji").hide();
+		$("#zhiwenzuji").css("left", "0px");
+		$("#zhiwendna").hide();
+		$("#zhiwendna").css("right", "0px");
+		$("#zujidna").hide();
+		$("#zujidna").css("left", "0px");
+		$("#zhiwendnazuji").hide();
+		$("#zhiwendnazuji").css("right", "0px");
+	});
+	$("#dna_nav").click(function() {
+		$("#ddd").hide();
+		$("#ccc").hide();
+		$("#zujiriqi").hide();
+		$("#zujicase").hide();
+		$("#dnariqi").show();
+		$("#dnacase").show();
+		$("#anjianxingzhicontainer").hide();
+		$("#departmentcase").hide();
+		$("#anjainixingzhiriqi").hide();
+		$("#anjianxingzhicase").hide();
+		$("#suspectcase").hide();
+		$("#colligatecase").hide();
+		$("#bumenchuananriqi").hide();
+		$("#xianyirenriqi").hide();
+		$("#zonghechuananriqi").hide();
+		$("#zhiwenzuji").hide();
+		$("#zhiwenzuji").css("left", "0px");
+		$("#zhiwendna").hide();
+		$("#zhiwendna").css("right", "0px");
+		$("#zujidna").hide();
+		$("#zujidna").css("left", "0px");
+		$("#zhiwendnazuji").hide();
+		$("#zhiwendnazuji").css("right", "0px");
+	});
+	$("#anjian_xingzhi").click(function() {
+		$("#ddd").hide();
+		$("#ccc").show();
+		$("#dnariqi").hide();
+		$("#dnacase").hide();
+		$("#zujiriqi").hide();
+		$("#zujicase").hide();
+		$("#departmentcase").hide();
+		$("#anjianxingzhipartcontainer").hide();
+		$("#anjianxingzhipartpartcontainer").hide();
+		$("#anjianxingzhicontainer").show();
+		$("#anjainixingzhiriqi").show();
+		$("#anjianxingzhicase").show();
+		$("#suspectcase").hide();
+		$("#colligatecase").hide();
+		$("#bumenchuananriqi").hide();
+		$("#xianyirenriqi").hide();
+		$("#zonghechuananriqi").hide();
+		$("#zhiwenzuji").hide();
+		$("#zhiwenzuji").css("left", "0px");
+		$("#zhiwendna").hide();
+		$("#zhiwendna").css("right", "0px");
+		$("#zujidna").hide();
+		$("#zujidna").css("left", "0px");
+		$("#zhiwendnazuji").hide();
+		$("#zhiwendnazuji").css("right", "0px");
+	});
+	$("#colligate_nav").click(
+			function() {
+				$("#zujiriqi").hide();
+				$("#zujicase").hide();
+				$("#ddd").hide();
+				$("#ccc").hide();
+				$("#dnariqi").hide();
+				$("#dnacase").hide();
+				$("#anjianxingzhicontainer").hide();
+				$("#anjainixingzhiriqi").hide();
+				$("#anjianxingzhicase").hide();
+				$("#departmentcase").hide();
+				$("#suspectcase").hide();
+				$("#colligatecase").show();
+				$("#bumenchuananriqi").hide();
+				$("#xianyirenriqi").hide();
+				$("#zonghechuananriqi").show();
+				var X = $('#zongheimg').offset().top;
+				var Y = $('#zongheimg').offset().left; //396
+				var zhiwenzujiwidth = $("#zhiwenzuji").width();
+				var zujidnawidth = $("#zujidna").width();
+				var marginimg = Y - zhiwenzujiwidth - 4; //左上
+				var bottommarginimg = Y - zujidnawidth - 4 + 39;
+				var imgwidth = $('#zongheimg').width() + Y;
+				var colligatecasewidth = $("#departmentform").width();
+				var zhiwendnawidth = $("#zhiwendna").width();
+				var zhiwendnawidthY = $('#zongheimg').offset().right;
+				var righttopmargin = colligatecasewidth - imgwidth
+						- zhiwendnawidth + 7;
+				var rightbottommargin = colligatecasewidth - imgwidth
+						- $("#zhiwendnazuji").width() + 7;
+				setTimeout(function() {
+					$("#zhiwenzuji").show();
+					$("#zhiwendna").show();
+					$("#zujidna").show();
+					$("#zhiwendnazuji").show();
+					$("#zhiwenzuji").animate({
+						left : marginimg
+					}).fadeIn();
+					$("#zhiwendna").animate({
+						right : righttopmargin
+					}).fadeIn();
+					$("#zujidna").animate({
+						left : bottommarginimg
+					}).fadeIn();
+					$("#zhiwendnazuji").animate({
+						right : rightbottommargin
+					}).fadeIn();
+				}, 500);
+			});
+</script>
+

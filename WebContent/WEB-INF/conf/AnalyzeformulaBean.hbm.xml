@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.cmrx.bean.model">
+    <class name="Analyzeformula" table="ANALYZEFORMULA">
+        <meta attribute="sync-DAO">false</meta>
+        <id name="ID" type="big_decimal" column="ID">
+			<generator class="sequence">   
+                 <param name="sequence">ANALYZEFORMULASEQ</param>   
+             </generator> 
+        </id>
+        
+        <property name="JSONTEXT" column="JSONTEXT" type="string"/>
+        <property name="FORMULANAME" column="FORMULANAME" type="string"/>
+        <property name="FORMULAREMARK" column="FORMULAREMARK" type="string"/>
+        <property name="FSTATEMENTS" column="FSTATEMENTS" type="string"/>
+        <property name="FORMULASTATUS" column="FORMULASTATUS" type="int"/>
+        <property name="CREATETIME" column="CREATETIME" type="timestamp"/>
+        <property name="CREATEUSER" column="CREATEUSER" type="string"/>
+        <property name="UPDATETIME" column="UPDATETIME" type="timestamp"/>
+        <property name="UPDATEUSER" column="UPDATEUSER" type="string"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,600 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>首页</title>
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/pagecss/leftMenu.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/highchart-js/highcharts.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+    <style type="text/css">
+        .div_row
+        {
+            width:1275px; 
+			margin-left:30px;
+        }
+        .div_
+        {
+             height:220px; 
+			 float:left;
+        }
+        .div_header
+        {
+            height:30px;
+            width:100%; 
+            border-bottom:0; 
+            -webkit-border-top-left-radius:8px;
+            -webkit-border-top-right-radius:8px;
+        }
+        .div_content1
+        {
+             height:190px; 
+             width:100%; 
+             background-color:White;
+             -webkit-border-bottom-left-radius:8px;
+             -webkit-border-bottom-right-radius:8px; 
+        }
+        .div_content2
+        {
+        	/*
+        	border:1px solid red;
+        	*/
+            height:190px; 
+            width:100%;
+        }
+        .datagrid-body
+        {
+            background-color:White;    
+        }
+        .datagrid-htable
+        {
+        	/*足迹  的导航头 串案号  提交人的背景色*/
+            background-color:rgb(48,163,217);
+        }
+        .datagrid-header td.datagrid-header-over
+        {
+            background:rgb(48,163,217);
+        }
+        .datagrid-header td
+        {
+            border:1px solid rgb(48,163,217);
+            border-width:1px 0 1px 1px;
+        }
+        .datagrid-htable span
+        {
+            color:White;
+        }
+        .datagrid-btable
+        {
+            border:1px solid #C8C8C8;   
+        }
+        .datagrid-btable td
+        {
+             border-right:1px solid #C8C8C8; border-bottom:1px dashed #C8C8C8;
+        }
+         .datagrid-row-over,.datagrid-row-over a
+        {
+            color:White;
+        }
+        .datagrid-row-selected,.datagrid-row-selected a
+        {
+            color:White;
+            background-color:#2d9acd; 
+        }
+        td a
+        {
+            text-decoration: none;
+            color: rgb(0,113,188);
+        }
+        span
+        {
+            font-size:14px;
+            font-family:'微软雅黑';
+            color:rgb(85,85,85);
+        }
+        ul
+        {
+            width:375px;
+            list-style-type: disc;
+            margin-left:15px;
+        }
+        ul li
+        {
+             margin-top:12px;
+        }
+        li a
+        {
+            color:rgb(85,85,85);
+            font-family:'微软雅黑';
+            font-size:12px;
+            display:inline;
+        }
+        li a:hover
+        {
+            color:red;cursor:pointer;
+        }
+        li a img
+        {
+            margin:0 5px 2px 0;    
+        }
+         .a_more
+        {
+            float:right;
+            margin-right:15px;    
+        }
+    </style>
+</head>
+<body style="background-color:White;width:99%;height:100%;">
+<div id="container" style="width:100%;height:100%;margin:0 auto;">
+    <!--第一行 -->
+    <div class="div_row">
+        <div class="div_" style=" margin-top:15px;width:25%;">
+            <!--rgb  个人信息背-->
+			<div class="div_header" style="border:1px solid rgb(48,163,217); background-color:rgb(48,163,217); line-height:30px;">
+                <span style="color:White; padding-left:10px;">个人信息</span>
+            </div>
+            <div class="div_content1" style="border:1px solid rgb(213,213,213); border-top:0;">
+                <div style=" padding:15px;">
+                    <span id="username" style=" font-size:15px; font-weight:bold;">某某某</span><span style=" font-size:15px;"> 您好！欢迎！</span><br />
+                    <div style=" margin-top:20px;">
+                        <span>部门：</span><br/><span id="userunit" style=" color:rgb(74,169,215);">指纹室</span>
+                    </div><br />
+                    <span>登录时间：</span><br/><span id="logintime" style=" color:rgb(74,169,215);">2014-10-19</span>
+					<br/>
+					<div style=" margin-top:20px;margin-left:250px;font-size:16px;"><a href="#" onclick="returnLogin()" style="">注销</a></div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="div_" style=" border:1px solid rgb(213,213,213); -webkit-border-radius:8px; margin-top:15px;margin-left: 7.5px;width:50%;" >
+            <!--rgb:上传量  背景灰色-->
+			<div class="div_header" style="line-height:30px; background:rgb(243,243,243) url(../Compents/images/yp/traffic-homepage_03.png) no-repeat; background-position:10px 8px; ">
+                <span style=" margin-left:35px;">上传量</span>
+            </div>
+            <div class="div_content1" id="indexchart" style="width:90%;height：170px;margin-left: 30px;" align="center">
+            </div>
+        </div>
+        <div class="div_" style="border:1px solid rgb(213,213,213); -webkit-border-radius:8px; margin-top:15px;margin-left: 7.5px;width:23%;">
+            <div  class="div_header" style="line-height:30px; background:rgb(243,243,243) url(../Compents/images/yp/The-latest-announcement_03.png) no-repeat; background-position:8px 8px; ">
+                <span style=" margin-left:32px;">最新公告</span>
+            </div>
+            <div class="div_content1">
+                <div style=" padding:5px 0 0 15px;">
+                    <ul id="ul_newsindex">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--第二行 -->
+    <div class="div_row">
+        <div class="div_" style=" margin-top:15px;width:28%;">
+            <div style=" height:30px; width:100%; border-bottom:1px solid rgb(213,213,213);">
+                <div style="display:inline-block; height:28px; width:114px; border-bottom:4px solid rgb(48,163,217);">
+                    <span>足迹最新串并信息</span>
+                </div>
+				<!--小箭头-->
+                <a href="#" onclick="ToSyntheticalCase(null,'zj')"><img style=" float:right; margin-top:3px;" src="../Compents/images/yp/more-homepage_07.png" /></a>
+            </div>
+            <div class="div_content2">
+                <div style=" padding-top:15px;">
+                    <table id="footTb"></table>
+                </div>
+            </div>
+        </div>
+        <div class="div_" style=" margin-top:15px;margin-left: 7.5px;width:34%">
+            <div style=" height:30px; width:100%; border-bottom:1px solid rgb(213,213,213);">
+                <div style="display:inline-block; height:28px; width:116px; border-bottom:4px solid rgb(48,163,217);">
+                    <span>DNA最新串并信息</span>
+                </div>
+                <a href="#" onclick="ToSyntheticalCase(null,'dna')"><img style=" float:right; margin-top:3px;" src="../Compents/images/yp/more-homepage_07.png" /></a>
+            </div>
+            <div class="div_content2">
+                <div style=" padding-top:15px;">
+                    <table id="DNATb"></table>
+                </div>
+            </div>
+        </div>
+        <div class="div_" style=" margin-top:15px;margin-left: 7.5px;width:35%">
+            <div style=" height:30px; width:100%; border-bottom:1px solid rgb(213,213,213);">
+                <div style="display:inline-block; height:28px; width:114px; border-bottom:4px solid rgb(48,163,217);">
+                    <span>指纹最新串并信息</span>
+                </div>
+                <a href="#" onclick="ToSyntheticalCase(null,'zhiwen')"><img style=" float:right; margin-top:3px;" src="../Compents/images/yp/more-homepage_07.png" /></a>
+            </div>
+            <div class="div_content2">
+                <div style=" padding-top:15px;">
+                    <table id="fingerTb">暂无数据!!</table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--第三行 -->
+    <div class="div_row"> 
+	<!--
+        <div class="div_" style=" margin-top:15px;">
+            <div class="div_header" style="background-color:rgb(48,163,217); border:1px solid rgb(48,163,217); line-height:30px;">
+                <span style="color:White; padding-left:10px;">信息资源</span>
+            </div>
+            <div class="div_content1" style="border:1px solid rgb(213,213,213); border-top:0; text-align:center;">
+                 <a href="#"><img src="../Compents/images/yp/Information-resources001_10.png" /></a>
+                 <a href="#"><img src="../Compents/images/yp/Information-resources002_10.png" /></a>
+                 <a href="#"><img src="../Compents/images/yp/Information-resources003_10.png" /></a>
+                 <a href="#"><img src="../Compents/images/yp/Information-resources004_10.png" /></a>
+            </div>
+        </div>
+	-->	
+        <div class="div_" id="row3" style="width:58%;">
+            <div style=" height:30px; width:100%; border-bottom:1px solid rgb(213,213,213);">
+                <div style="display:inline-block; height:28px; width:85px; border-bottom:4px solid rgb(48,163,217);">
+                    <span>综合串并信息</span>
+                </div>
+                <a href="#" onclick="ToSyntheticalCase(null,'zhcb')"><img style=" float:right; margin-top:3px;" src="../Compents/images/yp/more-homepage_07.png" /></a>
+            </div>
+            <div class="div_content2">
+                <div style=" padding-top:15px;">
+                    <table id="zongheTb"></table>
+                </div>
+            </div>
+        </div>
+		<div class="div_" id="row3" style="width:40%;margin-left: 7.5px;">
+            <div style=" height:30px; width:100%; border-bottom:1px solid rgb(213,213,213);">
+                <div style="display:inline-block; height:28px; width:85px; border-bottom:4px solid rgb(48,163,217);">
+                    <span>研判任务</span>
+                </div>
+                <a href="#" onclick="ToMindMap(null,null)"><img style=" float:right; margin-top:3px;" src="../Compents/images/yp/more-homepage_07.png" /></a>
+            </div>
+            <div class="div_content2">
+                <div style=" padding-top:15px;">
+                    <table id="yanpanTask"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (!$.cookie("userInfo")) { //是否登录
+            window.parent.location.href = '../Login/Login.htm';
+            return false;
+        }
+
+        indexchart(); 
+        loadnews();
+        		
+        var userInfo = $.cookie("userInfo");
+        userInfo = JSON.parse(userInfo);　　//字符反序列化成对象
+        
+        var myDate = new Date();
+        $('#username').html(userInfo.trueName);
+        $('#userunit').html(userInfo.organName);
+        //$("#loginIP").html(ILData[0]);
+        $("#logintime").html(myDate.getFullYear() + "-" + (myDate.getMonth() + 1) + "-" + myDate.getDate() + " " + myDate.getHours() + ":" + (myDate.getMinutes() < 10 ? "0" + myDate.getMinutes() : myDate.getMinutes()));
+       // $('.div_row').css("width", $(window.parent.document).width());
+        //$('.div_').css("margin-left", ($(window.parent.document).width() - 1250) / 4);
+        //$('#row3').css("width", (($(window.parent.document).width() - 1250) / 4));
+        $('#footTb').datagrid({    //表格
+        	//url: 'http://' + urlIP1 + '/foms/DepartmentCase/post/departmentcase',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/SyntheticalCase/getAllsercabase',
+            queryParams: {begintime: "", endtime: "", page: 1, rows: 5 },
+            striped: true,
+            singleSelect: true,
+            columns: [[
+            { field: 'SERCAID', title: '串案号', align: 'center', width: 159,
+                formatter: function (value, row, index) {
+                    var str = "<a href='#' onclick='ToSyntheticalCase(&apos;" + value + "&apos;,&apos;zj&apos;);'>" + value + "</a>";
+                    return str;
+                }
+            },
+            { field: 'INPUTUSER', title: '提交人', align: 'center', width: 56 },
+            { field: 'INPUTTIME', title: '提交时间', align: 'center', width: 130 }
+            ]],
+            onLoadSuccess: function () {
+                var tbLength = (5 - $('#footTb').datagrid('getData').total);
+                for (var i = 0; i < tbLength; i++) {
+					//appendRow追加一个新行。新行将被添加到最后的位置。 
+                    $('#footTb').datagrid('appendRow', { departmentNum: '', dcount: '', accord: '', uploadUser: '', createTime: '' });
+                }
+                $('.datagrid-htable tr').find('td:last').css("border", "border:1px solid rgb(48,163,217);");
+                $('.datagrid-btable tr').find('td:last').css("border-right", "0"); //border样式
+                $('.datagrid-btable tr:last td').css("border-bottom", "0");
+            }
+        });
+        
+        $('#DNATb').datagrid({    //表格
+            //url: 'http://' + urlIP + '/foms/DepartmentCase/post/departmentcase',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/SyntheticalCase/getAllDnaserialbase',
+            queryParams: {begintime: "", endtime: "", page: 1, rows: 5 },
+            striped: true,
+            singleSelect: true,
+            columns: [[
+            { field: 'SCASEID', title: '案件编号', align: 'center', width: 150,
+                formatter: function (value, row, index) {
+                    var str = "<a href='#' onclick='ToSyntheticalCase(&apos;" + value + "&apos;,&apos;dna&apos;);'>" + value + "</a>";
+                    return str;
+                }
+            },
+            { field: 'SRC_LAB_NAME', title: '比对单位', align: 'center', width: 148 },
+            { field: 'CREATE_DATETIME', title: '创建时间', align: 'center', width: 120 }
+            ]],
+            onLoadSuccess: function () {
+                var tbLength = (5 - $('#DNATb').datagrid('getData').total);
+                for (var i = 0; i < tbLength; i++) {
+                    $('#DNATb').datagrid('appendRow', { departmentNum: '', dcount: '', accord: '', uploadUser: '', createTime: '' });
+                }
+                $('.datagrid-btable tr').find('td:last').css("border-right", "0"); //border样式
+                $('.datagrid-btable tr:last td').css("border-bottom", "0");
+            }
+        });
+        /*
+        $('#fingerTb').datagrid({    //表格
+           // url: 'http://' + urlIP + '/foms/DepartmentCase/post/departmentcase',
+			url: 'http://' + urlIP + '/Foms_RestFul/rest/Departmentcase/getDepartmentCase',
+            queryParams: { begintime: "", endtime: "", accord: "accord='指纹'", page: 1, rows: 5 },
+            striped: true,
+            singleSelect: true,
+            columns: [[
+            { field: 'departmentNum', title: '部门串案号', align: 'center', width: 80,
+                formatter: function (value, row, index) {
+                    var str = "<a href='#' onclick='ToSyntheticalCase(&apos;" + value + "&apos;,&apos;zhiwen&apos;);'>" + value + "</a>";
+                    return str;
+                }
+            },
+            { field: 'dcount', title: '涉案数', align: 'center', width: 57 },
+            { field: 'accord', title: '串并依据', align: 'center', width: 55 },
+            { field: 'uploadUser', title: '串并人', align: 'center', width: 80 },
+            { field: 'createTime', title: '上传时间', align: 'center', width: 120 }
+            ]],
+            onLoadSuccess: function () {
+                var tbLength = (5 - $('#fingerTb').datagrid('getData').total);
+                for (var i = 0; i < tbLength; i++) {
+                    $('#fingerTb').datagrid('appendRow', { departmentNum: '', dcount: '', accord: '', uploadUser: '', createTime: '' });
+                }
+                $('.datagrid-btable tr').find('td:last').css("border-right", "0"); //border样式
+                $('.datagrid-btable tr:last td').css("border-bottom", "0");
+            }
+        });
+        */
+        $('#zongheTb').datagrid({    //表格
+           // url: 'http://' + urlIP + '/foms/DepartmentCase/post/syntheticalcase',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/SyntheticalCase/getZonghecb',
+            queryParams: {page: 1, rows: 5 },
+            striped: true,
+            singleSelect: true,
+            columns: [[
+			{ field: 'ID', title: '序号', align: 'center', width: 50},
+            { field: 'SYNTHETICALNUM', title: '综串号', align: 'center', width: 150,
+                formatter: function (value, row, index) {
+                    return "<a  href='#' onclick='ToSyntheticalCase(&apos;" + value + "&apos;,&apos;zhcb&apos;);'>" + value + "</a>";
+                }
+            },
+            
+			{ field: 'CBYJ', title: '串并依据', align: 'center', width: 150},
+			/*
+            { field: 'CBH', title: '串并号', align: 'center', width: 238 },*/
+			 { field: 'CBH', title: '串并号', align: 'center', width: 238,
+                formatter: function (value, row, index) {
+                    return "<a href='#' title='"+value+"' herf='javascript:void(0)' >" + value + "</a>";
+                }
+            },
+            { field: 'UPDATEDATE', title: '综串时间', align: 'center', width: 130 }
+            ]],
+            onLoadSuccess: function () {
+                $('.datagrid-btable tr').find('td:last').css("border-right", "0"); //border样式
+                $('.datagrid-btable tr:last td').css("border-bottom", "0");
+            }
+        });
+		//研判任务
+	   $('#yanpanTask').datagrid({    //表格
+       // url: 'http://' + urlIP + '/foms/DepartmentCase/post/syntheticalcase',
+        url: 'http://' + urlIP + '/Foms_RestFul/rest/Study/getAnalyzetask',
+        queryParams: { begintime: "", endtime: "", page: 1, rows: 5,userid: userInfo.userid},
+        striped: true,
+        singleSelect: true,
+        columns: [[
+        { field: 'TASKNUM', title: '任务编号', align: 'center', width:135,
+            formatter: function (value, row, index) {
+                var str = "<a href='#' onclick='ToMindMap(&apos;" + value + "&apos;);'>" + value + "</a>";
+                return str;
+            }
+        },
+        { field: 'TASKNAME', title: '任务名称', align: 'center', width: 140},
+        { field: 'CREATETIME_S', title: '创建时间', align: 'center', width: 125 },
+        { field: 'STATUS', title: '状态', align: 'center', width: 100 }
+        ]],
+        onLoadSuccess: function () {
+            $('.datagrid-btable tr').find('td:last').css("border-right", "0"); //border样式
+            $('.datagrid-btable tr:last td').css("border-bottom", "0");
+        }
+    });
+ });
+
+     function indexchart() {
+    	var qudata=[];
+    	 $.ajax({
+             type: "POST",
+             url: 'http://' + urlIP + '/Foms_RestFul/rest/DepartmentZongHeFind/indexZongHeTongJi',
+             async: false,
+             success: function (data) {
+            	 qudata=data;
+             },error:function(msg,a){
+ 				alert("错误是="+msg+"+++aa:"+a)
+ 			}
+         });
+    	 $('#indexchart').highcharts({
+    	        chart: {
+    	            zoomType: 'xy'
+    	        },
+    	        title: {
+    	            text: ''
+    	        },
+    	        subtitle: {
+    	            text: ''
+    	        },
+    	        xAxis: [{
+    	            categories: qudata.cityall,
+    	            labels: {
+    	            	style: {
+    	            	fontSize:'9px' //刻度字体大小
+    	            	}
+    	            	}
+    	        }],
+    	        yAxis: [{ // Primary yAxis
+    	            labels: {
+    	                format: '{value}',
+    	                style: {
+    	                    color: '#89A54E'
+    	                }
+    	            },
+    	            title: {
+    	                text: '',
+    	                style: {
+    	                    color: '#89A54E'
+    	                }
+    	            }
+    	        }, { // Secondary yAxis
+    	            title: {
+    	                text: '',
+    	                style: {
+    	                    color: '#4572A7'
+    	                }
+    	            },
+    	            labels: {
+    	                format: '{value}',
+    	                style: {
+    	                    color: '#4572A7'
+    	                }
+    	            },
+    	            opposite: true
+    	        }],
+    	        tooltip: {
+    	            shared: true
+    	        },
+    	        legend: {
+    	            verticalAlign: 'bottom',
+    	            backgroundColor: '#FFFFFF',
+    	            itemWidth:100,
+    	            padding:-5,
+    	            width:600
+    	        },
+    	        series: [{
+    	            name: '指纹(串)',
+    	            color: '#89A54E',
+    	            type: 'column',
+    	            yAxis: 1,
+    	            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    	            tooltip: {
+    	                valueSuffix: ' 串'
+    	            }
+
+    	        },{
+    	            name: '足迹(串)',
+    	            color: '#7CB5EC',
+    	            type: 'column',
+    	            yAxis: 1,
+    	            data: qudata.zujichuanshu,
+    	            tooltip: {
+    	                valueSuffix: ' 串'
+    	            }
+
+    	        },{
+    	            name: 'DNA(串)',
+    	            color: '#90ED7D',
+    	            type: 'column',
+    	            yAxis: 1,
+    	            data: qudata.dnachuanshu,
+    	            tooltip: {
+    	                valueSuffix: ' 串'
+    	            }
+
+    	        }, {
+    	            name: '指纹(起)',
+    	            color: '#89A54E',
+    	            type: 'spline',
+    	            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    	            tooltip: {
+    	                valueSuffix: ' 起'
+    	            }
+    	        }, {
+    	            name: '足迹(起)',
+    	            color: '#7CB5EC',
+    	            type: 'spline',
+    	            data: qudata.zujiqishu,
+    	            tooltip: {
+    	                valueSuffix: ' 起'
+    	            }
+    	        }, {
+    	            name: 'DNA(起)',
+    	            color: '#90ED7D',
+    	            type: 'spline',
+    	            data: qudata.dnaqishu,
+    	            tooltip: {
+    	                valueSuffix: ' 起'
+    	            }
+    	        }]
+    	    });
+    }
+
+	//调用Index.htm中的goToSyntheticalCase跳转方法
+	//num:选中的值
+	//type:是dna,zhiwen,zj
+    function ToSyntheticalCase(num, type) {  //首页跳转综串
+		location.href = encodeURI("../SyntheticalCase/SyntheticalCase.htm?num=" + num + "&type=" + type);
+    }
+	
+	function ToMindMap(num, type) {  //首页跳转综串
+		location.href = encodeURI("../MindMap/MindMap.htm?num=" + num + "&type=" + type);
+    }
+	
+    function loadnews() {
+        $.ajax({
+            type: "POST",
+			//url: 'http://' + urlIP1 + '/News/post/newsindexshow',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/News/newsindexshow',
+            async: false,
+            success: function (data) {
+				//alert("data11="+data);
+				if(data!=null){
+                var a = data.selNews;
+                var str = "";
+                for (var i = 0; i < a.length; i++) { 
+                    if (i == 0) {
+                        str = "<li style=\" margin-top:0px;\"><a onclick='newsdetailCheck(&apos;" + a[i].NEWSID + "&apos;,&apos;" + a[i].NEWSTYPE + "&apos;);'>" + newstitleIntercept(a[i].NEWSTITLE) + "</a>";
+                        $("#ul_newsindex").append(str);
+                    } else {
+                        str = "<li><a onclick='newsdetailCheck(&apos;" + a[i].NEWSID + "&apos;,&apos;" + a[i].NEWSTYPE + "&apos;);'>" + newstitleIntercept(a[i].NEWSTITLE) + "</a>";
+                        $("#ul_newsindex").append(str);
+                    }
+                }
+				}
+            },error:function(msg,a){
+				alert("错误是="+msg+"+++aa:"+a)
+			}
+        });
+    }
+
+    function newsdetailCheck(id,type) {
+        location.href = encodeURI("News.htm?newsid=" + id + "&newstype=" + type);
+    }
+
+    function newstitleIntercept(str) {
+        var newStr = "";
+        if (str.length > 23) {
+            newStr = str.substring(0, 22)+"...";
+        } else {
+            newStr = str;
+        }
+        return newStr;
+    }
+	
+	function returnLogin(){
+		//清空cookie
+		$.cookie('userInfo',null, {path: '/'});
+		top.location.href="../Login/Login.htm";
+	}
+</script>

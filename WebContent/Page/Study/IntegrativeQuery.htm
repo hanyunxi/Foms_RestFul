@@ -1,0 +1,870 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>综合查询</title>
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+    <style type="text/css">
+        #cxtitle
+        {
+            height: 26px;
+            width: 98%;
+            min-width: 1000px;
+            margin-top: 20px;
+            padding-top: 8px;
+            background: rgb(45,154,205) url(../Compents/images/Study/star01-zhcx.png) no-repeat;
+            -webkit-border-top-left-radius: 8px; 
+            -webkit-border-top-right-radius: 8px;
+        }
+        
+        .td_title
+        {
+            width: 11%;
+            padding-right: 10px;
+            background-color: rgb(247,247,247);
+            font-size: 14px;
+            color: rgb(104,104,104);
+        }
+        
+        .td_content
+        {
+            padding-left: 10px;
+        }
+        
+        #buju tr
+        {
+            height: 44px;
+        }
+        
+        .textcss
+        {
+            width: 208px;
+            height: 26px;
+            float: left;
+            padding-left: 4px;
+            border: 0;
+            font-size: 14px;
+        }
+        
+        .textcss2
+        {
+            width: 240px;
+            height: 26px;
+            float: left;
+            font-size: 14px;
+        }
+        
+        .textcsstime
+        {
+            width: 170px;
+            height: 26px;
+        }
+        
+        .longtext
+        {
+            float: left;
+            height: 26px;
+            font-size: 14px;
+        }
+        
+        .btnWin
+        {
+            float: right;
+            height: 30px;
+            width: 30px;
+            border: 0;
+            background: white url(../Compents/images/Study/The-drop-down%20arrow-zhcx.png) no-repeat;
+            background-position: 6px 6px;
+        }
+        
+        .div_txtbtn
+        {
+            height: 30px;
+            float: left;
+            border: 1px rgb(196,196,196) solid;
+            width: 242px;
+        }
+        
+        .radioGroup
+        {
+            float: left;
+            margin-top: 7px;
+            font-size: 14px;
+            color: rgb(104,104,104);
+        }
+        
+        select
+        {
+            width: 244px;
+            height: 30px;
+            font-size: 14px;
+        }
+        
+        .btn
+        {
+            text-decoration: none;
+            display: inline-block;
+            margin: 0;
+            cursor: pointer;
+            outline: none;
+            text-align: center;
+            height: 30px;
+            width: 96px;
+            line-height: 30px;
+            color: White;
+            background-color: #30A3D9;
+            font-size: 16px;
+            font-family: "宋体";
+        }
+        .btn:hover
+        {
+            background-color: #2D9ACC;
+        }
+        #xltree
+        {
+            color: Gray;
+            width: 320px;
+        }
+        #xltree ul
+        {
+            width: 100%;
+        }
+        .tree-title
+        {
+            font-size: 14px;
+        }
+        .tree li
+        {
+            margin-top: 10px;
+        }
+        .tree-node-hover
+        {
+            background-color: White;
+            color: #7FB8DD;
+        }
+        .tree-node-selected
+        {
+            background-color: White;
+            color: Black;
+        }
+        .window
+        {
+            padding: 1px;
+            background-color: #25A2CE;
+        }
+        .panel-body
+        {
+            background-color: White;
+            color: Black;
+        }
+        .panel-title
+        {
+            height: 21px;
+            line-height: 21px;
+            margin-left: 15px;
+            font-size: 16px;
+        }
+        
+        .panel-tool-close
+        {
+            background: url('../Compents/eui/themes/metro/images/panel_tools.png') no-repeat;
+        }
+        .combo-arrow
+        {
+            background-color: White;
+            background: url('../Compents/images/yp/arrow-down001.png') no-repeat center center;
+        }
+        .combo-arrow:hover
+        {
+            background-color: White;
+        }
+        .datebox .combo-arrow
+        {
+            background-image: url(../Compents/images/yp/calendar001_normal.png);
+            background-position: center center;
+            margin-right: 2px;
+        }
+        .combo
+        {
+            border: 1px solid #d2d2d2;
+            margin-right: 10px;
+            padding-right: 4px;
+            padding-left: 4px;
+        }
+        .datagrid-htable
+        {
+            background-color:#f2f2f2;
+        }
+        .datagrid-row-over,.datagrid-row-over a
+        {
+            color:White;
+        }
+        .datagrid-row-selected,.datagrid-row-selected a
+        {
+            color:White;
+            background-color:#2d9acd; 
+        }
+        .datagrid-header .datagrid-cell span
+        {
+            font-size:16px;
+        }
+        .datagrid-header-row
+        {
+            height:40px;
+        }
+        .datagrid-header td.datagrid-header-over
+        {
+            background:#f2f2f2;    
+        }
+        .datagrid-row
+        {
+            height: 46px;
+        }
+        .datagrid-btable,.datagrid-htable
+        {
+            border-left:1px solid rgb(223,223,223);   
+        }
+        .datagrid-htable td
+        {
+            border-right:0;    
+        }
+        .datagrid-btable td
+        {
+             border:0;
+        }
+        .datagrid-cell
+        {
+            font-size:15px; 
+        }
+    </style>
+    <script type="text/javascript" language="javascript">
+        var txtid, hiddenid; // 赋值文本框、隐藏域id
+        $(document).ready(function () {
+            var txtwidth = $("#buju .td_content:first").width() + $("#buju .td_title:first").width() + 266;
+            $(".longtext").width(txtwidth);   //设置长文本框宽度
+            $('#TreeWindow').window({   //加载审核弹出框
+                top: 40,
+                left: ($(window.parent.document).width() - 850) / 2,
+                width: 650,
+                height: 450,
+                modal: true,
+                border: true,
+                closable: true,
+                minimizable: false,
+                maximizable: false,
+                collapsible: false,
+                resizable: false,
+                title: '选择条件',
+                closed: true,
+                onClose: function () {
+                    empty();
+                }
+            });
+
+            $('#div_forms').panel({});
+            $('#table_all').panel({});  //forms 与 table 放置面板
+        });
+
+        $(window).resize(function () { //监测浏览器大小变化
+            setTimeout(function () {
+                var txtwidth = $("#buju .td_content:first").width() + $("#buju .td_title:first").width() + 266;
+                $(".longtext").width(txtwidth); //设置长文本框宽度
+            }, 300);
+        });
+
+    //form 表单serialize 数据转json
+        function serializeObjects(a) {  
+            var o = {};
+            $.each(a, function () {
+                if (o[this.name]) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        }
+
+        //提交筛选条件 显示表格
+        function ajaxSIM() {
+            if (!panduan()) {
+                return;
+            }
+            var s = document.getElementsByName("HjwzqkCheck");
+            var s2 = "";
+            for (var i = 0; i < s.length; i++) {
+                if (s[i].checked) {
+                    s2 += s[i].value + '、';
+                }
+            }
+            if (s2.indexOf('、') > 0) {
+                s2 = s2.substr(0, s2.length - 1);
+            }
+            $("input[name='Hjwzqk']").val(s2);
+
+           
+            var data1 = $("#form1").serializeArray();
+            var data2 = serializeObjects(data1);
+            table_1(data2);   //表格
+            $('#div_forms').panel('collapse','slow');
+            $('#table_all').panel('expand','slow');
+        }
+
+        function aaa() {
+            $('#div_forms').panel('expand');
+            $('#table_all').panel('collapse');
+        }
+
+        //表格1
+        function table_1(qdata) {
+            qdata["rowscount"] = "-1";
+			var qdata1=JSON.stringify(qdata);
+            $('#tb_1').datagrid({    //表格
+                //url: 'http://192.168.30.102/foms/IntegrativeQuery/post/query_xckyinfo',
+                //url: 'http://' + urlIP1 + '/IntegrativeQuery/post/query_xckyinfo',
+                url: 'http://' + urlIP + '/Foms_RestFul/rest/IntegrativeQuery/getXckyInfo',
+                queryParams: qdata1,
+                striped: true,
+                singleSelect: true,
+                pagination: true,
+                pageSize:15,
+                pageList:[15,20,30],
+                fitColumns: true,
+                columns: [[
+                    { field: 'XH', title: '序号', align: 'center' },
+                    { field: 'KYH', title: '现场勘验号', align: 'center' },
+                    { field: 'AJLB', title: '案件类别', align: 'center' },
+                    { field: 'FAQH', title: '发案区划', align: 'center' },
+                    { field: 'KYSJ', title: '勘验时间', align: 'center' },
+                    { field: 'AFDD', title: '发案地点', align: 'center' },
+                    { field: 'KYDD', title: '勘验地点', align: 'center' },
+                    { field: 'XCZHRY', title: '现场指挥人员', align: 'center' },
+                    { field: 'KYJCRY', title: '勘验检查人员', align: 'center' },
+                    { field: 'ID', title: '痕迹物证情况', align: 'center' },
+                    { field: 'TJSJ', title: '提交时间', align: 'center' },
+                    { field: 'XCT', title: '现场图', align: 'center' },
+                    { field: 'XCZP', title: '现场照片', align: 'center' },
+                    { field: 'SWRS', title: '死亡人数', align: 'center' }
+                 ]],
+                onLoadSuccess: function () {
+                    $('.datagrid-btable tr').find('td:last').css("border-right", "0"); //border样式
+                    $('.datagrid-btable tr:last td').css("border-bottom", "0");
+                    $('.datagrid-htable tr').find('td:last').css("border-right", "0");
+                    $('.datagrid-header,.datagrid-htable').css("height", "40px"); //表头高度
+                    $('.pagination-info').css("margin-right", "36px"); //右下角表格记录
+                    var rowscount = $('#tb_1').datagrid('getData').total; //将数据总数传入rest 防止重复查询
+                    var queryParams = $('#tb_1').datagrid('options').queryParams;
+                    queryParams["rowscount"] = rowscount;
+                    $('#tb_1').datagrid('options').queryParams = queryParams;
+                                        var timer = setInterval(function () {
+                                            $('#div_tb_1 .panel.datagrid').width($(".datagrid-header-row").width() + 15);
+                                            clearInterval(timer);
+                                        }, 50);
+                }
+            });
+        }
+
+        function panduan() {//非空判断
+            var result = 1;
+            var input = document.getElementsByTagName("input");
+            for (var i = 0; i < input.length; i++) {
+                if (input[i].type == "checkbox" && input[i].id.indexOf("cblhjwzqk") != -1) {
+                    if (input[i].checked == true) {
+                        result = 2;
+                        break;
+                    }
+                }
+            }
+            for (var i = 0; i < input.length; i++) {
+                if (input[i].type == "text") {
+                    if (input[i].value != "") {
+                        result = 2;
+                        break;
+                    }
+                }
+            }
+            if (result == 1) {
+                alert('请至少填写一项条件');
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function getTreeWin(root, title, canChoose, id, hid) { //弹出框，并选择树形条件
+            if (canChoose) {
+                $('#condition').hide();
+                $('#nullbtn').show();
+            } else {
+                $('#condition').show();
+                $('#nullbtn').hide();
+            }
+            txtid = id;
+            hiddenid = hid;
+            loadTree(root, canChoose, id, hid);
+            var height = document.body.scrollTop; 
+            $('#TreeWindow').window('setTitle', title);
+            $('#TreeWindow').window({ top: height + 40 }); //滚动条计算窗口出现位置
+            $('#TreeWindow').window('open');
+        }
+
+        function loadTree(root, canChoose, id, hid) { //加载查询树   root：根节点代码 canChoose：是否可以选择父节点 id：显示文本框id hid：隐藏域id
+            var datas;                   //GXSDM 发案区划、  AJLBDM 案件类别、 XZDXFLDM 选择对象、ZASJDFLDM 作案时机、ZATDFLDM 作案特点、ZASDFLDM 作案手段
+            var url = '';             //KYRY 勘验人员   //XZCSFLDM 选择处所、 SADWLXDM 涉案单位、 ZACRKDM 作案进出口、 QRFSFLDM 侵入方式 、 AJXZDM 案件性质
+            if (root == "KYRY") {
+                //url = 'http://192.168.30.102/foms/IntegrativeQuery/get/query_user';    //勘验人员
+                url = 'http://' + urlIP1 + '/IntegrativeQuery/get/query_user';    //勘验人员
+            } else {
+                //url = 'http://192.168.30.102/foms/IntegrativeQuery/get/querydict?paratype=' + root;  //一般字典项
+                url = 'http://' + urlIP1 + '/IntegrativeQuery/get/querydict?paratype=' + root;  //一般字典项
+            }
+            $.ajax({
+                url: url,
+                type: 'get',
+                async: false,
+                success: function (data) {
+                    datas = eval(data);
+                }
+            });
+            $('#xltree').tree({
+                data: datas,
+                onLoadSuccess: function (node, data) {
+                    $('.tree-icon,.tree-folder,.tree-folder-open,.tree-file').removeClass('tree-icon tree-folder tree-folder-open tree-file');  //去样式
+                },
+                onClick: function (node) { //节点单机事件
+                    if (canChoose) {       //可以选择根节点
+                        if (root == "KYRY") {    //现勘人员
+                            if (node.parent_key != 'rootuser') {
+                                $('#' + id).val(node.text);
+                                $('#TreeWindow').window('close');
+                            } else {
+                                $('#xltree').tree('toggle', node.target);
+                            }
+                        } else {   //其他字典表
+                            $('#' + id).val(node.text);
+                            $('#' + hid).val(node.text + "-" + node.id);
+                            $('#TreeWindow').window('close');
+                        }
+
+                    } else {          // 不可选择根节点
+                        if (node.children == undefined || node.children == 'undefined') {
+                            var ctxt = $('#ctxt').val();
+                            var htxt = $('#htxt').val();
+                            if (ctxt == "") {
+                                $('#ctxt').val(node.text);
+                                $('#htxt').val(node.id);
+                            } else {
+                                if (ctxt.indexOf(node.text) >= 0) {
+                                    return;
+                                }
+                                $("#ctxt").val(ctxt + "、" + node.text);
+                                $("#htxt").val(htxt + "," + node.id);
+                            }
+
+                        } else {
+                            $('#xltree').tree('toggle', node.target);
+                        }
+                    }
+                }
+            });
+        }
+
+        function confirmVal() { //《确定》为页面文本框，隐藏域赋值
+            $("#" + txtid).val($('#ctxt').val());
+            $("#" + hiddenid).val($('#ctxt').val() + "-" + $('#htxt').val());
+            $('#TreeWindow').window('close');
+        }
+
+        function emptyTxt() { // 选择空值，清空页面文本框值
+            $("#" + txtid).val("");
+            $("#" + hiddenid).val("");
+            $('#TreeWindow').window('close');
+        }
+
+        function empty() { //清空弹出框赋值
+            $('#ctxt').val("");
+            $('#htxt').val("");
+        }
+
+  
+
+    </script>
+</head>
+<body style="margin: 0 0 0 40px;">
+    <div id="TreeWindow" class="easyui-window" style="padding: 5px;">
+        <a class="btn" id="nullbtn" onclick="emptyTxt();">选择空值</a>
+        <div id="condition">
+            <input type="text" id="ctxt" class="textcss2" />
+            <input type="hidden" id="htxt" />&nbsp;&nbsp;&nbsp; <a class="btn" onclick="confirmVal();">
+                确定</a>&nbsp;&nbsp;&nbsp; <a class="btn" onclick="empty();">清空</a>
+        </div>
+        <ul id="xltree">
+        </ul>
+    </div>
+    <div id="div_forms" >
+        <form id="form1">
+    <div class="tile_2">
+    </div>
+    <div id="chaxun" style="min-width: 1010px;">
+        <div id="cxtitle">
+            <span style="color: White; margin-left: 55px;">查询条件</span></div>
+        <table id="buju" width="98%" border="1" style="border: 1px solid rgb(221,221,221);
+            border-collapse: collapse; margin-top: 20px;">
+            <tr class="gray">
+                <td align="right" class="td_title">
+                    现场勘验号
+                </td>
+                <td align="left" class="td_content">
+                    <input type="text" name="Xckyh" id="Xckyh" class="textcss2" />
+                </td>
+                <td align="right" class="td_title">
+                    案件编号
+                </td>
+                <td align="left" class="td_content">
+                    <input type="text" name="Ajbh" id="Ajbh" class="textcss2" />
+                </td>
+            </tr>
+            <tr class="white">
+                <td align="right" class="td_title">
+                    案件类别
+                </td>
+                <td align="left" class="td_content">
+                    <div class="div_txtbtn">
+                        <input type="text" id="txtAjlb" class="textcss" readonly="readonly" />
+                        <input type="button" class="btnWin" id="tu1" onclick="getTreeWin('AJLBDM','案件类别',true,'txtAjlb','Ajlb');" />
+                        <input name="Ajlb" id="Ajlb" type="hidden" />
+                    </div>
+                </td>
+                <td align="right" class="td_title">
+                    是否命案
+                </td>
+                <td align="left" class="td_content">
+                    <select name="Sfma" id="Sfma">
+                        <option selected="selected" value="10">无条件</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </td>
+            </tr>
+            <tr class="gray">
+                <td align="right" class="td_title">
+                    被害人/报案人
+                </td>
+                <td align="left" class="td_content">
+                    <input type="text" name="Bhrbar" id="Bhrbar" class="textcss2" />
+                </td>
+                <td align="right" class="td_title">
+                    是否刑案
+                </td>
+                <td align="left" class="td_content">
+                    <select name="Sfxa" id="Sfxa">
+                        <option selected="selected" value="10">无条件</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </td>
+            </tr>
+            <tr class="white">
+                <td align="right" class="td_title">
+                    勘验人员
+                </td>
+                <td align="left" class="td_content">
+                    <input type="text" name="Kyry" id="Kyry" class="textcss2" readonly="readonly"  onclick="getTreeWin('KYRY','勘验人员',true,'Kyry','');" style=" cursor:pointer;"/>
+                    <div class="radioGroup">
+                        <input type="radio" name="Zkfk" value="1" />主勘
+                        <input type="radio" name="Zkfk" value="2" />副勘
+                    </div>
+                </td>
+                <td align="right" class="td_title">
+                    是否破案
+                </td>
+                <td align="left" class="td_content">
+                    <input type="text" name="Pasjbeg" id="Pasjbeg" class="easyui-datebox" style="width: 170px;
+                        height: 30px;" />
+                    <input type="text" name="Pasjend" id="Pasjend" class="easyui-datebox" style="width: 170px;
+                        height: 30px;" />&nbsp;
+                </td>
+            </tr>
+            <tr class="gray">
+                <td align="right" class="td_title">
+                    勘验时间
+                </td>
+                <td align="left" class="td_content">
+                    <input type="text" name="Kysjbeg" id="Kysjbeg" class="easyui-datebox" style="width: 170px;
+                        height: 30px;" />
+                    <input type="text" name="Kysjend" id="Kysjend" class="easyui-datebox" style="width: 170px;
+                        height: 30px;" />
+                </td>
+                <td align="right" class="td_title">
+                    提交时间
+                </td>
+                <td align="left" class="td_content">
+                    <input type="text" name="Tjsjbeg" id="Tjsjbeg" class="easyui-datebox" style="width: 170px;
+                        height: 30px;" />
+                    <input type="text" name="Tjsjend" id="Tjsjend" class="easyui-datebox" style="width: 170px;
+                        height: 30px;" />
+                </td>
+            </tr>
+            <tr class="white">
+                <td align="right" class="td_title">
+                    发案区划
+                </td>
+                <td align="left" class="td_content">
+                    <div class="div_txtbtn">
+                        <input type="text" id="txtFaqh" class="textcss" readonly="readonly" />
+                        <input type="button" class="btnWin" onclick="getTreeWin('GXSDM','发案区划',true,'txtFaqh','Faqh');" />
+                        <input name="Faqh" id="Faqh" type="hidden" />
+                    </div>
+                </td>
+                <td align="right" class="td_title">
+                    发案地点
+                </td>
+                <td align="left" class="td_content">
+                    <input type="text" name="Fadd" id="Fadd" class="textcss2" />
+                    <div class="radioGroup">
+                        <input type="radio" name="Faddpd" value="0" />与
+                        <input type="radio" name="Faddpd" value="1" checked="checked" />或
+                        <input type="radio" name="Faddpd" value="2" />非
+                    </div>
+                </td>
+            </tr>
+            <tr class="gray">
+                <td align="right" class="td_title">
+                    选择对象
+                </td>
+                <td align="left" class="td_content">
+                    <div class="div_txtbtn">
+                        <input type="text" id="txtXzdx" class="textcss" readonly="readonly" />
+                        <input type="button" class="btnWin" onclick="getTreeWin('XZDXFLDM','选择对象',false,'txtXzdx','Xzdx');" />
+                        <input name="Xzdx" id="Xzdx" type="hidden" />
+                    </div>
+                    <div class="radioGroup">
+                        <input type="radio" name="Xzdxpd" value="0" />与
+                        <input type="radio" name="Xzdxpd" value="1" checked="checked" />或
+                        <input type="radio" name="Xzdxpd" value="2" />非
+                    </div>
+                </td>
+                <td align="right" class="td_title">
+                    选择处所
+                </td>
+                <td align="left" class="td_content">
+                    <div class="div_txtbtn">
+                        <input type="text" id="txtxzcs" class="textcss" readonly="readonly" />
+                        <input type="button" class="btnWin" onclick="getTreeWin('XZCSFLDM','选择处所',false,'txtxzcs','Xzcs');" />
+                        <input name="Xzcs" id="Xzcs" type="hidden" />
+                    </div>
+                    <div class="radioGroup">
+                        <input type="radio" name="Xzcspd" value="0" />与
+                        <input type="radio" name="Xzcspd" value="1" checked="checked" />或
+                        <input type="radio" name="Xzcspd" value="2" />非
+                    </div>
+                </td>
+            </tr>
+            <tr class="white">
+                <td align="right" class="td_title">
+                    涉案单位
+                </td>
+                <td align="left" class="td_content">
+                    <div class="div_txtbtn">
+                        <input type="text" id="txtsadw" class="textcss" readonly="readonly" />
+                        <input type="button" class="btnWin" onclick="getTreeWin('SADWLXDM','涉案单位',false,'txtsadw','Sadw');" />
+                        <input name="Sadw" id="Sadw" type="hidden" />
+                    </div>
+                    <div class="radioGroup">
+                        <input type="radio" name="Sadwpd" value="0" />与
+                        <input type="radio" name="Sadwpd" value="1" checked="checked" />或
+                        <input type="radio" name="Sadwpd" value="2" />非
+                    </div>
+                </td>
+                <td align="right" class="td_title">
+                    作案进出口
+                </td>
+                <td align="left" class="td_content">
+                    <div class="div_txtbtn">
+                        <input type="text" id="txtzajck" class="textcss" readonly="readonly" />
+                        <input type="button" class="btnWin" onclick="getTreeWin('ZACRKDM','作案进出口',false,'txtzajck','Zajck');" />
+                        <input name="Zajck" id="Zajck" type="hidden" />
+                    </div>
+                    <div class="radioGroup">
+                        <input type="radio" name="Zajckpd" value="0" />与
+                        <input type="radio" name="Zajckpd" value="1" checked="checked" />或
+                        <input type="radio" name="Zajckpd" value="2" />非
+                    </div>
+                </td>
+            </tr>
+            <tr class="gray">
+                <td align="right" class="td_title">
+                    损失物品
+                </td>
+                <td colspan="3" align="left" class="td_content">
+                    <input type="text" name="Sswp" id="Sswp" class="longtext" />
+                    <div class="radioGroup">
+                        <input type="radio" name="Sswppd" value="0" />与
+                        <input type="radio" name="Sswppd" value="1" checked="checked" />或
+                        <input type="radio" name="Sswppd" value="2" />非
+                    </div>
+                </td>
+            </tr>
+            <tr class="white">
+                <td align="right" class="td_title">
+                    作案时机
+                </td>
+                <td align="left" class="td_content">
+                    <div class="div_txtbtn">
+                        <input type="text" id="txtzasj" class="textcss" readonly="readonly" />
+                        <input type="button" class="btnWin" onclick="getTreeWin('ZASJDFLDM','作案时机',false,'txtzasj','Zasj');" />
+                        <input name="Zasj" id="Zasj" type="hidden" />
+                    </div>
+                    <div class="radioGroup">
+                        <input type="radio" name="Zasjpd" value="0" />与
+                        <input type="radio" name="Zasjpd" value="1" checked="checked" />或
+                        <input type="radio" name="Zasjpd" value="2" />非
+                    </div>
+                </td>
+                <td align="right" class="td_title">
+                    侵入方式
+                </td>
+                <td align="left" class="td_content">
+                    <div class="div_txtbtn">
+                        <input type="text" id="txtqrfs" class="textcss" readonly="readonly" />
+                        <input type="button" class="btnWin" onclick="getTreeWin('QRFSFLDM','侵入方式',false,'txtqrfs','Qrfs');" />
+                        <input name="Qrfs" id="Qrfs" type="hidden" />
+                    </div>
+                    <div class="radioGroup">
+                        <input type="radio" name="Qrfspd" value="0" />与
+                        <input type="radio" name="Qrfspd" value="1" checked="checked" />或
+                        <input type="radio" name="Qrfspd" value="2" />非
+                    </div>
+                </td>
+            </tr>
+            <tr class="gray">
+                <td align="right" class="td_title">
+                    作案特点
+                </td>
+                <td align="left" class="td_content">
+                    <div class="div_txtbtn">
+                        <input type="text" id="txtzatd" class="textcss" readonly="readonly" />
+                        <input type="button" class="btnWin" onclick="getTreeWin('ZATDFLDM','作案特点',false,'txtzatd','Zatd');" />
+                        <input name="Zatd" id="Zatd" type="hidden" />
+                    </div>
+                    <div class="radioGroup">
+                        <input type="radio" name="Zatdpd" value="0" />与
+                        <input type="radio" name="Zatdpd" value="1" checked="checked" />或
+                        <input type="radio" name="Zatdpd" value="2" />非
+                    </div>
+                </td>
+                <td align="right" class="td_title">
+                    作案手段
+                </td>
+                <td align="left" class="td_content">
+                    <div class="div_txtbtn">
+                        <input type="text" id="txtzasd" class="textcss" readonly="readonly" />
+                        <input type="button" class="btnWin" onclick="getTreeWin('ZASDFLDM','作案手段',false,'txtzasd','Zasd');" />
+                        <input name="Zasd" id="Zasd" type="hidden" />
+                    </div>
+                    <div class="radioGroup">
+                        <input type="radio" name="Zasdpd" value="0" />与
+                        <input type="radio" name="Zasdpd" value="1" checked="checked" />或
+                        <input type="radio" name="Zasdpd" value="2" />非
+                    </div>
+                </td>
+            </tr>
+            <tr class="white">
+                <td align="right" class="td_title">
+                    作案工具
+                </td>
+                <td align="left" class="td_content">
+                    <input type="text" name="Zagj" id="Zagj" class="textcss2" />
+                    <div class="radioGroup">
+                        <input type="radio" name="Zagjpd" value="0" />与
+                        <input type="radio" name="Zagjpd" value="1" checked="checked" />或
+                        <input type="radio" name="Zagjpd" value="2" />非
+                    </div>
+                </td>
+                <td align="right" class="td_title">
+                    案件性质
+                </td>
+                <td align="left" class="td_content">
+                    <div class="div_txtbtn">
+                        <input type="text" id="txtajxz" class="textcss" readonly="readonly" />
+                        <input type="button" class="btnWin" onclick="getTreeWin('AJXZDM','案件性质',false,'txtajxz','Ajxz');" />
+                        <input name="Ajxz" id="Ajxz" type="hidden" />
+                    </div>
+                </td>
+            </tr>
+            <tr class="gray">
+                <td align="right" class="td_title">
+                    作案人特点
+                </td>
+                <td class="td_content" align="left" style="width: 85%; padding-left: 10px" colspan="3">
+                    <input type="text" name="Zartd" id="Zartd" class="longtext" />
+                    <div class="radioGroup">
+                        <input type="radio" name="Zartdpd" value="0" />与
+                        <input type="radio" name="Zartdpd" value="1" checked="checked" />或
+                        <input type="radio" name="Zartdpd" value="2" />非
+                    </div>
+                </td>
+            </tr>
+            <tr class="white">
+                <td align="right" class="td_title">
+                    现场分析意见
+                </td>
+                <td class="td_content" align="left" style="width: 85%; padding-left: 10px" colspan="3">
+                    <input type="text" name="Xcfxyj" id="Xcfxyj" class="longtext" />
+                </td>
+            </tr>
+            <tr class="gray">
+                <td align="right" class="td_title">
+                    痕迹物证情况
+                </td>
+                <td class="td_content" align="left" style="width: 85%" colspan="3">
+                    <div class="radioGroup">
+                        <input type="hidden" name="Hjwzqk" value="" />
+                        <input type="checkbox" name="HjwzqkCheck" value="1" />手印
+                        <input type="checkbox" name="HjwzqkCheck" value="2" />足迹
+                        <input type="checkbox" name="HjwzqkCheck" value="3" />工具
+                        <input type="checkbox" name="HjwzqkCheck" value="4" />枪弹
+                        <input type="checkbox" name="HjwzqkCheck" value="5" />特殊
+                        <input type="checkbox" name="HjwzqkCheck" value="6" />生物
+                        <input type="checkbox" name="HjwzqkCheck" value="7" />毒化
+                        <input type="checkbox" name="HjwzqkCheck" value="8" />理化
+                        <input type="checkbox" name="HjwzqkCheck" value="9" />文检
+                        <input type="checkbox" name="HjwzqkCheck" value="10" />电子
+                        <input type="checkbox" name="HjwzqkCheck" value="11" />视听
+                    </div>
+                    &nbsp;&nbsp;
+                    <div class="radioGroup">
+                        <input type="radio" name="Hjwzqkpd" value="0" />与
+                        <input type="radio" name="Hjwzqkpd" value="1" checked="checked" />或
+                        <input type="radio" name="Hjwzqkpd" value="2" />非
+                    </div>
+                </td>
+            </tr>
+            <tr class="white">
+                <td colspan="4" align="middle">
+                    <a class="btn" onclick="ajaxSIM();">查询</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    </form>
+    </div>
+    <div id="table_all" style=" " >
+        <div id="div_tb_1">
+            <table id="tb_1" style="width:3800000px;"></table>
+        </div>
+         <div id="div_tb_2">
+            <table id="tb_2"></table>
+        </div>
+        <input type="button" value="111" onclick="aaa();" />
+    </div>
+</body>
+</html>

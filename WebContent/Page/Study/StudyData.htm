@@ -1,0 +1,912 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>研判</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+	
+	<script src="../Compents/js/laydate/laydate.js"></script>
+    <script src="../jsPlumb/jquery-ui-1.9.2-min.js"></script>
+	<script src="../jsPlumb/jquery.jsPlumb-1.6.2-min.js"></script>
+	
+    <style type="text/css">
+        /*第二竖行子类别的排版*/
+		.menuitemdiv
+        {
+            font-size: 14px;
+            font-family: 微软雅黑;
+            color: #999999;
+            margin-top: 25px;
+            margin-bottom: 20px; 
+            margin-left: 20px;
+            width: 78px;
+            height: 24px;
+        }
+        .demo11{
+        	position: absolute;
+			width:100px;
+			height:50px;
+			text-align:center;
+			line-height:17px;
+			background-size:100% 100%;
+			font-size:12px;
+			padding:3px;
+			color:white;
+        }
+        .menuitemdiv_over 
+        {
+            font-size: 14px;
+            font-family: 微软雅黑;
+            color: #ffffff;
+            margin-top: 25px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            background-image: url(../Compents/images/Study/item_bg.png);
+            background-repeat: no-repeat;
+            width: 78px;
+            height: 24px;
+        }
+        .panel-title
+        {
+            font-size: 14px;
+            font-family: 微软雅黑;
+            color: #ffffff; 
+            height:23px; 
+            line-height:23px;
+            margin-left:10px;
+            margin-top:3px;
+            font-size:15px;   
+        }
+        .panel-body
+        {
+            background-color:White;
+            color:Black;
+        }
+        .window
+        {
+            padding:1px;background-color:#25A2CE; 
+        }
+        
+        .messager-window
+        {
+            border:0;    
+        }
+        .messager-body
+        {
+            background-color:White;  
+            color:Black;  
+            font-size: 12px;
+            font-family: 微软雅黑;
+        }
+        .messager-input
+        {
+            height:24px;   
+        }
+        .messager-question 
+        {
+            height:40px;
+            width:40px;
+            background: url('../Compents/images/yp/prompt-red.png') no-repeat scroll 0 0px ;
+        }
+        .messager-body
+        {
+            padding-top:30px;   
+        }
+        .panel-tool-close
+        {
+            background:url('../Compents/eui/themes/metro/images/panel_tools.png') no-repeat;    
+        }
+        .messager-button
+        {
+            margin-top:30px;    
+        }
+		
+		.dragActive { border:2px dotted orange; }
+        .dropHover { border:1px dotted red; }
+		
+/*这个是连接线上的文字的样式*/		
+.aLabel {
+	font: 12px/normal sans-serif; padding: 0.4em; border: 1px dotted gray; border-image: none; color: rgb(68, 68, 68); z-index: 21; cursor: pointer; font-size-adjust: none; font-stretch: normal; opacity: 0.8; background-color: white;
+}
+    </style>
+	
+</head>
+<body class="easyui-layout">
+    <!--<input id="hiditem" type="text" value='[{"x":"422","y":"7","img":"test_ajlb.png","id":"1"},{"x":"196","y":"126","img":"test_afqy.png","id":"2"},{"x":"422","y":"125","img":"test_zajck.png","id":"3"},{"x":"661","y":"125","img":"test_ajxz.png","id":"4"},{"x":"662","y":"285","img":"test_zadj.png","id":"5"},{"x":"197","y":"284","img":"test_zasd.png","id":"6"},{"x":"427","y":"285","img":"test_qrfs.png","id":"7"},{"x":"430","y":"462","img":"test_zasj.png","id":"8"},{"x":"194","y":"462","img":"test_zatd.png","id":"9"},{"x":"665","y":"458","img":"test_jdlb.png","id":"10"},{"x":"431","y":"583","img":"test_asjbh.png","id":"11"},{"x":"197","y":"379","img":"test_lasj.png","id":"12"}]'/>-->
+    <!--<input id="hidline" type="text" value='[{"one":"1","two":"3"},{"one":"3","two":"2"},{"one":"3","two":"4"},{"one":"4","two":"5"},{"one":"5","two":"10"},{"one":"5","two":"7"},{"one":"2","two":"6"},{"one":"6","two":"7"},{"one":"7","two":"8"},{"one":"8","two":"9"},{"one":"8","two":"11"},{"one":"6","two":"12"}]'/>-->
+    <!--左项目栏 1大系统栏-->
+    <div style="height: 100%; width: 140px; text-align: center; background-color: White;
+        margin-top: 30px; float: left; border-right: 1px solid #C7C8CA; overflow: auto;">
+        <img id="xcky" onclick="getItem(this.id);" style="margin-top: 25px;" src="../Compents/images/Study/search-yp_normal.png"
+            onmouseover="this.src='../Compents/images/Study/search-yp_over.png'" onmouseout="this.src='../Compents/images/Study/search-yp_normal.png'" /><br />
+        <img id="zj" onclick="getItem(this.id);" style="margin-top: 30px;" src="../Compents/images/Study/zj-yp_normal.png"
+            onmouseover="this.src='../Compents/images/Study/zj-yp_over.png'" onmouseout="this.src='../Compents/images/Study/zj-yp_normal.png'" /><br />
+        <img id="dna" onclick="getItem(this.id);" style="margin-top: 30px;" src="../Compents/images/Study/dna-yp_normal.png"
+            onmouseover="this.src='../Compents/images/Study/dna-yp_over.png'" onmouseout="this.src='../Compents/images/Study/dna-yp_normal.png'" /><br />
+        <img id="zhiwen" onclick="getItem(this.id);" style="margin-top: 30px;" src="../Compents/images/Study/zhiwen-yp_normal.png"
+            onmouseover="this.src='../Compents/images/Study/zhiwen-yp_over.png'" onmouseout="this.src='../Compents/images/Study/zhiwen-yp_normal.png'" />
+    </div>
+    <!--左项目栏 2字段栏-->
+    <div style="float: left; height: 1000px;">
+        <div style="height: 30px; width: 120px; background-color: #f9f9f9;">
+        </div>
+        <div id="menuitem" style=
+		"height: 1000px; width: 120px; text-align: center; background-color: White;
+            border-right: 1px solid #C7C8CA; padding-top: 10px;">
+        </div>
+    </div>
+    <!--内容canvas-->
+    <div id="canvasdiv" style="width: 100%; height: 100%;">
+        <div style="height: 30px; background-color: #f9f9f9; margin-left: -1px; padding-top:4px;"> 
+        	<div id="save1"><input type="button" value="保存" style="float:right;cursor:pointer;" onclick="save()"/></div>
+        	<div id="back"><input type="button" value="返回" style="float:right;cursor:pointer;" onclick="goBack()"/></div>
+		</div>
+		<!--这个是“查看”中右边的大板块-->
+        <div style="height:90%; width: 100%; background-color: #E5E7E4;" id="mycanvas">
+        </div>
+    </div>
+    <div id="savestudyname" class="easyui-window" title="Login" style="width: 374px; height: auto;background-color: white;font-family:'宋体';"> 
+	    <div style="margin-top:20px;">
+            <!--<div style="float:left;width:40px;height:40px;margin-top:10px;margin-left:24px;background: url('../Compents/images/yp/prompt-red.png') no-repeat "></div>-->
+            <div style="float:left;margin-left:30px;margin-top:10px;">
+           		<span style="color:Black;font-size:14px;font-family:微软雅黑;">公式名称：</span> 
+           		<input type="text" style="width:320px;" id="oldstudyname" value="" /><span id="nameDiv" style="color:red;">*</span><br/>
+				<!--这个float为了让公式描述相对于textarea在上面-->
+				<br/>
+		   		<span style="color:Black;font-size:14px;font-family:微软雅黑;float:left;margin-top:2px;margin-right:7px;">公式描述：</span> 
+          		<textarea rows="10" cols="43" style="margin-top:2px;" id="studynameDescri" value=""></textarea>
+			</div>
+        </div>
+        <div style="clear:both;padding-top:15px;" class="messager-button">
+            <a id="savemsg" class="l-btn l-btn-small" style="margin-left: 10px;" onclick="editinfo();">
+                <span class="l-btn-left">
+                    <span class="l-btn-text">保存</span>  
+                </span>
+            </a>
+            <a id="cancelmsg" class="l-btn l-btn-small"  style="margin-left: 10px;">
+                <span class="l-btn-left"><span class="l-btn-text">取消</span>
+                </span>
+            </a>
+        </div>
+    </div>
+    
+	<!--细分div 是那个弹出框(刚点击进入【研判】的时候弹出的框，也是我们拖拽弹出的框)-->
+    <div id="studyOptions" class="easyui-window" title="Detail_type" style="border:1px solid red;width: 374px; height: auto;background-color: white;font-family:'宋体';overflow:hidden;"> 
+        <div style="margin-left:20px;margin-top:20px;">
+            <input type="text" style="width:180px;"   oninput="OnInput (event)"  id="option_select" value=""/>
+        </div>
+        <div style="margin-left:20px;margin-top:10px;height:260px;overflow:scroll;">
+            <table style="width:100%;">
+                    <tr>
+                        <td><ul id="xltree"></ul> </td>
+                        <td style=" vertical-align:top;">   
+                            <input type="hidden" id="xldm" value="" />
+                           <div id="sfjs" style="width:50%; display:none; border:1px solid #7FB8DD; color:#0071BC; padding:15px 15px 15px 15px; position:relative; top:50px;z-index:9; ">
+                                <span id="sfcontent" style=" word-break:break-all;font-size:18px;"></span>
+                            </div>
+                        </td>
+                    </tr>
+            </table>
+        </div>
+        <div style="margin-left:20px;margin-top:20px;" >
+            <a id="option_ok" class="l-btn l-btn-small" style="margin-left: 10px;" onclick="getConfirm();">
+                <span class="l-btn-left"> 
+                    <span class="l-btn-text">确认</span>  
+                </span>
+            </a>
+            <a id="option_cancel" class="l-btn l-btn-small" style="margin-left: 10px;" >
+                <span class="l-btn-left">
+                    <span class="l-btn-text">取消</span>  
+                </span>
+            </a>
+        </div>
+    </div>
+	
+	<!--弹出时间窗-->
+   <div id="anfaTime" class="easyui-window" title="Login" style="width: 374px; height: auto;background-color: white;font-family:'宋体';"> 
+	    <div style="margin-top:50px;margin-left:20px;">
+            <!--<div style="float:left;width:40px;height:40px;margin-top:10px;margin-left:24px;background: url('../Compents/images/yp/prompt-red.png') no-repeat "></div>-->
+        	 案发时间(起):<input id="startTime" class="laydate-icon" onclick="laydate()"><br/><br/>
+        	 案发时间(止):<input id="endTime" class="laydate-icon" onclick="laydate()"><br/>
+        </div>
+        <div style="clear:both;padding-top:15px;" class="messager-button">
+            <a id="anfaTimeSure" class="l-btn l-btn-small" style="margin-left: 10px;" onclick="anfaTimeSure();">
+                <span class="l-btn-left">
+                    <span class="l-btn-text">确定</span>  
+                </span>
+            </a>
+            <a id="anfaTimeCancel" class="l-btn l-btn-small"  style="margin-left: 10px;">
+                <span class="l-btn-left"><span class="l-btn-text">取消</span>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <div id="imgdiv" style="display:none;"><!--动态加载所有图片，保证draw速度-->
+    </div>
+    <div id="div_optionDetail" style="position:absolute;display:none;border:1px solid silver;background:silver;"><!--显示图标信息div-->
+        <div style="float:left;background:url(../Compents/images/Study/Prompt-box-left.png);width:4px;height:39px;"></div>
+        <div style="float:left;background:url(../Compents/images/Study/Prompt-box-middle.png);height:39px;width:auto;">
+            <div style="font-family:微软雅黑;font-size:12px;color:Black;margin-left:5px;margin-right:5px;margin-top:3px;" id="div_secondDetail"></div>
+            <div style="font-family:微软雅黑;font-size:12px;color:Black;margin-left:5px;margin-right:5px;" id="div_thirdDetail"></div>
+        </div>
+        <div  style="float:left;background:url(../Compents/images/Study/Prompt-box-right.png);width:4px;height:39px;"></div>
+        <div style="clear:both;overflow:hidden;"></div>
+    </div>
+	
+</body>
+</html>
+<script type="text/javascript">
+	//属于哪张表table,那个字段：clum(txt对应这个字段),
+	//根据dbfield弹出树(根节点,这个字段对应SYS_DICT表)  type:是否加载树的弹窗
+    var xcky = [{ txt: "现勘号", dbfield: "XKHDM",table: "scene_investigation", clum: "INVESTIGATION_NO",type:"1",img: "blue-button-bg_ypfx.png"},{ txt: "案件类别", dbfield:"AJLBDM", table: "scene_investigation", clum: "CASE_TYPE",type:"2",img: "blue-button-bg_ypfx.png"},{ txt: "案件编号", dbfield: "AJBHDM", table: "scene_investigation", clum: "CASE_NO",type:"1",img: "blue-button-bg_ypfx.png"},{ txt: "案发时间:", dbfield: "AFSJDM", table: "scene_investigation", clum: "OCCURRENCE_DATE_FROM",type:"3",img: "blue-button-bg_ypfx.png"},{ txt: "作案手段", dbfield:"ZASDFLDM", table: "scene_investigation", clum: "COMMISSION_MEANS",type:"2",img: "blue-button-bg_ypfx.png"},{ txt: "作案进出口", dbfield: "JCKDM", table: "scene_investigation", clum: "ENTRANCE_EXIT",type:"",img: "blue-button-bg_ypfx.png"}, { txt: "侵入方式", dbfield: "QRFSFLDM", table: "scene_investigation", clum: "INTRUDING_WAY",type:"2",img: "blue-button-bg_ypfx.png"},{ txt: "作案特点", dbfield: "ZATDFLDM", table: "scene_investigation", clum: "COMMISSION_POINTS",type:"2",img: "blue-button-bg_ypfx.png"},{ txt: "作案动机", dbfield: "ZADJMDDM", table: "scene_investigation", clum: "MOTIVATION",type:"2",img: "blue-button-bg_ypfx.png"}];
+	var zj = [{ txt: "现勘号", dbfield: "XKHDM",table: "FAIS_SCENEBASE", clum: "USCENEID",type:"1",img: "green-button-bg_ypfx.png"},{ txt: "案件类别", dbfield: "casetype", table: "FAIS_SCENEBASE", clum: "CASETYPEID",type:"2",img: "green-button-bg_ypfx.png"},{ txt: "手段特点", dbfield: "means", table: "FAIS_SCENEBASE", clum: "meansid",type:"2",img: "green-button-bg_ypfx.png"},{ txt: "案发时间", dbfield: "AFSJDM", table: "FAIS_SCENEBASE", clum: "CASEDATE",type:"3",img: "green-button-bg_ypfx.png"},{ txt: "案事件编号", dbfield: "AJBHDM", table: "FAIS_SCENEBASE", clum: "CASENUMBER",type:"1",img: "green-button-bg_ypfx.png"}];
+	var dna = [{ txt: "接报时间", dbfield: "casetype", img: "orange-button-bg_ypfx.png", mainkey: "wb",type:"3", }, { txt: "立案时间", dbfield: "LASJDM", img: "orange-button-bg_ypfx.png", mainkey: "wb",type:"3", }, { txt: "案事件编号", dbfield: "casetype", img: "orange-button-bg_ypfx.png", mainkey: "wb",type:"2",}];
+    var zhiwen = [{ txt: "鉴定类别", dbfield: "JDLBDM", img: "red-button-bg_ypfx.png", mainkey: "jd",type:"1",}];
+
+    var firstload; //判断图是新增还是修改
+    
+	var i = 0;
+	var optionOk=false;//确定或取消
+	var selectval;//当前拖拽的是
+	var dropUI;//获得当前拖拽的ui
+	var eTxt; //拖动－－文字
+	var selectSystem;//第一竖行的对应id：xcky,dna,zj
+	var dict_keyID;//点击树的节点保存对应的dict_key值  019900
+
+    //根据系统绑定二级菜单赋拖拽事件
+    function getItem(systemname) {
+        selectSystem = systemname;//对应第一竖行的导航id:xcky,zj,dan,zhiwen
+        var jsonval = eval('(' + systemname + ')');
+        $("#menuitem").html("");
+        var val = "";
+        for (var i = 0; i < jsonval.length; i++) {
+            val += "<div draggable='true' name='item'  class='menuitemdiv' onmouseover='javascript:changebg(this);' onmouseout='javascript:changeout(this);'>" + jsonval[i].txt +
+             "</div>" + "<hr style='height:0px; width:80px; border-bottom:0px solid #C7C8CA; overflow:hidden;'/>";
+           
+        }
+        $("#menuitem").html(val);
+		
+	//开始写拖拽事件
+	$(function () {
+	 	$("#menuitem").children("div").draggable({
+				helper: "clone",
+				scope: "ss",
+
+			});//结束
+			
+			$("#canvasdiv #mycanvas").droppable({//拖拽的放  开始
+			  scope: "ss",
+			  drop:function(event,ui){
+					dropUI=ui;
+
+					//重点在这里	
+				//拖拽放到画板上，然后弹出框，选择。。	
+				var jsonval = eval('(' + selectSystem + ')');
+				selectval = $(ui.helper).html();
+				//alert("selectval=="+selectval);//拖拽的是那个块
+				$(jsonval).each(function (index) {
+				    if (jsonval[index].txt == selectval) {
+						eTxt= jsonval[index].type + "&#" + jsonval[index].table + "&#" +jsonval[index].dbfield + "&#" +jsonval[index].txt+ "&#" +jsonval[index].clum+ "&#" +jsonval[index].img;
+						
+						//1:不弹窗，直接绘图，2：弹窗 ,选择绘图  3：弹出时间框							
+						//判断是否有弹出框
+						if(jsonval[index].type=="1"){
+							huabanHuiTu("1");//直接绘图
+						}else if(jsonval[index].type=="2"){
+							$("#option_select").val("");//清空输入框中的原来的值
+							loadTree(jsonval[index].dbfield, "");
+							//弹出窗口，然后我们选择,点击确认之后 ，才会画到画板上去
+							$('#studyOptions').window('open');
+						}else{
+							$("#startTime").val("");//清空输入框中的原来的值
+							$("#endTime").val("");//清空输入框中的原来的值
+							$("#anfaTime").window("open");
+						}
+					}}
+				);
+			
+			 } 
+	 		});// 放 结束
+		 });
+		 //开始拖拽事件  结束
+}//点击事件结束
+	
+	//==============弹出窗加载树结构
+    var textkey; //input 选项的key值
+    var treechecked = false; //判断是否选中树中选项
+    //拖拉的时候弹出框（选项）,得到所有的数据
+    function loadTree(root, py) { //加载查询树   root：根节点代码
+        $('#xldm').val(root);
+		
+		var url="";
+		if("xcky"==selectSystem){
+			url='http://' + urlIP + '/Foms_RestFul/rest/Study/getXckyTree';
+		}
+		else{
+			url='http://' + urlIP + '/Foms_RestFul/rest/Study/getFaisTree';
+		}
+        var datas;
+        $.ajax({
+            //url: 'http://' + urlIP + '/foms/DetailType/tree?rootkey='+root,
+            //url: 'http://' + urlIP1 + '/Study/post/studytree',
+            url: url,
+            data: { 'rootkey': root, 'dictPy': py },
+            type: 'post',
+            async: false,
+            success: function (data) {
+                if (data != null && data != "") {
+                    datas = eval(data);
+                } else {
+                    datas = "";
+                }
+            },error:function(msg,a){
+				alert("StudyData.htm307错误是="+msg+"+++aa:"+a)
+			}
+        });
+		
+		//上面的datas数据使用
+		//加载【选项】中的树形结构
+        $('#xltree').tree({
+            data: datas,
+            onLoadSuccess: function (node, data) {
+                $('.tree-icon,.tree-folder,.tree-folder-open,.tree- ').removeClass('tree-icon tree-folder tree-folder-open tree-file');  //去样式
+            },
+            onLoadError: function (Error) {
+            },
+            onClick: function (node) { //节点单机事件
+            	dict_keyID=node.id;
+                var nstate = node.state;
+                if (nstate == "closed") {
+                    //有分支
+                    $('#xltree').tree('expand', node.target);
+                    $("#option_select").val(node.text);
+                    textkey = node.id;
+                    treechecked = true
+                } else {
+                    //无分支
+                    $('#xltree').tree('collapse', node.target);
+                    $("#option_select").val(node.text);
+                    textkey = node.id;
+                    treechecked = true
+                }
+            }
+        });
+    }//==============弹出窗加载树结构  结束
+	
+	
+	//=============基本的连线样式(设置问全局的)  开始====
+			var exampleDropOptions = {
+                hoverClass:"dropHover",
+                activeClass:"dragActive"
+            };
+			
+				//基本连接线样式
+			var connectorPaintStyle = {
+				lineWidth: 4,
+				strokeStyle: "#61B7CF",//连线的颜色
+				joinstyle: "round",
+				//outlineColor: "white",//不设置，否则在画板上拖拽的时候会有白色线条
+				outlineWidth: 2
+			};
+		
+			// 鼠标悬浮在连接线上的样式
+			var connectorHoverStyle = {
+				lineWidth: 4,
+				strokeStyle: "#216477",
+				outlineWidth: 2,
+				//outlineColor: "white"//否则有白色线条
+			};
+			var endpointHoverStyle = {
+				fillStyle: "red",
+				strokeStyle: "blue"
+			};
+			
+			//空心圆端点样式设置[作为 源]
+			var hollowCircle = {
+				endpoint: ["Dot", { radius: 5 }],  //端点的形状
+				connectorStyle: connectorPaintStyle,//连接线的颜色，大小样式
+				connectorHoverStyle: connectorHoverStyle,
+				connector: ["Flowchart", { stub: [40, 60], gap: 10, cornerRadius: 5, alwaysRespectStubs: true }],  //连接线的样式种类有[Bezier],[Flowchart],[StateMachine ],[Straight ]
+				dropOptions:exampleDropOptions,
+				//scope:'kong xin',
+				paintStyle: {
+					strokeStyle: "#2FB9EB",
+					fillStyle: "transparent",//空心
+					lineWidth: 2
+				},		//端点的颜色样式
+				//anchor: "AutoDefault",
+				isSource: true,	//是否可以拖动（作为连线起点）
+				isTarget: true,	//是否可以放置（连线终点）
+				//maxConnections: -1,	// 设置连接点最多可以连接几条线
+				
+				//连线样式  这里的Label是线上的字
+				connectorOverlays: [["Arrow", { width: 10, length: 10, location: 1}]],
+				
+				//这个是设置点上的字的
+//				overlays: [
+//                ["Label", {
+//                    location: [0.5, 1.5],
+//                    label: "Drag",//点上的字
+//                    cssClass: "endpointSourceLabel"//demo.css中的样式
+//                }]
+//            	]
+			};
+
+			//=====================基本的连线样式  结束====
+	
+	//点击确认之后，开始在画板上添加
+	function getConfirm(){
+	    if (treechecked == true && $('#xltree').tree('getSelected').text != "" && $("#option_select").val() != "" && textkey != "" && treechecked == true) {
+			//开始绘图
+			huabanHuiTu("2");
+							
+	     	 //选择确定之后，关闭窗口
+   			 $('#studyOptions').window('close');
+		 }
+	}
+	
+	//通用的绘图方法
+	function huabanHuiTu(type,startTime,endTime){
+		var left = parseInt(dropUI.offset.left - $("#canvasdiv #mycanvas").offset().left);
+ 			var top = parseInt(dropUI.offset.top - $("#canvasdiv #mycanvas").offset().top);
+
+			i++;
+			var id = "state_start"+parseInt(Math.random()*999999 +1, 10);;//随机数。。。
+			//alert("id=="+id);
+			var et = eTxt.split('&#');//这个eTxt是313行的值,这里只是用到了第三个字dbfield
+			
+			//判断
+			//点击是确认 画板上画图
+			if(type=="1"){//是直接绘图没有弹窗:
+				$('#mycanvas').append('<div class="demo11" style="background-image:url(../Compents/images/Study/'+et[5]+');" id="'+id+'">'+
+			'<span id="'+id+'_table" style="display:none">'+et[1]+'</span><span id="'+id+'_clum" style="display:none">'+et[4]+'</span>'+
+			'<span id="'+id+'_img" style="display:none">'+et[5]+'</span><span id="'+id+'_value" style="display:none">'+dict_keyID+'</span>'+
+			'<span id="'+id+'_key" style="display:none">'+$("#option_select").val()+'</span>'+
+			'<span id="'+id+'_parchild">'+selectval+'</span></div>');
+			}else if(type=="2"){//弹出树有：
+				$('#mycanvas').append('<div class="demo11" style="background-image:url(../Compents/images/Study/'+et[5]+');" id="'+id+'">'+
+			'<span id="'+id+'_table" style="display:none">'+et[1]+'</span><span id="'+id+'_clum" style="display:none">'+et[4]+'</span>'+
+			'<span id="'+id+'_img" style="display:none">'+et[5]+'</span><span id="'+id+'_value" style="display:none">'+dict_keyID+'</span>'+
+			'<span id="'+id+'_key" style="display:none">'+$("#option_select").val()+'</span>'+
+			'<span id="'+id+'_parchild">'+selectval+":"+$("#option_select").val()+'</span></div>');
+			}else{//弹出时间选择框
+				$('#mycanvas').append('<div class="demo11" style="background-image:url(../Compents/images/Study/'+et[5]+');" id="'+id+'">'+
+			'<span id="'+id+'_table" style="display:none">'+et[1]+'</span><span id="'+id+'_clum" style="display:none">'+et[4]+'</span>'+
+			'<span id="'+id+'_img" style="display:none">'+et[5]+'</span><span id="'+id+'_value" style="display:none">'+dict_keyID+'</span>'+
+			'<span id="'+id+'_key" style="display:none">'+$("#option_select").val()+'</span>'+
+			'<span id="'+id+'_parchild">'+selectval+'('+startTime+'~'+endTime+')</span></div>');
+			}
+			
+			
+			$("#" + id).css("left", left).css("top", top);
+			jsPlumb.addEndpoint(id, { anchors: "TopCenter" }, hollowCircle);
+			jsPlumb.addEndpoint(id, { anchors: "RightMiddle" }, hollowCircle);
+			jsPlumb.addEndpoint(id, { anchors: "BottomCenter" }, hollowCircle);
+			jsPlumb.addEndpoint(id, { anchors: "LeftMiddle" }, hollowCircle);
+
+
+			//jsPlumb.draggable(id);//可以拖动
+			jsPlumb.draggable(jsPlumb.getSelector(".demo11"), { grid: [20, 20] });//这个grid控制拖拽的距离画板边框的距离
+			$("#" + id).draggable({ containment: "parent" });//这个是只能在某一个范围内拖动，不能超出范围
+			
+	}
+	
+	//给两点之间的连线添加文字,监听所有的连接信息
+	//$("#"+connInfo.connection.sourceId).html();//"案件性质"
+        jsPlumb.bind("connection", function (connInfo, originalEvent) {
+             connInfo.connection.getOverlay("label").setLabel($("#"+connInfo.connection.sourceId).html()+ "---" + $("#"+connInfo.connection.targetId).html());
+        });
+		
+		
+		//单击某个图标，会删除掉
+		$("#mycanvas").on("dblclick", ".demo11", function () {
+			if (confirm("确定要删除吗?")) {
+				jsPlumb.removeAllEndpoints($(this).attr("id"));
+				$(this).remove();
+			}
+		});
+		
+	//首先给jsplumb设置一些默认值
+    jsPlumb.importDefaults({
+        DragOptions: { cursor: 'pointer'},	//拖动时鼠标停留在该元素上显示指针，通过css控制
+        PaintStyle: { strokeStyle: '#61B7CF',lineWidth: 4 },//连接线的颜色(这个是加载页面的时候，会在画板上绘图，用的这个样式)
+        EndpointStyle: { strokeStyle: '#1e8151' },//连接点的外框颜色
+        Endpoint: [ "Dot", { radius: 5 } ],//连接点的默认形状
+        Connector: [ "Bezier", { curviness: 150 } ],//设置连线为贝塞尔曲线(就是带箭头的线)
+        Anchors: [ "TopCenter", "BottomCenter" ],//连接点的默认位置
+       // fillStyle: "transparent",//透明的（空心圆）
+	   //这个是加载页面的时候，会在画板上绘图，用的这个样式
+        Connector: [ "Flowchart", { stub: [40, 60], gap: 10, cornerRadius: 5, alwaysRespectStubs: true } ],
+		HoverPaintStyle:connectorHoverStyle,//【这个画在画板上的图片鼠标放上去的样式】
+		//控制箭头样式的
+		ConnectionOverlays: [//连接覆盖图
+		//可配置的箭头，放在两个点的连接线上，你可以控制箭头的长度和宽度
+            ["Arrow", {
+                location: 1,
+                id: "arrow",
+                length: 14,
+                foldback: 1
+            }],
+			//在点的连接器上的可配置的标签(就是连接线上的文字)
+			 ["Label", {
+				//label:"hehe",
+                location: 0.5,
+                id: "label",
+                cssClass: "aLabel"//连线上字的样式
+            }]
+        ]
+    });
+	
+  //双击取消连接，成功
+      jsPlumb.bind("dblclick", function(conn, originalEvent) {
+		  	if (confirm("双击取消连接吗?")) {
+				jsPlumb.detach(conn);
+			}
+      });
+	  
+    //二级菜单背景图
+    function changebg(div) {
+        div.className = "menuitemdiv_over";
+    }
+    function changeout(div) {
+        div.className = "menuitemdiv";
+    }
+
+    $(document).ready(function () {
+        init();//初始化，窗口关闭，加载第一个系统
+        
+		//判读是【查看】还是【添加】
+		//如果有id传过来，就是【查看】，否则就是【添加公式】
+		var studyid = request("studyid");//得到【查看】 对应的公式id
+		
+		if(Number(studyid)> 0){//是【参看】
+			//初始化在画板上画图:
+			//从数据库中查询对应的公式(要回显的图)
+			var serliza=canvasdata(studyid);//根据[查看]id查询
+			
+			//开始画
+			//先画图形，后连线
+			for (var i = 0; i < serliza.blocks.length; i++) {
+				$('#mycanvas').append('<div class="demo11" style="background-image:url(../Compents/images/Study/'+serliza.blocks[i].img+');" id="'+serliza.blocks[i].BlockId+'">'+
+				'<span id="'+serliza.blocks[i].BlockId+'_table" style="display:none">'+serliza.blocks[i].table+'</span><span id="'+serliza.blocks[i].BlockId+'_clum" style="display:none">'+serliza.blocks[i].clum+'</span>'+
+				'<span id="'+serliza.blocks[i].BlockId+'_img" style="display:none">'+serliza.blocks[i].img+'</span><span id="'+serliza.blocks[i].BlockId+'_value" style="display:none">'+serliza.blocks[i].dict_key+'</span>'+
+				'<span id="'+serliza.blocks[i].BlockId+'_key" style="display:none">'+serliza.blocks[i].dict_value+'</span>'+
+				'<span id="'+serliza.blocks[i].BlockId+'_parchild">'+serliza.blocks[i].BlockContent+'</span></div>');
+				
+				$("#" + serliza.blocks[i].BlockId).css("left", serliza.blocks[i].BlockX).css("top",serliza.blocks[i].BlockY);
+				jsPlumb.addEndpoint(serliza.blocks[i].BlockId, { anchors: "TopCenter" }, hollowCircle);
+				jsPlumb.addEndpoint(serliza.blocks[i].BlockId, { anchors: "RightMiddle" }, hollowCircle);
+				jsPlumb.addEndpoint(serliza.blocks[i].BlockId, { anchors: "BottomCenter" }, hollowCircle);
+				jsPlumb.addEndpoint(serliza.blocks[i].BlockId, { anchors: "LeftMiddle" }, hollowCircle);
+				//jsPlumb.draggable(id);//可以拖动
+				jsPlumb.draggable(jsPlumb.getSelector(".demo11"), { grid: [20, 20] });//这个grid控制拖拽的距离画板边框的距离
+				$("#" + serliza.blocks[i].BlockId).draggable({ containment: "parent" });//这个是只能在某一个范围内拖动，不能超出范围
+			}
+			//划线
+			for (var i = 0; i < serliza.connects.length; i++) {
+				jsPlumb.connect({ source:serliza.connects[i].PageSourceId, target:serliza.connects[i].PageTargetId,
+				anchors:[ ""+serliza.connects[i].SourceAnchor+"",""+serliza.connects[i].TargetAnchor+"" ],
+				});
+			}
+		}
+//else{//是添加
+//			alert("添加公式");
+//		}
+    });
+    function init() { //初始化
+        getItem('xcky'); //默认加载第一个系统
+        
+		//公式重命名  保存
+        $('#savestudyname').window({
+            top: 100,
+            left: 500,
+            width: 500,//弹窗的宽度
+            height: 340,//高度
+            modal: true,
+            border: true,
+            closable: true,
+			shadow: false,//拖拽的时候不会留下阴影
+            minimizable: false,
+            maximizable: false,
+            collapsible: false,
+            resizable: false,
+            title: '公式保存',
+            closed: true,
+            onClose: function () {
+				//alert("init中的onClose");
+            },
+            onOpen: function () {//点击x的时候执行
+                var studyid = request("studyid");//得到【查看】 对应的公式id
+                if (studyid != "" && studyid != null) {
+                    var stname = decodeURI(request("studyname"));//得到【查看】公式的名称
+                    var formularemark = decodeURI(request("formularemark"));//得到【查看】公式的备注
+                    //用于点击回显
+                    $("#oldstudyname").val(stname);
+					if(formularemark!="undefined"){
+						$("#studynameDescri").val(formularemark);//否则为空的时候显示undefined
+					}
+                }
+//				 else {//就是添加公式
+//                    //$("#oldstudyname").hide();
+//					//$("#studynameDescri").hide();
+//                }
+            }
+        });
+		
+		//这个就是拖拽到画板的时候弹出一个【选项】的弹窗 的位置
+        $('#studyOptions').window({
+            top: 34,
+            left: 260,
+            width: 300,
+            height: 400,
+			shadow: false,//拖拽的时候不会留下阴影
+            modal: true,
+            border: true,
+            closable: true,
+            minimizable: false,
+            maximizable: false,
+            collapsible: false,
+            resizable: false,
+            title: '选项',
+            closed: true,
+            onClose: function () {
+
+            },
+            onOpen: function () {
+
+            }
+        });
+		
+		//时间窗弹窗
+        $('#anfaTime').window({
+            top: 80,
+            left: 290,
+            width: 300,
+            height:350,
+			shadow: false,//拖拽的时候不会留下阴影
+            modal: true,
+            border: true,
+            closable: true,
+            minimizable: false,
+            maximizable: false,
+            collapsible: false,
+            resizable: false,
+            title: '案发时间',
+            closed: true,
+            onClose: function () {
+
+            },
+            onOpen: function () {
+
+            }
+        });
+    }
+	//根据【查看】Id加载数据，准备回显
+    function canvasdata(studyid) {
+		var jsontext=null;
+            $.ajax({
+                //url:'http://localhost/foms/Study/get/studydetail?studyid=' + studyid,
+                //url: 'http://' + urlIP1 + '/Study/get/studydata?studyid=' + studyid,
+                url: 'http://' + urlIP + '/Foms_RestFul/rest/Study/studydata',
+				data:{studyid:studyid},
+                type: 'POST',
+                async: false,
+				//dataType:'text',
+                success: function(data) {
+                   jsontext=data;
+                },error:function(msg,a){
+				alert("canvasdata错误是="+msg+"+++aa:"+a)
+			}
+            });
+			return jsontext;
+    }
+	
+	//上面的调用request方法
+    function request(paras) {
+	    var url = location.href;
+	    var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+	    var paraObj = {}
+	    for (i = 0; j = paraString[i]; i++) {
+	        paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+	    }
+	    var returnValue = paraObj[paras.toLowerCase()];
+	    if (typeof (returnValue) == "undefined") {
+	        return "";
+	    } else {
+	        return returnValue;
+	    }
+    }
+
+    //拖拽弹出 树 的框
+    $("#option_cancel").click(function () {
+        //        $("#option_select").val(""); textkey = "";
+        $('#studyOptions').window('close');
+    });
+	//保存公式名称
+	$("#cancelmsg").click(function () {
+        $('#savestudyname').window('close');
+    });
+	//时间框
+	$("#anfaTimeCancel").click(function () {
+        $('#anfaTime').window('close');
+    });
+
+    //在输入框中输入会查询
+    function OnInput(event) {
+        treechecked = false;
+        var arrTxt = new Array();
+        arrTxt = eTxt.split('&#');//这个eTxt是313行的值,这里只是用到了第三个字dbfield
+        var idstr, ids;
+        $.ajax({
+            //url: 'http://' + urlIP + '/foms/DetailType/findtree?rootkey=' + arrTxt[1] + '&str=' + event.target.value,
+            //url: 'http://' + urlIP1 + '/Study/post/searchtree',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/Study/searchtree',
+            data: { 'rootkey': arrTxt[2], 'str': event.target.value },
+            type: 'POST',
+            async: false,
+            success: function (data) {
+                idstr = data;   //返回id字符串
+                ids = idstr.split(',');
+            },error:function(msg,a){
+				alert("错误是="+msg+"+++OnInput:"+a)
+			}
+        });
+        $('#xltree').tree('collapseAll');   //折叠所有节点
+        $(".tree-node-targeted").removeClass("tree-node-targeted"); //去掉所有高亮特效
+        if (idstr != "") {  //查找目标是否为0
+            for (var i = 0; i < ids.length; i++) {
+                var node = $('#xltree').tree('find', ids[i]);
+				if(node==null){
+					continue;
+				}
+                $('#xltree').tree('expandTo', node.target);                   //展开到目标节点
+                $(".tree-title", node.target).addClass("tree-node-targeted"); //目标节点高亮显示
+            }
+        }
+    }
+
+	//弹出保存框，点击保存(修改后的公式名称，画布上的图)
+    function editinfo(){//编辑修改
+    	var isAuthority = getAuthority("研判公式修改");
+		 if (isAuthority == "true") {//判断权限
+		 	 if($('#oldstudyname').val()==null ||$('#oldstudyname').val()==""){
+	    	alert("公式名称必填");
+			return;
+	   }else {
+		var account = $.cookie("userInfo");
+        account = JSON.parse(account);　　//字符反序列化成对象
+		var userid = account.userid;
+		
+		//===========得到所有的画板上信息   开始
+		 var connects = [];//保存连接信息，谁和谁连接
+            $.each(jsPlumb.getAllConnections(), function (idx, connection) {
+				
+				//连接线信息
+                connects.push({
+                    ConnectionId: connection.id,//"con_30"
+                    PageSourceId: connection.sourceId,//"state_start2"
+                    PageTargetId: connection.targetId,//"state_flow1"
+                    SourceText:  connection.source.lastChild.innerText,//因为把展示的文字放在最后
+                   // SourceText:  $(connection.source.innerText).find("txt").text()+":"+$(connection.source.innerText).find("txt").text()+"##"+,//"案件类别:渎职案##table,clu,value"
+                    TargetText: connection.target.lastChild.innerText,//"案件类别:军人违反职责案"
+                    SourceAnchor:connection.endpoints[0].anchor.type,//源的连接位置
+                    TargetAnchor:connection.endpoints[1].anchor.type,//源的连接位置
+                });
+            });
+            var blocks = [];//画板上的所有图标
+            $("#canvasdiv #mycanvas .demo11").each(function (idx, elem) {
+                var $elem = $(elem);
+				//alert($("#"+$elem.attr('id')+"_table").text());
+				//blocks.push({})
+				//块信息
+                blocks.push({
+                    BlockId: $elem.attr('id'),//"state_flow1"  "state_start2"  "state_end3"
+                    BlockContent: $("#"+$elem.attr('id')+"_parchild").text(),
+                    BlockX: parseInt($elem.css("left"), 10),//left:"413px"  120px  blocks
+                    BlockY: parseInt($elem.css("top"), 10),//top:"149px"  431px  300
+                    table:$("#"+$elem.attr('id')+"_table").text(),
+					clum:$("#"+$elem.attr('id')+"_clum").text(),
+					img:$("#"+$elem.attr('id')+"_img").text(),
+					dict_key:$("#"+$elem.attr('id')+"_value").text(),
+					dict_value:$("#"+$elem.attr('id')+"_key").text()
+                });
+            });
+	//===========得到所有的画板上信息  结束
+			
+			var jsontext="{\"connects\":"+JSON.stringify(connects)+",\"blocks\":"+JSON.stringify(blocks)+"}";//字符串
+			var oldstudyname=$("#oldstudyname").val();
+			var studynameDescri=$("#studynameDescri").val();
+			var studyid=request("studyid");//传过来的id
+			var ds;//要传给后台的值
+			var url;
+			
+			//根据id判断是保存，还是更新
+		if (studyid != "" && studyid != null) {
+            url = 'http://' + urlIP + '/Foms_RestFul/rest/Study/saveDrop';//更新公式
+            ds={jsontext: jsontext,oldstudyname:oldstudyname,studynameDescri:studynameDescri,userid:userid,gongshiID:studyid};
+        } else {
+            url = 'http://' + urlIP + '/Foms_RestFul/rest/Study/addDrop';//添加公式
+            ds={jsontext: jsontext,oldstudyname:oldstudyname,studynameDescri:studynameDescri,userid:userid};
+        }
+			
+        $.ajax({
+            type: "post",
+            url: url,
+            data: ds,
+            success: function (data) {
+				if (data == "true") {
+					alert("保存成功!!");
+					$('#savestudyname').window('close');
+				}else{
+					alert("保存失败");
+				}					
+            }
+        });
+  	  }
+	}//判断权限
+	else {
+        $.messager.alert("提示", "您没有权限进行该操作，请联系管理员","warning",function(){
+			$('#savestudyname').window('close');
+		});
+	}
+	  
+}//保存结束
+	
+	//时间框确定
+	function anfaTimeSure(){
+		var startTime=$("#startTime").val();
+		var endTime=$("#endTime").val();
+		var start = new Date(startTime.replace("-", "/").replace("-", "/"));//Thu May 21 2015 00:00:00 GMT+0800 (中国标准时间)
+        var end = new Date(endTime.replace("-", "/").replace("-", "/"));
+		if(start>end){
+			alert('开始时间不能大于结束时间!');
+			$("#startTime").val("");//清空输入框中的原来的值
+			$("#endTime").val("");//清空输入框中的原来的值
+		}else{
+			//开始绘图
+			huabanHuiTu("3",startTime,endTime);
+			//关闭窗口
+			$('#anfaTime').window('close');
+		}
+	}
+	
+	
+	//保存(只是弹出窗口)画板上的信息(画板上的连线，拖得模块图片内容)
+	function save() {
+       $('#savestudyname').window('open');
+    }//保存结束
+	
+	//返回按钮	
+	function goBack(){
+		location.href = "StudyList.htm";
+	}	
+	
+	
+	 function getAuthority(authority) {   //判断权限 authority:权限
+        //原来的
+		//var account = eval("(" + $.cookie('userInfo') + ")");
+		//自己写的	       
+	    var account = $.cookie("userInfo");
+        account = JSON.parse(account);　　//字符反序列化成对象
+		
+		var isAuthorityTrue = "false";
+        $.ajax({
+			type: 'POST',
+            //url: 'http://' + urlIP1 + '/Manager/authority?userid=' + (account ? account[0].userid : false) + '&authority=' + authority,
+            //url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist?userid=' + (account ? account.userid : false) + '&authority=' + encodeURI(encodeURI(authority)),
+           	url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist',
+            data:{userid:account ? account.userid : false,authority:authority},
+			async: false,
+            success: function (data) {
+                isAuthorityTrue = data;
+            }
+        });
+        return isAuthorityTrue;
+    }
+</script>

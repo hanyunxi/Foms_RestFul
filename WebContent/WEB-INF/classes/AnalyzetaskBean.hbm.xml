@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.cmrx.bean.model">
+    <class name="Analyzetask" table="ANALYZETASK">
+        <meta attribute="sync-DAO">false</meta>
+        <id name="ID" type="big_decimal" column="ID">
+			<generator class="sequence">   
+                 <param name="sequence">ANALYZETASKSEQ</param>   
+             </generator> 
+        </id>
+        
+        <property name="TASKNAME" column="TASKNAME" type="string"/>
+        <property name="TASKREMARK" column="TASKREMARK" type="string"/>
+        <property name="TASKNUM" column="TASKNUM" type="string"/>
+        <property name="FORMULAID" column="FORMULAID" type="int"/>
+        <property name="TSTATUS" column="TSTATUS" type="int"/>
+        <property name="CREATETIME" column="CREATETIME" type="timestamp"/>
+        <property name="CREATEUSER" column="CREATEUSER" type="string"/>
+        <property name="ENDTIME" column="ENDTIME" type="timestamp"/>
+        <property name="RESULTJSON" column="RESULTJSON" type="string"/>
+        <property name="JSONTEXT" column="JSONTEXT" type="string"/>
+    </class>
+</hibernate-mapping>

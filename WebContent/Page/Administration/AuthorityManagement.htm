@@ -1,0 +1,1322 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>权限管理</title>
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/pagecss/leftMenu.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-extend/jeasyui-extensions/jquery.portal.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+    <style type="text/css">
+        body 
+        {
+         font-family: "微软雅黑";   
+         
+         }
+         
+        .panel-header, .panel-body
+        {
+            border: 0;
+        }
+        .layout-panel-west
+        {
+            border-right: 1px solid #e7e7e7;
+        }
+        .layout-panel-west .panel-header
+        {
+            background-color: #e6e6e6;
+        }
+        .layout-panel-center .panel-header
+        {
+            background-color: #f9f9f9;
+        }
+        li img
+        {
+            vertical-align: middle;
+        }
+        .xlmenu
+        {
+            color: #999999;
+            height: 65px;
+            line-height: 75px;
+            text-align: center;
+            font-size: 14px;
+            font-family: "黑体";
+            border: 0;
+            margin-bottom: 10px;
+        }
+        #menu_two li img
+        {
+            margin-left: 35px;
+            height:48px;
+            width:48px;
+        }
+        .a_select
+        {
+            color: #3A7290;
+        }
+        .search_content
+        {
+            width: auto;margin-left: 280px;overflow:hidden;
+            
+         }
+         #div_search .datagrid-header-row 
+         {
+            display:none;    
+         }
+        
+         #div_search .datagrid-footer
+         {
+            display:none;       
+         }
+         #div_search .datagrid-view
+         {
+            background-color:White !important;   
+          }
+          #div_search .panel-body
+          {
+              background-color:White !important;          
+          }
+         #div_search .datagrid-body
+         {       
+            background-color:White;
+            /*height:55% !important;*/
+            overflow:hidden;
+         }
+         #div_search .datagrid-cell.datagrid-cell-c1-roleName
+         {
+             font-size: 16px;
+             padding-left:20px;
+             line-height:35px; 
+             width:171px;
+             height:10px;    
+             color:#999999;
+         }
+         
+         #div_search .datagrid-row-selected div
+         {
+            color:White !important;  
+            background-color:#00749b; 
+         }
+         
+         #div_search .datagrid-row-over div
+         {
+            color:White !important;  
+         }
+         
+         #div_search .datagrid-row div
+         {
+            border-top: 1px solid #e7e7e7; 
+            border-left: 1px solid #e7e7e7; 
+            border-right: 1px solid #e7e7e7;   
+         }
+          #topsave:hover
+          {
+              background:url(../Compents/images/mana/Rights-management-save_over.png) !important ;
+              display: block;
+              height: 24px;
+              width: 81px;cursor:pointer;
+          }
+         #topcancel:hover
+          {
+              background:url(../Compents/images/mana/Rights-management-cancel-top_over.png) !important ;
+              display: block;
+              height: 24px;
+              width: 81px;cursor:pointer;
+          }
+         #changeAddimg:hover
+         {
+            background-image:url('../Compents/images/mana/Rights-management-add_over.png')!important;  
+         }
+         #delRoleimg:hover
+         {
+            background-image:url('../Compents/images/mana/Rights-management-del_over .png')!important;
+         }
+         #newAddimg:hover
+         {
+             background-image:url('../Compents/images/mana/Rights-management-determine_over.png')!important;
+         }
+         #addCancelimg:hover
+         {
+            background-image:url('../Compents/images/mana/Rights-management-cancel_over.png')!important;
+         }
+         #searchuserinfo:hover
+         {
+                background-image:url('../Compents/images/yp/Search button_over-12.png')!important;
+         }
+       .messager-body.panel-body.panel-body-noborder.window-body
+       {
+           color:Black;
+           background-color:White;
+       }
+       .ck
+       {
+           cursor:pointer;    
+       }  
+       label
+       {
+            cursor:pointer;    
+       }
+
+        .selected_apply {
+            font-weight: bold;
+        }
+        .a_title {
+            
+            text-decoration: none;
+            font-size: 16px;font-weight: bold;
+        }
+        .combo-arrow
+        {
+            background-color:#e7e7e7; 
+        }
+        .combo
+        {
+            border:1px solid #999999;
+            height:28px !important;
+            width:150px!important;
+         }
+         .combo-text.validatebox-text
+         {
+            width:130px!important;    
+         }
+         .combo-text.validatebox-text
+         {
+            color:#999999;
+            font-size: 14px;
+         }
+         .combo-panel.panel-body.panel-body-noheader
+         {
+            width:150px;
+            border:1px solid #999999;    
+            font-size:14px;
+         }
+         .combobox-item
+         {
+              font-size:14px;
+              color:#999999;  
+         }
+         #div_manage .panel.datagrid
+         {
+            overflow:auto;
+            width:100% !important;  
+         }
+        
+         #div_manage .datagrid-htable
+        {
+            background-color:#f2f2f2;
+            border-right:0px;
+        }
+        #div_manage .datagrid-row-over,.datagrid-row-over a
+        {
+            color:White;
+        }
+        #div_manage .datagrid-row-selected,.datagrid-row-selected a
+        {
+            color:White;
+            background-color:#00749b; 
+        }
+        #div_manage .datagrid-header .datagrid-cell span
+        {
+            font-size:16px;
+        }
+        #div_manage .datagrid-header-row
+        {
+            height:40px;
+        }
+        #div_manage .datagrid-row
+        {
+            height: 46px;
+        }
+        #div_manage .datagrid-btable,.datagrid-htable
+        {
+            border-top:1px solid #C8C8C8;   
+            border-left:1px solid #C8C8C8;
+            
+        }
+        #div_manage .datagrid-htable td
+        {
+            border-right:1px solid #C8C8C8;    
+        }
+        #div_manage .datagrid-btable td
+        {
+             border-right:1px solid #C8C8C8; border-bottom:1px solid #C8C8C8;
+        }
+        #div_manage .datagrid-cell
+        {
+            font-size:15px; 
+        }
+        #div_manage .panel-body
+        {
+            background-color:White;
+            color:Black;
+        }
+        #div_manage .datagrid-pager
+        {
+            color:Black;    
+        }
+        #div_manage .datagrid-wrap.panel-body.panel-body-noheader
+        {
+            width: 100% !important;    
+        }
+        #div_manage .pagination-info
+        {
+            margin-right:26px;
+                
+        }
+        #div_manage a
+        {
+            color:#00749b;
+            cursor:pointer;
+        }
+        #div_manage .datagrid-row-over a
+        {
+            color:White;   
+            cursor:pointer; 
+        }
+        #div_manage .datagrid-row-selected a 
+        {
+             color:White;   
+             cursor:pointer;
+        }
+        
+        #div_manage .pagination-page-list
+        {
+            cursor:pointer;
+            border:1px solid #C8C8C8;
+        }
+        #div_manage .pagination-num
+        {
+            border:1px solid #C8C8C8;
+        }
+         .datagrid-header td.datagrid-header-over
+        {
+            background:#f2f2f2;    
+        }
+        
+        .combo-panel.panel-body.panel-body-noheader
+        {
+            background-color:White;    
+        }
+        .panel-tool-close {
+            background: url('../Compents/eui/themes/metro/images/panel_tools.png') no-repeat;
+        }
+        .window
+        {
+            padding:1px;background-color:#25A2CE; 
+        }
+        .panel-header.panel-header-noborder.window-header
+       {        
+            margin:0;
+            padding:0;   
+       }
+       .panel.window .panel-header.panel-header-noborder.window-header .panel-title
+       {
+          height:34px ;
+          font-size:16px ;
+          font-family: 宋体 ;
+          line-height:34px;
+          margin-left:16px;                
+       }
+       
+       .panel-title
+       {
+            /*height: 28px;*/
+            line-height: 28px;
+            margin-left: 15px;
+            font-size: 16px;  
+       }
+       #sendUser:hover
+       {
+            background:url('../Compents/images/mana/User-registration-submit_over.png') no-repeat !important;
+       }
+</style>
+   
+</head>
+<body class="easyui-layout">
+<div id="imgdivhiddden" style="display:none;">
+    <img src="../Compents/images/mana/Rights-management-save_over.png"/>
+    <img src="../Compents/images/mana/Rights-management-cancel-top_over.png"/>
+    <img src="../Compents/images/mana/Rights-management-add_over.png"/>
+    <img src="../Compents/images/mana/Rights-management-del_over .png"/>
+    <img src="../Compents/images/mana/Rights-management-determine_over.png"/>
+    <img src="../Compents/images/mana/Rights-management-cancel_over.png"/>
+    <img src="../Compents/images/mana/User-registration-submit_over.png"/>
+    <img src="../Compents/images/mana/Rights-management-save_normal.png"/>
+    <img src="../Compents/images/mana/Rights-management-cancel-top_normal.png"/>
+    <img src="../Compents/images/mana/Rights-management-add_normal.png"/>
+    <img src="../Compents/images/mana/Rights-management-del_normal.png"/>
+    <img src="../Compents/images/mana/Rights-management-determine_normal.png"/>
+    <img src="../Compents/images/mana/Rights-management-cancel_normal.png"/>
+    <img src="../Compents/images/mana/User-registration-submit_normal.png"/>
+    <img src="../Compents/images/yp/Search button_over-12.png" />
+    <img src="../Compents/images/yp/Search button_normal-12.png"/>
+</div>
+    <!--菜单箭头-->
+     <div style="position: absolute; z-index: 999;top: 33px; left: 196px;width: 12px; height: 100%;">
+        <div id="guid_1" style="height: 84px; width: 12px;margin-top: 0px;">
+           <img src="../Compents/images/yp/guidearrow-21.png" /></div>
+    </div>
+    <div region="west" collapsible="false" split="false" title=" " style="width: 200px; padding-top:-10px; background-color: #f9f9f9;">
+        <ul id="menu">
+        <li><a href="#" class="select" id="a_manage">
+                <img alt="" src="../Compents/images/yp/4-15.png" />
+                <span style="margin-left: 20px; margin-right: 30px;">用户管理</span>
+                <img src="../Compents/images/yp/Arrow-13.png" /></a></li>
+            <li><a href="#" class="normal" id="a_search">
+                <img alt="" src="../Compents/images/yp/4-14.png" />
+                <span style="margin-left: 20px; margin-right: 30px;">权限管理</span>
+                <img src="../Compents/images/yp/Arrow-13.png" /></a></li>
+            <li><a href="#" class="normal" id="a_news">
+                <img alt="" src="../Compents/images/yp/4-16.png" />
+                <span style="margin-left: 20px; margin-right: 30px;">新闻管理</span>
+                <img src="../Compents/images/yp/Arrow-13.png" /></a></li>
+             
+        </ul>
+    </div> 
+
+    <div id="mainPanle" region="center" data-options="split:false" title=" " style="background-color: White;overflow:hidden;" minWidth="500px;">
+    <!--管理-->
+        <div id="div_manage" style="width: 100%; height: 100% ; display: block;overflow-y:scroll;overflow-x:hidden;">
+            <div id="editorAdd" class="easyui-window" title="Login" style="width: 652px; height: auto;background-color: white;font-family:'宋体'"> 
+                <div>
+                     <div style="background-color:#F7F7F7;margin-left:30px;margin-top:25px;padding-right:10px;color:#333333;line-height:44px;border-left:1px solid #DDDDDD;border-top:1px solid #DDDDDD;font-size:14px;width:83px;text-align:right;float:left;">
+                        用户名:
+                     </div> 
+                     <div style="background-color:white;padding-left:10px;margin-top:25px;height:44px;line-height:44px;border:1px solid #DDDDDD;font-size:14px;width:480px;text-align:left;float:left;vertical-align:middle">
+                        <input type="text"  onfocus="this.style.border='1px solid #25A2CE'" onblur="this.style.border='1px solid #c4c4c4'" required="true"  style="background-color:White;border:1px solid #c4c4c4;width:222px;height:30px;margin-top:5px;"  id="username" name="username" class="easyui-validatebox" validType="idusername" missingMessage="<font style='color:red'>用户名必须填写</font>" />
+                     </div> 
+                     <div style="background-color:#F7F7F7;margin-left:30px;padding-right:10px;margin-top:-1px;line-height:44px;border:1px solid #DDDDDD;border-right:0;color:#333333;font-size:14px;width:83px;text-align:right;float:left;">
+                        密码:
+                     </div> 
+                     <div style="background-color:white;padding-left:10px;line-height:44px;color:#333333;border:1px solid #dddddd;border-top:0;font-size:14px;width:480px;height:44px;text-align:left;float:left;vertical-align:middle">
+                        <input type="password" action="formsubmit" onfocus="this.style.border='1px solid #25A2CE'" onblur="this.style.border='1px solid #c4c4c4'" required="true"  style="background-color:White;border:1px solid #c4c4c4;width:222px;height:30px;margin-top:5px;"  id="pwd" name="pwd" class="easyui-validatebox" missingMessage="<font style='color:red'>密码必须填写</font>" />
+                     </div> 
+                     <div style="background-color:#F7F7F7;margin-left:30px;padding-right:10px;margin-top:-1px;line-height:44px;border:1px solid #DDDDDD;border-right:0;color:#333333;font-size:14px;width:83px;text-align:right;float:left;">
+                        重复密码:
+                     </div> 
+                     <div style="background-color:white;padding-left:10px;line-height:44px;color:#333333;border:1px solid #dddddd;border-top:0;font-size:14px;width:480px;height:44px;text-align:left;float:left;vertical-align:middle">
+                        <input type="password" action="formsubmit" onfocus="this.style.border='1px solid #25A2CE'" onblur="this.style.border='1px solid #c4c4c4'" required="true" style="background-color:White;border:1px solid #c4c4c4;width:222px;height:30px;margin-top:5px;"  id="repwd" name="repwd" class="easyui-validatebox" validType="equalTo['#pwd']" missingMessage="<font style='color:red'>重复密码必须填写</font>"  />
+                     </div> 
+                     <div style="background-color:#F7F7F7;margin-left:30px;padding-right:10px;margin-top:-1px;line-height:44px;border:1px solid #DDDDDD;border-right:0;color:#333333;font-size:14px;width:83px;text-align:right;float:left;">
+                        真实姓名:
+                     </div> 
+                     <div style="background-color:white;padding-left:10px;line-height:44px;color:#333333;border:1px solid #dddddd;border-top:0;font-size:14px;width:480px;height:44px;text-align:left;float:left;vertical-align:middle">
+                        <input type="text" action="formsubmit" onfocus="this.style.border='1px solid #25A2CE'" onblur="this.style.border='1px solid #c4c4c4'" required="true" id="truename" style="background-color:White;border:1px solid #c4c4c4;width:222px;height:30px;margin-top:5px;" name="relname" class="easyui-validatebox" missingMessage="<font style='color:red'>真实姓名必须填写</font>" />
+                     </div> 
+                     <div style="background-color:#F7F7F7;margin-left:30px;padding-right:10px;margin-top:-1px;line-height:44px;border:1px solid #DDDDDD;border-right:0;color:#333333;font-size:14px;width:83px;text-align:right;float:left;">
+                        身份证号:
+                     </div> 
+                     <div style="background-color:white;padding-left:10px;line-height:44px;color:#333333;border:1px solid #dddddd;border-top:0;font-size:14px;width:480px;height:44px;text-align:left;float:left;vertical-align:middle">
+                        <input type="text" action="formsubmit" onfocus="this.style.border='1px solid #25A2CE'" onblur="this.style.border='1px solid #c4c4c4'" required="true" id="usercard" style="background-color:White;border:1px solid #c4c4c4;width:222px;height:30px;margin-top:5px;" name="usercard" validType="idcard" class="easyui-validatebox" missingMessage="<font style='color:red'>身份证号必须填写</font>" />
+                     </div> 
+                     <div style="background-color:#F7F7F7;margin-left:30px;padding-right:10px;margin-top:-1px;line-height:44px;border:1px solid #DDDDDD;border-right:0;color:#333333;font-size:14px;width:83px;text-align:right;float:left;">
+                        部门:
+                     </div> 
+                     <div style="background-color:white;padding-left:10px;line-height:44px;color:#333333;border:1px solid #dddddd;border-top:0;font-size:14px;width:480px;height:44px;text-align:left;float:left;vertical-align:middle">
+                        <select id="organname" action="formsubmit" name="organname" onfocus="this.style.border='1px solid #25A2CE',alert("aa")" onblur="this.style.border='1px solid #c4c4c4'" style="background-color:White;border:1px solid #c4c4c4;width:auto;height:30px;margin-top:6px;"></select>
+                     </div>
+                     <div style="background-color:#F7F7F7;margin-left:30px;padding-right:10px;margin-top:-1px;line-height:44px;border:1px solid #DDDDDD;border-right:0;color:#333333;font-size:14px;width:83px;text-align:right;float:left;">
+                        角色:
+                     </div> 
+                     <div style="background-color:white;padding-left:10px;line-height:44px;color:#333333;border:1px solid #dddddd;border-top:0;font-size:14px;width:480px;height:44px;text-align:left;float:left;vertical-align:middle;">
+                        <select id="serolename" action="formsubmit" name="serolename" onfocus="this.style.border='1px solid #25A2CE'" onblur="this.style.border='1px solid #c4c4c4'" style="background-color:White;border:1px solid #c4c4c4;width:auto;height:30px;margin-top:6px;"></select>
+                     </div>
+                     <div id="sendUser" onclick="editInfo();" style="background:url('../Compents/images/mana/User-registration-submit_normal.png') no-repeat;cursor: pointer;margin-left:250px;margin-top:30px;width:120px;height:46px;float:left"></div>
+                </div>
+                
+            </div>  
+            <div style="margin:0; min-width:800px; margin-left:40px; height:65px; width:96%;">
+                <div style="float:left; margin-top:30px;">
+                    <a id="newApply" onclick="" class="a_title selected_apply" style="color: black;cursor:default" href="#">用户管理</a>
+                    <span style=" font-size:16px;color: #00749b;cursor:default">|</span> 
+                    <a id="historyApply" onclick="userInfoAdd();" class="a_title" style="color: #00749b;" href="#">添加用户</a>
+                </div>
+                <div id="tool" style="float:right; margin-top:30px; margin-right:16px;">
+                    <div style="float:left;margin-right:45px">
+                         <select id="roleselect"  style=" font-size:14px; margin-right:15px;width:auto; height:28px; color:#999999; ">
+                             
+                         </select>
+                     </div>
+                     <div style="float:left">
+                     <input type="text" id="txtSearch" style=" width:260px; height:22px; color:#999999; margin-right:45px;float:left;" 
+                        onfocus="if (value =='请输入查找内容'){value ='';this.style.color='Black';}" onblur="if (value ==''){value='请输入查找内容'; this.style.color='#999999';}" value="请输入查找内容"/> 
+                     <a class="btn" id="searchuserinfo" onclick="return searchloadTable();"  style="float:left;margin-top:-2px;height:32px;width:96px;background:url('../Compents/images/yp/Search button_normal-12.png');display:block" onclick="loadHistoryTable();"></a>
+                    </div>
+                </div>
+                <div style=" clear:both;" ></div>
+            </div>
+            <div style="width:96%;margin-left:40px;margin-top:10px;overflow:hidden;">
+                <input type="hidden" id="tbcount"  value="-1" />
+                <table id="manageTb">
+                </table>
+            </div>
+        </div>
+        <div id="div_search" style="width: 100%; height: 100%; display:none;">
+            <div></div><!--空白div 防止元素不刷新 -->
+            <!--菜单2-->
+            <div style="width: 25%; height: 90%; margin-left: 10px; float:left;" >
+               <div style="margin-left:50px;background-color: White;color: #333333;font-size: 16px;padding-left:20px;height: 85px;line-height: 85px;text-align: left;border-bottom: 2px solid #e7e7e7;">
+                    角色
+               </div>
+               <div id="scroll_bd" style="width:80%;overflow-x:hidden;margin-left:50px;margin-top:30px;background-color: White;color: #999999;float:left;font-size: 16px;line-height: 85px;text-align: left;height:58%; overflow-y:scroll;">
+                    <div  style="float:left;" id="bd">
+                        <table id="usertable"  style="width:200px;float:left;">
+                        </table>
+                    </div>                
+               </div> 
+                <div style="clear:both;height:auto">
+                    <div style="margin-left:100px;padding-top:80px" id="adddelete">
+                            <a id="changeAdd" onclick="return changeAdd();" style="cursor:pointer;margin-left:-10px"><img id="changeAddimg" style="background:url('../Compents/images/mana/Rights-management-add_normal.png');height:24px;width:48px"/></a>
+                            <a id="delRole" onclick="return delRole();"  style="cursor:pointer;padding-left:20px"><img id="delRoleimg" style="background:url('../Compents/images/mana/Rights-management-del_normal.png');height:24px;width:48px" /></a>
+                    </div> 
+                    <div style="margin-left:50px;padding-top:30px;display:none" id="newAddCancel">
+                        <input type="text" id="role" style="border:1px dotted  #999999;width: 200px; height: 22px;margin-top:7px; color: #999999"
+                                onfocus="if (value =='请输入角色名'){value ='';this.style.color='Black';}"
+                                onblur="if (value ==''){value='请输入角色名'; this.style.color='#999999';}"  value="请输入角色名" /><br /><br />
+                        <a id="newAdd" onclick="return newAdd();" style="margin-left:40px;cursor:pointer;"><img id="newAddimg" style="background:url('../Compents/images/mana/Rights-management-determine_normal.png');height:24px;width:48px" /></a>
+                        <a id="addCancel" onclick="return addCancel();" style="cursor:pointer;padding-left:20px"><img id="addCancelimg" style="background:url('../Compents/images/mana/Rights-management-cancel_normal.png');height:24px;width:48px" /></a>
+                    </div>
+                </div>   
+               
+            </div>
+             <!--子级内容-->
+             <div  id="scroll_bdAu" class="search_content" >                                                                                                                                                                                                                             
+                <div style="width:80%;margin-left:50px;margin-right:80px;background-color: White;color: #333333;font-size: 16px;padding-left:20px;height: 85px;line-height: 85px;text-align: left;border-bottom: 2px solid #e7e7e7;">                  
+                   <span style="float:left;">权限管理</span>
+                   <div>
+                   <a  id="topcancel"  style="float:right;margin-top:30px;cursor:pointer;background:url(../Compents/images/mana/Rights-management-cancel-top_normal.png);width:81px;height:24px;display:block;margin-left:10px" onclick="return cancelAu();"></a>  
+                   <a id="topsave" style="float:right;margin-top:30px;text-align:right;cursor:pointer;background:url(../Compents/images/mana/Rights-management-save_normal.png);width:81px;height:24px;display:block" onclick="return editAu();"></a>
+                                    
+                    </div>
+               </div>
+               <div id="contentdiv" style="overflow:auto;height:580px;">
+                    
+                    <div style="margin-left:50px;margin-top:30px;background-color: White;color: #999999;float:left;font-size: 16px;line-height: 85px;text-align: left;">
+                        <div style="width:630px;height:auto;border:1px solid #e7e7e7;">
+                            <p style="width:80px;height:30px;padding-left:10px;line-height:30px;background-color:#FFFFFF;color:Gray;position:relative;top:-30px;left:10px;">系统管理</p>
+                            <div style="width:600px;position:relative;top:-30px;left:10px;padding-left:10px;line-height:30px;">
+                                <input id="Checkbox7" class="ck" style="margin-right:10px"  type="checkbox" value="Checkbox7" /><label >用户列表</label>
+                                <input id="Checkbox8" class="ck" style="margin-left:30px;margin-right:10px" type="checkbox" value="Checkbox8" /><label>用户添加</label>
+                                <input id="Checkbox9" class="ck" style="margin-left:30px;margin-right:10px" type="checkbox" value="Checkbox9" /><label>用户删除</label>
+                                <input id="Checkbox10" class="ck" style="margin-left:30px;margin-right:10px" type="checkbox" value="Checkbox10" /><label>用户修改</label>
+                                <input id="Checkbox11" class="ck" style="margin-left:30px;margin-right:10px" type="checkbox" value="Checkbox11" /><label>角色管理</label>
+                            </div>
+                        </div>       
+                   </div>
+
+                   <div style="margin-left:50px;margin-top:30px;background-color: White;color: #999999;float:left;font-size: 16px;line-height: 85px;text-align: left;">
+                        <div style="width:630px;height:auto;border:1px solid #e7e7e7;">
+                            <p style="width:80px;height:30px;padding-left:10px;line-height:30px;background-color:#FFFFFF;color:Gray;position:relative;top:-30px;left:10px;">小类细分</p>
+                            <div style="width:600px;position:relative;top:-30px;left:10px;padding-left:10px;line-height:30px;">
+                                <input id="Checkbox1" class="ck detailck" style="margin-right:10px;"  type="checkbox" value="Checkbox1" /><label>分局审批</label>
+                                <input id="Checkbox2" class="ck detailck" style="margin-left:30px;margin-right:10px" type="checkbox" value="Checkbox2" /><label>总队审批</label>
+                            </div>
+                        </div>       
+                   </div>
+                   
+                   <div style="margin-left:50px;margin-top:30px;background-color: White;color: #999999;float:left;font-size: 16px;line-height: 85px;text-align: left;">
+                        <div style="width:630px;height:auto;border:1px solid #e7e7e7;">
+                            <p style="width:80px;height:30px;padding-left:10px;line-height:30px;background-color:#FFFFFF;color:Gray;position:relative;top:-30px;left:10px;">研判分析</p>
+                            <div style="width:600px;position:relative;top:-30px;left:10px;padding-left:10px;line-height:30px;">
+                                <input id="Checkbox3" class="ck" style="margin-right:10px"  type="checkbox" value="Checkbox7" /><label >研判公式列表</label>
+                                <input id="Checkbox4" class="ck" style="margin-left:30px;margin-right:10px" type="checkbox" value="Checkbox8" /><label>研判公式添加</label>
+                                <input id="Checkbox5" class="ck" style="margin-left:30px;margin-right:10px" type="checkbox" value="Checkbox9" /><label>研判公式删除</label>
+                                <input id="Checkbox6" class="ck" style="margin-left:30px;margin-right:10px" type="checkbox" value="Checkbox10" /><label>研判公式修改</label>
+                            </div>
+							<div style="width:600px;position:relative;top:-30px;left:10px;padding-left:10px;line-height:30px;">
+								<input id="Checkbox7" class="ck" style="margin-right:10px"  type="checkbox" value="Checkbox11" /><label >研判公式任务</label>
+                            </div>
+                        </div>       
+                   </div>
+                   
+                   <div style="margin-left:50px;margin-top:30px;background-color: White;color: #999999;float:left;font-size: 16px;line-height: 85px;text-align: left;">
+                        <div style="width:630px;height:auto;border:1px solid #e7e7e7;">
+                            <p style="width:80px;height:30px;padding-left:10px;line-height:30px;background-color:#FFFFFF;color:Gray;position:relative;top:-30px;left:10px;">新闻管理</p>
+                            <div style="width:600px;position:relative;top:-30px;left:10px;padding-left:10px;line-height:30px;">
+                                <input id="Checkbox12" class="ck" style="margin-right:10px"  type="checkbox" value="Checkbox7" /><label >新闻列表</label>
+                                <input id="Checkbox13" class="ck" style="margin-left:30px;margin-right:10px" type="checkbox" value="Checkbox8" /><label>新闻发布</label>
+                                <input id="Checkbox14" class="ck" style="margin-left:30px;margin-right:10px" type="checkbox" value="Checkbox9" /><label>新闻删除</label>
+                                <input id="Checkbox15" class="ck" style="margin-left:30px;margin-right:10px" type="checkbox" value="Checkbox10" /><label>新闻修改</label>
+                            </div>
+                        </div>       
+                   </div>
+               </div>
+            
+            <div></div>
+             
+        </div></div>
+    <!-- 新闻管理 -->
+        <div id="div_news" style="width: 100%; height: 100%; display:none;">
+            <iframe id="news_frame" src="NewsManagement.htm"  style=" width:100%; height:100%; border:none;"></iframe>
+        </div>
+           
+    </div>
+        <input type="text" id="roleId" name="roleId" value="abc"/>
+        <input type="hidden" id="authirity" name="authirity" />
+        <input type="hidden" id="userId" name="userId" />
+
+</body>
+</html>
+<script type="text/javascript">
+    var userData;
+
+    function changeAdd() {
+        $("#adddelete").hide();
+        $("#newAddCancel").show();
+    }
+    function addCancel() {
+        $("#adddelete").show();
+        $("#newAddCancel").hide();
+    }
+    function cancelAu() {
+
+    }
+    var idCard = function (value) { 
+        if (value.length == 18 && 18 != value.length) return false;
+        var number = value.toLowerCase();
+        var d, sum = 0, v = '10x98765432', w = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2], a = '11,12,13,14,15,21,22,23,31,32,33,34,35,36,37,41,42,43,44,45,46,50,51,52,53,54,61,62,63,64,65,71,81,82,91';
+        var re = number.match(/^(\d{2})\d{4}(((\d{2})(\d{2})(\d{2})(\d{3}))|((\d{4})(\d{2})(\d{2})(\d{3}[x\d])))$/);
+        if (re == null || a.indexOf(re[1]) < 0) return false;
+        if (re[2].length == 9) {
+            number = number.substr(0, 6) + '19' + number.substr(6);
+            d = ['19' + re[4], re[5], re[6]].join('-');
+        } else d = [re[9], re[10], re[11]].join('-');
+        if (!isDateTime.call(d, 'yyyy-MM-dd')) return false;
+        for (var i = 0; i < 17; i++) sum += number.charAt(i) * w[i];
+        return (re[2].length == 9 || number.charAt(17) == v.charAt(sum % 11));
+    }
+    var isDateTime = function (format, reObj) {
+        format = format || 'yyyy-MM-dd';
+        var input = this, o = {}, d = new Date();
+        var f1 = format.split(/[^a-z]+/gi), f2 = input.split(/\D+/g), f3 = format.split(/[a-z]+/gi), f4 = input.split(/\d+/g);
+        var len = f1.length, len1 = f3.length;
+        if (len != f2.length || len1 != f4.length) return false;
+        for (var i = 0; i < len1; i++) if (f3[i] != f4[i]) return false;
+        for (var i = 0; i < len; i++) o[f1[i]] = f2[i];
+        o.yyyy = s(o.yyyy, o.yy, d.getFullYear(), 9999, 4);
+        o.MM = s(o.MM, o.M, d.getMonth() + 1, 12);
+        o.dd = s(o.dd, o.d, d.getDate(), 31);
+        o.hh = s(o.hh, o.h, d.getHours(), 24);
+        o.mm = s(o.mm, o.m, d.getMinutes());
+        o.ss = s(o.ss, o.s, d.getSeconds());
+        o.ms = s(o.ms, o.ms, d.getMilliseconds(), 999, 3);
+        if (o.yyyy + o.MM + o.dd + o.hh + o.mm + o.ss + o.ms < 0) return false;
+        if (o.yyyy < 100) o.yyyy += (o.yyyy > 30 ? 1900 : 2000);
+        d = new Date(o.yyyy, o.MM - 1, o.dd, o.hh, o.mm, o.ss, o.ms);
+        var reVal = d.getFullYear() == o.yyyy && d.getMonth() + 1 == o.MM && d.getDate() == o.dd && d.getHours() == o.hh && d.getMinutes() == o.mm && d.getSeconds() == o.ss && d.getMilliseconds() == o.ms;
+        return reVal && reObj ? d : reVal;
+        function s(s1, s2, s3, s4, s5) {
+            s4 = s4 || 60, s5 = s5 || 2;
+            var reVal = s3;
+            if (s1 != undefined && s1 != '' || !isNaN(s1)) reVal = s1 * 1;
+            if (s2 != undefined && s2 != '' && !isNaN(s2)) reVal = s2 * 1;
+            return (reVal == s1 && s1.length != s5 || reVal > s4) ? -10000 : reVal;
+        }
+    };
+    $.extend($.fn.validatebox.defaults.rules, {
+        /*必须和某个字段相等*/
+        equalTo: {
+            validator: function (value, param) {
+                return $(param[0]).val() == value;
+            },
+            message: '<font style="color:red">重复密码不正确</font>'
+        },
+        idcard: {// 验证身份证
+            validator: function (value) {
+                return idCard(value);
+            },
+            message: "<font style='color:red'>请输入正确的身份证号码</font>"
+        },
+        idusername: {
+            validator: function (value, param) {
+                $("#username").unbind('keyup'); 
+                $("#username").keyup(function () {
+                    var username = $(this).val();
+                    if (username != null && username != "") {
+                        //var changeUrl = 'http://' + urlIP + '/foms/Manager/userexist?name=' + username;
+                        //var changeUrl = 'http://' + urlIP1 + '/Manager/userexist?name=' + username;
+                        var changeUrl = 'http://' + urlIP + '/Foms_RestFul/rest/Manager/userexist';
+                        $.ajax({
+                            type: "POST",
+							data:{name:username},
+                            url: changeUrl,
+                            async: false,
+                            success: function (str) {
+                                if (str == '1') {
+                                    $("#sendUser").removeAttr("onclick");
+                                    $.fn.validatebox.defaults.rules.idusername.message = '<font style="color:red">您输入的用户名存在！请重新输入！</font>';
+                                    
+                                } else if (str == '0') {
+                                    $("#sendUser").attr("onclick", "editInfo();");
+                                    $.fn.validatebox.defaults.rules.idusername.message = '<font style="color:black">用户名可以使用！</font>';
+                                    
+                                } else if (str == '-1') {
+                                    $("#sendUser").removeAttr("onclick");
+                                    $.fn.validatebox.defaults.rules.idusername.message = '<font style="color:red">您输入的用户名存在！请重新输入！</font>';
+                                    $("#username").focus();
+                                   
+                                }
+                            }
+                        });
+
+                    }
+
+                });
+                $("#username").blur(function () {
+                    var username = $(this).val();
+                    if (username != null && username != "") {
+                        //var changeUrl = 'http://' + urlIP + '/foms/Manager/userexist?name=' + username;
+                        //var changeUrl = 'http://' + urlIP1 + '/Manager/userexist?name=' + username;
+                        var changeUrl = 'http://' + urlIP + '/Foms_RestFul/rest/Manager/userexist';
+                        $.ajax({
+                            type: "POST",
+							data:{name:username},
+                            url: changeUrl,
+                            async: false,
+                            success: function (str) {
+                                if (str == '1') {
+                                    $("#sendUser").removeAttr("onclick");
+                                    $.fn.validatebox.defaults.rules.idusername.message = '<font style="color:red">您输入的用户名存在！请重新输入！</font>';
+                                    $("#username").focus();
+                                } else if (str == '0') {
+                                    $("#sendUser").attr("onclick", "editInfo();");
+                                    $.fn.validatebox.defaults.rules.idusername.message = '<font style="color:black">用户名可以使用！</font>';                                 
+                                } else if (str == '-1') {
+                                    $("#sendUser").removeAttr("onclick");
+                                    $.fn.validatebox.defaults.rules.idusername.message = '<font style="color:red">您输入的用户名存在！请重新输入！</font>';
+                                    $("#username").focus();
+                                  
+                                }
+                            }
+                        });
+
+                    }
+
+                });
+
+            }
+        }
+    });
+
+
+    function delRole() {//删除角色      
+    		//alert("删除");
+                var roleId = $("#roleId").val();
+				alert("删除roleId="+roleId);
+                if (roleId != "") {
+                    $.messager.confirm("操作提示", "确认删除此角色?", function (r) {
+                        if (r) {
+                            $.ajax({
+                                type: "POST",
+                                //url: 'http://' + urlIP + '/foms/Manager/roledel?id=' + roleId + "&userid=100",
+                                //url: 'http://' + urlIP1 + '/Manager/roledel?id=' + roleId + "&userid=100",
+                                url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/roledel',
+								data:{id:roleId,userid:100},
+                                success: function (msg) {
+                                    if (msg == "true") {
+                                        $.messager.alert("操作提示", "删除角色成功!");
+                                        reloads();
+                                    } else if (msg == "false") {
+                                        $.messager.alert("操作提示", "该角色下还有其他用户，请修改用户角色后方可删除!");
+                                    } else if (msg == "error") {
+                                        $.messager.alert("操作提示", msg);
+                                    }
+                                }
+                            });
+
+                        }
+                    });
+                }         
+    }
+    function newAdd() {//新增角色
+        var rolename = $("#role").val();
+        //var changeUrl = 'http://' + urlIP + '/foms/Manager/roleexist?name=' + rolename;
+        var changeUrl = 'http://' + urlIP + '/Foms_RestFul/rest/Manager/roleexist';
+		$.ajax({
+			type: "POST",
+			url:changeUrl,
+			data:{name:rolename},
+			success: function(str){
+			if (str == "1") {
+                $.messager.alert("操作提示", "角色名存在！请重新输入!");
+                $("#role").focus();
+            } else if (str == "0" && $.trim(rolename) != "" && rolename != "请输入角色名") {
+                addRole();
+            } else {
+                $.messager.alert("操作提示", "error");
+            }
+			}
+		});
+		
+//        $.post(changeUrl,{name:rolename}, function (str) {
+//            if (str == "1") {
+//                $.messager.alert("操作提示", "角色名存在！请重新输入!");
+//                $("#role").focus();
+//            } else if (str == "0" && $.trim(rolename) != "" && rolename != "请输入角色名") {
+//                addRole();
+//            } else {
+//                $.messager.alert("操作提示", "error");
+//            }
+//
+//        })
+    }
+    function editAu() {//修改权限
+                var roleId = $("#roleId").val();
+                var str = "";
+                $('input[type=checkbox]:checked').each(function () {
+                    if ($(this).next().text() != null && $(this).parent().next().toString() != "") {
+                        str += $(this).next().text() + ",";
+
+                    }
+                });
+                if (str.length != 0) {
+                    str = str.substring(0, str.length - 1);
+                    $("#authirity").val(str);
+                }
+                var authirity = $("#authirity").val();
+                if (roleId != "") {
+                    $.ajax({
+                        type: "POST",
+                        //url: 'http://' + urlIP + '/foms/Manager/changeauthority?id=' + roleId + "&authority=" + authirity + "&userid=100",
+                        //url: 'http://' + urlIP1 + '/Manager/changeauthority?id=' + roleId + "&authority=" + authirity + "&userid=100",
+                        url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/changeauthority',
+                        data:{id:roleId,authority:authirity,userid:100},
+						success: function (msg) {
+                            if (msg == "true") {
+                                $.messager.alert("操作提示", "权限修改成功!");
+                                reloads();
+                            } else {
+                                $.messager.alert("操作提示", "权限操作失败!");
+                            }
+                        }
+                    });
+                }
+    }
+
+    function addRole() {
+                var rolename = $("#role").val();
+                $.ajax({
+                    type: "POST",
+                    //url: 'http://' + urlIP + '/foms/Manager/roleadd?name=' + rolename + '&userid=5',
+                    //url: 'http://' + urlIP1 + '/Manager/roleadd?name=' + rolename + '&userid=5',
+                    url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/roleadd',
+					data:{name:rolename,userid:5},
+                    success: function (rolemsg) {
+                        if (rolemsg == "true") {
+                            $.messager.alert("操作提示", "角色添加成功!");
+                            reloads();
+                            $("#role").val('');
+                            $("#newAddCancel").hide();
+                            $("#adddelete").show();
+                        } else
+                            $.messager.alert("操作提示", "角色添加失败!");
+                    }
+                });
+    }
+
+
+
+    function initMenu() {       //一级菜单
+        $('#menu ul').hide();
+        $('#menu ul:first').show();
+        $('#menu li a').click(
+            function () {
+                $('#menu li a').removeClass("select").addClass("normal");
+                $(this).addClass("select").removeClass("normal");
+                var checkElement = $(this).next();
+                if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+                    return false;
+                }
+                if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+                    $('#menu ul:visible').slideUp('normal');
+                    checkElement.slideDown('normal');
+                    return false;
+                }
+            }
+             );
+    }
+
+    function firstload() {//判断角色的权限
+                $('#usertable').datagrid({
+                    //url: 'http://' + urlIP + '/foms/Manager/getrole',
+                    //url: 'http://' + urlIP1 + '/Manager/getrole',
+                    url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/getrole',
+                    nowrap: true,
+                    method: 'POST',
+                    idField: 'roleId',
+                    singleSelect: true,
+                    columns: [[
+                    { field: 'roleName', title: 'roleName', id: 'roleId', width: 179 }
+                     ]],
+					 //循环所有的默认权限选中
+                    onClickRow: function (index, data) {
+                        $("input[type=checkbox]").each(function (a, b) {
+                            if (data.authority.toString().indexOf($(this).next().text()) != -1) {
+                                b.checked = true;
+                            }
+                            else {
+                                b.checked = false;
+                            }
+                        }); 
+                        var row = $('#usertable').datagrid('getSelected');
+                        select_ticke_id = row.roleId;
+                        $("#roleId").val(select_ticke_id);
+                    },
+					//先执行onLoadSuccess,在执行onClickRow
+                    onLoadSuccess: function (data) {
+                        var datacount = data.total - 1;
+                        $("#datagrid-row-r1-2-" + datacount).children().css("border-bottom", "1px solid #e7e7e7");
+                        $("#scroll_bd").height();
+                        var h = window.screen.height * 0.58 - 200;
+                        $("#scroll_bd").height((Number(h / 36).toFixed() * 36 + 11));
+                        loginauthority = "角色管理";
+                        $.ajax({
+                            type: "POST",
+                            //url: 'http://' + urlIP + '/foms/Manager/authority?userid='+(userData ? userData.userid : false)+'&authority=' + loginauthority,
+                            //url: 'http://' + urlIP1 + '/Manager/authority?userid='+(userData ? userData.userid : false)+'&authority=' + loginauthority,
+                            url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist',
+							data:{userid:userData ? userData.userid : false,authority:loginauthority},
+                            success: function (msg) {
+                                if (msg == "true") {
+                                    $('#div_search').show(); 
+                                } else {
+                                    $('#div_search').hide(); 
+//                                    $.messager.alert("操作提示", "该用户没有权限！");
+                                }
+                            }
+                        });
+                    }
+                });
+    }
+
+    function userfirst() {//加载部门，角色
+        $.ajax({
+            //url: 'http://' + urlIP + '/foms/Manager/getorgan',
+            //url: 'http://' + urlIP1 + '/Manager/getorgan',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/getorgan',
+            type: 'POST',
+            async: false,
+            success: function (data) {
+                
+                var friend = $("#organname");
+                friend.empty();
+                var a = eval(data);
+                for (var i = 0; i < a.rows.length; i++) {
+                    var option = $("<option>").text(a.rows[i].organName).val(a.rows[i].ORGANID);
+                    friend.append(option);
+                }
+            }
+        });
+        $.ajax({
+            //url: 'http://' + urlIP + '/foms/Manager/getrole',
+            //url: 'http://' + urlIP1 + '/Manager/getrole',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/getrole',
+            type: 'POST',
+            async: false,
+            success: function (data) {
+                var friend = $("#serolename");
+                
+                friend.empty();
+                var a = eval(data);
+                for (var i = 0; i < a.rows.length; i++) {
+                    var option = $("<option>").text(a.rows[i].roleName).val(a.rows[i].roleId);
+                    friend.append(option);
+                    
+                }
+            }
+        });
+    }
+    var organidselect = ''; 
+    $('#roleselect').change(function () {
+        organidselect = $(this).children('option:selected').val();
+        
+    })
+
+    function searchloadTable() {
+        loadTable();
+    }
+
+    function loadTable() {//加载用户信息
+  
+        var tbcount = $('#tbcount').val();
+        var truename = $('#txtSearch').val();
+        if (truename == "请输入查找内容") {
+            truename = '';
+        }
+        $('#manageTb').datagrid({
+            //url: 'http://' + urlIP + '/foms/Manager/getuser?truename=' + truename + '&organid=' + organidselect + '&count=' + tbcount,
+            //url: 'http://' + urlIP1 + '/Manager/getuser?truename=' + truename + '&organid=' + organidselect + '&count=' + tbcount,
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/getuser',
+            queryParams: {truename: truename, organid: organidselect, count:tbcount },
+			striped: true,
+            singleSelect: true,
+            pagination: true,
+            loadMsg: "正在加载，请稍等...",
+            idField: 'userid',
+            fitColumns: true,
+            pageSize: 10, //每页显示的记录条数，默认为10  
+            pageList: [5, 10, 15],
+            columns: [[
+            { field: 'userName', title: '用户名', width: ($(window.parent.document).width() - 229) * 0.1, align: 'center' },
+            { field: 'trueName', title: '真实姓名', width: ($(window.parent.document).width() - 229) * 0.1, align: 'center' },
+            { field: 'userCard', title: '身份证号', width: ($(window.parent.document).width() - 229) * 0.2, align: 'center' },
+            { field: 'roleName', title: '角色', width: ($(window.parent.document).width() - 229) * 0.1, align: 'center' },
+            { field: 'organName', title: '机构', width: ($(window.parent.document).width() - 229) * 0.4, align: 'center' },
+            { field: 'userId', title: '操作', width: ($(window.parent.document).width() - 229) * 0.1, align: 'center',
+                formatter: function (value, row, index) {
+                    return "<a   onclick='userEdit(&apos;" + row.USERID + "&apos;,&apos;" + row.userName + "&apos;,&apos;" + row.pwd + "&apos;,&apos;" + row.userCard + "&apos;,&apos;" + row.trueName + "&apos;,&apos;" + row.roleName + "&apos;,&apos;" + row.organName + "&apos;);'>修改</a><a style='cursor:default'>/</a><a  onclick='userDelete(&apos;" + row.USERID + "&apos;)'>删除</a>";
+                }
+            }
+            ]],
+            onLoadSuccess: function (data) {
+                $(window).resize(function () { //监测浏览器大小变化
+                    setTimeout(function () {
+                        $('#manageTb').datagrid('resize'); //动态改变表格宽度
+                    }, 300);
+                });
+            }
+        });
+    }
+
+    function reloads() {//重新加载datagrid
+        $('#usertable').datagrid('reload'); //刷新
+        $('#manageTb').datagrid('reload');
+    }
+
+    function userInfoAdd() { //增加用户信息
+        loginauthority = "用户添加"; $("#username").attr("disabled", false);
+        $.ajax({
+            type: "POST",
+            //url: 'http://' + urlIP + '/foms/Manager/authority?userid='+(userData ? userData.userid : false)+'&authority=' + loginauthority,
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist',
+            data:{userid:userData ? userData.userid : false,authority:loginauthority},
+			success: function (msg) {
+                if (msg == "true") {
+                    $('#editorAdd').window('open');
+                    $("#userId").val('');
+                    $("#pwd").val('');
+                    $("#repwd").val('');
+                    $("#truename").val('');
+                    $("#username").removeAttr("readonly");
+                    $("#username").val('');
+                    $("#usercard").val('');
+                    $("#organname")[0].selectedIndex = 0;
+                    $("#serolename")[0].selectedIndex = 0;
+                   
+                } else {
+                    $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+                } 
+            }
+        });
+    }
+
+    function userEdit(id, username, pwd, usercard, truename, rolename, organname) {//加载需要修改用户信息
+        loginauthority = "用户修改";
+        $("#username").attr("disabled", true);
+        $("#pwd").removeClass();
+        $("#repwd").removeClass();
+        $("#relname").removeClass();
+        $("#usercard").removeClass(); 
+        $.ajax({
+            type: "POST",
+            //url: 'http://' + urlIP + '/foms/Manager/authority?userid=' + (userData ? userData.userid : false) + '&authority=' + loginauthority,
+            //url: 'http://' + urlIP1 + '/Manager/authority?userid=' + (userData ? userData.userid : false) + '&authority=' + loginauthority,
+            //url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist?userid=' + (userData ? userData.userid : false) + '&authority=' + loginauthority,
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist',
+            data:{userid:userData ? userData.userid : false,authority:loginauthority},
+			success: function (msg) {
+                if (msg == "true") {
+                    $('#editorAdd').window('open');
+                    $("#username").attr("readonly", true);
+                    $("#username").val(username);
+                    $("#truename").val(truename);
+                    $("#usercard").val(usercard);
+                    $("#pwd").val(pwd);
+                    $("#repwd").val(pwd);
+                    //        $("#serolename").select(rolename);
+                    $("#serolename option").each(function () {
+                        if (rolename.toString().indexOf($(this).text().toString()) != -1) {
+                            $(this).attr('selected', 'selected');
+                        }
+                    });
+                    $("#organname option").each(function () {
+                        if (organname.toString().indexOf($(this).text().toString()) != -1) {
+                            $(this).attr('selected', 'selected');
+                        }
+                    });
+                    $("#userId").val(id);
+                }
+                else {
+                    $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+                }  
+            } 
+        });
+    }
+    function editInfo() {//用户修改添加提交
+        var name = $("#username").val();
+        var pwd = $("#pwd").val();
+        var repwd = $("#repwd").val();
+        var relname = $("#truename").val();
+        var organId = $("#organname").find("option:selected").val();
+        var roleId = $("#serolename").find("option:selected").val();
+        var usercard = $("#usercard").val();
+        var userid = $("#userId").val();
+        var flag = true;
+        $('#editorAdd [action=formsubmit]').each(function () {
+            if ($(this).attr('required') || $(this).attr('validType')) {
+                if (!$(this).validatebox('isValid')) {
+                    flag = false;
+                    $(this).focus();
+                    return;
+                }
+            }
+        });
+        if (flag) {
+			if (userid != "" && userid != null) {
+				$.ajax({
+					type: "POST",
+					//url: 'http://' + urlIP + '/foms/Manager/useredit?id=' + userid + '&pwd=' + pwd + '&truename=' + relname + '&usercard=' + usercard + '&roleid=' + roleId + '&organid=' + organId + '&userid=1',
+					//url: 'http://' + urlIP1 + '/Manager/useredit?id=' + userid + '&pwd=' + pwd + '&truename=' + relname + '&usercard=' + usercard + '&roleid=' + roleId + '&organid=' + organId + '&userid=1',
+					url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/useredit',
+					data: {
+						id:userid,
+						pwd:pwd,
+						truename:relname,
+						usercard:usercard,
+						roleid:roleId,
+						organid:organId,
+						userid:'1'
+					},
+					success: function(msg){
+						if (msg == "true") {
+							$.messager.alert("操作提示", "用户信息修改成功!");
+							$('#editorAdd').window('close');
+							loadTable();
+						}
+						else {
+							$.messager.alert("操作提示", "用户信息修改失败!");
+						}
+					},error:function(msg, a){
+						alert("错误是=" + msg + "+++aa:" + a)
+					}
+				});
+			}
+			else {
+				$.ajax({
+					type: "POST",
+					//url: 'http://' + urlIP + '/foms/Manager/useradd?name=' + name + '&pwd=' + pwd + '&truename=' + relname + '&usercard=' + usercard + '&roleid=' + roleId + '&organid=' + organId + '&userid=1',
+					//url: 'http://' + urlIP1 + '/Manager/useradd?name=' + name + '&pwd=' + pwd + '&truename=' + relname + '&usercard=' + usercard + '&roleid=' + roleId + '&organid=' + organId + '&userid=1',
+					url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/useradd',
+					data: {
+						name: name,
+						pwd: pwd,
+						truename: relname,
+						usercard: usercard,
+						roleid: roleId,
+						organid: organId,
+						userid: 1
+					},
+					success: function(msg){
+						if (msg == "true") {
+							$.messager.alert("操作提示", "用户添加成功!");
+							$('#editorAdd').window('close');
+							loadTable();
+						}
+						else 
+							$.messager.alert("操作提示", "用户添加失败!");
+					}
+				});
+			}
+		}
+    }
+
+
+    function userDelete(userid) {//删除用户
+        loginauthority = "用户删除";
+        $.ajax({
+            type: "POST",
+            //url: 'http://' + urlIP + '/foms/Manager/authority?userid=' + (userData ? userData.userid : false) + '&authority=' + loginauthority,
+            //url: 'http://' + urlIP1 + '/Manager/authority?userid=' + (userData ? userData.userid : false) + '&authority=' + loginauthority,
+            //url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist?userid=' + (userData ? userData.userid : false) + '&authority=' + loginauthority,
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist',
+			data:{userid:userData ? userData.userid : false,authority:loginauthority}, 
+			success: function (msg) {
+                if (msg == "true") {
+                    $.messager.confirm("操作提示", "确认删除此角色?", function (r) {
+                        if (r) {
+                            $.ajax({
+                                type: "POST",
+                                //url: 'http://' + urlIP1 + '/foms/Manager/userdel?id=' + userid + '&userid=1',
+                                url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/userdel',
+								data:{id:userid,userid:1},
+                                success: function (msg) {
+                                    if (msg == "true") {
+                                        $.messager.alert("操作提示", "删除用户成功!");
+                                        loadTable();
+                                    } else if (msg == "false") {
+                                        $.messager.alert("操作提示", "删除用户失败!");
+                                    } else if (msg == "error") {
+                                        $.messager.alert("操作提示", msg);
+                                    }
+                                }
+                            });
+                        }
+                    });
+                } else {
+                    $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+                }
+            },
+            error: function (data) {
+                return "false";
+            }
+        })
+    }
+
+
+
+    $(document).ready(function () {
+        initMenu();
+        firstload();
+        loadTable();
+        detailAuthorityCheck();
+        if ($.cookie("userInfo")) {     //cookie 赋值
+            //userData = eval($.cookie("userInfo"))[0];
+			var userDa = $.cookie("userInfo");
+            userData = JSON.parse(userDa);　　//字符反序列化成对象
+        }
+        $('#editorAdd').window({
+            top: 50,
+            left: 350,
+            width: 660,
+            height: 474,
+            modal: true,
+            border: true,
+            closable: true,
+            minimizable: false,
+            maximizable: false,
+            collapsible: false,
+            resizable: false,
+            title: '用户管理',
+            closed: true,
+            onClose: function () {
+
+            },
+
+            onOpen: function () {
+                userfirst();
+            }
+        });
+        $.ajax({
+            //url: 'http://' + urlIP + '/foms/Manager/getorgan',
+            //url: 'http://' + urlIP1 + '/Manager/getorgan',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/getorgan',
+            type: 'POST',
+			dataType:"json",
+            async: false,
+            success: function (data) {
+                var friend = $("#roleselect");
+                friend.empty();
+                var a =  eval(data);
+                friend.append("<option value=''>" + "全部" + "</option>");
+                for (var i = 0; i < a.rows.length; i++) {
+                    var option = $("<option>").text(a.rows[i].organName).val(a.rows[i].ORGANID);
+                    friend.append(option);
+                }
+            }
+        });
+        $("input[type=checkbox]").each(function (a, b) {
+            var aa = document.getElementById(b.id.toString()).nextSibling;
+            aa.setAttribute("for", b.id.toString());
+        });
+        $('#a_search').bind("click", function () {
+            loginauthority = "角色管理";
+            $.ajax({
+                type: "POST",
+                //url: 'http://' + urlIP + '/foms/Manager/authority?userid=' + (userData ? userData.userid : false) + '&authority=' + loginauthority,
+                url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist',
+				data:{userid:userData ? userData.userid : false,authority:loginauthority},
+				success: function (msg) {
+                    if (msg == "true") {
+                        $('#div_search').show(); $('#div_manage').hide(); $('#div_news').hide(); $('#guid_1').css("margin-top", "90px").show(); reloads();
+                    } else {
+                        $('#div_search').hide(); $('#div_manage').hide(); $('#div_news').hide(); $('#guid_1').css("margin-top", "90px").show(); reloads();
+                        $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+                    }
+                }
+            });
+        });
+        $('#a_manage').bind("click", function () {
+            loginauthority = "用户列表";
+            $.ajax({
+                type: "POST",
+                //url: 'http://' + urlIP + '/foms/Manager/authority?userid=' + (userData ? userData.userid : false) + '&authority=' + loginauthority,
+                //url: 'http://' + urlIP1 + '/Manager/authority?userid=' + (userData ? userData.userid : false) + '&authority=' + loginauthority,
+                url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist',
+				data:{userid:userData ? userData.userid : false,authority:loginauthority},
+				success: function (msg) {
+                    if (msg == "true") {
+                        $('#div_manage').show(); $('#div_search').hide(); $('#div_news').hide(); $('#guid_1').css("margin-top", "0px").show(); loadTable();
+                    } else {
+                        $('#div_manage').hide(); $('#div_search').hide(); $('#div_news').hide(); $('#guid_1').css("margin-top", "0px").show(); loadTable();
+                        $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+                    }
+                }
+            });
+        });
+        $('#a_news').bind("click", function () {
+            var isAuthority = getAuthority("新闻列表");
+            if (isAuthority == "true") {
+                $('#div_news').show();
+//                document.getElementById('news_frame').contentWindow.document.getElementById('div_newsTable').style.display = 'block';
+//                document.getElementById('news_frame').contentWindow.document.getElementById('div_createnews').style.display = 'none';
+                $("#news_frame")[0].contentWindow.$("#a_newsList").click();
+                $('#div_manage').hide();
+                $('#div_search').hide();
+                $('#guid_1').css("margin-top", "175px").show();
+            } else {
+                $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+            }
+        });
+    });
+
+    function detailAuthorityCheck() {//分局审批，总队审批二选一
+        $("input[type=checkbox].detailck").change(function () {
+            var inputs = $("input[type=checkbox].detailck");
+            for (var i = 0; i < inputs.length; i++) {
+                if ($(this).val() == inputs[i].value) { 
+                    if ($(this).checked == true) {
+                        $(this).checked == false;
+                    } else
+                        $(this).checked == true;
+                } else {
+                    inputs[i].checked = false;
+                }
+            }
+        });
+    }
+
+    function getAuthority(authority) {   //判断权限 authority:权限
+        //var account = eval("(" + $.cookie('userInfo') + ")");
+		var account = userData;
+        var isAuthorityTrue = "false";
+        $.ajax({
+            //url: 'http://' + urlIP + '/foms/Manager/authority?userid=' + (account ? account[0].userid : false) + '&authority=' + authority,
+            //url: 'http://' + urlIP1 + '/Manager/authority?userid=' + (account ? account[0].userid : false) + '&authority=' + authority,
+            //url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist?userid=' + (account ? account[0].userid : false) + '&authority=' + authority,
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist',
+			data:{userid:account ? account.userid : false,authority:authority},
+			type: 'POST',
+            async: false,
+            success: function (data) {
+                isAuthorityTrue = data;
+            },error:function(msg,a){
+				alert("错误是="+msg+"+++aa:"+a)
+			}
+        });
+        return isAuthorityTrue;
+    }
+</script>

@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/pagecss/leftMenu.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/datagrid-detailview.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-extend/jeasyui-extensions/jquery.portal.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+    <style type="text/css">
+         body
+        {
+         font-family: "微软雅黑";   
+         }
+        .panel-header
+        {
+            border: 0;
+            background-color:#E6E6E6;
+        }
+        .layout-panel-center .panel-header
+        {
+            background-color: #f9f9f9;
+        }
+        .panel-header
+        {
+            margin:0;padding:0;
+            height:28px;line-height:28px;    
+        }
+        
+        /*.combo.datebox
+        {
+          width:163px !important;
+          height:24px !important;
+        }*/
+        .combo-arrow
+        {
+            background-color: White;
+            background: url('../Compents/images/yp/arrow-down001.png') no-repeat center center;
+        }
+        .datebox .combo-arrow
+        {
+            background-image: url(../Compents/images/yp/calendar001_normal.png);
+            background-position: center center;
+            margin-right: 2px;
+        }
+        .combo-arrow:hover
+        {
+            background-color: White;
+        }
+        .combo
+        {
+            border: 1px solid #d2d2d2;
+            margin-right: 10px;
+        }
+        .combo .combo-text, .combobox-item
+        {
+            font-size: 14px;
+            color: Gray;
+        }
+        .combo-text.validatebox-text
+        {
+            border: 0px solid #FFFFFF;
+        }
+        .highcharts-grid g
+        {
+            border-left: 1px solid #E6E6E6;
+        }
+        .ck
+        {
+          cursor:pointer;   
+         }
+          label
+          {
+              cursor:pointer;   
+          }
+    </style>
+</head>
+<body>
+    <div style='height: 100%; width: 100%;overflow:hidden'>
+        <img id="gisimg" src="../Compents/images/yp/map-gis_02.png" style="width:100%;" />
+        <div id="gisriqi" style="margin: 0; margin-left: 25%; height: 65px; width: 100%;">
+            <div id="tool" style="width: 100%; float: left; margin-top: 30px; margin-right: 16px;display: inline-flex;">
+                <input id="gisbegintime" name="gisbegintime" type="text" class="easyui-datebox"style="width: 160px;" />
+                <input id="gisendtime" name="gisendtime" type="text" class="easyui-datebox"style="width: 160px;" />
+                <a id="gisSearch" style="cursor: pointer;margin-left:120px" onclick="">
+                    <img src="../Compents/images/yp/search-gis_normal_05.png" />
+                </a>
+            </div>
+        </div>
+        <div style="margin-left: 25%; margin-top: 30px; background-color: White; color: #999999;
+            float: left; font-size: 16px; line-height: 85px; text-align: left; width: 80%;">
+            <div style="width: 560px; height: auto; border: 1px solid #e7e7e7;">
+                <p style="width: 210px; height: 30px; padding-left: 10px; line-height: 30px; background-color: #FFFFFF;
+                    color: Gray; position: relative; top: -30px; left: 10px;">
+                    <input id="ck110" class="ck" style="margin-right: 10px" type="checkbox" value="ck110" /><label style="font-size:14px;font-family:'微软雅黑';color:#555555">110</label>
+                    <input id="anshijian" class="ck" style="margin-right: 10px" type="checkbox" value="anshijian" /><label style="font-size:14px;font-family:'微软雅黑';color:#555555">案事件</label>
+                    <input id="xiankan" class="ck" style="margin-right: 10px" type="checkbox" value="xiankan" /><label style="font-size:14px;font-family:'微软雅黑';color:#555555">现勘</label>
+                </p>
+                <div style="width: 560px; position: relative; top: -30px; left: 10px; padding-left: 10px;line-height: 30px;">
+                    <input id="shipinjiankong" class="ck" style="margin-right: 10px" type="checkbox" value="shipinjiankong" /><label style="font-size:14px;font-family:'微软雅黑';color:#555555">视频监控图层</label>
+                    <input id="gongjiaozhandian" class="ck" style="margin-left: 30px; margin-right: 10px" type="checkbox" value="gongjiaozhandian" /><label style="font-size:14px;font-family:'微软雅黑';color:#555555">公交站点图层</label>
+                    <input id="gongjiaoxianlu" class="ck" style="margin-left: 30px; margin-right: 10px" type="checkbox" value="gongjiaoxianlu" /><label style="font-size:14px;font-family:'微软雅黑';color:#555555">公交线路图层</label>
+                    <input id="paichusuo" class="ck" style="margin-left: 30px; margin-right: 10px" type="checkbox" value="paichusuo" /><label style="font-size:14px;font-family:'微软雅黑';color:#555555">派出所图层</label> 
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        $('.combo-arrow').css("height", "26px"); $('.combo-text').css({ "height": "=-26px", "line-height": "26px", "text-align": "center" }).attr("readonly", "readonly"); $('.datebox').css({ "height": "26px", "width": "163px" });
+        gisMenu();
+        
+    });
+
+    $("input[type=checkbox]").each(function (a, b) {
+        var aa = document.getElementById(b.id.toString()).nextSibling;
+        aa.setAttribute("for", b.id.toString());
+    });
+
+    function gisMenu() {
+        $("#gisSearch img").hover(function () {
+            $(this).attr("src", "../Compents/images/yp/search-gis_normal_05.png");
+        }, function () { $(this).attr("src", "../Compents/images/yp/search-gis_over_05.png"); })
+    }
+</script>

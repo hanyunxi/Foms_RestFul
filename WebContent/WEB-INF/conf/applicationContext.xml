@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Hibernate会话工厂实例 -->
+	<bean id="SessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation">
+			<value>classpath:hibernateFoms.cfg.xml</value>
+		</property>
+	
+	</bean>
+	<!-- 数据库操作通用方案实现类 -->
+	<bean id="HibernateSessionUtil" class="com.cmrx.dao.HibernateSessionUtil">
+		<property name="sessionFactory">
+			<ref local="SessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="DBSupport" class="com.cmrx.dao.DBSupport" scope="prototype">
+		<property name="HibernateSessionUtil">
+			<ref local="HibernateSessionUtil" />
+		</property>
+	</bean>
+
+	<bean id="log" class="com.cmrx.rest.Log" scope="prototype">
+		<property name="dbSupport">
+			<ref local="DBSupport" />
+		</property>
+	</bean>
+	
+	
+	<bean id="user" class="com.cmrx.rest.User" scope="prototype">
+		<property name="dbSupport">
+			<ref local="DBSupport" />
+		</property>
+		<property name="log">
+			<ref local="log" />
+		</property>
+	</bean>
+
+<!---->
+	<bean id="departmentcase" class="com.cmrx.rest.Departmentcase"
+		scope="prototype">
+		<property name="dbSupport">
+			<ref local="DBSupport" />
+		</property>
+		<property name="log">
+			<ref local="log" />
+		</property>
+	</bean>
+
+	<bean id="news" class="com.cmrx.rest.News" scope="prototype">
+		<property name="dbSupport">
+			<ref local="DBSupport" />
+		</property>
+		<property name="log">
+			<ref local="log" />
+		</property>
+	</bean>
+
+	<bean id="study" class="com.cmrx.rest.Study" scope="prototype">
+		<property name="dbSupport">
+			<ref local="DBSupport" />
+		</property>
+		<property name="log">
+			<ref local="log" />
+		</property>
+	</bean>
+	<bean id="manager" class="com.cmrx.rest.Manager" scope="prototype">
+		<property name="dbSupport">
+			<ref local="DBSupport" />
+		</property>
+		<property name="log">
+			<ref local="log" />
+		</property>
+	</bean>
+	<bean id="detailDict" class="com.cmrx.rest.DetailDict" scope="prototype">
+		<property name="dbSupport">
+			<ref local="DBSupport" />
+		</property>
+		<property name="log">
+			<ref local="log" />
+		</property>
+		<property name="hs">
+			<ref local="HibernateSessionUtil" />
+		</property>
+	</bean>
+	<bean id="departmentZongHeFind" class="com.cmrx.rest.DepartmentZongHeFind"
+		scope="prototype">
+		<property name="dbSupport">
+			<ref local="DBSupport" />
+		</property>
+		<property name="log">
+			<ref local="log" />
+		</property>
+	</bean>
+	
+	<bean id="syntheticalCase" class="com.cmrx.rest.SyntheticalCase"
+		scope="prototype">
+		<property name="dbSupport">
+			<ref local="DBSupport" />
+		</property>
+		<property name="log">
+			<ref local="log" />
+		</property>
+	</bean>
+	<bean id="sceneInvestigation" class="com.cmrx.rest.SceneInvestigation"
+		scope="prototype">
+		<property name="dbSupport">
+			<ref local="DBSupport" />
+		</property>
+		<property name="log">
+			<ref local="log" />
+		</property>
+	</bean>
+	
+</beans>

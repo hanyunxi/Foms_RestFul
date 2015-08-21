@@ -1,0 +1,413 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function closediv() {
+            $("#loaddiv").css("display", "none");
+        }
+        function opendiv() {
+            $("#loaddiv").css("display", "block");
+         }
+    </script>
+    <style type="text/css">
+        .tabs li a.tabs-inner
+        {
+            background:none;
+        }
+        .tabs li a.tabs-inner:hover
+        {
+            background:none;   
+        }
+        .home
+        {
+            background-image: url(../Compents/images/yp/home_page_normal-07.png);
+            height: 70px;
+            width: 89px;
+            top: 22px;
+            left: 0px;
+        }
+        .home:hover
+        {        
+            background-image: url(../Compents/images/yp/home_page_over-07.png);
+            height: 70px;
+            width: 89px;
+        }
+       .tabs-selected .home 
+        {
+            background-image: url(../Compents/images/yp/home_page_down-07.png);
+            height: 70px;
+            width: 89px;
+        }
+        .and
+        {
+            background-image: url(../Compents/images/yp/and_normal-07.png);
+            height: 70px;
+            width: 89px;
+             top: 22px;
+            left: 0px;
+        }
+        .and:hover
+        {
+            background-image: url(../Compents/images/yp/and_over-07.png);
+            height: 70px;
+            width: 89px;
+        }
+         .tabs-selected .and 
+        {
+            background-image: url(../Compents/images/yp/and_down-07.png);
+            height: 70px;
+            width: 89px;
+        }
+        .read
+        {
+            background-image: url(../Compents/images/yp/read_normal-07.png);
+            height: 70px;
+            width: 89px;
+             top: 22px;
+            left: 0px;
+        }
+        .read:hover
+        {
+            background-image: url(../Compents/images/yp/read_over-07.png);
+            height: 70px;
+            width: 89px;
+        }
+         .tabs-selected .read 
+        {
+            background-image: url(../Compents/images/yp/read_down-07.png);
+            height: 70px;
+            width: 89px;
+        }
+        .gis
+        {
+            background-image: url(../Compents/images/yp/GIS_normal-07.png);
+            height: 70px;
+            width: 89px;
+             top: 22px;
+            left: 0px;
+        }
+        .gis:hover
+        {
+            background-image: url(../Compents/images/yp/GIS_over-07.png);
+            height: 70px;
+            width: 89px;
+        }
+         .tabs-selected .gis 
+        {
+            background-image: url(../Compents/images/yp/GIS_down-07.png);
+            height: 70px;
+            width: 89px;
+        }
+        .mind
+        {
+            background-image: url(../Compents/images/yp/Mind_map_normal-07.png);
+            height: 70px;
+            width: 89px;
+             top: 22px;
+            left: 0px;
+        }
+        .mind:hover
+        {
+            background-image: url(../Compents/images/yp/Mind_map_over-07.png);
+            height: 70px;
+            width: 89px;
+        }
+         .tabs-selected .mind 
+        {
+            background-image: url(../Compents/images/yp/Mind_map_down-07.png);
+            top: 22px;
+            height: 70px;
+            width: 89px;
+        }
+        .time
+        {
+            background-image: url(../Compents/images/yp/time_axis_normal-07.png);
+            height: 70px;
+            width: 89px;
+            top: 22px;
+            left: 0px;
+        }
+        .time:hover
+        {
+            background-image: url(../Compents/images/yp/time_axis_over-07.png);
+            height: 70px;
+            width: 89px;
+        }
+         .tabs-selected .time 
+        {
+            background-image: url(../Compents/images/yp/time_axis_down-07.png);
+            height: 70px;
+            width: 89px;
+        }
+          .jizhan
+        {
+            background-image: url(../Compents/images/yp/base_station_normal-07.png);
+            height: 70px;
+            width: 89px;
+            top: 22px;
+            left: 0px;
+        }
+        .jizhan:hover
+        {
+            background-image: url(../Compents/images/yp/base_station_over-07.png);
+            height: 70px;
+            width: 89px;
+        }
+         .tabs-selected .jizhan 
+        {
+            background-image: url(../Compents/images/yp/base_station_over-07.png);
+            height: 70px;
+            width: 89px;
+        }
+        .segment
+        {
+            background-image: url(../Compents/images/yp/Segment_normal-07.png);
+            height: 70px;
+            width: 89px;
+             top: 22px;
+            left: 0px;
+        }
+        .segment:hover
+        {
+            background-image: url(../Compents/images/yp/Segment_over-07.png);
+            height: 70px;
+            width: 89px;
+        }
+         .tabs-selected .segment 
+        {
+            background-image: url(../Compents/images/yp/Segment_down-07.png);
+            height: 70px;
+            width: 89px;
+        }
+        .integratedQuery
+        {
+            background-image: url(../Compents/images/yp/Integrated_query_normal-07.png);
+            height: 70px;
+            width: 89px;
+             top: 22px;
+            left: 0px;
+        }
+        .integratedQuery:hover
+        {
+            background-image: url(../Compents/images/yp/Integrated_query_over-07.png);
+            height: 70px;
+            width: 89px;
+            bottom:0px;
+        }
+         .tabs-selected .integratedQuery 
+        {
+            background-image: url(../Compents/images/yp/Integrated_query_down-07.png);
+            height: 70px;
+            width: 89px;
+        }
+        .systemSettings
+        {
+            background-image: url(../Compents/images/yp/System_settings_normal-07.png);
+            height: 70px;
+            width: 89px;
+             top: 22px;
+            left: 0px;
+        }
+        .systemSettings:hover
+        {
+            background-image: url(../Compents/images/yp/System_settings_over-07.png);
+            height: 70px;
+            width: 89px;
+            bottom:0px;
+        }
+         .tabs-selected .systemSettings 
+        {
+            background-image: url(../Compents/images/yp/System_settings_down-07.png);
+            height: 70px;
+            width: 89px;
+        }
+        .tabs
+        {
+         border:0;
+         background-image:url(../Compents/images/yp/logo_08.png);
+         background-repeat:no-repeat;
+        }
+        @media screen and (min-width: 1280px) { 
+            .tabs {padding-left: 440px}  
+        } 
+        @media screen and (min-width: 1360px) { 
+            .tabs {padding-left: 520px}  
+        } 
+        @media screen and (min-width: 1440px) { 
+            .tabs {padding-left: 475px}  
+        } 
+        .tabs li a.tabs-inner
+        {
+            border:0;
+            text-align: right;
+        }
+        .tabs-header
+        {
+            background-color:#279bc4;
+        }
+        .tabs li.tabs-selected a.tabs-inner
+        {
+            border:0;
+        }
+        #hiddendiv img
+        {
+            display:none;      
+        }
+        iframe
+        {
+            background-color:White;    
+        }
+    </style>
+</head>
+<body class="easyui-layout">
+    <div id="hiddendiv">
+        <img src="../Compents/images/yp/and_down-07.png" />
+        <img src="../Compents/images/yp/and_over-07.png" />
+        <img src="../Compents/images/yp/GIS_down-07.png" />
+        <img src="../Compents/images/yp/GIS_over-07.png" />
+        <img src="../Compents/images/yp/home_page_normal-07.png" />
+        <img src="../Compents/images/yp/home_page_over-07.png" />
+        <img src="../Compents/images/yp/Integrated_query_down-07.png" />
+        <img src="../Compents/images/yp/Integrated_query_over-07.png" />
+        <img src="../Compents/images/yp/Mind_map_down-07.png" />
+        <img src="../Compents/images/yp/Mind_map_over-07.png" />
+        <img src="../Compents/images/yp/read_down-07.png" />
+        <img src="../Compents/images/yp/read_over-07.png" />
+        <img src="../Compents/images/yp/Segment_down-07.png" />
+        <img src="../Compents/images/yp/Segment_over-07.png" />
+        <img src="../Compents/images/yp/System_settings_down-07.png" />
+        <img src="../Compents/images/yp/System_settings_over-07.png" />
+        <img src="../Compents/images/yp/time_axis_down-07.png" />
+        <img src="../Compents/images/yp/time_axis_over-07.png" />
+        <img src="../Compents/images/yp/base_station_over-07.png" />
+        <img src="../Compents/images/yp/base_station_over-07.png" />
+    </div>
+  <div  id="loaddiv" align="center" style="position:fixed;left:50%;top:50%;margin-left:width/2;margin-top:height/2;z-index:1;"><img src="../Compents/images/yp/loading.gif" /><br /><br /><br /><font style="color:#555555; font-family:'微软雅黑'; font-size:16px;">加载中 请稍候...</font></div>
+  <div id="mainPanle" region="center" style="overflow: hidden;" data-options="split:false">
+        <div id="divtabs" class="easyui-tabs" >
+            <div data-options="iconCls:'home'" id="homepage">
+                <iframe src="HomePage.htm" onload="javascript:closediv();" style="width: 100%; height: 100%; border: 0; padding-top:0px;" allowtransparency="true"></iframe>
+            </div>
+            <div data-options="iconCls:'and'" id="chuanbing">
+                  <iframe src="" onload="javascript:closediv();" style="width: 100%; height: 100%; border: 0; padding-top:0px;" allowtransparency="true"></iframe>
+            </div>
+            <div data-options="iconCls:'read'" id="study">
+                <iframe src="" onload="javascript:closediv();" style="width: 100%; height: 100%; border: 0; padding-top:0px;" allowtransparency="true"></iframe>
+            </div>
+            <div data-options="iconCls:'gis'" id="gis">
+                <iframe src="" onload="javascript:closediv();" style="width: 100%; height: 100%; border: 0; padding-top:0px;" allowtransparency="true"></iframe>
+            </div>
+            <div data-options="iconCls:'mind'" id="mindmap">
+                <iframe src="" onload="javascript:closediv();" style="width: 100%; height: 100%; border: 0; padding-top:0px;" allowtransparency="true"></iframe>
+            </div>
+            <div data-options="iconCls:'time'" id="timeaxis" >
+                <iframe src="" onload="javascript:closediv();" style="width: 100%; height: 100%; border: 0; padding-top:0px;" allowtransparency="true"></iframe>
+            </div>
+             <div data-options="iconCls:'jizhan'" id="jizhan" >
+                <iframe src="" onload="javascript:closediv();" style="width: 100%; height: 100%; border: 0; padding-top:0px;" allowtransparency="true"></iframe>
+            </div>
+            <div data-options="iconCls:'segment'" id="detaildiv" >
+               <iframe src="" onload="javascript:closediv();" style="width: 100%; height: 100%; border: 0; padding-top:0px;" allowtransparency="true"></iframe>
+            </div>
+            <div data-options="iconCls:'integratedQuery'" id="zonghechaxun">
+                <iframe src="" onload="javascript:closediv();" style="width: 100%; height: 100%; border: 0; padding-top:0px;" allowtransparency="true"></iframe>
+            </div>
+            <div data-options="iconCls:'systemSettings'" id="authdiv">
+                <iframe src="" onload="javascript:closediv();" style="width: 100%; height: 100%; border: 0; padding-top:0px;" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#divtabs').tabs({
+            fit: true,
+            tabHeight: 90,
+            tabWidth: 89,
+            onSelect: function () {
+                opendiv();
+                openTab(); 
+            }
+        });
+        $('.home').click(function () {
+            $("#homepage iframe:first-child").attr("src", 'HomePage.htm');
+        });
+        $('.tabs-inner').css("background-color", "#279bc4"); // 选中背景
+        function openTab() {
+            var tab = $('#divtabs').tabs('getSelected');
+            var tbId = tab.attr("id");
+            //获取tab的iframe对象   
+            var tbIframe = $("#" + tbId + " iframe:first-child");
+            if (tbId == "authdiv") {
+                //                if (tbIframe.attr("src") == "") {
+                tbIframe.attr("src", '../Administration/AuthorityManagement.htm');
+                //                } else {
+                //                    closediv();
+                //                }
+            } else if (tbId == "detaildiv") {
+                //                if (tbIframe.attr("src") == "") {
+                tbIframe.attr("src", '../DetailType/DetailType.htm');
+                //                } else {
+                //                    closediv();
+                //                }
+            } else if (tbId == "zonghechaxun") {
+                //                if (tbIframe.attr("src") == "") {
+                tbIframe.attr("src", '../ComprehensiveSearch/DetailSubdivision.htm');
+                //                } else {
+                //                    closediv();
+                //                }
+            } else if (tbId == "chuanbing") {
+                //                if (tbIframe.attr("src") == "") {
+                tbIframe.attr("src", '../SyntheticalCase/SyntheticalCase.htm');
+                //                } else {
+                //                    closediv();
+                //                }
+            } else if (tbId == "gis") {
+                //                if (tbIframe.attr("src") == "") {
+                tbIframe.attr("src", '../GIS/GIS.htm');
+                //                } else {
+                //                    closediv();
+                //                }
+            } else if (tbId == "mindmap") {
+                //                if (tbIframe.attr("src") == "") {
+                tbIframe.attr("src", '../MindMap/MindMap.htm');
+                //                } else {
+                //                    closediv();
+                //                }
+            } else if (tbId == "timeaxis") {
+                //                if (tbIframe.attr("src") == "") {
+                tbIframe.attr("src", '../TimeAxis/TimeAxis.htm');
+                //                } else {
+                //                    closediv();
+                //                }
+            }else if (tbId == "jizhan") {
+                //                if (tbIframe.attr("src") == "") {
+                tbIframe.attr("src", '../JiZhan/JiZhan.htm');
+                //                } else {
+                //                    closediv();
+                //                }
+            }else if (tbId == "homepage") {
+                //                if (tbIframe.attr("src") == "") {
+                tbIframe.attr("src", 'HomePage.htm');
+                //                } else {
+                //                    closediv();
+                //                }
+            } else if (tbId == "study") {
+                //                if (tbIframe.attr("src") == "") {
+                tbIframe.attr("src", '../Study/StudyList.htm');
+                //                } else {
+                //                    closediv();
+                //                }
+            }
+        }
+    });
+
+</script>

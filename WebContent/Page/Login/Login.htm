@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>登录</title>
+<script src="/Foms_RestFul/Page/Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+<script src="/Foms_RestFul/Page/Compents/js/session.js" type="text/javascript"></script>
+<style type="text/css">
+input {
+	border: 0;
+	border-right: 1px solid gray;
+	width: 300px;
+	height: 38px;
+	font-size: 16px;
+	color: #999999;
+	padding-left: 10px;
+	font-family: "微软雅黑";
+}
+.btn {
+	text-decoration: none;
+	display: inline-block;
+	margin: 0;
+	cursor: pointer;
+	outline: none;
+	text-align: center;
+	height: 68px;
+	width: 362px;
+	line-height: 68px;
+	color: White;
+	background-color: rgb(6, 131, 193);
+	font-size: 24px;
+	font-family: "黑体";
+	float: left;
+}
+
+.btn:hover {
+	background-color: rgb(5, 114, 168);
+}
+
+.input_div {
+	width: 360px;
+	border: 1px solid gray;
+	height: 40px;
+	text-align: left;
+}
+</style>
+</head>
+<body style="margin: 0; text-align: center;">
+	<div id="top" style="width: 100%; background: #142536;">
+		<img src="/Foms_RestFul/Page/Compents/images/yp/bg-index.png" />
+	</div>
+	<div id="bottom" style="width: 100%; margin-top: 30px;">
+		<form id="loginform" method="post">
+			<div class="input_div"
+				style="background: url(/Foms_RestFul/Page/Compents/images/yp/user-name-index.png) no-repeat; background-position: 325px 10px;">
+				<input type="text" id="name" name="name"
+					onfocus="if (value =='用户名'){value ='';this.style.color='Black';}"
+					onblur="if (value ==''){value='用户名'; this.style.color='#999999';}"
+					value="用户名" />
+			</div>
+			<br />
+			<div class="input_div"
+				style="background: url(/Foms_RestFul/Page/Compents/images/yp/password-index.png) no-repeat; background-position: 325px 10px; margin-top: 10px;">
+				<input type="password" id="pwd" name="pwd"
+					onfocus="if (value ==''){$('#spanpwd').hide();this.style.color='Black';}"
+					onblur="if (value ==''){$('#spanpwd').show(); this.style.color='#999999';}"
+					value=""> <span id="spanpwd"
+					style="position: relative; left: -310px; z-index: 2; color: #999999; font-family: 微软雅黑; font-size: 16px;">密
+						码</span> </input>
+			</div>
+			<br /> <br /> <a id="Confirmation" onclick="return confir();"
+				class="btn">登录</a>
+		</form>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$('#name').val("用户名");
+				var winWidth = $(window.document).width();
+				var winHeight = $(window.document).height();
+				$('#loginform').css("margin-left",
+						((winWidth - 360) / 2) + "px").css("margin-top",
+						((winHeight - 610) / 2) + "px");
+					
+				if(!window.chrome){
+					window.location="/Foms_RestFul/Page/downChrome/DownChrome.html";	
+				}
+			});
+
+	$(window).resize(
+			function() { //监测浏览器大小变化
+				//$('#name').val("用户名");
+				var winWidth = $(window.document).width();
+				var winHeight = $(window.document).height();
+				$('#loginform').css("margin-left",
+						((winWidth - 360) / 2) + "px").css("margin-top",
+						((winHeight - 610) / 2) + "px");
+			});
+
+	function confir() {
+		var formParam = $("#loginform").serialize();
+		$.ajax({
+			type : "POST",
+			//url : 'http://' + urlIP1 + '/Session/login',
+			url:'http://' + urlIP + '/Foms_RestFul/rest/User',
+			async : false,
+			data :formParam,
+			//headers:{"abc":"abc"},
+			success : function(msg) {
+				if (msg == ""||msg==null) {
+					alert("用户名或密码错误");
+				} else {
+					var str = JSON.stringify(msg);　　//对序列化成字符串然后存入cookie
+					$.cookie('userInfo',str, {path: '/'});
+					location.href = "/Foms_RestFul/Page/Index/Index.htm";
+				}
+			}
+		});
+	}
+	$(document).keypress(function(e) {
+		switch (e.which) {
+		// user presses the "enter"   
+		case 13:
+			confir();
+			break;
+		}
+	});
+</script>
+

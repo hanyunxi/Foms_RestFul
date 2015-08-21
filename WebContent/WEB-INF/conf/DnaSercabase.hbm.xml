@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.cmrx.bean.model">
+    <class name="DnaSercabase" table="DNA_SERIALBASE">
+        <meta attribute="sync-DAO">false</meta>
+        <id name="ID" type="big_decimal" column="ID">
+			<generator class="sequence">   
+                 <param name="sequence">DNA_SERIALBASESEQ</param>   
+             </generator> 
+        </id>
+        
+        <property name="DNA_SERIAL_N0" column="DNA_SERIAL_N0" type="string"/>
+        <property name="SCASEID" column="SCASEID" type="string"/>
+        <property name="SRC_LAB_REGIONALISM" column="SRC_LAB_REGIONALISM" type="string"/>
+        <property name="SRC_LAB_NAME" column="SRC_LAB_NAME" type="string"/>
+        <property name="CREATE_DATETIME" column="CREATE_DATETIME" type="timestamp"/>
+    </class>
+</hibernate-mapping>

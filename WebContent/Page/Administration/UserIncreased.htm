@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        
+        $.extend($.fn.validatebox.defaults.rules, {
+            /*必须和某个字段相等*/
+            equalTo: {
+                validator: function (value, param) {
+                    return $(param[0]).val() == value;
+                },
+                message: '二次密码不正确'
+            }
+        });
+        $(function () {
+            $.ajax({
+                //url: 'http://' + urlIP + '/foms/Manager/getorgan',
+                url: 'http://' + urlIP1 + '/Manager/getorgan',
+                type: 'get',
+                async: false,
+                success: function (data) {
+//                    data = [{ 'id': '1', 'organName': 'abc' }, { 'id': '2', 'organName': 'bcd' }, { 'id': '3', 'organName': 'efg'}]
+                    var friend = $("#organId");
+                    friend.empty();
+                    var a = eval(data);
+                    for (var i = 0; i < a.length; i++) {
+                        var option = $("<option>").text(a[i].organname).val(a[i].organid);
+                        friend.append(option);
+                    }
+                }
+            });
+            $.ajax({
+                //url: 'http://' + urlIP + '/foms/Manager/getrole',
+                url: 'http://' + urlIP1 + '/Manager/getrole',
+                type: 'get',
+                async: false,
+                success: function (data) {
+                    var friend = $("#roleId");
+                    friend.empty();
+                    var a = eval(data);
+                    for (var i = 0; i < a.length; i++) {
+                        var option = $("<option>").text(a[i].roleName).val(a[i].roleId);
+                        friend.append(option);
+                    }
+                }
+            });
+            checkConfirm();
+        });
+
+        function checkConfirm() {
+            $("#username").blur(function () {
+                var username = $(this).val();
+                if (username != null && username != "") {
+                    //var changeUrl = 'http://' + urlIP + '/foms/Manager/userexist?name=' + username;
+                    var changeUrl = 'http://' + urlIP1 + '/Manager/userexist?name=' + username;
+                    $.get(changeUrl, function (str) {
+                        if (str == '1') {
+                            $("#promptDiv").html("<font color=\"red\">您输入的用户名存在！请重新输入！</font>");
+                            $("#username").focus();
+                        } else if (str == '0') {
+                            $("#promptDiv").html("");
+                        } else if (str == '-1') {
+                            alert(str);
+                        }
+
+                    })
+                    return false;
+                }
+            })
+        } 
+
+        function userAdd() {
+//            var formParam = $("#regist").serialize();
+//            alert(formParam);
+//            $.ajax({
+//                type: "POST",
+//                url: "",
+//                data: formParam,
+//                success: function (msg) {
+//                    alert(msg);
+//                }
+//            });
+            var name = $("#username").val();
+            var pwd = $("#pwd").val();
+            var repwd = $("#repwd").val();
+            var relname = $("#relname").val();
+            var organId = $("#organId").find("option:selected").val();
+            var roleId = $("#roleId").find("option:selected").val();
+            var usercard = $("#usercard").val();
+            if (pwd == repwd) {
+                $.ajax({
+                    type: "get",
+                    //url: 'http://' + urlIP + '/foms/Manager/useradd?name=' + name + '&pwd=' + pwd + '&truename=' + relname + '&usercard=' + usercard + '&roleid=' + roleId + '&organid=' + organId + '&userid=1',
+                    url: 'http://' + urlIP1 + '/Manager/useradd?name=' + name + '&pwd=' + pwd + '&truename=' + relname + '&usercard=' + usercard + '&roleid=' + roleId + '&organid=' + organId + '&userid=1',
+                    success: function (msg) {
+                        if (msg == "true") {
+                            alert("添加成功");
+                            firstload();
+                        } else
+                            alert("添加失败");
+                    }
+                });
+            } else {
+            alert("两次密码不相同，请重新输入");
+            }  
+        }
+
+        function firstload() {
+            var tbcount = $('#tbcount').val();
+//            var datas=[{"userId":"1","userName":"admin","pwd":"admin","trueName":"admin","roleName":"管理员","organName":"上海市公安局黄浦分局刑事科学技术研究所"},
+//                        {"userId":"2","userName":"测试人员","pwd":"admin","trueName":"测试人员","roleName":"测试","organName":"上海市公安局杨浦分局刑事科学技术研究所"}];
+            var datas;
+
+            $('#usertable').datagrid({
+                //url: 'http://' + urlIP + '/foms/Manager/getuser?truename=' + '' + '&organid=' + '' + '&count=' + tbcount,
+                url: 'http://' + urlIP1 + '/Manager/getuser?truename=' + '' + '&organid=' + '' + '&count=' + tbcount,
+                //                data: datas, 
+                striped: true,
+                nowrap: true,
+                loadMsg: "正在加载，请稍等...",
+                idField: 'userid',
+                singleSelect: true,
+                pagination: true,
+                //                rownumbers: true,
+                pageSize: 1, //每页显示的记录条数，默认为10  
+                pageList: [1, 5, 10], //可以设置每页记录条数的列表 
+                columns: [[
+                    { field: 'username', title: '用户名', width: 80 },
+                    { field: 'truename', title: '真实姓名', width: 120 },
+                    { field: 'rolename', title: '角色', width: 120 },
+                    { field: 'organname', title: '机构', width: 260 }
+                ]],
+                onClickRow: function (index, data) {
+                    alert(JSON.stringify(data));
+                    var row = $('#usertable').datagrid('getSelected');
+                    select_ticke_id = row.userid;
+                    alert(select_ticke_id);
+                    $("#userid").val(select_ticke_id);
+                    
+                }
+            });
+        }
+
+        function userEdit() {
+            var userid = $("userid").val();
+            var name = $("#username").val();
+            var pwd = $("#pwd").val();
+            var repwd = $("#repwd").val();
+            var relname = $("#relname").val();
+            var organId = $("#organId").find("option:selected").val();
+            var roleId = $("#roleId").find("option:selected").val();
+            var usercard = $("#usercard").val();
+            if (userid != "" && userid != null) {
+                $.ajax({
+                    type: "GET",
+                    url: '',
+                    success: function (msg) {
+
+                    }
+                });
+            } else
+                alert("请选择需要修改的用户");
+            
+        }
+
+
+//        function tablecount() {
+//            $.ajax({
+//                url: 'http://' + urlIP + '/foms/Manager/getrole',
+//                type: 'get',
+//                async: false,
+//                success: function (data) {
+////                    alert(data);
+//                    $('#tbcount').val(data.toString());
+//                }
+//            });
+//        }
+
+        function userDelete() {
+            var row = $('#usertable').datagrid('getSelected');
+            $.messager.confirm("Confirm", "确认删除此角色?", function (r) {
+                if (r) {
+                    var roleId = $("#roleId").val();
+                    $.ajax({
+                        type: "GET",
+                        url: '',
+                        success: function (msg) {
+                            if (msg == "true") {
+                                firstload();
+                            } else if (msg == "false") {
+                                $.messager.show({
+                                    title: 'False',
+                                    msg: '！'
+                                });
+                            } else if (msg == "error") {
+                                $.messager.show({
+                                    title: 'Error',
+                                    msg: msg
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        $(function () {
+            firstload();
+        });
+    </script>
+</head>
+<body>
+    <form id="regist" method="post">
+        用户名:<input type="text" required="true"  id="username" name="username" class="easyui-validatebox" missingMessage="用户名必须填写" /><div id="promptDiv"></div><br />
+        密码:<input type="password" required="true"  id="pwd" name="pwd" class="easyui-validatebox" missingMessage="密码必须填写" /><br />
+        重复密码:<input type="password" required="true"  id="repwd" name="repwd" class="easyui-validatebox" validType="equalTo['#pwd']" missingMessage="二次密码必须填写"  invalidMessage="两次输入密码不匹配" /><br />
+        真实姓名:<input type="text" required="true" id="relname" name="relname" class="easyui-validatebox" missingMessage="真实姓名必须填写" /><br />
+        身份证号:<input type="text" required="true" id="usercard" name="usercard" class="easyui-validatebox" missingMessage="身份证号必须填写" /><br />
+        部门:<select id="organId" name="organId"></select><br />
+        角色:<select id="roleId" name="roleId"></select><br />
+        <input type="button" id="submitBtn" onclick="return userAdd();"  value="提交" />
+        <br />
+        <input type="hidden" id="tbcount" value="-1" />
+        <table id="usertable" style="width: 588px"></table>
+        <input type="button" id="editUser" onclick="return userEdit();" value="修改"/>
+        <input type="button" id="deleteUser" onclick="return userDelete();" value="删除"/>
+        <input type="hidden" value="" id="userid"/>
+    </form>
+</body>
+</html>

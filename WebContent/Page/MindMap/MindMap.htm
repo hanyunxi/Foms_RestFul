@@ -1,0 +1,368 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>思维导图-研判任务</title>
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/pagecss/leftMenu.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/datagrid-detailview.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+    <style type="text/css">
+        body
+        {
+            font-family: "微软雅黑";   
+        }
+        .window
+        {
+            padding:1px;background-color:#25A2CE; 
+        }
+        .panel-tool-close
+        {
+            background:url('../Compents/eui/themes/metro/images/panel_tools.png') no-repeat;    
+        }
+         .panel-title
+        {
+            height:21px; line-height:21px;margin-left:15px;font-size:16px;    
+        }
+        .menu_span
+        {
+             margin-left: 20px; margin-right: 30px;   
+        }
+         .panel-header, .panel-body
+        {
+            border: 0;
+        }
+        .layout-panel-west
+        {
+            border-right: 1px solid #e7e7e7;
+        }
+        .layout-panel-west .panel-header
+        {
+            background-color: #e6e6e6;
+        }
+        .layout-panel-center .panel-header
+        {
+            background-color: #f9f9f9;
+        }
+        .datagrid-htable
+        {
+            background-color:#f2f2f2;
+        }
+        .datagrid-row-over,.datagrid-row-over a
+        {
+            color:White;
+        }
+        .datagrid-row-selected,.datagrid-row-selected a
+        {
+            color:White;
+            background-color:#2d9acd; 
+        }
+        .datagrid-header .datagrid-cell span
+        {
+            font-size:16px;
+        }
+        .datagrid-header-row
+        {
+            height:40px;
+        }
+        .datagrid-header td.datagrid-header-over
+        {
+            background:#f2f2f2;    
+        }
+        .datagrid-row
+        {
+            height: 46px;
+        }
+        .datagrid-btable,.datagrid-htable
+        {
+            border:1px solid #C8C8C8;   
+        }
+        .datagrid-htable td
+        {
+            border-right:1px solid #C8C8C8;    
+        }
+        .datagrid-btable td
+        {
+             border-right:1px solid #C8C8C8; border-bottom:1px dashed #C8C8C8;
+        }
+        .datagrid-cell
+        {
+            font-size:15px; 
+        }
+        .panel-body
+        {
+            background-color:White;
+            color:Black;
+        }
+        .datagrid-pager
+        {
+            color:Black;    
+        }
+        .btn
+        {
+            text-decoration: none;
+            display: inline-block;
+            margin: 0;
+            cursor: pointer;
+            outline: none;
+            text-align: center;
+            height: 30px;
+            width: 96px;
+            line-height:30px;
+            color: White;
+            background-color: #30A3D9;
+            font-size:16px;
+            font-family: "宋体";  
+        }
+        .btn:hover
+        {
+            background-color: #2D9ACC;
+        }
+        .combo-arrow
+        {
+            background-color:White;
+            background: url('../Compents/images/yp/arrow-down001.png') no-repeat center center;
+        }
+        .datebox .combo-arrow
+        {
+            background-image:url(../Compents/images/yp/calendar001_normal.png);
+            background-position:center center;
+            margin-right:2px;
+        }
+        .combo-arrow:hover
+        {
+            background-color:White;    
+        }
+        .combo
+        {
+            border:1px solid #d2d2d2;
+            margin-right:10px;
+        }
+        .combo .combo-text,.combobox-item
+        {
+            font-size:14px;
+            color:Gray;  
+        }
+        .a_table
+        {
+            cursor: pointer;text-decoration: none; color:rgb(0,113,188);
+        }
+
+    </style>
+</head>
+<body class="easyui-layout">
+     <!--菜单箭头-->
+    <div style="position: absolute; z-index: 999; left: 196px; top: 33px; width: 12px; height: 100%;">
+        <div id="guid_1" style="height: 84px; width: 12px;">
+            <img src="../Compents/images/yp/guidearrow-21.png" /></div>
+    </div>
+    <!--左侧菜单-->
+    <div region="west" collapsible="false" split="false" title=" " style="width: 200px; padding-top: -10px; background-color: #f9f9f9;">
+        <ul id="menu">
+            <li><a href="#" class="select" id="a_bmca">
+                <img alt="" src="../Compents/images/yp/4-15.png" />
+                <span class="menu_span">研判任务</span>
+                <img src="../Compents/images/yp/Arrow_normal-13.png" />
+				</a> 
+	        </li>
+        </ul>
+    </div>
+    <!--右侧内容-->
+    <div id="mainPanle" region="center" split="false" title=" " style="background-color: White;" minWidth="500px;">
+        <!--部门串案-->
+        <div id="div_bmca" style="width: 100%; height: 100%; display: block;">
+        <!--串案列表-->
+            <div style="margin:0; min-width:800px; margin-left:40px; height:65px; width:96%;">
+                <div style="float:left; margin-top:20px;display: inline-flex;">
+                 	<a href="#" onclick="clickTask()" style="font-size:16px;">添加任务</a>
+                </div>
+				
+				
+	<!--添加任务  window窗口-->	
+	<div id="addTaskWindow" class="easyui-window" title="Login" style="width: 374px; height: auto;background-color: white;font-family:'宋体';"> 
+		<div style="margin-top:20px;">
+            <!--<div style="float:left;width:40px;height:40px;margin-top:10px;margin-left:24px;background: url('../Compents/images/yp/prompt-red.png') no-repeat "></div>-->
+            <div style="float:left;margin-left:30px;margin-top:10px;">
+			<span style="color:Black;font-size:14px;font-family:微软雅黑;">选择类型值：</span> 
+				<select id="caseType" style="width:320px;">
+					<option value="11">现勘号</option>
+				</select><br/><br/>
+           		<span style="color:Black;font-size:14px;font-family:微软雅黑;">任务名称：　</span> 
+           		<input type="text" style="width:315px;" id="taskname" value="" /><span id="nameDiv" style="color:red;">*</span><br/>
+			</div>
+        </div>
+        <div style="clear:both;padding-top:15px;" class="messager-button">
+            <a id="savemsg" class="l-btn l-btn-small" style="margin-left: 10px;" onclick="saveTask();">
+                <span class="l-btn-left">
+                    <span class="l-btn-text">保存</span>  
+                </span>
+            </a>
+            <a id="cancelTaskWindow" class="l-btn l-btn-small"  style="margin-left: 10px;">
+                <span class="l-btn-left"><span class="l-btn-text">取消</span>
+                </span>
+            </a>
+        </div>
+    </div>
+				
+				
+				
+                <div id="tool" style="float:right; margin-top:20px; margin-right:16px; display:inline-flex;">
+                     <span style=" height:27px; line-height:27px; margin-right:15px; font-size:16px;">上传时间</span>
+                     <input id="begintime" type="text" class="easyui-datebox" style=" width:160px;"/> 
+                     <input id="endtime" type="text" class="easyui-datebox" style=" width:160px;"/>
+                     <a class="btn" style=" height:28px; line-height:28px; width:95px; font-size:15px;" onclick="loadbmTable();">查&nbsp;&nbsp;&nbsp;找</a>
+                </div>
+                <div style=" clear:both;"></div>
+            </div>
+            <div style=" width:96%; margin-left:40px;">
+                <input type="hidden" id="tbcount" value="-1" />
+                <table id="bmTable"></table>
+            </div>
+        </div>
+    
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+//    function initMenu() {       //左菜单
+//        $('#menu li a').click(
+//            function () {
+//				alert(11)
+//                $('#menu li a').removeClass("select").addClass("normal");
+//                $(this).addClass("select").removeClass("normal");
+//            }
+//         );
+//    }
+
+    function loadbmTable() { //加载部门串案表格
+    	//自己写的	       
+	    var userIn = $.cookie("userInfo");
+        userIn = JSON.parse(userIn);　　//字符反序列化成对象
+        
+        var tbcount = $('#tbcount').val();
+        var winWidth = $(window.parent.document).width() - 229;
+        var begintime = $('#begintime').datebox('getValue');
+        var endtime = $('#endtime').datebox('getValue');
+        //var accord = $('#accord').combobox('getValue');
+        var begin = new Date(begintime.replace("-", "/").replace("-", "/"));
+        var end = new Date(endtime.replace("-", "/").replace("-", "/"));
+        if (begin > end) {
+            alert("开始时间不能大于结束时间！");
+            $('#begintime').datebox('setValue', ''); endtime = $('#endtime').datebox('setValue', '');
+            return false;
+        }
+        $('#bmTable').datagrid({    //表格
+            //url: 'http://' + urlIP + '/foms/DepartmentCase/post/departmentcase',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/Study/getAnalyzetask',
+            queryParams: { begintime: begintime, endtime: endtime,userid: userIn.userid},
+            striped: true,
+            singleSelect: true,
+            pagination: true,
+            fitColumns: true,
+            columns: [[
+            { field: 'TASKNUM', title: '任务编号', align: 'center', width: winWidth * 0.2,
+                formatter: function (value, row, index) {
+					//row.TASKNUM   row.TSTATUS
+					if(row.STATUS!='已完成'){//状态
+                   		 return "<a class='a_table'  onclick='LinkTaskDetails(&apos;" + value + "&apos;);'>" + value + "</a>";
+					}else{//就没有超链接
+						return value;
+					}
+                }
+			},
+            { field: 'TASKNAME', title: '任务名称', align: 'center', width: winWidth * 0.1 },
+            { field: 'TASKREMARK', title: '任务描述', align: 'center', width: winWidth * 0.2 },
+            { field: 'CREATEUSERNAME', title: '创建人', align: 'center', width: winWidth * 0.2 },
+            { field: 'CREATETIME_S', title: '创建时间', align: 'center', width: winWidth * 0.3 },
+            { field: 'STATUS', title: '状态', align: 'center', width: winWidth * 0.3 }
+            ]],
+            onLoadSuccess: function () {
+                $('.datagrid-btable tr').find('td:last').css("border-right", "0"); //border样式
+                $('.datagrid-btable tr:last td').css("border-bottom", "0");
+                $('.datagrid-htable tr').find('td:last').css("border-right", "0");
+                $('.datagrid-header,.datagrid-htable').css("height", "40px"); //表头高度
+                $('.pagination-info').css("margin-right", "36px"); //右下角表格记录
+                $(window).resize(function () { //监测浏览器大小变化
+                    setTimeout(function () {
+                        $('#bmTable').datagrid('resize'); //动态改变表格宽度
+                    }, 300);
+                });
+            }
+        });
+    }
+
+	//去后台获取数据，然后跳转
+    function LinkTaskDetails(tasknum) {
+    	location.href ="TaskDetails.htm?tasknum="+tasknum;
+    }
+
+    $(document).ready(function () {
+  	 	//任务的弹出窗，默认是关闭的
+        $('#addTaskWindow').window({
+            top: 100,
+            left: 500,
+            width: 500,//弹窗的宽度
+            height: 340,//高度
+            modal: true,
+            border: true,
+            closable: true,
+			shadow: false,//拖拽的时候不会留下阴影
+            minimizable: false,
+            maximizable: false,
+            collapsible: false,
+            resizable: false,
+            title: '提示',
+            closed: true,
+            onClose: function () {
+				//alert("init中的onClose");
+            },
+            onOpen: function () {
+				
+            }
+        });
+        
+        loadbmTable();
+    });
+	
+
+//保存 任务		
+  function clickTask(value) { //研判公式任务
+	//弹出窗口框
+	$('#addTaskWindow').window('open');
+}
+//取消
+$("#cancelTaskWindow").click(function () {
+    $('#addTaskWindow').window('close');
+});
+	
+	
+function addTask(){//添加任务
+	var taskname=$("#taskname").val();
+	var taskremark=$("#taskremark").val();
+	var gongshiID=$("#gongshiID").val();
+	
+	//自己写的
+	var account = $.cookie("userInfo");
+    account = JSON.parse(account);　　//字符反序列化成对象
+ 	var userid = account.userid;
+	
+   $.ajax({
+        type: "post",
+        url: 'http://' + urlIP + '/Foms_RestFul/rest/Study/saveTask',
+        data: {taskname:taskname,taskremark:taskremark,userid:userid,gongshiID:gongshiID},
+        success: function (data) {
+			if (data == "true") {
+				alert("保存任务成功!");
+				$('#saveTask').window('close');
+			}else{
+				alert("任务失败");
+			}					
+        }
+    });
+
+}//保存结束
+
+</script>

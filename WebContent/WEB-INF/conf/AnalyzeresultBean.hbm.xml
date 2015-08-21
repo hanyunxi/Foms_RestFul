@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.cmrx.bean.model">
+    <class name="Analyzeresult" table="ANALYZERESULT">
+        <meta attribute="sync-DAO">false</meta>
+        <id name="ID" type="big_decimal" column="ID">
+			<generator class="sequence">   
+                 <param name="sequence">ANALYZERESULTSEQ</param>   
+             </generator> 
+        </id>
+        <property name="TASKNUM" column="TASKNUM" type="string"/>
+        <property name="LEVELNUM" column="LEVELNUM" type="int"/>
+        <property name="SYSNUM" column="SYSNUM" type="string"/>
+        <property name="SYSTYPE" column="SYSTYPE" type="string"/>
+        <property name="CREATETIME" column="CREATETIME" type="timestamp"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>综合串案</title>
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/pagecss/leftMenu.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+    <style type="text/css">
+        body
+        {
+         font-family: "微软雅黑";
+         margin:0; 
+         }
+        .window
+        {
+            padding:1px;background-color:#25A2CE; 
+        }
+        .panel-tool-close
+        {
+            background:url('../Compents/eui/themes/metro/images/panel_tools.png') no-repeat;    
+        }
+         .panel-title
+        {
+            height:21px; line-height:21px;margin-left:15px;font-size:16px;    
+        }
+        .menu_span
+        {
+             margin-left: 20px; margin-right: 30px;   
+        }
+         .panel-header, .panel-body
+        {
+            border: 0;
+        }
+        .layout-panel-west
+        {
+            border-right: 1px solid #e7e7e7;
+        }
+        .layout-panel-west .panel-header
+        {
+            background-color: #e6e6e6;
+        }
+        .layout-panel-center .panel-header
+        {
+            background-color: #f9f9f9;
+        }
+        .datagrid-htable
+        {
+            background-color:#f2f2f2;
+        }
+        .datagrid-row-over,.datagrid-row-over a
+        {
+            color:White;
+        }
+        .datagrid-row-selected,.datagrid-row-selected a
+        {
+            color:White;
+            background-color:#2d9acd; 
+        }
+        .datagrid-header .datagrid-cell span
+        {
+            font-size:16px;
+        }
+        .datagrid-header-row
+        {
+            height:40px;
+        }
+        .datagrid-header td.datagrid-header-over
+        {
+            background:#f2f2f2;    
+        }
+        .datagrid-row
+        {
+            height: 46px;
+        }
+        .datagrid-btable,.datagrid-htable
+        {
+            border:1px solid #C8C8C8;   
+        }
+        .datagrid-htable td
+        {
+            border-right:1px solid #C8C8C8;    
+        }
+        .datagrid-btable td
+        {
+             border-right:1px solid #C8C8C8; border-bottom:1px dashed #C8C8C8;
+        }
+        .datagrid-cell
+        {
+            font-size:15px; 
+        }
+        .panel-body
+        {
+            background-color:White;
+            color:Black;
+        }
+        .datagrid-pager
+        {
+            color:Black;    
+        }
+        .btn
+        {
+            text-decoration: none;
+            display: inline-block;
+            margin: 0;
+            cursor: pointer;
+            outline: none;
+            text-align: center;
+            height: 30px;
+            width: 96px;
+            line-height:30px;
+            color: White;
+            background-color: #30A3D9;
+            font-size:16px;
+            font-family: "宋体";  
+        }
+        .btn:hover
+        {
+            background-color: #2D9ACC;
+        }
+        .combo-arrow
+        {
+            background-color:White;
+            background: url('../Compents/images/yp/arrow-down001.png') no-repeat center center;
+        }
+        .datebox .combo-arrow
+        {
+            background-image:url(../Compents/images/yp/calendar001_normal.png);
+            background-position:center center;
+            margin-right:2px;
+        }
+        .combo-arrow:hover
+        {
+            background-color:White;    
+        }
+        .combo
+        {
+            border:1px solid #d2d2d2;
+            margin-right:10px;
+        }
+        .combo .combo-text,.combobox-item
+        {
+            font-size:14px;
+            color:Gray;  
+        }
+        .suspan
+        {
+            color:rgb(58,114,144); font-size:15px;
+            margin-left:40px;
+        }
+        .sucontent
+        {
+             font-size:15px;   
+        }
+        .numcontent
+        {
+            color:rgb(247,147,30);
+        }
+        .a_table
+        {
+            cursor: pointer;text-decoration: none; color:rgb(0,113,188);
+        }
+    </style>
+</head>
+<body>
+     <!--串案列表-->
+    <div id="winTable" class="easyui-window" style=" padding:15px;overflow:auto;">
+            <table id="zhdetailsTable" style="width:38000px;"></table>
+    </div>
+    
+    <div style=" width:96%; margin-left:40px;">
+        <input type="hidden" id="tbcount" value="-1" />
+        <table id="zhTable"></table>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function loadzhTable() {
+        var tbcount = $('#tbcount').val();
+        var winWidth = $(window.parent.parent.document).width() - 229;
+//        var begintime = $('#begintime').datebox('getValue');
+//        var endtime = $('#endtime').datebox('getValue');
+//        var begin = new Date(begintime.replace("-", "/").replace("-", "/"));
+//        var end = new Date(endtime.replace("-", "/").replace("-", "/"));
+//        if (begin > end) {
+//            alert("开始时间不能大于结束时间！");
+//            $('#begintime').datebox('setValue', ''); endtime = $('#endtime').datebox('setValue', '');
+//            return false;
+//        }
+        $('#zhTable').datagrid({
+            //url: 'http://' + urlIP1 + '/DepartmentCase/post/syntheticalcase',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/SyntheticalCase/getZonghecb',
+            striped: true,
+            singleSelect: true,
+            pagination: true,
+            fitColumns: true,
+            columns: [[
+			{ field: 'ID', title: '序号', align: 'center', width: winWidth * 0.3},
+            { field: 'SYNTHETICALNUM', title: '综串号', align: 'center', width: winWidth * 0.2,
+                formatter: function (value, row, index) {
+                    return "<a class='a_table' onclick='openWinTable(&apos;" + value + "&apos;);'>" + value + "</a>";
+                }
+            },
+            
+			{ field: 'CBYJ', title: '串并依据', align: 'center', width: winWidth * 0.2},
+            { field: 'CBH', title: '串并号', align: 'center', width: winWidth * 0.5 },
+            { field: 'UPDATEDATE', title: '综串时间', align: 'center', width: winWidth * 0.2 }
+            ]],
+            onLoadSuccess: function () {
+                $('.datagrid-btable tr').find('td:last').css("border-right", "0"); //border样式
+                $('.datagrid-btable tr:last td').css("border-bottom", "0");
+                $('.datagrid-htable tr').find('td:last').css("border-right", "0");
+                $('.datagrid-header,.datagrid-htable').css("height", "40px"); //表头高度
+                $('.pagination-info').css("margin-right", "36px"); //右下角表格记录
+                $(window).resize(function () { //监测浏览器大小变化
+                    setTimeout(function () {
+                        $('#zhTable').datagrid('resize'); //动态改变表格宽度
+                    }, 300);
+                });
+            }
+        });
+    }
+
+    function openWinTable(syntheticalNum) {   //获取详细信息，打开窗口
+        $('#zhdetailsTable').datagrid({
+            //url: 'http://' + urlIP1 + '/DepartmentCase/post/syntheticalcase_details',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/SyntheticalCase/getSyntheticalCaseDetails',
+            queryParams: { syntheticalNum: syntheticalNum },
+            striped: true,
+            singleSelect: true,
+            fitColumns: true,
+            columns: [[
+            { field: 'INVESTIGATION_NO', title: '案事件号', align: 'center' },
+            { field: 'CASE_NO', title: '现勘号', align: 'center' },
+            { field: 'INVESTIGATION_DATE_FROM', title: '串并依据', align: 'center' },
+            { field: 'INVESTIGATION_PLACE', title: '串并人', align: 'center' },
+            { field: 'CASE_NAME', title: '上传单位', align: 'center' }
+            ]],
+            onLoadSuccess: function () {
+                var timer = setInterval(function () {
+                    if ($("#winTable .datagrid-header-row").width() == 670) { }
+                    else {
+                        $("#winTable .panel.datagrid").width($("#winTable .datagrid-header-row").width() + 15);
+                        clearInterval(timer);
+                    }
+                }, 50);
+            },error:function(msg,a){
+				alert("错误zonghe="+msg+"+++aa:"+a)
+			}
+        });
+        $('#winTable').window('open');
+    }
+
+    $(document).ready(function () {
+        $('#winTable').window({   //详细窗口初始化
+            top: 40,
+            left: ($(window.parent.parent.document).width() - 850) / 2,
+            width: 730,
+            height: 400,
+            modal: true,
+            border: true,
+            closable: true,
+            minimizable: false,
+            maximizable: false,
+            collapsible: false,
+            resizable: false,
+            title: '串案列表',
+            closed: true,
+            onClose: function () {
+
+            }
+        });
+        $('.combo-arrow').css("height", "24px"); $('.combo-text').css({ "height": "24px", "line-height": "24px", "text-align": "center" }).attr("readonly", "readonly"); $('.datebox').css({ "height": "24px", "width": "163px" });
+        loadzhTable();
+        if (typeof (parent.parent.selectnum) != "undefined" && parent.parent.zongheIsSelect==1) {//判断是否是从首页跳转
+            openWinTable(parent.parent.selectnum, parent.parent.selectaccord);
+        }
+    });
+</script>

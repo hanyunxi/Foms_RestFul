@@ -1,0 +1,959 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>小类细分</title>
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/pagecss/leftMenu.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-extend/jeasyui-extensions/jquery.portal.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+    <style type="text/css">
+        body
+        {
+         font-family: "微软雅黑";   
+         }
+        .panel-header, .panel-body
+        {
+            border: 0;
+        }
+        .layout-panel-west
+        {
+            border-right: 1px solid #e7e7e7;
+        }
+        .layout-panel-west .panel-header
+        {
+            background-color: #e6e6e6;
+        }
+        .layout-panel-center .panel-header
+        {
+            background-color: #f9f9f9;
+        }
+        li img
+        {
+            vertical-align: middle;
+        }
+        .xlmenu
+        {
+            color: #999999;
+            height: 65px;
+            line-height: 75px;
+            text-align: center;
+            font-size: 14px;
+            font-family: "黑体";
+            border: 0;
+            margin-bottom: 10px;
+        }
+        #menu_two li img
+        {
+            margin-left: 35px;
+            height:48px;
+            width:48px;
+        }
+        .a_select
+        {
+            color: #3A7290;
+        }
+        .search_content
+        {
+            width: auto; height: 100%; margin-left: 280px;overflow:auto; overflow-x:hidden; 
+         }
+         a
+         {
+             color:#00749b;
+         }
+        .btn
+        {
+            text-decoration: none;
+            display: inline-block;
+            margin: 0;
+            cursor: pointer;
+            outline: none;
+            text-align: center;
+            height: 30px;
+            width: 96px;
+            line-height:30px;
+            color: White;
+            background-color: #30A3D9;
+            font-size:16px;
+            font-family: "宋体";  
+        }
+        .btn:hover
+        {
+            background-color: #2D9ACC;
+        }
+        #xltree
+        {
+            color:Gray;
+            width:320px;
+        }
+        #xltree ul
+        {
+            width:100%;
+        }
+        .tree-title
+        {
+            font-size:16px;
+        }
+        .tree li
+        {
+            margin-top:10px;    
+        }
+        .tree-node-hover
+        {
+            background-color:White;
+            color:#7FB8DD;    
+        }
+        .tree-node-selected
+        {
+            background-color:White;
+            color:Black;    
+        }
+        .tree-node-targeted
+        {
+            color:Green;    
+        }
+        .tree-node-shenhe
+        {
+            color:#7FB8DD; border:1px dashed #7FB8DD; width:100%;
+        }
+        #checkTree .tree-node-hover,#checkTree .tree-node-selected
+        {
+            background-color:White;
+        }
+        .a_title
+        {
+            color:Black;
+            text-decoration:none;
+            font-size:16px;    
+        }
+        .selected_apply
+        {
+            font-weight:bold;
+        }
+        .datagrid-htable
+        {
+            background-color:#f2f2f2;
+        }
+        .datagrid-row-over,.datagrid-row-over a
+        {
+            color:White;
+        }
+        .datagrid-row-selected,.datagrid-row-selected a
+        {
+            color:White;
+            background-color:#2d9acd; 
+        }
+        .datagrid-header .datagrid-cell span
+        {
+            font-size:16px;
+        }
+        .datagrid-header-row
+        {
+            height:40px;
+        }
+        .datagrid-header td.datagrid-header-over
+        {
+            background:#f2f2f2;    
+        }
+        .datagrid-row
+        {
+            height: 46px;
+        }
+        .datagrid-btable,.datagrid-htable
+        {
+            border:1px solid #C8C8C8;   
+        }
+        .datagrid-htable td
+        {
+            border-right:1px solid #C8C8C8;    
+        }
+        .datagrid-btable td
+        {
+             border-right:1px solid #C8C8C8; border-bottom:1px dashed #C8C8C8;
+        }
+        .datagrid-cell
+        {
+            font-size:15px; 
+        }
+        .panel-body
+        {
+            background-color:White;
+            color:Black;
+        }
+        .datagrid-pager
+        {
+            color:Black;    
+        }
+        .window
+        {
+            padding:1px;background-color:#25A2CE; 
+        }
+        .panel-title
+        {
+            height:21px; line-height:21px;margin-left:15px;font-size:16px;    
+        }
+        .panel-tool-close
+        {
+            background:url('../Compents/eui/themes/metro/images/panel_tools.png') no-repeat;    
+        }
+        .validatebox-invalid
+        {
+            border:1px solid #25A2CE;
+            background-color:White;
+        }
+        .combo-arrow
+        {
+            background-color:White;
+            background: url('../Compents/images/yp/arrow-down001.png') no-repeat center center;
+        }
+        .datebox .combo-arrow
+        {
+            background-image:url(../Compents/images/yp/calendar001_normal.png);
+            background-position:center center;
+            margin-right:2px;
+        }
+        .combo-arrow:hover
+        {
+            background-color:White;    
+        }
+        .combo
+        {
+            border:1px solid #d2d2d2;
+            margin-right:10px;
+        }
+        .combo .combo-text,.combobox-item
+        {
+            font-size:14px;
+            color:Gray;  
+        }
+        .messager-error 
+        {
+            height:60px;
+            width:40px;
+            background: url('../Compents/images/yp/prompt-red.png') no-repeat scroll 0 15px;
+        }
+    </style>
+</head>
+<body class="easyui-layout">
+     <!--菜单箭头-->
+    <div style="position: absolute; z-index: 999; left: 196px; top: 33px; width: 12px; height: 100%;">
+        <div id="guid_1" style="height: 84px; width: 12px; margin-top:5px;">
+            <img src="../Compents/images/yp/guidearrow-21.png" /></div>
+    </div>
+        <!--左侧菜单-->
+    <div region="west" collapsible="false" split="false" title=" " style="width: 200px; padding-top: -10px; background-color: #f9f9f9;">
+        <ul id="menu">
+            <li><a href="#" class="select" id="a_search">
+                <img alt="" src="../Compents/images/yp/4-15.png" />
+                <span style="margin-left: 20px; margin-right: 30px;">查&nbsp;&nbsp;&nbsp;询</span>
+                <img src="../Compents/images/yp/Arrow_normal-13.png" /></a> </li>
+            <li><a href="#" class="normal" id="a_manage">
+                <img alt="" src="../Compents/images/yp/4-14.png" />
+                <span style="margin-left: 20px; margin-right: 30px;">管&nbsp;&nbsp;&nbsp;理</span>
+                <img src="../Compents/images/yp/Arrow_normal-13.png" /></a> </li>
+        </ul>
+    </div>  
+    <!--右侧内容-->
+    <div id="mainPanle" region="center" split="false" title=" " style="background-color: White;" minWidth="500px;">
+        <!--查询-->
+        <div id="div_search" style="width: 100%; height: 100%; display: inline;">
+             <!--菜单箭头2-->
+            <div style="position: absolute; z-index: 999; left: 238px; top: 23px; width: 12px; height: 100%;">
+                <div id="guid_2" style="height: 75px; width: 12px; margin-top: 87px;">
+                    <img src="../Compents/images/yp/guidearrow2-21-21.png" />
+                </div>
+            </div>
+            <div></div><!--空白div 防止元素不刷新 -->
+            <!--菜单2-->
+            <div style="width: 230px; height: 80%; margin-left: 10px; margin-top: 50px; float:left; border-right: 2px solid #e7e7e7;">
+                <ul id="menu_two">
+                    <li><a href="#" class="xlmenu" id="a_methods">
+                        <img id="img1" name="normal_img" src="../Compents/images/yp/Methods_normal-10.png" />
+                        <img id="img2_1" name="over_img" style="display: none;" src="../Compents/images/yp/Methods_over-10.png" />
+                        <span style="margin-left: 20px; margin-right: 30px;">作案手段</span></a></li>
+                        <canvas id="canvas1" width="200" height="10" style="margin-left:15px;"></canvas>
+                    <li><a href="#" class="xlmenu" id="a_invasion">
+                        <img id="img2" name="normal_img" src="../Compents/images/yp/Invasion_normal-10.png" />
+                        <img id="img2_2" name="over_img" style="display: none;" src="../Compents/images/yp/Invasion_over-10.png" />
+                        <span style="margin-left: 20px; margin-right: 30px;">侵入方式</span></a></li>
+                        <canvas id="canvas2" width="200" height="10" style="margin-left:15px;"></canvas>
+                    <li><a href="#" class="xlmenu" id="a_time">
+                        <img id="img3" name="normal_img" src="../Compents/images/yp/Time_normal-10.png" />
+                        <img id="img2_3" name="over_img" style="display: none;" src="../Compents/images/yp/Time_over-10.png" />
+                        <span style="margin-left: 20px; margin-right: 30px;">作案时机</span></a></li>
+                        <canvas id="canvas3" width="200" height="10" style="margin-left:15px;"></canvas>
+                    <li><a href="#" class="xlmenu" id="a_target">
+                        <img id="img4" name="normal_img" src="../Compents/images/yp/Target_normal-10.png" />
+                        <img id="img2_4" name="over_img" style="display: none;" src="../Compents/images/yp/Target_over-10.png" />
+                        <span style="margin-left: 20px; margin-right: 30px;">侵害目标</span></a></li>
+                        <canvas id="canvas4" width="200" height="10" style="margin-left:15px;"></canvas>
+                    <li><a href="#" class="xlmenu" id="a_characteristic">
+                        <img id="img5" name="normal_img" src="../Compents/images/yp/Characteristic_normal-10.png" />
+                        <img id="img2_5" name="over_img" style="display: none;" src="../Compents/images/yp/Characteristic_over-10.png" />
+                        <span style="margin-left: 20px; margin-right: 30px;">作案特点</span></a></li>
+                        <canvas id="canvas5" width="200" height="10" style="margin-left:15px;"></canvas>
+                </ul>
+            </div>
+             <!--子级内容-->
+            <div class="search_content">
+                <table style="width:100%;">
+                    <tr style=" height:70px;">
+                        <td style="width:35%;"></td>
+                        <td style="display:flex; padding-top:20px; float:right;">
+                        <input type="hidden" id="xldm" value="" />
+                        <input type="text" id="txtSearch" style=" width:260px; height:22px; color:#999999; margin-right:45px;" 
+                        onfocus="if (value =='请输入查找内容'){value ='';this.style.color='Black';}" onblur="if (value ==''){value='请输入查找内容'; this.style.color='#999999';}" value="请输入查找内容" /> 
+                        <a class="btn" style=" margin-right:40px;" onclick="searchTree();">查&nbsp;&nbsp;找</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:35%;">
+                        <span style="font-size:24px; color:Black; margin-left:10px; font-family:'微软雅黑'">小类字典</span><br /> <hr size="2" color="Gray"/>
+                        </td>
+                        <td style=" padding-left:35px;">
+                        <span style="font-size:24px; color:Gray; margin-left:10px; ">司法解释</span><br /> <hr size="1" style=" width:90%; float:left;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><ul id="xltree"></ul> </td>
+                        <td style=" vertical-align:top;">   
+                           <div id="sfjs" style="width:50%; display:none; border:1px solid #7FB8DD; color:#0071BC; padding:15px 15px 15px 15px; position:relative; top:50px;z-index:9; ">
+                                <span id="sfcontent" style=" word-break:break-all;font-size:18px;"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div> 
+        <!--管理-->
+        <div id="div_manage" style="width: 100%; height: 100%; display: none;">
+            <div id="check" class="easyui-window" style="padding:5px;">  <!--审核管理弹出框-->
+               <div id="check_layout" class="easyui-layout" data-options="fit:true" style="color:Black;">   
+                   <div data-options="region:'center'" style="overflow:hidden; margin-left:20px;">
+                       <div style=" height:25px;">小类字典：<span id="shtitle" style="color:#7FB8DD; font-size:14px;"></span></div>
+                       <br /><hr />
+                       <div style=" height:265px; overflow:auto; overflow-x:hidden;">
+                           <ul id="checkTree"></ul> <!-- tree-->
+                       </div>
+                   </div>
+                   <div data-options="region:'east',collapsed:true" style="width:320px; margin-left:20px;">
+                       <div id="refuse" style="display:none;">
+                           <div style=" height:25px;">拒绝原因：</div><br />
+                           <div style=" margin-top:4px;">
+                                <textarea id="reason" rows="15" cols="35" class="easyui-validatebox" data-options="required:true" style="resize:none" missingMessage="<font style='color:red'>拒绝原因必须填写</font>"></textarea>
+                           </div> 
+                       </div>
+                       <div id="agree" style="display:none;">
+                           <div style=" height:25px;">拼音：</div><br />
+                           <div style=" margin-top:6px;">
+                                <input type="text" id="pinyin" class="easyui-validatebox" data-options="required:true" style=" width:268px; height:26px;"missingMessage="<font style='color:red'>拼音必须填写</font>" />
+                           </div><br />
+                           <div style=" height:25px;">司法解释：</div><br />
+                           <div style=" margin-top:4px;">
+                                <textarea id="explain" rows="10" cols="35" class="easyui-validatebox" data-options="required:true" style="resize:none" missingMessage="<font style='color:red'>司法解释必须填写</font>"></textarea>
+                           </div> 
+                       </div>
+                   </div>
+                   <div data-options="region:'south'" style="height:80px; margin-top:20px;">
+                        <div id="btnOne" style=" width:280px; margin:0 auto;">
+                            <a class="btn" id="oneAgree" style=" display:none;" onclick="showR(0);">同&nbsp;&nbsp;意</a>
+                            <a id="oneUp" style=" display:none;" class="btn" onclick="report();">上报总队</a> 
+                            <a class="btn" style=" margin-left:60px;" onclick="showR(1);">拒&nbsp;&nbsp;绝</a>
+                        </div>
+                        <div id="btnAgree" style=" width:280px; margin:0 auto; display:none;">
+                            <a class="btn" onclick="agree();">确&nbsp;&nbsp;定</a> 
+                            <a class="btn" style=" margin-left:60px;" onclick="$('#check').window('close');">取&nbsp;&nbsp;消</a>
+                        </div>
+                        <div id="btnRefuse" style=" width:280px; margin:0 auto; display:none;">
+                            <a class="btn" onclick="refuse();">确&nbsp;&nbsp;定</a> 
+                            <a class="btn" style=" margin-left:60px;" onclick="$('#check').window('close');">取&nbsp;&nbsp;消</a>
+                        </div>
+                        <input type="hidden" id="shenheId" value=""/><!-- 审核id隐藏-->
+                   </div>  
+               </div>   
+            </div>  
+            <div id="yugu" class="easyui-window" style=" padding:15px;"><!-- 鱼骨图 -->
+                <div id="yugu_layout" class="easyui-layout" data-options="fit:true" style="color:Black;">
+                    <div data-options="region:'center'" style=" height:350px;">
+                        <div id="fjLeft" style=" width:130px; float:left;display:none; margin-left:75; text-align:right;">
+                            <span id="fjLeftDate"></span><br />222
+                            <span id="fjLeftUnit"></span>
+                        </div>
+                        <div id="yuguImg" style=" float:left; margin-left:20px; margin-right:20px;">
+                            <img id="yg2" src="../Compents/images/yp/The-progress-bar-two.png" style=" display:none;"/>
+                            <img id="yg3" src="../Compents/images/yp/The-progress-bar-three.png" style=" display:none;" />
+                        </div>
+                        <div style="width:130px; height:350px; float:left;">
+                            <div id="fjapply" style=" width:130px;">
+                                <span id="fjapplyDate"></span><br />
+                                <span id="fjapplyUnit"></span>
+                            </div>
+                            <div id="fjRight" style=" width:130px;display:none;">
+                                <span id="fjRightDate"></span><br />
+                                <span id="fjRightUnit"></span>
+                            </div>
+                            <div id="zongju" style=" width:130px;display:none;">
+                                <span id="zongjuDate"></span><br />
+                                <span id="zongjuUnit"></span>
+                            </div>                        
+                        </div>
+                    </div>
+                    <div data-options="region:'east',collapsed:true" style=" height:350px; width:250px;">
+                        <div style=" border:1px solid #25A2CE; width:90%; height:90%; padding:10px;">
+                            <span style=" font-size:14px;">原因：</span><br />
+                            <span id="ygReason"></span>
+                        </div>
+                    </div> 
+                    <div id="guid_3" style=" display:none; margin-left:208px; z-index:9999; position:absolute;">
+                        <img src="../Compents/images/yp/arrow001.png" />
+                    </div> 
+                </div>
+            </div>
+            <div style="margin:0; min-width:800px; margin-left:40px; height:65px; width:96%;">
+                <div style="float:left; margin-top:30px;">
+                    <a id="newApply" onclick="loadTable();" class="a_title selected_apply" href="#">最新申请</a>
+                    <span style=" font:16px;">|</span> 
+                    <a id="historyApply" onclick="loadHistoryTable();" class="a_title" href="#">历史记录</a>
+                </div>
+                <div id="tool" style="float:right; margin-top:20px; margin-right:16px; display:inline-flex;">
+                     <input id="begintime" type="text" class="easyui-datebox" style=" width:160px;"/> 
+                     <input id="endtime" type="text" class="easyui-datebox" style=" width:160px;"/>
+                     <select id="addstate" class="easyui-combobox" style=" margin-right:15px; height:26px;">
+                         <option value="addstatus=3 or addstatus=4 or addstatus=5">全部</option>
+                         <option value="addstatus=3">审核通过</option>
+                         <option value="addstatus=4 or addstatus=5">审核未通过</option>
+                     </select>
+                     <a class="btn" style=" height:28px; line-height:28px; width:95px; font-size:15px;" onclick="loadHistoryTable();">查&nbsp;&nbsp;&nbsp;找</a>
+                </div>
+                <div style=" clear:both;"></div>
+            </div>
+            <div style=" width:96%; margin-left:40px;">
+                <input type="hidden" id="tbcount" value="-1" />
+                <table id="manageTb"></table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    var userData, datastatus; //用户cookie， 数据状态 1分局，2总局
+    var currentIndex = 0;//当前光条所在项
+    var currentPx = 0; //当前二级箭头所在位置
+    function initMenu() {       //一级菜单
+        $('#menu li a').click(
+            function () {
+                $('#menu li a').removeClass("select").addClass("normal");
+                $(this).addClass("select").removeClass("normal");
+            }
+             );
+        }
+
+        function getAuthority(authority) {   //判断权限 authority:权限
+            var isTrue = false;
+            $.ajax({
+                //url: 'http://' + urlIP1 + '/Manager/authority?userid=' + (userData ? userData.userid : false) + '&authority=' + authority,
+                //url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist?userid=' + (userData ? userData.userid : false) + '&authority=' + encodeURI(encodeURI(authority)),
+                url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist',
+                type: 'POST',
+				data:{userid:userData ? userData.userid : false,authority:authority},
+                async: false,
+                success: function (data) {
+                    isTrue = data;
+                }
+            });
+            return isTrue;
+    }
+
+    function mousePositionY() {        //获取鼠标位置
+        var e = window.event;
+        var scrollY = $('.search_content').scrollTop(); 
+        var y = e.pageY + scrollY;
+        return y;
+    }
+
+    function changeMenuStyle(obj, num) {  //改变二级菜单样式
+        $('#sfjs').hide();
+        $('img[name="over_img"]').hide();
+        $('img[name="normal_img"]').show();
+        $('#img' + num).hide(70);
+        $('#img2_' + num).show(150);
+        $('#menu_two a').removeClass('a_select');
+        $(obj).addClass('a_select');
+        changeLine(num);
+    }
+
+    function loadTree(root) { //加载查询树   root：根节点代码
+        $('#xldm').val(root);
+        var datas;
+        $.ajax({
+            //url: 'http://' + urlIP1 + '/DetailType/tree?rootkey=' + root,
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/DetailType/tree',
+            type: 'POST',
+			data:{rootkey:root},
+            async: false,
+			dataType:'json',//因为jersey中是按照String返回的，这里声明成json接收
+            success: function (data) {
+				datas=data;
+            },error:function(msg,a){
+				alert("DetailType501错误是="+msg+"+++aa:"+a)
+			}
+        });
+		
+        $('#xltree').tree({
+            data: datas,
+            onLoadSuccess: function (node, data) {
+                $('.tree-icon,.tree-folder,.tree-folder-open,.tree-file').removeClass('tree-icon tree-folder tree-folder-open tree-file');  //去样式
+            },
+            onClick: function (node) { //节点单机事件
+                if (node.isdetail == 1 || node.isdetail == "1") {
+                    $('#sfcontent').html(node.descript);
+                    if (window.event.pageY + $('#sfjs').outerHeight() > $('.search_content').outerHeight()) {  //鼠标位置 +div 高度判断 ->显示司法解释
+                        $('#sfjs').css("top", (mousePositionY() - 155 - $('#sfjs').outerHeight()) + "px").show(150);
+                    } else {
+                        $('#sfjs').css("top", (mousePositionY() - 155) + "px").show(150);
+                    }
+                } else {
+                    $('#sfjs').hide(150);
+                }
+                var nstate = node.state;
+                if (nstate == "closed") {
+                    $('#xltree').tree('expand', node.target);
+                } else {
+                    $('#xltree').tree('collapse', node.target);
+                }
+            }//点击事件
+        });
+    }
+
+    //查询树方法
+    function searchTree() {
+        $('#sfjs').hide(150);
+        var searchValue = $('#txtSearch').val(), root = $('#xldm').val();
+        var idstr, ids;
+        if (searchValue == "请输入查找内容") { searchValue = "";return false;}
+        $.ajax({
+			
+            //url: 'http://' + urlIP1 + '/DetailType/findtree?rootkey=' + root + '&str=' + searchValue,
+            //url: 'http://' + urlIP + '/Foms_RestFul/rest/DetailType/findtree?rootkey=' + root + '&str=' + searchValue,
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/DetailType/findtree',
+            type: 'POST',
+			data:{rootkey:root,str:searchValue},
+            async: false,
+            success: function (data) {
+                idstr = data;   //返回id字符串
+                ids = idstr.split(',');
+            }
+        });
+        $('#xltree').tree('collapseAll');   //折叠所有节点
+        $(".tree-node-targeted").removeClass("tree-node-targeted"); //去掉所有高亮特效
+        if (idstr!= "") {  //查找目标是否为0
+            for (var i = 0; i < ids.length; i++) {
+                var node = $('#xltree').tree('find', ids[i]);
+                $('#xltree').tree('expandTo', node.target);                   //展开到目标节点
+                $(".tree-title", node.target).addClass("tree-node-targeted"); //目标节点高亮显示
+            }
+        }
+    }
+
+    function loadTable() {  //加载最新申请表格
+        $('.selected_apply').removeClass('selected_apply'); $('#newApply').addClass('selected_apply');
+        $('#tool').hide(); //隐藏查询工具栏
+        var tbcount = $('#tbcount').val();
+        $('#manageTb').datagrid({
+            //url: 'http://' + urlIP1 + '/DetailType/newapply?organid=' + userData.organCode + '&datastatus='+ datastatus +'&count=' + tbcount, //organid:单位id  datastatus:状态 count:查询总数 
+            //url: 'http://' + urlIP + '/Foms_RestFul/rest/DetailType/newapply?organid=' + userData.organCode + '&datastatus='+ datastatus +'&count=' + tbcount, //organid:单位id  datastatus:状态 count:查询总数 
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/DetailType/newapply',
+            queryParams: { organid: userData.organCode, datastatus: datastatus, count:tbcount},//organid:单位id  datastatus:状态 count:查询总数
+			striped: true,
+            singleSelect: true,
+            pagination: true,
+            fitColumns: true,
+            columns: [[
+            { field: 'content', title: '内容', align: 'left', width: $(this).width() * 0.7,
+                formatter: function (value, row, index) {
+                    var user = row.CREATEUSER.split(';')[0], unit = row.CREATEUNIT.split(';')[0];
+                    return "创建人：" + user + "  创建单位：" + unit + "  申请创建：" + row.DICTVAL;
+                }
+            },
+            { field: 'createdatetime', title: '申请时间', width: $(this).width() * 0.2, align: 'center', 
+				formatter: function (value, row, index) {
+                    return row.CREATEDATETIME;
+                }
+			},
+            { field: 'id', title: '操作', align: 'center', width: $(this).width() * 0.1,
+                formatter: function (value, row, index) {
+                    return "<a href='#' onclick='checkRule(&apos;" + row.ID + "&apos;,&apos;" + row.DICTVAL + "&apos;,&apos;" + row.DICTPY + "&apos;);'>审核</a>";
+                }
+            }
+            ]],
+            onLoadSuccess: function () {
+                $('.datagrid-btable tr').find('td:last').css("border-right", "0"); //border样式
+                $('.datagrid-btable tr:last td').css("border-bottom", "0");
+                $('.datagrid-htable tr').find('td:last').css("border-right", "0");
+                $('.datagrid-header,.datagrid-htable').css("height", "40px"); //表头高度
+                $('.pagination-info').css("margin-right", "36px"); //右下角表格记录
+                $('.datagrid-header .datagrid-cell').css("text-align", "center");
+                $(window).resize(function () { //监测浏览器大小变化
+                    setTimeout(function () {
+                        $('#manageTb').datagrid('resize'); //动态改变表格宽度
+                    }, 300);
+                });
+            }
+        });
+    }
+
+    function loadHistoryTable() {  //加载、查询历史表格
+        $('.selected_apply').removeClass('selected_apply'); $('#historyApply').addClass('selected_apply');
+        $('#tool').show();  //显示查询工具栏
+        var tbcount = $('#tbcount').val();
+        var begintime = $('#begintime').datebox('getValue');
+        var endtime = $('#endtime').datebox('getValue');
+        var addstate = $('#addstate').combobox('getValue'); 
+        var begin = new Date(begintime.replace("-", "/").replace("-", "/"));
+        var end = new Date(endtime.replace("-", "/").replace("-", "/"));
+        if(begin > end){
+            alert("开始时间不能大于结束时间！");
+            $('#begintime').datebox('setValue',''); endtime = $('#endtime').datebox('setValue','');
+            return false;
+        }
+        $('#manageTb').datagrid({
+            //url: 'http://' + urlIP1 + '/DetailType/oldapply?organid=' + userData.organCode + '&datastatus=' + datastatus + '&count=' + tbcount,
+            //url: 'http://' + urlIP + '/Foms_RestFul/rest/DetailType/oldapply?organid=' + userData.organCode + '&datastatus=' + datastatus + '&count=' + tbcount,
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/DetailType/oldapply',
+            queryParams: {organid: userData.organCode, datastatus: datastatus, count:tbcount ,
+							begintime: begintime, endtime: endtime, addstatus: addstate 
+						 },
+            columns: [[
+            { field: 'content', title: '内容', width: $(this).width() * 0.7, align: 'left',
+                formatter: function (value, row, index) {
+                    var user = row.CREATEUSER.split(';')[0], unit = row.CREATEUNIT.split(';')[0];
+                    return "创建人：" + user + "  创建单位：" + unit + "  申请创建：" + row.DICTVAL;
+                }
+            },
+            { field: 'createdatetime', title: '申请时间', width: $(this).width() * 0.2, align: 'center',
+				formatter: function (value, row, index) {
+                    return row.CREATEDATETIME;
+                }
+			},
+            { field: 'addstatus', title: '审核结果', width: $(this).width() * 0.1, align: 'center',
+                formatter: function (value, row, index) {  //点击显示鱼骨图
+//                    if (value == 3 || value == "3") { return "<a href='#' onclick='yuguShow(&apos;" + row.id + "&apos;);'>通过</a>"; }
+//                    else if (value == 4 || value =="4") { return "<a href='#' onclick='yuguShow(&apos;" + row.id + "&apos;);'>未通过</a>"; }
+//                    else { return "<a href='#' onclick='yuguShow(&apos;" + row.id + "&apos;);'>未通过</a>"; }
+                    if (row.ADDSTATUS == 3 || row.ADDSTATUS  == "3") { return "<a href='#' onclick='yuguShow(&apos;" + row.ID + "&apos;);'>通过</a>"; }
+                    else if (row.ADDSTATUS == 4 || row.ADDSTATUS =="4") { return "<a href='#' onclick='yuguShow(&apos;" + row.ID + "&apos;);'>未通过</a>"; }
+                    else { return "<a href='#' onclick='yuguShow(&apos;" + row.ID + "&apos;);'>未通过</a>"; }
+                }
+            }
+          ]]
+        });
+    }
+
+    function showR(state) { //显示审核右部分--->state:0同意|1拒绝
+        if (state == 0) {
+            $('#agree,#btnAgree').show(); $('#refuse,#btnOne').hide();
+        }else if(state==1){
+            $('#refuse,#btnRefuse').show(); $('#agree,#btnOne').hide();
+        }
+        $('#check_layout').layout('expand', 'east');
+    }
+
+    function refuse() {  //审核拒绝
+        if (!$('#reason').validatebox('isValid')) { return false;}
+        var refuseReason = $('#reason').val();
+        var id= $('#shenheId').val();
+        $.ajax({
+            //url: 'http://' + urlIP1 + '/DetailType/applyrefuse?id=' + id + '&context=' + refuseReason + '&userid=' + userData.userid + '&truename=' + userData.trueName + '&datastatus=' + datastatus,  //id:流水号 context:拒绝原因 user:用户 datastatus:
+            //url: 'http://' + urlIP + '/Foms_RestFul/rest/DetailType/applyrefuse?id=' + id + '&context=' +encodeURI(encodeURI(refuseReason)) + '&userid=' + userData.userid + '&truename=' + userData.trueName + '&datastatus=' + datastatus,  //id:流水号 context:拒绝原因 user:用户 datastatus:
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/DetailType/applyrefuse', //id:流水号 context:拒绝原因 user:用户 datastatus:
+            type: 'POST',
+			data:{id:id,context:refuseReason,userid:userData.userid,truename:userData.trueName,datastatus:datastatus},
+            async: false,
+            success: function (data) {
+                if (data) { $('#check').window('close'); loadTable(); } //审核拒绝，重新加载表格
+            }
+        });
+    }
+
+    function report() { //审核上报
+        var id = $('#shenheId').val();
+        $.ajax({
+            //url: 'http://' + urlIP1 + '/DetailType/apply803?id=' + id + '&userid=' + userData.userid + '&truename=' + userData.trueName, //id：流水号， userid：用户id
+            //url: 'http://' + urlIP + '/Foms_RestFul/rest/DetailType/apply803?id=' + id + '&userid=' + userData.userid + '&truename=' + userData.trueName, //id：流水号， userid：用户id
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/DetailType/apply803', //id：流水号， userid：用户id
+			type: 'POST',
+			data:{id:id,userid:userData.userid,truename:userData.trueName},
+            async: false, 
+            success: function (data) {
+                if (data) { $('#check').window('close'); loadTable(); } //上报完成，重新加载表格
+            }
+        });
+    }
+
+    function agree() {  //审核通过
+        if (!$('#pinyin').validatebox('isValid') && !$('#explain').validatebox('isValid')) {return false; }
+        var py = $('#pinyin').val();
+        var sfjs = $('#explain').val();
+        var id = $('#shenheId').val();
+        $.ajax({
+            //url: 'http://' + urlIP1 + '/DetailType/applyagree?id=' + id + '&context=' + sfjs + '&userid=' + userData.userid + '&truename=' + userData.trueName + '&py=' + py,  //id:流水号 context:拒绝原因 user:用户 datastatus:
+            //url: 'http://' + urlIP + '/Foms_RestFul/rest/DetailType/applyagree?id=' + id + '&context=' +encodeURI(encodeURI(sfjs)) + '&userid=' + userData.userid + '&truename=' + userData.trueName + '&py=' + py,  //id:流水号 context:拒绝原因 user:用户 datastatus:
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/DetailType/applyagree', //id:流水号 context:拒绝原因 user:用户 datastatus:
+            type: 'POST',
+			data:{id:id,context:sfjs,userid:userData.userid,truename:userData.trueName,py:py},
+            async: false,
+            success: function (data) {
+                if (data) { $('#check').window('close'); loadTable(); } //审核通过，重新加载表格
+            }
+        });
+    }
+
+	//最新申请：审核(id,dictval,dictpy)
+    function checkRule(checkId, checkText, checkpy) {  //审核-加载审核树-弹出框-->待审核流水号、待审核文本
+       // if (getAuthority("总队审批") == "false" || getAuthority("分局审批") == "false")
+       // { $.messager.alert("提示", "<div style='font-size:14px;margin-top:15px;'>您没有权限进行该操作！请联系管理员或<a href='#'onclick='window.parent.location.href =&apos;../Login.htm&apos;'>重新登录</a></div>", "error"); return false; }
+        var datas, appendId;
+        $('#pinyin').val(checkpy);
+		$('#shenheId').val(checkId); //绑定拼音 待审核id
+        $.ajax({
+            //url: 'http://' + urlIP1 + '/DetailType/applytree?id=' + checkId,
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/DetailType/applytree',
+            type: 'POST',
+			//dataType:'json',
+			data:{id:checkId},
+            async: false,
+            success: function (data) {
+				alert("729行的data=="+data);
+                var array = data.split('$$##');
+                appendId = array[0];
+                datas = eval(array[1]);
+                var type = datas[0].PARENT_KEY;
+                switch (type) {
+                    case 'ZASDFLDM': $('#shtitle').html("作案手段"); break;
+                    case 'QRFSFLDM': $('#shtitle').html("侵入方式"); break;
+                    case 'ZASJDFLDM': $('#shtitle').html("作案时机"); break;
+                    case 'XZDXFLDM': $('#shtitle').html("侵害目标"); break;
+                    case 'ZATDFLDM': $('#shtitle').html("作案特点"); break;
+                    default: $('#shtitle').html(""); break;
+                }
+            },error:function(msg,a){
+				alert("DetailType.html742错误是="+msg+"+++aa:"+a)
+			}
+        });
+        $(".tree-node-targeted").removeClass("tree-node-targeted"); //去掉所有高亮特效
+        $('#checkTree').tree({                            // 树
+            data: datas,
+            onLoadSuccess: function (node) {
+                $('#checkTree').tree('collapseAll');   //折叠所有节点
+                $('.tree-icon,.tree-folder,.tree-folder-open,.tree-file').removeClass('tree-icon tree-folder tree-folder-open tree-file');  //去样式
+            },
+            onClick: function (node) { //节点单机事件
+                var nstate = node.state;
+                if (nstate == "closed") {
+                    $('#checkTree').tree('expand', node.target);
+                } else {
+                    $('#checkTree').tree('collapse', node.target);
+                }
+            }
+        });
+        var pnode = $('#checkTree').tree('find', appendId);      //找到父节点
+        $('#checkTree').tree('append', { parent: pnode.target, data: [{ id: "shenhejiedian", "text": checkText}] });  //添加审核节点
+        var newNode = $('#checkTree').tree('find', "shenhejiedian"); 
+        $('#checkTree').tree('expandTo', newNode.target);  //展开到目标节点
+        $(".tree-title", newNode.target).addClass("tree-node-shenhe"); //审核节点虚化
+        $('.layout-expand-east').hide();  //隐藏布局侧边栏
+        $('#check').window('open');
+        $('#checkTree').tree('scrollTo', newNode.target);
+    }
+
+    function yuguShow(id) {         //显示鱼骨图 id:查询数据的id
+        $('.layout-expand-east').hide();  //隐藏布局边栏
+        var yuguData,num;        //鱼骨需要数据，分局、总局判断依据 
+        $.ajax({
+            url: 'http://' + urlIP1 + '/DetailType/getapply?id=' + id,
+            //url: 'http://' + urlIP + '/Foms_RestFul/rest/DetailType/getapply',
+            type: 'GET',
+			//data:{id:id},
+            async: false,
+            success: function (data) {
+				alert("771行的data=="+data);
+                yuguData = eval("(" + data + ")").rows[0];
+                num = eval("(" + data + ")").total;
+            }
+        });
+        $('#yugu').window('open'); //鱼骨图
+        if (num == "2") { //分局不通过       //显示鱼骨说明，计算位置，说明、时间赋值
+            $('#fjapplyUnit').html(yuguData.createUser.split(';')[0] + "申请创建：" + yuguData.dictVal); $('#fjapplyDate').html(yuguData.createDatetime);
+            $('#fjRightUnit').html(yuguData.managerUnit1 + yuguData.manager1 + "审核不通过"); $('#fjRightDate').html(yuguData.manager1Datetime);
+            $('#ygReason').html(yuguData.resultContext);
+            $('#yg2').show(800);       
+            $('#fjapply').css("margin-top", (335 / 3) - ($('#fjapply').height() / 2) + "px");
+            $('#fjRight').css("margin-top", (335 / 3) - ($('#fjRight').height() / 2) - ($('#fjapply').height() / 2) + "px").show(300);
+            $('#yugu_layout').layout('expand', 'east');
+            $('#guid_3').css("margin-top", (335 * 2 / 3)-6 + "px").show(500);
+        } else if (num == "3" && yuguData.addStatus == "3") { //通过
+            $('#fjapplyUnit').html(yuguData.createUser.split(';')[0] + "申请创建：" + yuguData.dictVal); $('#fjapplyDate').html(yuguData.createDatetime);
+            $('#fjLeftUnit').html(yuguData.managerUnit1 + yuguData.manager1 + "审核通过");  $('#fjLeftDate').html(yuguData.manager1Datetime);
+            $('#zongjuUnit').html("中心审批通过"); $('#zongjuDate').html(yuguData.manager2Datetime);
+            $('#yg3').show(800);
+            $('#fjapply').css("margin-top", (335 / 4) - ($('#fjapply').height() / 2) + "px");
+            $('#fjLeft').css("margin-top", (335 / 2) - ($('#fjLeft').height() / 2) + "px").css("margin-left", ($('#yugu_layout').width() / 2) - $('#fjLeft').width() - 30 + "px").show(300);
+            $('#zongju').css("margin-top", (335 / 2) - ($('#zongju').height() / 2) - ($('#fjapply').height() / 2) + "px").show(300);
+        } else if (num == "3" && yuguData.addStatus == "4") {   //总局不通过
+            $('#ygReason').html(yuguData.resultContext);
+            $('#fjapplyUnit').html(yuguData.createUser.split(';')[0] + "申请创建：" + yuguData.dictVal); $('#fjapplyDate').html(yuguData.createDatetime);
+            $('#fjRightUnit').html(yuguData.managerUnit1 + yuguData.manager1 + "审核通过"); $('#fjRightDate').html(yuguData.manager1Datetime);
+            $('#zongjuUnit').html("中心审批不通过"); $('#zongjuDate').html(yuguData.manager2Datetime);
+            $('#yg3').show(800);
+            $('#fjapply').css("margin-top", (335 / 4) - ($('#fjapply').height() / 2) + "px");
+            $('#fjRight').css("margin-top", (335 / 4) - ($('#fjRight').height() / 2) - ($('#fjapply').height() / 2) + "px").show(300);
+            $('#zongju').css("margin-top", (335 / 4) - ($('#zongju').height() ) - ($('#fjRight').height() / 2) +15 + "px").show(300);
+            $('#yugu_layout').layout('expand', 'east');
+            $('#guid_3').css("margin-top", (335 * 3 / 4)-6 + "px").show(500);
+        }
+    }
+
+    $(document).ready(function () {
+        $('#check').window({   //加载审核弹出框
+            top: 40,
+            left: ($(window.parent.document).width() - 650) / 2,
+            width: 650,
+            height: 450,
+            modal: true,
+            border: true,
+            closable: true,
+            minimizable: false,
+            maximizable: false,
+            collapsible: false,
+            resizable: false,
+            title: '审核内容',
+            closed: true,
+            onClose: function () {
+                $('#check_layout').layout('collapse', 'east');
+                $('#reason,#pinyin,#explain,#shenheId').val("");
+                $('#agree,#refuse,#btnAgree,#btnRefuse').hide(); $('#btnOne').show();    //关闭后弹出框内容重置
+            }
+        });
+        $('#yugu').window({   //加载鱼骨图弹出框
+            top: 40,
+            left: ($(window.parent.document).width() - 500) / 2, //($(window).width() - 500) / 2
+            width: 500,
+            height: 420,
+            modal: true,
+            border: true,
+            closable: true,
+            minimizable: false,
+            maximizable: false,
+            collapsible: false,
+            resizable: false,
+            title: '审核时间表',
+            closed: true,
+            onClose: function () {   //关闭鱼骨图，重置弹出框
+                $('#fjLeft,#fjRight,#zongju,#yg2,#yg3,#guid_3').hide();
+                $('#yugu_layout').layout('collapse', 'east');
+            }
+        });
+
+        if ($.cookie("userInfo")) {     //cookie 赋值 
+        	//原来的
+            //userData = eval($.cookie("userInfo"))[0];
+			//改写：
+			//自己写的
+			var account = $.cookie("userInfo");
+            userData = JSON.parse(account);　　//字符反序列化成对象
+        } else {
+            window.parent.location.href = '../Login/Login.htm';
+            return false;
+        }
+
+        if (getAuthority("总队审批") == "true") { //分局1 总局2，审核按钮判断
+            datastatus = 2;
+            $('#oneAgree').show();
+        } else if (getAuthority("分局审批") == "true") {
+            datastatus = 1;
+            $('#oneUp').show();
+        }
+
+        initMenu();
+        changeLine("1");
+        changeArrow(90);
+        $('.combo-arrow').css("height", "24px"); $('.combo-text').css({ "height": "24px", "line-height": "24px", "text-align": "center" }).attr("readonly", "readonly"); $('.datebox').css({ "height": "24px", "width": "163px" });
+        loadTree("ZASDFLDM"); changeMenuStyle("#a_methods", 1); //加载时默认选择第一个大类
+        $('#a_search').bind("click", function () { $('#div_search').show(); $('#div_manage').hide(); $('#guid_1').css("margin-top", "5px").show(); });
+        $('#a_manage').bind("click", function () { $('#div_manage').show(); $('#div_search').hide(); $('#guid_1').css("margin-top", "95px").show(); loadTable(); });
+        $('#a_methods').bind("click", function () { changeArrow(90); changeMenuStyle(this, 1); loadTree("ZASDFLDM"); });
+        $('#a_invasion').bind("click", function () { changeArrow(178); changeMenuStyle(this, 2); loadTree("QRFSFLDM"); });
+        $('#a_time').bind("click", function () { changeArrow(264); changeMenuStyle(this, 3); loadTree("ZASJDFLDM"); });
+        $('#a_target').bind("click", function () { changeArrow(350); changeMenuStyle(this, 4); loadTree("XZDXFLDM"); });
+        $('#a_characteristic').bind("click", function () { changeArrow(434); changeMenuStyle(this, 5); loadTree("ZATDFLDM"); });
+        $('#check_layout').layout(); $('#yugu_layout').layout();  //审核、鱼骨弹出框布局
+    });
+
+        var time2;
+        //移动二级菜单箭头
+        function changeArrow(px) {
+            clearInterval(time2);
+            var val = px - currentPx;
+            if (val < 0) {
+                val = -1;
+            }
+            else {
+                val = 1;
+             }
+             time2 = setInterval(function () {
+                 if (currentPx != px) {
+                     currentPx += val;
+                     $('#guid_2').css("margin-top", currentPx + "px");
+                 }
+                 else {
+                     clearInterval(time2);
+                 }
+             }, 1);
+        }
+        //绘制当前所在菜单光条
+        function changeLine(index) {
+            for (var i = 1; i <= 5; i++) {
+                var clearCanvas = document.getElementById("canvas" + i);
+                var clearContext = clearCanvas.getContext("2d");
+                clearContext.clearRect(0, 0, 200, 10);
+            }
+            currentIndex = index;
+            var lineCanvas = document.getElementById("canvas"+index);
+            var mycontext = lineCanvas.getContext("2d");
+            mycontext.strokeStyle="#3A7290";
+            var i = 0;
+            var timer = setInterval(function () {
+                i++;
+                if (i <= 100) {
+
+                    lineCanvas.width = 0;
+                    lineCanvas.height = 0;
+                    lineCanvas.width = 200;
+                    lineCanvas.height = 10;
+                    mycontext.strokeStyle = "#3A7290";
+                    mycontext.moveTo(100 - i, 5);
+                    mycontext.lineTo(100 + i, 5);
+                    mycontext.stroke();
+                }
+                else if (i <= 120) {
+                    lineCanvas.width = 0;
+                    lineCanvas.height = 0;
+                    lineCanvas.width = 200;
+                    lineCanvas.height = 10;
+                    mycontext.strokeStyle = "#3A7290";
+                    mycontext.moveTo((i - 100), 5);
+                    mycontext.lineTo(((3 * 100) - i), 5);
+                    mycontext.stroke();
+                }
+                else {
+                    clearInterval(timer);
+                    if (index != currentIndex) {
+                        mycontext.clearRect(0, 0, 200, 10);
+                    }
+                }
+            }, 1);
+     }
+</script>

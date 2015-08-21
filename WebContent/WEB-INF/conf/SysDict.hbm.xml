@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.cmrx.bean.model">
+    <class name="SysDicctBean" table="sys_dict">
+        <meta attribute="sync-DAO">false</meta>
+        <id name="id" type="string" column="id">
+        </id>
+        <property name="dict_level" column="dict_level" type="string" length="4"/>
+        <property name="dict_key" column="dict_key" type="string" length="50"/>
+        <property name="parent_key" column="parent_key" type="string" length="50"/>
+        <property name="root_key" column="root_key" type="string" length="50"/>
+        <property name="dict_value1" column="dict_value1" type="string" length="200"/>
+        <property name="dict_value2" column="dict_value2" type="string" length="200"/>
+        <property name="dict_value3" column="dict_value3" type="string" length="200"/>
+        <property name="leaf_flag" column="leaf_flag" type="string" length="4"/>
+        <property name="download_flag" column="download_flag" type="string" length="4"/>
+        <property name="readonly_flag" column="readonly_flag" type="string" length="4"/>
+        <property name="dict_sort" column="dict_sort" type="integer" length="4"/>
+        <property name="dict_py" column="dict_py" type="string" length="50"/>
+        <property name="open_flag" column="open_flag" type="string" length="4"/>
+        <property name="remark" column="remark" type="string" length="4000"/>
+        <property name="create_user" column="create_user" type="string" length="50"/>
+        <property name="create_datetime" column="create_datetime" type="date" length="0"/>
+        <property name="update_user" column="update_user" type="string" length="50"/>
+        <property name="update_datetime" column="update_datetime" type="date" length="0"/>
+        <property name="rowid" column="rowid" type="string" length="80"/>
+    </class>
+</hibernate-mapping>

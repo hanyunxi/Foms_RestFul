@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.cmrx.bean.model">
+	<class name="NewsBean" table="news">
+		<!-- <meta attribute="sync-DAO">false</meta> -->
+		<id name="newsId" type="integer" column="newsId" length="20">
+		     <generator class="sequence">   
+                 <param name="sequence">ORGAN_0</param>   
+             </generator>   
+		</id>
+		<property name="newsTitle" column="newsTitle" type="string" length="100" />
+		<property name="newsContent" column="newsContent" type="string" length="21000" />
+		<property name="createuserid" column="createuserid" type="string" length="11" />
+		<property name="createDate" column="createDate" type="timestamp" length="0"/>
+		<property name="newstype" column="newstype" type="string" length="100" />
+		<property name="newsimg" column="newsimg" type="string" length="200" />
+	</class>
+</hibernate-mapping>

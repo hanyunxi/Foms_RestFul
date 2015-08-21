@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration
+    PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- local connection properties    10.48.144.56 -->
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@127.0.0.1:1521:orcl</property>
+		<property name="connection.useUnicode">true</property> 
+		<property name="connection.characterEncoding">UTF-8</property>
+		<property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+		<property name="hibernate.connection.username">foms</property>
+		<property name="hibernate.connection.password">foms</property>
+		<!-- property name="hibernate.connection.pool_size"></property -->
+
+		<!-- dialect for Oracle (any version) -->
+		<property name="dialect">org.hibernate.dialect.OracleDialect</property>
+		<property name="hibernate.show_sql">true</property>
+
+		<!-- 使用c3p0管理连接池 -->
+		<property name="hibernate.c3p0.max_size">20</property>
+		<!-- 最小连接数 -->
+		<property name="hibernate.c3p0.min_size">1</property>
+		<!-- 获得连接的超时时间,如果超过这个时间,会抛出异常，单位毫秒 -->
+		<property name="hibernate.c3p0.timeout">120</property>
+		<!-- 最大的PreparedStatement的数量 -->
+		<property name="hibernate.c3p0.max_statements">100</property>
+		<!-- 每隔120秒检查连接池里的空闲连接 ，单位是秒 -->
+		<property name="hibernate.c3p0.idle_test_period">120</property>
+		<!-- 当连接池里面的连接用完的时候，C3P0一下获取的新的连接数 -->
+		<property name="hibernate.c3p0.acquire_increment">1</property>
+		<!-- 每次都验证连接是否可用 -->
+		<property name="hibernate.c3p0.validate">true</property>
+
+		<mapping resource="UserorgBean.hbm.xml" />
+		<mapping resource="DetailDictBean.hbm.xml" />
+		<mapping resource="LogBean.hbm.xml" />
+		<mapping resource="Departmentcaseinfo.hbm.xml" />
+		<mapping resource="StudyAnalysisBean.hbm.xml" />
+		<mapping resource="DetailDictAddBean.hbm.xml" />
+		
+		<mapping resource="UserInfoBean.hbm.xml" />
+		<mapping resource="RoleAuthBean.hbm.xml" />
+		<mapping resource="NewsBean.hbm.xml" />
+		<mapping resource="AnalyzeformulaBean.hbm.xml" />
+		<mapping resource="AnalyzetaskBean.hbm.xml" />
+		<mapping resource="AnalyzeresultBean.hbm.xml" />
+		
+	</session-factory>
+</hibernate-configuration>

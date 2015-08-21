@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.cmrx.bean.model">
+	<class name="UserInfoBean" table="USERINFO">
+		<meta attribute="sync-DAO">false</meta>
+		<id name="userId" type="integer" column="userId">
+			<generator class="sequence">   
+                 <param name="sequence">USERINFO_0</param>   
+             </generator>
+		</id>
+		
+		<property name="userName" column="userName" type="string" length="50" />
+		<property name="pwd" column="pwd" type="string" length="96" />
+		<property name="trueName" column="trueName" type="string" length="50" />
+		<property name="userCard" column="userCard" type="string" length="54" />
+		<property name="roleId" column="roleId" type="integer" length="11" />
+		<property name="organId" column="organId" type="integer" length="11" />
+	</class>
+</hibernate-mapping>

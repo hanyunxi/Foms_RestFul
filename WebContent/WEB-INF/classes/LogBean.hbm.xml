@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.cmrx.bean.model">
+	<class name="LogBean" table="log">
+		<meta attribute="sync-DAO">false</meta>
+		<id name="logId" type="long" column="logId">
+			 <generator class="sequence">   
+                 <param name="sequence">logSeq</param>   
+             </generator>   
+		</id>
+		
+		<property name="logType" column="logType" type="string" length="1" />
+		<property name="logContext" column="logContext" type="string" length="1000" />
+		<property name="logUser" column="logUser" type="string" length="30" />
+		<property name="logTime" column="logTime" type="date" length="0" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,427 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>新闻列表</title>
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/pagecss/leftMenu.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-extend/jeasyui-extensions/jquery.portal.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+    <style type="text/css">
+        #a_tztb:hover
+        {
+            color:#2D9ACD;    
+        }
+        #a_xwzx:hover
+        {
+            color:#2D9ACD;    
+        }
+        
+        .datagrid-htable 
+        {
+            background-color:white;
+        }
+        .datagrid-row-over,.datagrid-row-over a
+        {
+            color:White;background-color:white; 
+        }
+        .datagrid-row-selected,.datagrid-row-selected a
+        {
+            color:White;
+            background-color:white; 
+        }
+        .datagrid-header .datagrid-cell span
+        {
+            font-size:16px;
+        }
+        /*.datagrid-header-row
+        {
+            height:40px;
+        }
+        .datagrid-header td.datagrid-header-over
+        {
+            background:#f2f2f2;    
+        }*/
+        .datagrid-header
+        {
+            display:none;    
+        }
+        .datagrid-row
+        {
+            height: 139px;
+        }
+        .datagrid-btable,.datagrid-htable
+        {
+            /*border:1px solid #C8C8C8;  */
+            
+        }
+        
+        /*.datagrid-htable td
+        {
+            border-right:1px solid #C8C8C8;    
+        }*/
+        .datagrid-btable td
+        {
+             border-right:0px solid #C8C8C8; 
+             border-bottom:1px dashed #C8C8C8;
+        }
+        .datagrid-cell
+        {
+            font-size:15px; 
+        }
+        .panel-body
+        {
+            background-color:White;
+            color:Black;
+        }
+        .datagrid-pager
+        {
+            color:Black;    
+        }
+       
+        .combo-arrow
+        {
+            background-color:White;
+            background: url('../Compents/images/yp/arrow-down001.png') no-repeat center center;
+        }
+        .datebox .combo-arrow
+        {
+            background-image:url(../Compents/images/yp/calendar001_normal.png);
+            background-position:center center;
+            margin-right:2px;
+        }
+        .combo-arrow:hover
+        {
+            background-color:White;    
+        }
+        .combo
+        {
+            border:1px solid #d2d2d2;
+            margin-right:10px;
+        }
+        .combo .combo-text,.combobox-item
+        {
+            font-size:14px;
+            color:Gray;  
+        }
+        .datagrid-row-over a
+        {
+            color:White;   
+            cursor:pointer; 
+        }
+        .datagrid-row-selected a 
+        {
+             color:White;   
+             cursor:pointer;
+        }
+        .pagination-page-list
+        {
+            cursor:pointer;
+            border:1px solid #C8C8C8;
+        }
+        .pagination-num
+        {
+            border:1px solid #C8C8C8 !important;
+        }
+        .pagination-info
+        {
+            margin-right:34px;
+        } 
+        .window
+        {
+            padding:1px;background-color:#25A2CE; 
+        }
+         .panel-title
+        {
+            height:28px; line-height:28px;margin-left:15px;font-size:15px;    
+        }
+        .panel-body
+        {
+            background-color:White;
+            color:Black;
+        }
+        .datagrid-body
+        {
+            overflow:hidden;   
+         }
+    </style>
+</head>
+<body onResize="Resize()" >
+     <div style="width:100%;height:100%;overflow:hidden;" id="div_newsshow">
+        <div style="width:258px;height:auto;float:left;">
+            <div style="background:url(../Compents/images/news/left-list-news01_03.png);width:258px;height:39px;">
+                <div style="float:left;">
+                    <img style="margin-top:13px;margin-left:24px;" src="../Compents/images/news/white-square-news_03.png"/>
+                </div>
+                <div style="float:left;margin-top:10px;margin-left:12px;">
+                    <span style="font-size:14px;font-family:宋体;color:White;font-weight:bold;">新闻中心</span>
+                </div>
+            </div>
+            <div style="width:1px;height:630px;border-left:1px solid #EEEEEE;margin-left:5px;float:left;">
+               <!--<img src="../Compents/images/news/left-list-line-news_10.png" height="397px" width="1px"/>-->
+            </div>
+            <div style="width:240px;height:630px;float:left;">
+                <div style="margin-top:32px;margin-left:15px;margin-right:11px;border-top:1px solid #EEEEEE;border-bottom:1px solid #EEEEEE;height:32px;">
+                    <div style="margin-top:5px;margin-left:2px;float:left;width:9px;height:9px;">
+                        <img src="../Compents/images/news/triangle-news_03.png" id="img_tztbone"/>
+                        <img src="../Compents/images/news/triangle-news_03.png" id="img_tztbonemove" style="display:none;"/>
+                    </div>
+                    <div id="div_tjtb" style="float:left;width:180px;height:32px;text-align:center;font-family:宋体;font-size:13px;line-height:32px;color:#2D9ACD;" >
+                        <a style="cursor:pointer;" id="a_tztb">通知通报</a>
+                    </div>
+                    <div style="float:right;margin-right:4px;margin-top:10px;width:15px;height:15px;">
+                        <img src="../Compents/images/news/right-triangle-news_06.png" id="img_tztbtwo"/>
+                        <img src="../Compents/images/news/right-triangle-news_06.png" id="img_tztbtwomove" style="display:none;"/>
+                    </div>
+                </div>
+                <div style="margin-left:15px;margin-right:11px;border-bottom:1px solid #EEEEEE;height:32px;">
+                    <div style="margin-top:5px;margin-left:2px;float:left;width:9px;height:9px;">
+                        <img src="../Compents/images/news/triangle-news_03.png" id="img_xwzxone"  style="display:none;" />
+                        <img src="../Compents/images/news/triangle-news_03.png" id="img_xwzxonemove" style="display:none;"/>
+                    </div>
+                    <div id="div_xwzx"  style="float:left;width:180px;height:32px;text-align:center;font-family:宋体;font-size:13px;line-height:32px;color:#666666;" >
+                        <a style="cursor:pointer;" id="a_xwzx">最新新闻</a>
+                    </div>
+                    <div style="float:right;margin-right:4px;margin-top:10px;width:15px;height:15px;">
+                        <img src="../Compents/images/news/right-triangle-news_06.png" id="img_xwzxtwo" style="display:none;"/>
+                        <img src="../Compents/images/news/right-triangle-news_06.png" id="img_xwzxtwomove" style="display:none;"/>
+                    </div>
+                </div>
+            </div> 
+            <div style="width:1px;height:630px;border-left:1px solid #EEEEEE;margin-left:5px;float:left;">
+            </div>
+            <div style="clear:both;width:248px;margin-left:5px;border-bottom:1px solid #EEEEEE;">
+            </div>
+        </div>
+        <div id="div_titleAll" style="float:right;margin-left:10px;margin-right:10px;height:auto;overflow-x:visible;overflow-y:scorll;">
+            <div style="width:100%;height:41px;">
+                <div style="float:left;">
+                    <img src="../Compents/images/news/right-list-news01_05.png" />
+                </div>
+                <div  id="div_lineimg" style="float:left;background:url(../Compents/images/news/right-list-news03_07.png);height:41px;">
+                    <div style="margin-top:20px;float:left;">
+                        <img src="../Compents/images/news/blue-square-news_06.png"/>
+                    </div>
+                    <div id="div_lefttitle" style="margin-top:18px;float:left;margin-left:12px;font-family:宋体;font-size:14px;color:#2D9ACD;font-weight:bold;">
+                        通知通报
+                    </div>
+                    <div style="margin-top:18px;float:right;margin-right:5px;font-family:宋体;font-size:13px;color:#2D9ACD;">
+                        <a style="cursor:pointer;font-family:宋体;font-size:13px;color:#2D9ACD;text-decoration:none;" href="HomePage.htm">首页 > </a>
+                        <!--<a style="cursor:pointer;font-family:宋体;font-size:13px;color:#2D9ACD;text-decoration:none;" onclick="rightxwzx();" id="a_rightxwzx">新闻中心 > </a>-->
+                        <a id="a_righttitle">通知通报  </a>
+                    </div>
+                </div>
+                <div style="float:left;">
+                    <img src="../Compents/images/news/right-list-news02_07.png" />
+                </div>
+            </div>
+            <div id="div_news" style="margin-left:30px;margin-right:29px;">
+                <input type="hidden" id="tbcount" value="-1" />
+                <table id="newsTable" ></table>
+            </div>
+        </div>
+        <div style="clear:both;display:block;height:0;"></div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $("#a_tztb").click(function () {
+        tztb();
+        loadnewsTable("通知");
+
+    });
+    function tztb() {
+        $("#img_tztbonemove").hide(); $("#img_tztbtwomove").hide();
+        $("#img_tztbone").show(); $("#img_tztbtwo").show();
+        $("#img_xwzxone").hide(); $("#img_xwzxtwo").hide();
+        $("#div_tjtb").css("color", "#2D9ACD");
+        $("#div_xwzx").css("color", "#666666");
+        $("#div_lefttitle").html("通知通报");
+        $("#a_righttitle").html("通知通报");
+    }
+
+    $("#a_xwzx").click(function () {
+        xwzx();
+        loadnewsTable("新闻");
+
+    });
+    function xwzx() {
+        $("#img_xwzxonemove").hide(); $("#img_xwzxtwomove").hide();
+        $("#img_xwzxone").show(); $("#img_xwzxtwo").show();
+        $("#img_tztbone").hide(); $("#img_tztbtwo").hide();
+        $("#div_tjtb").css("color", "#666666");
+        $("#div_xwzx").css("color", "#2D9ACD");
+        $("#div_lefttitle").html("最新新闻");
+        $("#a_righttitle").html("最新新闻"); 
+    }
+
+    $("#a_tztb").mousemove(function () {
+        if ($("#img_tztbone").css("display") == "none") {
+            $("#img_tztbonemove").show(); $("#img_tztbtwomove").show();
+            $("#a_tztb").mouseout(function () {
+                $("#img_tztbonemove").hide(); $("#img_tztbtwomove").hide();
+            });
+        }
+    });
+    $("#a_xwzx").mouseover(function () {
+        if ($("#img_xwzxone").css("display") == "none") {
+            $("#img_xwzxonemove").show(); $("#img_xwzxtwomove").show();
+            $("#a_xwzx").mouseout(function () {
+                $("#img_xwzxonemove").hide(); $("#img_xwzxtwomove").hide();
+            });
+        }
+    });
+
+    $(document).ready(function () {
+        //        var newsid = request("newsid");
+        var newstype = decodeURI(request("newstype"));
+        if (newstype == "新闻") {
+            $("#div_lefttitle").html("最新新闻");
+            //            $("#a_xwzx").click();
+            xwzx();
+        } else if (newstype == "通知") {
+            $("#div_lefttitle").html("通知通报");
+            //            $("#a_tztb").click();
+            tztb();
+        } else {
+            location.href = "HomePage.htm";
+        }
+        $("#div_newsshow").css("width", ($(window.document).width() - 30) + "px");
+        $("#div_titleAll").css("width", (Number($("#div_newsshow").css("width").replace("px", "")) - 278) + "px");
+        var newwidth = Number($("#div_titleAll").css("width").replace("px", "")) - 52;
+        $("#div_lineimg").css("width", newwidth + "px");
+        loadnewsTable(newstype);
+    });
+    function del_html_tags(str) {//去除html标签
+        var words = '';
+        words = str.replace(/<[^>]+>/g, "");
+        return words;
+    }
+    
+    function loadnewsTable(newstype) { //新闻列表
+        var winWidth = document.documentElement.clientWidth -380;
+//        var winWidth =Number($("#div_titleAll").css("width").replace("px", ""));
+        var tbcount = $('#tbcount').val();
+        $('#newsTable').datagrid({
+            //url: 'http://' + urlIP1 + '/News/post/newslistbytype',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/News/newsListByType',
+            queryParams: { newstype: newstype, count: tbcount },
+            striped: true,//是否显示斑马线效果。
+            singleSelect: true,
+            pagination: true,
+            loadMsg: "正在加载，请稍等...",
+            idField: 'newsId',
+            fitColumns: false,
+            pageNumber: 1,
+            pageSize: 4, //每页显示的记录条数，默认为10  
+            pageList: [4, 8, 12],
+            columns: [[
+            { field: 'CREATEDATE', title: '发布时间', align: 'left', width: (winWidth - 208) * 0.1
+                , formatter: function (value, row, index) {
+                    var str = value.substring(0, 10);
+                    var month = str.substring(5, 7);
+                    var year = str.substring(0, 4);
+                    var day = str.substring(8, 10);
+                    return "<div style='width:" + (winWidth - 208) * 0.1 + "px;'><div style='font-family:微软雅黑;font-size:14px;color:#FDB542;padding-left:3px;margin-bottom:6px;'>" + month
+                    + "月</div><div style='font-family:微软雅黑;font-size:20px;color:#FDB542;font-weight:blod;padding-left:7px;margin-bottom:8px;'>" + day
+                    + "</div><div style='font-family:微软雅黑;font-size:14px;color:#FDB542;'>" + year + "</div></div>";
+                }
+            },
+            { field: 'NEWSID', title: '内容', align: 'left', width: (winWidth - 208) * 0.9
+                 , formatter: function (value, row, index) {
+                     var regObj = { "&lt;": "<", "&gt;": ">", "&nbsp;": "", "&amp;": "&" }; //要替换的内容和值，json格式
+                     for (var reg in regObj) {
+                         row.NEWSCONTENT = row.NEWSCONTENT.replace(new RegExp(reg, "g"), regObj[reg]);
+                     }
+                     if (row.NEWSCONTENT.length > 90) {
+                         row.NEWSCONTENT = row.NEWSCONTENT.substring(0, 75) + "......";
+                     } else
+                         row.NEWSCONTENT = row.NEWSCONTENT + "......";
+                     return "<div style='width:" + (winWidth - 208) * 0.9 + "px;'><div style='font-family:宋体;font-size:14px;font-weight:bold;color:#666666; '>" + row.NEWSTITLE
+                            + "</div><div style='white-space:pre-wrap; word-wrap:break-word;width:" + (winWidth - 208) * 0.9 + "px;font-family:宋体;font-size:12px;color:#999999;height:35px;margin-top:20px;'>" + row.NEWSCONTENT
+                            + "<a style='color:#FFB847;float:right;margin-right:5px;' onclick='newsdetailCheck(&apos;" + row.NEWSID + "&apos;,&apos;" + row.NEWSTYPE + "&apos;);'>更多>></a></div></div>";
+                 }
+            },
+            { field: 'NEWSIMG', title: '图片', align: 'right', width: '208px'
+                , formatter: function (value, row, index) {
+                    var img = new Image();
+                    img.src = row.NEWSIMG;
+                    var w; var h; var dl; var imgstr; var imgW; var imgH;
+                    img.onload = function () {
+                        w = img.width;
+                        h = img.height;
+                        dl = w / h;
+                        if ((170 / 120) > dl && w < h) {
+                            imgW = (120 * w) / h;
+                            imgH = 120; imgstr = "<img width='" + imgW + "' height='" + imgH + "' src='" + row.NEWSIMG + "' " + " />";
+                        } else if (w == h) {
+                            if (w != 0) {
+                                imgH = imgW = 120; imgstr = "<img width='" + imgW + "' height='" + imgH + "' src='" + row.NEWSIMG + "' " + " />";
+                            } else {
+                                imgH = imgW = 0;
+                            }
+                        } else if ((170 / 120) < dl && w > h) {
+                            imgW = 170;
+                            imgH = (170 * h) / w; imgstr = "<img width='" + imgW + "' height='" + imgH + "' src='" + row.NEWSIMG + "' " + " />";
+                        }
+                        $('#img_' + row.NEWSID).html("<img width='" + imgW + "' height='" + imgH + "' src='" + row.NEWSIMG + "' " + " />");
+                    }
+                    return "<div style='width:208px;'><div  id='img_" + row.NEWSID + "' style='float:right;margin-right:10px;width:170px;height:120px;background-color:white; vertical-align:middle;text-align:center;' >"
+                    + "</div></div>";
+                }
+            }
+            ]],
+            onLoadSuccess: function (data) {
+                $(window).resize(function () { //监测浏览器大小变化
+                    setTimeout(function () {
+                        $('#newsTable').datagrid('resize'); //动态改变表格宽度
+                    }, 300);
+                });
+            }
+        });
+    }
+   
+
+    function newsdetailCheck(id, type) {
+        location.href = encodeURI("News.htm?newsid=" + id + "&newstype=" + type);
+    }
+
+    function rightxwzx() {
+        
+    }
+
+    Resize = function () {
+        var winWidth = document.documentElement.clientWidth;
+        $("#div_newsshow").css("width", (winWidth - 30) + "px");
+        $("#div_titleAll").css("width", (Number($("#div_newsshow").css("width").replace("px", "")) - 278) + "px");
+        var newwidth = Number($("#div_titleAll").css("width").replace("px", "")) - 52;
+        $("#div_lineimg").css("width", newwidth + "px");
+//        var winnewsWidth = $(window.document).width() - 380;
+        var div_lefttitleHtml = $("#div_lefttitle").html(); 
+        if (div_lefttitleHtml == "最新新闻") {
+            loadnewsTable("新闻"); 
+        } else if (div_lefttitleHtml == "通知通报") {
+            loadnewsTable("通知"); 
+        }
+    }
+
+    function request(paras) {
+        var url = location.href;
+        var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+        var paraObj = {}
+        for (i = 0; j = paraString[i]; i++) {
+            paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+        }
+        var returnValue = paraObj[paras.toLowerCase()];
+        if (typeof (returnValue) == "undefined") {
+            return "";
+        } else {
+            return returnValue;
+        }
+    }
+
+    
+</script>

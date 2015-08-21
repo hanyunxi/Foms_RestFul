@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/pagecss/leftMenu.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/datagrid-detailview.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+    <style type="text/css">
+      html,body {margin:0;
+	 		 padding:0;
+	    	height:100%;
+              width:100%;
+            }
+            #mainContainer {
+                height:100%;
+                width:100%;
+            }
+            #header {
+                height:13%;
+                width:100%;
+                background-color:pink;
+				padding-top:5px;
+            }
+            #center {
+                height:90%;
+                width:100%;
+                background-color:#E5E7E4;
+            }
+    </style>
+	
+<script type="text/javascript">
+	var taskDetail=null;
+	var tasknum=null;
+	//刚加载进来，填充主要字段信息和画板绘图
+    $(document).ready(function () {
+		//得到具体任务信息
+		taskDetail=getTaskBynum();
+		//填充信息
+		$("#taskname").text(taskDetail.TASKNAME);
+		$("#tasknum").text(taskDetail.TASKNUM);
+		$("#createtime").text(taskDetail.CREATETIME_S);
+		$("#createuser").text(taskDetail.CREATEUSERNAME);
+		$("#taskremark").text(taskDetail.TASKREMARK);
+		$("#tstatus").text(taskDetail.STATUS);
+		//接下来就是绘图
+		
+		
+		
+    });
+	
+	
+	//
+	function getTaskBynum(){
+		var detail=null;
+			//获得url后面传过来的值
+	tasknum=request("tasknum");
+	$.ajax({
+	        type: "post",
+	        url: 'http://' + urlIP + '/Foms_RestFul/rest/Study/getTaskByTaskNum',
+	        data: {tasknum:tasknum},
+			async: false,
+	        success: function (data) {//JSON串
+				detail=data;
+	        },error:function(msg,a){
+				alert(msg+"=="+a);
+			}
+	    });
+		return detail;
+	}
+	
+	function goBack(){
+		location.href ="MindMap.htm";
+	}
+	
+	//上面的调用request方法
+    function request(paras) {
+	    var url = location.href;
+	    var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+	    var paraObj = {}
+	    for (i = 0; j = paraString[i]; i++) {
+	        paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+	    }
+	    var returnValue = paraObj[paras.toLowerCase()];
+	    if (typeof (returnValue) == "undefined") {
+	        return "";
+	    } else {
+	        return returnValue;
+	    }
+    }
+</script>
+</head>
+<body>
+     <!--菜单箭头
+	 		<tr><th>任务名称</th><th width="1000px">任务描述</th><th>任务编号</th><th>状态</th><th>创建时间</th><th>创建人</th></tr>
+				<tr><td>aa</td><td>任务描述任务任务描述任务描述任务描述任务描述任务描述任务描述任务描述任务描述任务描述任务描述任务描述任务描述任务描述任务描述任务描述描述任务描述任务描述任务描述任务描述任务描述任务描述任务描述任务描述任务描述任务描述任务描述任务描述任务描述</td><td>cc</td>
+				<td>dd</td><td>2015-05-26 20:05:02</td><td>东方不败</td></td>
+	 -->
+	<div id="mainContainer">
+         <div id="header">
+			<table width="100%">
+				<tr>
+					<th width="10%">任务名称：</th><td width="20%" id="taskname">这是一个任务</td><th width="10%">任务编号：</th><td width="10%" id="tasknum">T20150526000045</td>
+					<th width="10%">创建时间：</th><td width="20%" id="createtime">2014-12-24 12:12:12</td><th width="10%">创建人：</th><td width="10%" id="createuser">東方不敗</td>
+				</tr>
+				<tr width="100%">
+					<th width="10%">任务描述：</th>
+					<td colspan='7' width="90%" id="taskremark">错误观点：文字是记录语言的符号。错误原因：西方中心论。世界上现在除了中国文字的象
+					</td>
+				</tr>
+				<tr>
+					<th>任务状态：</th>
+					<td colspan='6' id="tstatus">执行中</td>
+					<td style="text-align:right;"><button onclick="goBack();">返回</button> </td>
+				</tr>
+			</table>         	
+         </div>
+         <div id="cented">绘图</div>
+    </div>
+</body>
+</dtml>

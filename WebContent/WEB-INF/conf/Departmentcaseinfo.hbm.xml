@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.cmrx.bean.model">
+    <class name="Departmentcaseinfo" table="departmentcaseinfo">
+        <meta attribute="sync-DAO">false</meta>
+		<!--mysql中的bigint对应hibernate的映射类型long-->
+        <id name="id" type="long" column="id">
+        </id>
+        
+        <property name="xcky" column="xcky" type="string" length="30"/>
+        <property name="caseNum" column="caseNum" type="string" length="30"/>
+        <property name="departmentNum" column="departmentNum" type="string" length="30"/>
+        <property name="footNum" column="footNum" type="string" length="30"/>
+        <property name="dataType" column="dataType" type="integer" length="11"/>
+        <property name="caseType" column="caseType" type="string" length="30"/>
+        <property name="caseAdd" column="caseAdd" type="string" length="100"/>
+        <property name="caseVal" column="caseVal" type="string" length="500"/>
+        <property name="caseTime" column="caseTime" type="date" length="20"/>
+        <property name="uploadUnit" column="uploadUnit" type="string" length="50"/>
+        <property name="uploadUser" column="uploadUser" type="string" length="50"/>
+        <property name="accord" column="accord" type="string" length="10"/>
+        <property name="suspectName" column="suspectName" type="string" length="50"/>
+        <property name="suspectAge" column="suspectAge" type="string" length="10"/>
+        <property name="suspectSex" column="suspectSex" type="string" length="10"/>
+        <property name="suspectNum" column="suspectNum" type="string" length="30"/>
+        <property name="suspectNativePlace" column="suspectNativePlace" type="string" length="50"/>
+        <property name="suspectAdd" column="suspectAdd" type="string" length="50"/>
+        <property name="suspectCardId" column="suspectCardId" type="string" length="20"/>
+        <property name="suspectBirthday" column="suspectBirthday" type="string" length="20"/>
+        <property name="createTime" column="createTime" type="date" length="0"/>
+        <property name="updateTime" column="updateTime" type="date" length="0"/>
+        <property name="dataStatus" column="dataStatus" type="integer" length="11"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.cmrx.bean.model">
+	<class name="RoleAuthBean" table="role_authority">
+		<meta attribute="sync-DAO">false</meta>
+		<id name="roleId" type="integer" column="roleId">
+			 <generator class="sequence">   
+                 <param name="sequence">ROLE_AUTHORITY_0</param>   
+             </generator>   
+		</id>
+		
+		<property name="roleName" column="roleName" type="string" length="50" />
+		<property name="authority" column="authority" type="string" length="2000" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,496 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>研判</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="../Compents/eui/themes/metro/blue-easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/eui/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../Compents/pagecss/leftMenu.css" rel="stylesheet" type="text/css" />
+    <script src="../Compents/eui/eui-Script/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-Script/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="../Compents/eui/eui-extend/jeasyui-extensions/jquery.portal.js" type="text/javascript"></script>
+    <script src="../Compents/js/session.js" type="text/javascript"></script>
+    <style type="text/css">
+        body
+        {
+         font-family: "微软雅黑";   
+         } 
+        .window
+        {
+            padding:1px;background-color:#25A2CE; 
+        }
+        .panel-tool-close
+        { 
+            background:url('../Compents/eui/themes/metro/images/panel_tools.png') no-repeat;    
+        }
+         .panel-title
+        {
+            height:23px; line-height:23px;margin-left:15px;font-size:15px;    
+        }
+        .menu_span
+        {
+             margin-left: 20px; margin-right: 30px;   
+        }
+         .panel-header, .panel-body
+        {
+            border: 0;
+        }
+        .layout-panel-west
+        {
+            border-right: 1px solid #e7e7e7;
+        }
+        .layout-panel-west .panel-header
+        {
+            background-color: #e6e6e6;
+        }
+        .layout-panel-center .panel-header
+        {
+            background-color: #f9f9f9;
+        }
+        .datagrid-htable
+        {
+            background-color:#f2f2f2;
+        }
+        .datagrid-row-over,.datagrid-row-over a
+        {
+            color:White;
+        }
+        .datagrid-row-selected,.datagrid-row-selected a
+        {
+            color:White;
+            background-color:#2d9acd; 
+        }
+        .datagrid-header .datagrid-cell span
+        {
+            font-size:16px;
+        }
+        .datagrid-header-row
+        {
+            height:40px;
+        }
+        .datagrid-header td.datagrid-header-over
+        {
+            background:#f2f2f2;    
+        }
+        .datagrid-row
+        {
+            height: 46px;
+        }
+        .datagrid-btable,.datagrid-htable
+        {
+            border:1px solid #C8C8C8;   
+        }
+        .datagrid-htable td
+        {
+            border-right:1px solid #C8C8C8;    
+        }
+        .datagrid-btable td
+        {
+             border-right:1px solid #C8C8C8; border-bottom:1px dashed #C8C8C8;
+        }
+        .datagrid-cell
+        {
+            font-size:15px; 
+        }
+        .panel-body
+        {
+            background-color:White;
+            color:Black;
+        }
+        .datagrid-pager
+        {
+            color:Black;    
+        }
+        .btn
+        {
+            text-decoration: none;
+            display: inline-block;
+            margin: 0;
+            cursor: pointer;
+            outline: none;
+            text-align: center;
+            height: 30px;
+            width: 96px;
+            line-height:30px;
+            color: White;
+            background-color: #30A3D9;
+            font-size:16px;
+            font-family: "宋体";  
+        }
+        .btn:hover
+        {
+            background-color: #2D9ACC;
+        }
+        .combo-arrow
+        {
+            background-color:White;
+            background: url('../Compents/images/yp/arrow-down001.png') no-repeat center center;
+        }
+        .datebox .combo-arrow
+        {
+            background-image:url(../Compents/images/yp/calendar001_normal.png);
+            background-position:center center;
+            margin-right:2px;
+        }
+        .combo-arrow:hover
+        {
+            background-color:White;    
+        }
+        .combo
+        {
+            border:1px solid #d2d2d2;
+            margin-right:10px;
+        }
+        .combo .combo-text,.combobox-item
+        {
+            font-size:14px;
+            color:Gray;  
+        }
+        .a_table
+        {
+            cursor: pointer;text-decoration: none; color:rgb(0,113,188);
+        }
+        #div_ypgsTable a
+        {
+            color:#00749b;
+            cursor:pointer;
+        }
+        #div_ypgsTable .datagrid-row-over a
+        {
+            color:White;   
+            cursor:pointer; 
+        }
+        #div_ypgsTable .datagrid-row-selected a 
+        {
+             color:White;   
+             cursor:pointer;
+        }
+        .studytitle {
+            font-weight: bold;
+        }
+        .a_title {
+            
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .pagination-info
+        {
+            margin-right:36px;    
+        }
+        .panel-header.panel-header-noborder.window-header
+        {
+            height:28px;    
+        }
+        
+    </style>
+</head>
+<body class="easyui-layout">
+     <!--菜单箭头-->
+    <div style="position: absolute; z-index: 999; left: 196px; top: 33px; width: 12px; height: 100%;">
+        <div id="guid_1" style="height: 84px; width: 12px;">
+            <img src="../Compents/images/yp/guidearrow-21.png" /></div>
+    </div>
+    <!--左侧菜单-->
+    <div region="west" collapsible="false" split="false" title=" " style="width: 200px; padding-top: -10px; background-color: #f9f9f9;">
+        <ul id="menu">
+            <li><a href="#" class="select" id="a_ypgs">
+                <img alt="" src="../Compents/images/yp/4-15.png" />
+                <span class="menu_span">研判公式</span>
+                <img src="../Compents/images/yp/Arrow_normal-13.png" /></a> </li>
+                
+            <li><a href="#" class="normal" id="a_zhsearch">
+                <img alt="" src="../Compents/images/yp/4-14.png" />
+                <span class="menu_span">综合查询</span>
+                <img src="../Compents/images/yp/Arrow_normal-13.png" /></a> </li>
+                
+             <li><a href="#" class="normal1" id="a_ryzhsearch">
+                <img alt="" src="../Compents/images/yp/4-14.png" />
+                <span class="menu_span">人员综合查询</span>
+                <img src="../Compents/images/yp/Arrow_normal-13.png" /></a> </li>
+        </ul>
+    </div>
+    <!--右侧内容-->
+    <div id="mainPanle" region="center" split="false" title=" " style="background-color: White;" minWidth="500px;">
+        <!--研判公式-->
+        <div id="div_ypgs" style="width: 100%; height: 100%; display: block;">
+        <!--公式列表-->
+            <!--<div id="winTable" class="easyui-window" style=" padding:15px; overflow:auto;">
+                <table id="detailsTable" style="width:3800000px;"></table>
+            </div>-->
+            <div style="margin:0; min-width:800px; margin-left:40px; height:65px; width:96%;">
+                <div style="float:left; margin-top:20px;display:inline-flex;">
+                    <a id="studyList" onclick="" class="a_title studytitle" style="color: black;cursor:default" href="#">公式列表</a>
+                    <span style=" font-size:16px;color: #00749b;cursor:default">|</span> 
+                    <a id="addStudy" onclick="studyInfoAdd();" class="a_title" style="color: #00749b;cursor:pointer;" >添加公式</a>
+                </div>
+                <div id="tool" style="float:right; margin-top:20px; margin-right:16px; display:inline-flex;">
+                     <!--<span style=" height:27px; line-height:27px; margin-right:15px; font-size:16px;">创建时间</span>
+                     <input id="begintime" type="text" class="easyui-datebox" style=" width:160px;"/> 
+                     <input id="endtime" type="text" class="easyui-datebox" style=" width:160px;"/>-->
+                     <input type="text" id="txtSearch" style=" width:260px; height:22px; color:#999999; margin-right:45px;float:left;" 
+                        onfocus="if (value =='请输入查找内容'){value ='';this.style.color='Black';}" onblur="if (value ==''){value='请输入查找内容'; this.style.color='#999999';}" value="请输入查找内容"/> 
+                     <a class="btn" style=" height:28px; line-height:28px; width:95px; font-size:15px;" onclick="loadypgsTable();">查&nbsp;&nbsp;&nbsp;找</a>
+                </div>
+                <div style=" clear:both;"></div>
+            </div>
+            <div id="div_ypgsTable" style=" width:96%; margin-left:40px;">
+                <input type="hidden" id="tbcount" value="-1" />
+                <table id="ypgsTable"></table>
+            </div>
+        </div>
+        <!--综合查询-->
+        <div id="div_zhsearch" style="width: 100%; height: 100%; display: none;">
+            <iframe id="iframes" style="width:100%; height:100%; border:none;"></iframe>
+        </div>
+		
+	<!--添加任务-->	
+	<div id="saveTask" class="easyui-window" title="Login" style="width: 374px; height: auto;background-color: white;font-family:'宋体';"> 
+        <input id="gongshiID" type="hidden" value=""/>
+		<div style="margin-top:20px;">
+            <!--<div style="float:left;width:40px;height:40px;margin-top:10px;margin-left:24px;background: url('../Compents/images/yp/prompt-red.png') no-repeat "></div>-->
+            <div style="float:left;margin-left:30px;margin-top:10px;">
+           		<span style="color:Black;font-size:14px;font-family:微软雅黑;">任务名称：</span> 
+           		<input type="text" style="width:320px;" id="taskname" value="" /><span id="nameDiv" style="color:red;">*</span><br/>
+				<!--这个float为了让公式描述相对于textarea在上面-->
+				<br/>
+		   		<span style="color:Black;font-size:14px;font-family:微软雅黑;float:left;margin-top:2px;margin-right:7px;">任务描述：</span> 
+          		<textarea rows="10" cols="43" style="margin-top:2px;" id="taskremark" value=""></textarea>
+			</div>
+        </div>
+        <div style="clear:both;padding-top:15px;" class="messager-button">
+            <a id="savemsg" class="l-btn l-btn-small" style="margin-left: 10px;" onclick="addTask();">
+                <span class="l-btn-left">
+                    <span class="l-btn-text">保存</span>  
+                </span>
+            </a>
+            <a id="cancelmsg" class="l-btn l-btn-small"  style="margin-left: 10px;">
+                <span class="l-btn-left"><span class="l-btn-text">取消</span>
+                </span>
+            </a>
+        </div>
+    </div>
+	
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function initMenu() {       //左菜单
+        $('#menu li a').click(
+            function () {
+                $('#menu li a').removeClass("select").addClass("normal");
+                $(this).addClass("select").removeClass("normal");
+            });
+    }
+
+	//加载数据
+    function loadypgsTable() {
+        var tbcount = $('#tbcount').val();
+        var studyname;
+        if ($('#txtSearch').val() != "" && $('#txtSearch').val() != "请输入查找内容") {
+            studyname = $('#txtSearch').val();
+        } else {
+            studyname = "";
+        } 
+        var isAuthority = getAuthority("研判公式列表");
+        if (isAuthority == "true") {
+        $('#ypgsTable').datagrid({
+            //url: 'http://' + urlIP1 + '/Study/post/studylist',
+            url: 'http://' + urlIP + '/Foms_RestFul/rest/Study/studylist',
+            queryParams: { studyname:studyname, count:tbcount },
+            striped: true,
+            singleSelect: true,
+            pagination: true,
+            loadMsg: "正在加载，请稍等...",
+            idField: 'studyId',
+            fitColumns: true,
+            pageSize: 10, //每页显示的记录条数，默认为10  
+            pageList: [5, 10, 15],
+            columns: [[
+            { field: 'FORMULANAME', title: '公式名称', width: ($(window.parent.document).width() - 229) * 0.5, align: 'center'
+//                 , formatter: function (value, row, index) {
+//                    return "<a   onclick='ypCheck(&apos;" + value + "&apos;,&apos;" + row.username + "&apos;);'>" + row.username + "</a>";
+//                }
+            },
+            { field: 'CREATETIME', title: '创建时间', width: ($(window.parent.document).width() - 229) * 0.3, align: 'center' },
+            { field: 'ID', title: '操作', width: ($(window.parent.document).width() - 229) * 0.2, align: 'center',
+                formatter:function (value, row, index) {
+                    var grid = $('#ypgsTable');
+                    var options = grid.datagrid('getPager').data("pagination").options;
+                    var curr = options.pageNumber;
+                    return "<a onclick='ypCheck(&apos;" + value + "&apos;,&apos;" + row.FORMULANAME + "&apos;,&apos;" + row.FORMULAREMARK + "&apos;);'>查看</a><a style='cursor:default'>/</a><a  onclick='ypDelete(&apos;" + value + "&apos;)'>删除</a><a style='cursor:default'>/</a><a  onclick='ypTask(&apos;" + value + "&apos;)'>任务</a>";
+                }
+            }
+            ]],
+            onLoadSuccess: function (data) {
+                $(window).resize(function () { //监测浏览器大小变化
+                    setTimeout(function () {
+                        $('#ypgsTable').datagrid('resize'); //动态改变表格宽度
+                    }, 300);
+                });
+            }
+        });
+        }else {
+            $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+		}
+    }
+
+	//查看
+    function ypCheck(value, studyname,formularemark) {//跳转画图页面
+//        var account = eval("(" + $.cookie('userInfo') + ")"); 
+        //        alert(account[0].userid);
+         var isAuthority = getAuthority("研判公式列表");
+         if (isAuthority == "true") {
+             location.href = encodeURI("StudyData.htm?studyid=" + value + "&studyname=" + studyname+ "&formularemark=" + formularemark);
+         } else {
+             $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+         }
+    }
+	//添加公式
+    function studyInfoAdd() { //新增跳转
+        var isAuthority = getAuthority("研判公式添加");
+        if (isAuthority == "true") {
+            location.href = "StudyData.htm";
+        } else {
+            $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+        }
+    }
+
+    function ypDelete(value) { //公式删除
+        var isAuthority = getAuthority("研判公式删除");
+        if (isAuthority == "true") {
+			//原来获取cookie中的值。
+//            var account = eval("(" + $.cookie('userInfo') + ")");
+//            var userid = account[0].userid;
+			//自己写的
+			var account = $.cookie("userInfo");
+            account = JSON.parse(account);　　//字符反序列化成对象
+			var userid = account.userid;
+			
+            $.messager.confirm("操作提示", "确认是否删除?", function (r) {
+                if (r) {
+                    $.ajax({
+                        type: "POST",
+                        //url: 'http://' + urlIP1 + '/Study/post/studydel',
+                        url: 'http://' + urlIP + '/Foms_RestFul/rest/Study/studyDelete',
+                        data: { 'studyid': value, 'userid': userid },
+                        async: false,
+                        success: function (data) {
+                            if (data == "true") {
+                                $.messager.alert("操作提示", "删除成功！", loadypgsTable());
+                            } else {
+                                $.messager.alert("操作提示", "删除失败！");
+                            }
+                        }
+                    });
+                }
+            });
+        } else {
+            $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+        }
+    }
+	
+  //点击 任务		
+  function ypTask(value) { //研判公式任务
+	$("#gongshiID").val(""+value+"");//隐藏域填充值
+	
+    var isAuthority = getAuthority("公式任务");
+    if (isAuthority == "true") {
+		$('#saveTask').attr("tag",value);
+		//弹出窗口框
+		$('#saveTask').window('open');
+    } else {
+        $.messager.alert("提示", "<img style='float:left;margin-top:20px;margin-left:24px;' src='../Compents/images/yp/prompt-red.png'/><a style='float:left;margin-left:24px;margin-top:20px;width:180px;'>您没有权限进行该操作，请联系管理员<a>");
+    }
+}
+
+    $(document).ready(function () {
+        initMenu();
+        loadypgsTable(); 
+        $('.combo-arrow').css("height", "24px"); $('.combo-text').css({ "height": "24px", "line-height": "24px", "text-align": "center" }).attr("readonly", "readonly"); $('.datebox').css({ "height": "24px", "width": "163px" });
+        $('#a_ypgs').bind("click", function () {
+            $('#div_ypgs').show();
+            $('#div_zhsearch').hide(); 
+            $('#guid_1').css("margin-top", "0px").show(); });
+			//点击左边【综合查询的】
+        $('#a_zhsearch').bind("click", function () { $('#div_zhsearch').show(); $("#iframes").attr('src','IntegrativeQuery.htm'); $('#div_ypgs').hide(); $('#guid_1').css("margin-top", "85px").show(); });
+   		
+		
+		//任务的弹出窗，默认是关闭的
+        $('#saveTask').window({
+            top: 100,
+            left: 500,
+            width: 500,//弹窗的宽度
+            height: 340,//高度
+            modal: true,
+            border: true,
+            closable: true,
+			shadow: false,//拖拽的时候不会留下阴影
+            minimizable: false,
+            maximizable: false,
+            collapsible: false,
+            resizable: false,
+            title: '提示',
+            closed: true,
+            onClose: function () {
+				//alert("init中的onClose");
+            },
+            onOpen: function () {
+				
+            }
+        });
+    });
+
+    function addTask(){//添加任务
+		var taskname=$("#taskname").val();
+		var taskremark=$("#taskremark").val();
+		var gongshiID=$("#gongshiID").val();
+		
+		//自己写的
+		var account = $.cookie("userInfo");
+        account = JSON.parse(account);　　//字符反序列化成对象
+     	var userid = account.userid;
+		
+	   $.ajax({
+	        type: "post",
+	        url: 'http://' + urlIP + '/Foms_RestFul/rest/Study/saveTask',
+	        data: {taskname:taskname,taskremark:taskremark,userid:userid,gongshiID:gongshiID},
+	        success: function (data) {
+				if (data == "true") {
+					alert("保存任务成功!");
+					$('#saveTask').window('close');
+				}else{
+					alert("任务失败");
+				}					
+	        }
+	    });
+
+	}//保存结束
+
+   $("#cancelmsg").click(function () {
+        $('#saveTask').window('close');
+    });
+
+    function getAuthority(authority) {   //判断权限 authority:权限
+        //原来的
+		//var account = eval("(" + $.cookie('userInfo') + ")");
+		//自己写的	       
+	    var account = $.cookie("userInfo");
+        account = JSON.parse(account);　　//字符反序列化成对象
+		
+		var isAuthorityTrue = "false";
+        $.ajax({
+			type: 'POST',
+            //url: 'http://' + urlIP1 + '/Manager/authority?userid=' + (account ? account[0].userid : false) + '&authority=' + authority,
+            //url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist?userid=' + (account ? account.userid : false) + '&authority=' + encodeURI(encodeURI(authority)),
+           	url: 'http://' + urlIP + '/Foms_RestFul/rest/Manager/authorityExist',
+            data:{userid:account ? account.userid : false,authority:authority},
+			async: false,
+            success: function (data) {
+                isAuthorityTrue = data;
+            }
+        });
+        return isAuthorityTrue;
+    }
+</script>
